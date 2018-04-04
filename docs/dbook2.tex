@@ -1,0 +1,250 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={D-score for international comparisons},
+            pdfauthor={Stef van Buuren},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{D-score for international comparisons}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Stef van Buuren}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2018-04-04}
+
+\usepackage{booktabs}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{Preface}\label{preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is an introductory booklet on the measurement of child development
+by means of the D-score. The D-score is a one-number summary that
+quantifies generic neurocognitive development for children with ages 0-4
+years.
+
+This is the \emph{second} in a series of three booklets. The series
+consists of the following titles:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://stefvanbuuren.github.io/dbook1/}{D-score for measuring
+  neurocognitive development 0-4 years}
+\item
+  D-score for international comparisons (this booklet)
+\item
+  D-score for creating better instruments
+\end{enumerate}
+
+The development of this series is kindly supported by the Bill \&
+Melinda Gates Foundation.
+
+\chapter{Introduction}\label{ch:introduction2}
+
+\section{SDG 4.2.1 indicator}\label{sdg-4.2.1-indicator}
+
+\section{Quick scan of instruments}\label{quick-scan-of-instruments}
+
+\section{Care-giver vs direct
+assessment}\label{care-giver-vs-direct-assessment}
+
+\section{Individual-programmatic-population
+settings}\label{individual-programmatic-population-settings}
+
+\chapter{Comparability}\label{ch:comparability}
+
+\section{Challenge of comparability}\label{challenge-of-comparability}
+
+\section{Bridging instruments by mapping
+items}\label{bridging-instruments-by-mapping-items}
+
+\section{Overview of promising item
+mappings}\label{overview-of-promising-item-mappings}
+
+\chapter{Equate groups}\label{ch:equategroups}
+
+\section{Statistical framework for equate
+groups}\label{statistical-framework-for-equate-groups}
+
+\section{Common latent scale}\label{common-latent-scale}
+
+\section{Differential item
+functioning}\label{differential-item-functioning}
+
+\section{Quantifying equate fit}\label{quantifying-equate-fit}
+
+\chapter{Modeling equates}\label{ch:modelingequates}
+
+\section{GCDG data: design and
+description}\label{gcdg-data-design-and-description}
+
+\section{Empirical and fitted item response
+curves}\label{empirical-and-fitted-item-response-curves}
+
+\section{Active and non-active equate
+groups}\label{active-and-non-active-equate-groups}
+
+\section{Splitting and combining equate
+groups}\label{splitting-and-combining-equate-groups}
+
+\section{modeling strategies}\label{modeling-strategies}
+
+\chapter{Comparing ability}\label{ch:ability}
+
+\section{D-score distribution by
+study}\label{d-score-distribution-by-study}
+
+\section{Impact of measurement error}\label{impact-of-measurement-error}
+
+\chapter{Validity}\label{ch:validity2}
+
+\section{Discriminatory validity}\label{discriminatory-validity}
+
+\section{Concurrent validity}\label{concurrent-validity}
+
+\section{Predictive validity}\label{predictive-validity}
+
+\chapter{SDG 4.2.1 Indicator}\label{ch:SDGindicator}
+
+\section{Application I: Estimating the SDG 4.2.1 indicator from existing
+data}\label{application-i-estimating-the-sdg-4.2.1-indicator-from-existing-data}
+
+\section{Data sets}\label{data-sets}
+
+\section{Equate groups}\label{equate-groups}
+
+\section{\texorpdfstring{Definition \emph{developmentally on
+track}}{Definition developmentally on track}}\label{definition-developmentally-on-track}
+
+\section{Country-level estimates}\label{country-level-estimates}
+
+\section{Relation to other estimates}\label{relation-to-other-estimates}
+
+\chapter{Who is on-track?}\label{ch:ontrack}
+
+\section{Application II: What determines who is developmentally
+on-track?}\label{application-ii-what-determines-who-is-developmentally-on-track}
+
+\section{Types of explanatory
+factors}\label{types-of-explanatory-factors}
+
+\section{Relative importance}\label{relative-importance}
+
+\section{Opportunities for
+intervention}\label{opportunities-for-intervention}
+
+\chapter{Discussion}\label{ch:discussion2}
+
+\section{Potential of existing data for SDG
+4.2.1}\label{potential-of-existing-data-for-sdg-4.2.1}
+
+\section{Options for improving health
+policy}\label{options-for-improving-health-policy}
+
+\section{Suitability of D-score
+metric}\label{suitability-of-d-score-metric}
+
+\section{Suggestions for better
+measurement}\label{suggestions-for-better-measurement}
+
+\bibliography{book.bib}
+
+
+\end{document}

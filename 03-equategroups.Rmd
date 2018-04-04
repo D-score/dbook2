@@ -1,0 +1,9 @@
+# Equate groups {#ch:equategroups}
+
+## Statistical framework for equate groups
+
+## Common latent scale
+
+## Differential item functioning
+
+## Quantifying equate fit

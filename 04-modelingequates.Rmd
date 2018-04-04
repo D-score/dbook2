@@ -1,0 +1,11 @@
+# Modeling equates {#ch:modelingequates}
+
+## GCDG data: design and description
+
+## Empirical and fitted item response curves
+
+## Active and non-active equate groups
+
+## Splitting and combining equate groups
+
+## modeling strategies

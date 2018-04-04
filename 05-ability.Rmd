@@ -1,0 +1,5 @@
+# Comparing ability {#ch:ability}
+
+## D-score distribution by study
+
+## Impact of measurement error
