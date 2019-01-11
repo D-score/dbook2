@@ -3,7 +3,7 @@ title: "D-score for international comparisons"
 description: "The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments."
 site: bookdown::bookdown_site
 url: https://stefvanbuuren.github.io/dbook2/
-github-repo: "stefvanbuuren/dbook1"
+github-repo: "stefvanbuuren/dbook2"
 cover-image: "fig/shirleypd-1.png"
 apple-touch-icon: "fig/D.png"
 apple-touch-icon-size: 72
