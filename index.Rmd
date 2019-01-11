@@ -1,5 +1,6 @@
 --- 
 title: "D-score for international comparisons"
+author: "Editor: Stef van Buuren (Netherlands Organization for Applied Scientific Research TNO, Leiden)"
 description: "The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments."
 site: bookdown::bookdown_site
 url: https://stefvanbuuren.github.io/dbook2/
