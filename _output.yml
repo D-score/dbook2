@@ -7,5 +7,5 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="https://stefvanbuuren.name/dbook1">D-score booklet I</a></li>
+        <li><a href="https://stefvanbuuren.name/dbook2">D-score booklet II</a></li>
     download: no
