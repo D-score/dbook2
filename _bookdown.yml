@@ -1,6 +1,20 @@
-book_filename: "dbook2"
+book_filename: "dbook2.Rmd"
+delete_merged_file: true
 output_dir: "docs"
 language:
   ui:
     chapter_name: "Chapter "
-delete_merged_file: true
+rmd_files: ["index.Rmd",
+            "Rmd/01-intro.Rmd",
+            "Rmd/02-comparability.Rmd",
+            "Rmd/03-equategroups.Rmd",
+            "Rmd/04-modelingequates.Rmd",
+            "Rmd/05-ability.Rmd",
+            "Rmd/06-validity.Rmd",
+            "Rmd/07-sdgindicator.Rmd",
+            "Rmd/08-ontrack.Rmd",
+            "Rmd/09-discussion.Rmd",
+            "Rmd/Appendix-references.Rmd"]
+before_chapter_script: "R/before_chapter_script.R"
+after_chapter_script: "R/after_chapter_script.R"
+
