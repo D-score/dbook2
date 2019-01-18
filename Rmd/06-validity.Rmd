@@ -1,8 +1,0 @@
-# Validity {#ch:validity2}
-
-## Discriminatory validity
-
-## Concurrent validity
-
-## Predictive validity
-
