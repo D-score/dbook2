@@ -1,7 +1,45 @@
+---
+runtime: shiny 
+---
+
 # Comparability {#ch:comparability}
 
 ## Challenge of comparability
 
+The ultimate goal of having a global score for development is to compare
+children from different populations. In order to do this, the data included in
+the GCDG study had to be harmonized. [add info on harmonization]
+
+
+In order to evaluate and analyse the data from the different cohorts as one
+large dataset, the cohorts need to be connected. On the one hand this can be
+done by using the overlapping instruments from the different cohorts as
+connections. In Table the connections between the cohorts via overlapping
+instruments are displayed. In the tabpanels the linkages are displayed by 6
+month age block. As can be observed, some cohorts (and instruments) are not yet
+linked. For these cohorts and intruments, bridging can be accomplished by
+mapping items.
+
+
+```{r}
+
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/", 
+  height = "600px")
+```
+
+
 ## Bridging instruments by mapping items 
 
+Items from different instruments can be mapped to each other by similarity. In
+the GCDG study the mapping was done using the Bayley-III items as reference
+point. The Bayley-III was the most frequently administered instrument in te
+cohorts, so the items from other instruments were mapped to the Bayley-III items
+based on similar wordings and descriptions in reference manuals by experienced
+subject matter experts. Additionally, same-skill items across other instruments
+were mapped into groups, if they did not map onto Bayley-III items. This
+resulted in 95 groups of mapped items.
+
+
 ## Overview of promising item mappings
+
+

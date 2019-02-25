@@ -1,9 +1,184 @@
 # Data {#ch:data}
 
 ## Global Child Development Group
+The aim of the Global Child Development Groups is to develop a population-based
+measure to monitor early child development across ages and countries. In order
+to do this, the group assembled data from 16 cohorts, with data from over 16,000
+children from 11 countries.
 
 ## Cohort descriptions
 
+The cohorts included bith cohorts, impact evaluation studies and instrument
+evaluation studies. Children were assessed between 0 and 58 months and
+followed-up between 4 and 18 years. In Table \@ref(tab:cohorts) a brief overview
+of the instruments assessed per cohort is displayed. Below each cohort is
+briefly described.
+
+Cohort | Bayley | Denver | Griffiths | BDI | Vineland | DDI |  Barrera | Tepsi | ASQ | SB
+--------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------
+Bangladesh | x |  |  |  |  |  |  |  |  |
+Brazil 1 |  | x |  |  |  |  |  |  |  |
+Brazil 2 |  |  |  | x |  |  |  |  |  |
+Chile 1 | x |  |  |  |  |  |  |  |  |
+Chile 2 |  |  |  |  x |  |  |  | x  |  |
+China | x |  |  |  |  |  |  |  |  |
+Colombia 1 | x |  |  |  |  |  |  |  |  |
+Colombia 2 | x | x |  |x  |  |  |  |  | x |
+Ecuador |  |  |  |  |  |  | x |  |  |
+Ethiopia | x |  |  |  |  |  |  |  |  |
+Jamaica 1 |  |  | x |  |  |  |  |  |  |
+Jamaica 2 |  |  | x |  |  |  |  |  |  |
+Madagascar |  |  |  |  |  |  |  |  |  | x
+Netherlands 1 |  |  |  |  |  | x |  |  |  |
+Netherlands 2 |  |  |  |  |  | x |  |  |  |
+South Africa | x |  | x |  | x |  |  |  |  |
+
+
+: (\#tab:cohorts) Overview of instruments administered int he cohorts.
+
+### Bangladesh 
+The Bangladesh study was a impact evaluation study of 1862
+children around the age of 18 months. The Bayley Scale for Infant and Todler
+Development-II (Bayley-II) was administered and long-term follow-up data was
+available for the Wechsler Preschool and Primary Scale of Intelligence (WPPSI)
+at 5 years. 
+
+### Brazil 1 
+The Brazil 1 study was a birth-cohort of 3 assements: 644 children at 3 months,
+1412 children at 6 months and 1362 children at 12 months. In each round the
+Denver-II was administered. Long term follow-up data was available for the
+Wechsler Adult Intelligence Scale (WAIS) at 18 years.
+
+###Brazil 2 
+The Brazil 2 study was a birth-cohort with measurements of 3907 children at 12
+months and 3869 children at 24 months. On both occasions the Battelle
+Development Inventory (BDI-2) was administered.
+
+### Chile 1 
+The Chile 1
+study was an impact evaluation study of 128 children assessed at 6 months, 1732
+children at 12 months and 279 at 18 months. Each wave the Bayley-I was
+administered. Long-term follow-up data were available for the WPPSI at 5-6
+years.
+
+### Chile 2 
+The Chile 2 study was a brith-cohort of 4869 children who were administered
+BDI-2 at 7-23 months and 9201 children who were administered the Test de
+Desarrollo Psicomotor (Tepsi) at 24-58 months. For the latter group, follow-up
+data were available for Peabody Picture Vocabulary Test (PPVT) at 5-6 years.
+
+### China 
+The China study was an impact evaluation study that contained 990 children
+assessed with the Bayley-III at 18 months. 
+
+### Colombia 1 
+The Colombia 1 study was an impact evaluation study that has two waves, wave 1
+contained 704 children at 12-24 motnhs and wave 2 631 at 24-41 months. Each time
+the Bayley-III was administered. Long-term follow-up data were available for
+PPVT at 4-6 years.
+
+###Colombia 2 
+The colombia 2 study was an instrument validation study where all
+1311 children aged 6-42 months were adminstered the Bayley-II. For a subgroup of
+658 children the Denver Developmental Screening Test (Denver-II), the Ages and
+Stages Questionnaire (ASQ-3) and the BDI-2 Screener were administered as well.
+Long-term follow-up data were available for teh Wechsler Intelligence Scale for
+Children (WISC-V) and the PPVT. 
+
+### Ecuador 
+In Ecuador and impact evaluation study was performed for 667 childen between
+0-35 months where the Barrera Moncada (Barrera) was administered. Long-term
+follow-up data was available for the PPVT at 5-8 and 9-12 years.
+
+### Ethiopia 
+The Ethiopia study was a birth-cohort with 193 children of 12 months in the
+first wave, 440 children of 30 motnhs in the second wave anv 456 children of 42
+months in the third wave. Each wave the Bayley-III was administered. Long-term
+follow-up data were available for the PPVT at 10-11 years.
+
+### Jamaica 1 
+The Jamaica 1 study was an impact evaluation study were the Griffiths Mental
+Development Scales (Griffiths) was administed to 225 children at 15 months in
+the first wave, and 218 children at 24 months in the second wave. Long-term
+follow-up data were available for WPPSI and PPVT at 6 years.
+
+### Jamaica 2 
+The Jamaica 2 study was an impact evaluation study were the Griffiths was
+administed to 159 children at 9-24 months, 21-36 months ant  at 33-48 months.
+Long-term follow-up data were available for Stanford Binet Intelligence Scales
+(SB-5), Raven’s Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years
+and the WAIS at 17-18 years.
+
+### Madagascar 
+The Madagascar study was an impact evaluation study where the SB-5 was
+administered to 205 children ages 34-42 months. Long-term follow-up data was
+available for SB-5 and PPVT at 7-11 years.
+
+### Netherlands 1 
+The Netherlands 1 study was an instrument validation study wit a total of 9
+waves. Each wave the Dutch Developmental Inventory (DDI) was administered. The
+first wave included 1985 children at 1 months, wave 2 1807 childen at 2 months,
+wave 3 1963 children at 3 months, wave 4 1919 children at 6 months, wave 5 1881
+children at 9 months, wave 6 1802 children at 12 months, wave 7 1776 children at
+15 months, wave 8 1787 childrent at 18 months, and wave 9 1815 children at 24
+months.
+
+### Netherlands 2 
+The Netherlands 2 study was an instrument validation study with a total of 5
+waves, Each wave the DDI was administered. Wave 1 included 1016 children at 24
+months, wave 2 995 children at 30 monts, wave 3, 1592 children at 36 months,
+wave 4 1592 children at 42 months, and wave 5 1024 childen at 48 months.
+
+### South Africa 
+The South Africa study was a birth cohort with four waves. The first wave
+inlcuded 485 children and seccond wave 275 children, who were assessed at 6 and
+12 months, respectively, with the Bayley-I and the Griffiths. The third wave
+included 1802 children and the fourth wave 1614 children, assessed at 24 and 48
+months, respectively, with the Vineland Social Maturity Scale (Vineland).
+
+
+
 ## Instruments
 
+###Bayley Scale for Infant and Todler Development (Bayley)
+
+The Bayley is aimed to assess infants and totddles, aged 1-42 months. The current version is the Bayley-III, but in GCDG cohorts earlier version are also used (i.e. Bayley-I and Bayley-II). The 326 items of the Bayley-III are distributed into three domains: Cognitive item, Motor items (with fine and gross motor items) and Language items (with expressive and receptive items). The Bayley-II contains 277 items and has two additional subscales: Social-Emotional and Adaptive Behavior. Bayley-I contains 229 items.
+
+Bayley N. Bayley Scales of Infant Development. New York: Psychological Corp, 1969.
+Bayley, N. The Bayley Scales of Infant Development-II. San Antonio, TX: Psychological Corporation, 1993.
+Bayley N. Bayley Scales of Infant and Toddler Development–Third Edition: Technical manual. San Antonio, TX: Harcourt Assessment, 2006.
+
+
+###Denver Developmental Screening Test (Denver)
+
+Frankenburg WK, Dodds J, Archer P, Shapiro H, Bresnick B. The Denver II: a major revision and restandardization of the Denver Developmental Screening Test. Pediatrics 1992; 89: 91–7.
+Frankenburg WK, Dodds J, Archer P, et al. The DENVER II Technical Manual. Denver, CO: Denver Developmental Materials, 1990
+
+###Griffiths Mental Development Scales (Griffiths)
+Griffiths R. The Abilities of Babies: A Study in Mental Measurement. University of London Press, 1967.
+
+###Battelle Development Inventory (BDI)
+Newborg J. Battelle Developmental Inventory-2nd Edition. Rolling Meadows, IL: Riverside Publishing, 2005.
+
+###Vineland Social Maturity Scale (Vineland)
+Doll EA. The measurement of social competence: A manual for the Vineland Social Maturity Scale. 1953.
+
+###Dutch Developmental Inventory (DDI)
+Schlesinger-Was EA. Ontwikkelingsonderzoek van zuigelingen en kleuters op het consultatiebureau. 1981
+
+###Barrera Moncada (Barrera)
+Barrera Moncada, O. 1981. Crecimiento y desarrollo psicológico del niño venezolano. Ediciones psicopediátricas. Caracas.
+
+###Test de Desarrollo Psicomotor (Tepsi)
+Haeussler IM, Marchant T. Tepsi: test de desarrollo psicomotor 2-5 años. Eds. Universidad Católica de Chile, 1999
+
+###Ages and Stages Questionnaire (ASQ)
+
+###Stanford Binet Intelligence Scales (SB)
+Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS Psychological Tests, 2003.
+SB-4 Hagen E, Stattler J, Stanford–Binet Intelligence Scales, Fourth Edition·Thorndike, 1986.
+
+
 ## Data contributors
+
+
