@@ -136,7 +136,7 @@ rownames(model2$fit$item) <- rename_gcdg_gsed(rownames(model2$fit$item))
 studies_gcdg <- c("Netherlands 1", "Ethiopia", "Columbia 2")
 df1 <- model2$dscore
 df1$study <- ifelse(df1$study=="Columbia 2", "Colombia 2", df1$study)
-df1$agemos <- df21agedays/365.25*12
+df1$agemos <- df1$agedays/365.25*12
 #df1$study <- ifelse(df1$study == "Netherlands 1", "GCDG-NLD-SMOCC", df1$study)
 #df1$study <- ifelse(df1$study == "Ethiopia", "GCDG-ETH", df1$study)
 #df1$study <- ifelse(df1$study == "Columbia 2", "GCDG-COL-LT45M", df1$study)
