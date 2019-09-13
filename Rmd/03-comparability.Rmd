@@ -34,7 +34,7 @@ mapping items.
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/", 
   height = "600px")
 ```
-: (\@tab:linkage) Overview of linage between the cohorts via overlapping instruments.
+: (\@tab:linkage) Overview of linkage between the cohorts via overlapping instruments.
 
 
 ## Bridging instruments by mapping items 
@@ -80,7 +80,7 @@ plot on the right presents a group of six fine motor items that assess the
 ability to build a tower of six cubes or blocks. These items also seem to work
 similarly in the different cohorts they were used in.
 
-```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
 ##promising equates
 gridExtra::grid.arrange(
@@ -98,7 +98,7 @@ populations (i.e. differential item functioning). The exact cause of the
 missmatch can be further investigated int he modelling phase. In Figure
 (\@ref(fig:badeq)), two examples of poor mappings are presented.
 
-```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
 ##bad equates
 gridExtra::grid.arrange(
