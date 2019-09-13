@@ -32,27 +32,34 @@ the concurrent calibration method.
 
 ## Requirements of equate groups
 
-Statistical information and content experts form the basis of the assignment of
-items to eligible equate groups. This is done by mapping similar items
-[reference to mapping in prev ch]. In actual modeling, there are “active” equate
-groups (equate groups for which indeed the restriction is applied) and “passive”
-equate groups (similar items for which the restriction is not applied). Only
-active groups bridge different instruments in the final model.
+Statistical information and content experts form the basis for the assignment of
+items to eligible equate groups. In actual modeling, there are “active” equate
+groups (i.e. equate groups for which indeed the restriction is applied) and
+“passive” equate groups (i.e. similar items for which the restriction is not
+applied). Only active groups bridge different instruments in the final model.
 
 The following strategies are recommended to be applied to select equate groups:
 
-* Mixed method collaborations including both statistical and content experts can
-ensure the identification of similarities and differences in item formulations
-from different instruments, effectively mapping like-skill items across
-instruments, and forming the basis of the assignment of items to equate groups.
-* The quality of the item mapping can be tested with methods designed to detect
-differential item functioning. For the final model, a selection from the
-eligible equate groups can be made that links all cohorts and instruments. 
-* Distributing equate groups over the scale, rather than centered at one point
-enhances the functioning of the equate groups. Note that infit and outfit can be
-calculated for equate groups, which provides a natural measure of equate group
-quality. 
-* It is preferable to use equate groups when the cohort abilities
+* As a first step, content experts can start by mapping similar items [reference
+to mapping in prev ch]. For example use one instrument as a reference and map
+the items of other instruments to those items.
+* In a second step, the mapping can be visualized by plotting the mapped items
+in one figure. That way, potential matches can be verified and confirmed if they
+show similar patterns or broken up if they seem poor matches. In this step, both
+statistical and content expertise can be utilized.
+* Next, the model can be fitted using a selection of potential matches as active
+equate groups. The technical details of this model are explained in [reference
+to ch5 where modelling with equate grousps is explained]. The selection of the
+final active equate groups for the model is an iterative process where two
+important qualifications should be considered: (1) the active equate groups
+should link all cohorts and instruments. (2) To enhance the functioning of
+equate groups, the active equate groups are preferably distributed over the
+scale, rather than centered at one point. The quality of the equategroups can
+then be tested with methods designed to detect differential item functioning.
+Note that infit and outfit can be calculated for equate groups, which provides a
+natural measure of equate group quality.
+
+In general, it is preferable to use equate groups when the cohort abilities
 differ, since the method is robust against a mis-specification up to 1.7 logits.
 However, when cohort abilities are relatively uniform and the risk of
 mis-specification of the equate groups is high, a model without equate group
