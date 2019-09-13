@@ -8,16 +8,24 @@ runtime: shiny
 
 The ultimate goal of having a global score for development is to compare
 children from different populations. In order to do this, the data included in
-the GCDG study had to be harmonized. [add info on harmonization]
-
+the GCDG study had to be harmonized. A protocol was written that described a
+naming scheme for the early developmental test items and that every item should
+only have one column, should be coded as: 1 – pass; 0 – fail, and that missings
+were coded for items not administered to the child because: item not age
+appropriate; item below floor for an individual child; or child refused.
+Additionally, the names of the background variables were described in the
+protocol and to code these variables similarly in all cohorts. For example,
+mothers education was coded in four categories: 0 - none; 1 - primary; 2 -
+secondary; 3 - above secondary, height was expressed in centimeters and weight
+in kilograms.
 
 In order to evaluate and analyse the data from the different cohorts as one
 large dataset, the cohorts need to be connected. On the one hand this can be
 done by using the overlapping instruments from the different cohorts as
-connections. In Table the connections between the cohorts via overlapping
+connections. In Table \@ref(tab:linkage) the connections between the cohorts via overlapping
 instruments are displayed. In the tabpanels the linkages are displayed by 6
 month age block. As can be observed, some cohorts (and instruments) are not yet
-linked. For these cohorts and intruments, bridging can be accomplished by
+linked. For these cohorts and intruments, bridging was accomplished by
 mapping items.
 
 
@@ -26,12 +34,13 @@ mapping items.
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/", 
   height = "600px")
 ```
+: (\@tab:linkage) Overview of linage between the cohorts via overlapping instruments.
 
 
 ## Bridging instruments by mapping items 
 
 Items from different instruments can be mapped to each other by similarity. In
-the GCDG study the mapping was done using the Bayley-III items as reference
+the GCDG study, the mapping was done using the Bayley-III items as reference
 point. The Bayley-III was the most frequently administered instrument in te
 cohorts, so the items from other instruments were mapped to the Bayley-III items
 based on similar wordings and descriptions in reference manuals by experienced
@@ -42,4 +51,59 @@ resulted in 95 groups of mapped items.
 
 ## Overview of promising item mappings
 
->>add plots equate_pass_by_age for some good groupings
+
+```{r plot_p_a_eq, include=FALSE}
+library(dmodel)
+
+library("dmetric")
+library("gseddata")
+theme_set(theme_light())
+model <- dmodel::gcdg_model_565_18
+varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
+                items = gcdg_items)
+lean <- get_data(cohorts = 40:56, items = varlist$items, adm = varlist$adm)
+eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
+
+#plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
+
+```
+
+The next step in selecting potential item mappings after the bridging is
+performed, is to plot the probability to pass items for age and compare these
+between cohorts for bridged items. When the data shows similar patterns between
+items and cohorts, the item mapping can be tested in the modelling phase.  In
+Figure (\@ref(fig:poteq)), the probability to pass items for age is displayed
+fortwo potential equate groups. The left plot that presents a group of four
+cognitive items that assess the ability to put a cube or block in a cup or box.
+The items are administered in different studies but seem to work similarly. The
+plot on the right presents a group of six fine motor items that assess the
+ability to build a tower of six cubes or blocks. These items also seem to work
+similarly in the different cohorts they were used in.
+
+```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+
+##promising equates
+gridExtra::grid.arrange(
+  eq_plots[["COG36"]],
+  eq_plots[["FM38"]]
+)
+
+```
+(ref:poteq) Probability to pass items in potential equate groups for age.
+
+When the patterns of the plotted data differes between items and/or cohorts, the
+mapping might not be a good one after all. This can be due to differences
+between populations or because the items work differently in different
+populations (i.e. differential item functioning). The exact cause of the
+missmatch can be further investigated int he modelling phase. In Figure
+(\@ref(fig:badeq)), two examples of poor mappings are presented.
+
+```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+
+##bad equates
+gridExtra::grid.arrange(
+  eq_plots[["EXP12"]], ## ZA=GRI/BY1; NL=DDI; CL1=BY1
+  eq_plots[["COG24"]] ## BR1=den; CO2=den; CL1=BY1; ZA=BY1
+)
+```
+(ref:badeq) Probability to pass items in bad equate groups for age.
