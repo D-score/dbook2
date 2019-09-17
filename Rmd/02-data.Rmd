@@ -1,14 +1,47 @@
 # Data {#ch:data}
 
 ##Overview of cohorts and instruments
-Data from 16 cohorts were assembled by the Global Child Development Group (GCDG) in
-order to develop a population-based measure to monitor early child development
-across ages and countries. This resulted in a dataframe, with development data
-from over 16,000 children from 11 countries. The cohorts included birth cohorts,
-impact evaluation studies and instrument evaluation studies. Children were
-assessed between 0 and 58 months and followed-up between 4 and 18 years. In
-Table \@ref(tab:cohorts) a brief overview of the instruments assessed per cohort
-is displayed. Below each cohort is briefly described.
+Data from 16 cohorts were assembled by the Global Child Development Group (GCDG)
+in order to develop a population-based measure to monitor early child
+development across ages and countries. This resulted in a dataframe, with
+development data from over 16,000 children from 11 countries. The countries that
+are included in the study are colored blue on the word map below
+\@ref(fig:worldmap).
+
+```{r echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+library(rworldmap)
+library(maps)
+
+world.map<-map('world', fill = FALSE, plot = FALSE) 
+#use world map to extract county names
+#add value == 1 for countries in study
+#add extra variable that indicates amount of datapoints per county?
+#attach weight and use that to color the counties
+datacountries <- data.frame(country=world.map$names, value=NA)
+datacountries$value <- ifelse(datacountries$country =="Bangladesh", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Brazil", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Chile", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="China", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Colombia", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Ecuador", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Ethiopia", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Jamaica", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Madagascar", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="Netherlands", "skyblue1", datacountries$value)
+datacountries$value <- ifelse(datacountries$country =="South Africa", "skyblue1", datacountries$value)
+
+world.map<-map('world',fill=TRUE, 
+               col=datacountries$value) 
+
+```
+(ref:worldmap) Worldmap with countries that have data in the study colored in blue.
+
+
+The cohorts included birth cohorts, impact evaluation studies and instrument
+evaluation studies. Children were assessed between 0 and 58 months and
+followed-up between 4 and 18 years. In Table \@ref(tab:cohorts) a brief overview
+of the instruments assessed per cohort is displayed. Below each cohort is
+briefly described.
 
 Cohort | Bayley | Denver | Griffiths | BDI | Vineland | DDI |  Barrera | Tepsi | ASQ | SB
 --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------
@@ -117,8 +150,6 @@ inlcuded 485 children and seccond wave 275 children, who were assessed at 6 and
 included 1802 children and the fourth wave 1614 children, assessed at 24 and 48
 months, respectively, with the Vineland Social Maturity Scale (Vineland)
 [@Richter2007].
-
-
 
 ## Instruments
 
