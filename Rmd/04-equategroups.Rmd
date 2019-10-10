@@ -5,8 +5,8 @@
 A group of items that measure the same thing in (perhaps slightly) different
 ways is called an “equate group”. An equate group can link items across
 instruments by restricting their difficulty estimates to be identical. Equate
-groups provide an extra option for linking different instruments to the same
-scale. Figure \@ref(fig:equateex) displays the items from three different
+groups provide an extra option for bridging different instruments to the same
+scale. Figure \@ref(fig:equateex) displays items from three different
 instruments that measure child development. The instruments contain some common
 items that are measured in multiple instuments, but also unique items. The
 common items can be linked in an equate group as displayed by the arrows between
@@ -18,96 +18,132 @@ occurs in the second (i.e. green) and third (i.e. orange instrument).
 ```{r equateex, fig.cap = '(ref:equateex)'}
 knitr::include_graphics("fig/equate_ex.png")
 ```
-(ref:equateex) Example of three instruments that are linked by common items in equate groups.
+(ref:equateex) Example of three instruments that are bridged by common items in equate groups.
+
+## Concurrent calibration
 
 When each instrument is administered in a different cohort, the cohorts can be
 linked by placing the common items in the same column. The common items will
-have the same difficulty estimates due to linkin with "concurrent calibration".
-However, when the first and second instruments are both administered in the same
-cohort and the third in a second, concurrent calibration is not possible for
-common items in the first two instruments. In that situation, the equate group
-method provides a more flexible way to link items with similar assumptions as in
-the concurrent calibration method.
+have the same difficulty estimates due to linking with "concurrent calibration".
+In concurrent calibration the item parameters for all instruments are estimated
+simulateously. Concurrent calibration is an attractive option, thought this
+method warrants a strict distinction between items that are truly the same in
+different instruments and items that differ. In practice during instrument
+development, items measuring the same skill but from different instruments may
+have been adapted to suit the format of the instrument (e.g. number of response
+options, question formulation, and so on) or the local language and cultural
+context, which may or may not have an effect on the measurement properties of
+the instrument. This appeals to the possibility to explore and test different
+sets of equate items. Also, when in example Figure \@ref(fig:equateex) the first
+and second instruments are both administered in the same cohort and the third in
+a second, concurrent calibration is not possible for common items in the first
+two instruments. In these situations, the equate group method provides a more
+flexible way to link items. The equate groups methods works with similar
+assumptions as in the concurrent calibration method, but this the flexibility to
+explore, test and modify the sets of equate items (i.e. equate groups) used in
+the model.
+
 
 
 ## Requirements of equate groups
 
-Statistical information and content experts form the basis for the assignment of
-items to eligible equate groups. In actual modeling, there are “active” equate
-groups (i.e. equate groups for which indeed the restriction is applied) and
-“passive” equate groups (i.e. similar items for which the restriction is not
-applied). Only active groups bridge different instruments in the final model.
+Statistical information and subject matter experts form the basis for the
+assignment of items to eligible equate groups. In actual modeling, there are
+“active” equate groups (i.e. equate groups for which indeed the restriction is
+applied) and “passive” equate groups (i.e. similar items for which the
+restriction is not applied). Only active groups bridge the different instruments
+in the final model.
 
 The following strategies are recommended to be applied to select equate groups:
 
-* As a first step, content experts can start by mapping similar items [reference
-to mapping in prev ch]. For example use one instrument as a reference and map
-the items of other instruments to those items.
+* As a first step, content experts can start by mapping similar items. For
+example use one instrument as a reference and map the items of other instruments
+to those items \@ref(sec:mapping).
 * In a second step, the mapping can be visualized by plotting the mapped items
-in one figure. That way, potential matches can be verified and confirmed if they
-show similar patterns or broken up if they seem poor matches. In this step, both
-statistical and content expertise can be utilized.
+in one figure \@ref(sec:viewmapping). That way, potential matches can be
+verified and confirmed if they show similar patterns or broken up if they seem
+poor matches. In this step, both statistical and content expertise can be
+utilized.
 * Next, the model can be fitted using a selection of potential matches as active
-equate groups. The technical details of this model are explained in [reference
-to ch5 where modelling with equate grousps is explained]. The selection of the
-final active equate groups for the model is an iterative process where two
-important qualifications should be considered: (1) the active equate groups
-should link all cohorts and instruments. (2) To enhance the functioning of
-equate groups, the active equate groups are preferably distributed over the
-scale, rather than centered at one point. The quality of the equategroups can
-then be tested with methods designed to detect differential item functioning.
-Note that infit and outfit can be calculated for equate groups, which provides a
-natural measure of equate group quality.
+equate groups. The technical details of this model are explained in
+\@ref(sec:statisticalframe). The selection of the final active equate groups for
+the model is an iterative process where two important qualifications should be
+considered: (1) the active equate groups should link all cohorts and
+instruments. (2) To enhance the functioning of equate groups, the active equate
+groups are preferably distributed over the scale, rather than centered at one
+point.
+* The infit and outfit can be calculated for equate groups, which provides a
+natural measure of equate group quality \@ref(sec:equatefit).
+* The performance of the equategroups across subgroups or cohorts can be tested
+with methods designed to detect differential item functioning
+\@ref(sec:equatedif).
 
-In general, it is preferable to use equate groups when the cohort abilities
-differ, since the method is robust against a mis-specification up to 1.7 logits.
-However, when cohort abilities are relatively uniform and the risk of
-mis-specification of the equate groups is high, a model without equate group
-would be preferred.
+In general, the use of equate groups is very relevant when the abilities differ
+across cohorts. In that case, equate groups are very helpful to place the
+abilities across the different cohorts on the same scale. However, when cohort
+abilities are relatively uniform and the risk of mis-specification of the equate
+groups is high, a model without equate groups would be preferred.
 
-## Statistical framework 
 
-The Rasch model, models the probability of passing an item as a logistic
-function of the difference between each person’s ability and the difficulty of
-the item as follows: $$P_{ni} = \frac{exp(\beta_n - \delta_i)}{1+exp(\beta_n -
-\delta_i)}$$, where $P_{ni}$ is the probability of passing item $i$, $δ_i$ is
-the item calibration dependent on the attributes of item $i$, i.e. the
-difficulty of item $i$ and $\beta_n$ depends on the attribute of person n, i.e.
-the ability of the person (Wright and Stone 1999). The log odds that a person
-with ability $\beta_n$ answers an item with difficulty $\delta_i$ correctly is
-the difference between the person’s ability and the item’s difficulty
-$(\beta_n-\delta_i)$. In order to facilitate the use of equate groups to link
-similar items used in different instruments and cohorts, the Rasch model can be
-extended. This extension holds a restriction where item difficulties of similar
-items are constrained to be equal. Wright and Stone (1999) present a simple
+## Statistical framework {#sec:statisticalframe}
+
+The preferred measurement model for development data is the Rasch model. An
+introduction of the Rasch model geared towards the $D$-score is described in
+https://stefvanbuuren.name/dbook1/. The Rasch model, models the probability of
+passing an item as a logistic function of the difference between each person’s
+ability and the difficulty of the item, see equation \@ref(eq:rasch).
+
+\begin{equation}
+$$\pi_{ni} = \frac{exp(\beta_n - \delta_i)}{1+exp(\beta_n -\delta_i)}$$ (\#eq:rasch)
+\end{equation}
+
+Below, the symbols used in the eqation \@ref(eq:rasch) are explained.
+
+Symbol        | Term          | Description
+------------- | ------------- | -----------
+$\beta_n$     | Ability       | True (but unknown) developmental score of child $n$
+$\delta_i$    | Difficulty    | True (but unknown) difficulty of an item $i$
+$\pi_{ni}$    | Probability   | Probability that child $n$ passes item $i$
+
+The log odds that a person with ability $\beta_n$ answers an item with
+difficulty $\delta_i$ correctly is the difference between the person’s ability
+and the item’s difficulty $(\beta_n-\delta_i)$ [@wright1982].
+
+In order to facilitate the use of equate groups to link similar items used in
+different instruments and cohorts, the Rasch model can be extended. This
+extension holds the restriction that item difficulties of similar items are
+constrained to be equal. Wright and Masters [@wright1982] present a simple
 method to equate the difficulty between two test forms that have common item
 links. This is done by estimating the shift in difficulty as the weighted
 average of difficulty differences of the linking items, and using this weighted
-average to align the difficulties of the test forms. This is comparable to the
-transformation methods described previously. We can use this way of aligning
-forms, to align item difficulties of items in an equate group: $$\delta_q =
-\frac{\sum_{l}^{i} \delta_iw_i}{\sum_{l}^{l} w_i}$$, where $\delta_q$ is the
-combined difficulty of the items in the equate group, $\delta_i$ is the
-difficulty of each item in the equate group and $l$ is the number of items in
-the equate group and $w_i$ is the number of respondents that have an observed
-score on item $i$.
+average to align the difficulties of the test forms. We can use this way of
+aligning forms, to align item difficulties of items in an equate group, see
+equation \@ref(eq:raschequate).
+
+\begin{equation}
+$$\delta_q = \frac{\sum_{l}^{i} \delta_iw_i}{\sum_{l}^{l} w_i}$$ (\#eq:raschequate)
+\end{equation}
+ 
+Where $\delta_q$ is the combined difficulty of the items in the equate group,
+$\delta_i$ is the difficulty of each item in the equate group and $l$ is the
+number of items in the equate group and $w_i$ is the number of respondents that
+have an observed score on item $i$.
 
 
 ## Common latent scale
 
-Items from different instruments can be but on one common latent scale by
-linking items with the equate group method. Linking the items is a vital step,
-when different instrumentst are assessed in different samples of persons (i.e.
-cohorts). Because by nature, the scales are then unconnected, thus there is no
-overlap between either the insturment or the cohorts.
+The end goal for using the equate groups method to model development items is to
+measure development on one common latent scale, the $D$-score. That way, the
+measure (i.e. D-score) can be obtained, irrespective of which instrument is used
+in which population.
 
-To illustrate the methodology, we use three example studies from the GCDG
-project: the Netherlands 1 study, the Ethiopia study and the Colombia 2 study. A
-full description of these studies are presented in Chapter 2 [ref ch2data]. Not
-all children in a cohort were administered all items from their respective
+As an illustration, the  three example studies from the GCDG
+project: the Netherlands 1 study, the Ethiopia study and the Colombia 2 study are used. A
+full description of these studies is presented in \@ref(ch:data). Not
+all children in these cohorts were administered all items from their respective
 instruments and some children were assessed in repeated waves over time. To
 obtain a measurement model on the combined data for the three studies, the Rasch
-model with equate groups was fitted. Badly fitting items were removed based on
+model with equate groups was fitted. Poorly fitting items were removed based on
 item infit and outfit (z-score > 0), until the model contained only items with
 good fit. In addition, the fit of active equate groups was assessed. Eight
 candidate equate groups were carefully selected based on expert judgement as
@@ -188,11 +224,11 @@ on one scale.
 
 
 
-## Quantifying equate fit
+## Quantifying equate fit {#sec:equatefit}
 
 >>explanation of fit measures (briefly) comparable to item fit in dbook1.
 
-## Differential item functioning
+## Differential item functioning {#sec:equatedif}
 
 An important assumption underlying equate groups is that the items in the group
 work in the same way across the different cohorts, i.e., there is no
