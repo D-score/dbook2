@@ -65,82 +65,83 @@ South Africa | x |  | x |  | x |  |  |  |  |
 : (\#tab:cohorts) Overview of instruments administered in the cohorts.
 
 ##Cohort descriptions
-The **Bangladesh** study was a impact evaluation study of 1862
+The **Bangladesh** study was an impact evaluation study including 1862
 children around the age of 18 months. The Bayley Scale for Infant and Todler
-Development-II (Bayley-II) was administered and long-term follow-up data was
+Development-II (Bayley-II) was administered and long-term follow-up data were
 available for the Wechsler Preschool and Primary Scale of Intelligence (WPPSI)
 at 5 years [@Tofail2008]. 
 
-The **Brazil 1** study was a birth-cohort of 3 assements: 644 children at 3 months,
-1412 children at 6 months and 1362 children at 12 months. In each round the
-Denver-II was administered. Long term follow-up data was available for the
-Wechsler Adult Intelligence Scale (WAIS) at 18 years [@Victora2006].
+The **Brazil 1** study was a birth-cohort with 3 measurement moments: 644
+children at 3 months, 1412 children at 6 months and 1362 children at 12 months.
+In each round the Denver-II was administered. Long-term follow-up data were
+available for the Wechsler Adult Intelligence Scale (WAIS) at 18 years
+[@Victora2006].
 
-The **Brazil 2** study was a birth-cohort with measurements of 3907 children at 12
-months and 3869 children at 24 months. On both occasions the Battelle
+The **Brazil 2** study was a birth-cohort with measurements of 3907 children at
+12 months and 3869 children at 24 months. On both occasions the Battelle
 Development Inventory (BDI-2) was administered [@Moura2010].
 
 The **Chile 1** study was an impact evaluation study of 128 children assessed at
-6 months, 1732 children at 12 months and 279 at 18 months. Each wave the
+6 months, 1732 children at 12 months and 279 at 18 months. At each wave the
 Bayley-I was administered. Long-term follow-up data were available for the WPPSI
 at 5-6 years [@Lozoff2003].
 
-The **Chile 2** study was a brith-cohort of 4869 children who were administered
+The **Chile 2** study was a brith-cohort of 4869 children who were administered the
 BDI-2 at 7-23 months and 9201 children who were administered the Test de
 Desarrollo Psicomotor (Tepsi) at 24-58 months. For the latter group, follow-up
-data were available for Peabody Picture Vocabulary Test (PPVT) at 5-6 years
+data were available for the Peabody Picture Vocabulary Test (PPVT) at 5-6 years
 [@conteras2015].
 
 The **China** study was an impact evaluation study that contained 990 children
 assessed with the Bayley-III at 18 months [@Lozoff2016]. 
 
-The **Colombia 1** study was an impact evaluation study that has two waves, wave 1
-contained 704 children at 12-24 months and wave 2 631 at 24-41 months. Each time
-the Bayley-III was administered. Long-term follow-up data were available for
-PPVT at 4-6 years [@Attanasio2014].
+The **Colombia 1** study was an impact evaluation study that comprised two
+waves, wave 1 contained 704 children at 12-24 months and wave 2 631 children at
+24-41 months. At each wave the Bayley-III was administered. Long-term follow-up
+data were available for PPVT at 4-6 years [@Attanasio2014].
 
 The **Colombia 2** study was an instrument validation study where all
 1311 children aged 6-42 months were adminstered the Bayley-II. For a subgroup of
 658 children the Denver Developmental Screening Test (Denver-II), the Ages and
 Stages Questionnaire (ASQ-3) and the BDI-2 Screener were administered as well.
-Long-term follow-up data were available for teh Wechsler Intelligence Scale for
+Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for
 Children (WISC-V) and the PPVT [@Rubio-Codina2016]. 
 
-In **Ecuador** and impact evaluation study was performed for 667 childen between
+In **Ecuador** an impact evaluation study was performed for 667 childen between
 0-35 months where the Barrera Moncada (Barrera) was administered. Long-term
-follow-up data was available for the PPVT at 5-8 and 9-12 years [@Paxson2010].
+follow-up data were available for the PPVT at 5-8 and 9-12 years [@Paxson2010].
 
 The **Ethiopia** study was a birth-cohort with 193 children of 12 months in the
-first wave, 440 children of 30 motnhs in the second wave anv 456 children of 42
-months in the third wave. Each wave the Bayley-III was administered. Long-term
+first wave, 440 children of 30 months at the second wave and 456 children of 42
+months at the third wave. At each wave the Bayley-III was administered. Long-term
 follow-up data were available for the PPVT at 10-11 years [@Hanlon2009].
 
 The **Jamaica 1** study was an impact evaluation study were the Griffiths Mental
-Development Scales (Griffiths) was administed to 225 children at 15 months in
-the first wave, and 218 children at 24 months in the second wave. Long-term
+Development Scales (Griffiths) were administed to 225 children at 15 months at
+the first wave, and 218 children at 24 months at the second wave. Long-term
 follow-up data were available for WPPSI and PPVT at 6 years [@Walker2004].
 
-The **Jamaica 2** study was an impact evaluation study were the Griffiths was
-administed to 159 children at 9-24 months, 21-36 months ant  at 33-48 months.
+The **Jamaica 2** study was an impact evaluation study were the Griffiths were
+administed to 159 children at 9-24 months, 21-36 months and at 33-48 months.
 Long-term follow-up data were available for Stanford Binet Intelligence Scales
 (SB-5), Raven’s Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years
 and the WAIS at 17-18 years [@Grantham-McGregor1991].
 
 The **Madagascar** study was an impact evaluation study where the SB-5 was
-administered to 205 children ages 34-42 months. Long-term follow-up data was
+administered to 205 children ages 34-42 months. Long-term follow-up data were
 available for SB-5 and PPVT at 7-11 years [@Fernald2011].
 
-The **Netherlands 1** study was an instrument validation study wit a total of 9
-waves. Each wave the Dutch Developmental Inventory (DDI) was administered. The
-first wave included 1985 children at 1 months, wave 2 1807 childen at 2 months,
+The **Netherlands 1** study was an instrument validation study with a total of 9
+waves. At each wave the Dutch Developmental Instrument (DDI) was administered. The
+first wave included 1985 children at 1 month, wave 2 1807 childen at 2 months,
 wave 3 1963 children at 3 months, wave 4 1919 children at 6 months, wave 5 1881
 children at 9 months, wave 6 1802 children at 12 months, wave 7 1776 children at
-15 months, wave 8 1787 childrent at 18 months, and wave 9 1815 children at 24
+15 months, wave 8 1787 children at 18 months, and wave 9 1815 children at 24
 months [@herngreen1992].
 
-The **Netherlands 2** study was an instrument validation study with a total of 5
-waves, Each wave the DDI was administered. Wave 1 included 1016 children at 24
-months, wave 2 995 children at 30 monts, wave 3, 1592 children at 36 months,
+The **Netherlands 2** study was an instrument validation study with a total of five
+waves. At each wave the DDI was administered. Wave 1 included 1016 children at 24
+months, wave 2 995 children at 30 months, wave 3 1592 children at 36 months,
 wave 4 1592 children at 42 months, and wave 5 1024 childen at 48 months
 [@doove2010].
 
@@ -155,12 +156,12 @@ months, respectively, with the Vineland Social Maturity Scale (Vineland)
 
 The **Bayley Scale for Infant and Todler Development (Bayley)** is aimed to
 assess infants and toddlers, aged 1-42 months. The current version is the
-Bayley-III, but in GCDG cohorts earlier version are also used (i.e. Bayley-I and
-Bayley-II) [@bayley1969][@bayley1993][@bayley2006]. The 326 items of the
-Bayley-III are distributed into three domains: Cognitive item, Motor items (with
-fine and gross motor items) and Language items (with expressive and receptive
-items). The Bayley-II contains 277 items and has two additional subscales:
-Social-Emotional and Adaptive Behavior. Bayley-I contains 229 items.
+Bayley-III, but in GCDG cohorts earlier version were also used (i.e. Bayley-I
+and Bayley-II) [@bayley1969][@bayley1993][@bayley2006]. The 326 items of the
+Bayley-III are distributed into three domains: Cognitive items, Motor items
+(with fine and gross motor items) and Language items (with expressive and
+receptive items). The Bayley-II contains 277 items and has two additional
+subscales: Social-Emotional and Adaptive Behavior. Bayley-I contains 229 items.
 <!-- Bayley N. Bayley Scales of Infant Development. New York: Psychological Corp, 1969. -->
 <!-- Bayley, N. The Bayley Scales of Infant Development-II. San Antonio, TX: Psychological Corporation, 1993. -->
 <!-- Bayley N. Bayley Scales of Infant and Toddler Development–Third Edition: Technical manual. San Antonio, TX: Harcourt Assessment, 2006. -->
@@ -169,7 +170,7 @@ The **Denver Developmental Screening Test (Denver)** is aimed to identify
 developmental problems in children up to age six. The 125 dichotomous test items
 are distributed over the age range from birth to six years.The Denver covers
 four domains: personal-social, fine motor and adaptive, language and gross
-motor. The test items are all directly observed by an examiner and is not
+motor. The test items are all directly observed by an examiner and are not
 dependent on parent report [@frankenburg1992] [@frankenburg1990].
 <!-- Frankenburg WK, Dodds J, Archer P, Shapiro H, Bresnick B. The Denver II: a major revision and restandardization of the Denver Developmental Screening Test. Pediatrics 1992; 89: 91–7. -->
 <!-- Frankenburg WK, Dodds J, Archer P, et al. The DENVER II Technical Manual. Denver, CO: Denver Developmental Materials, 1990 -->
@@ -181,7 +182,7 @@ and practical reasoning [@griffiths1967].
 <!-- Griffiths R. The Abilities of Babies: A Study in Mental Measurement. University of London Press, 1967. -->
 
 The **Battelle Developmental Inventory (BDI)** measures key developmental skills
-in childrun brom birth to 7 years, 11 months. The instrument contains 450 items
+in children brom birth to 7 years, 11 months. The instrument contains 450 items
 distributed over five domains: adaptive, personal-social, communication, motor,
 and cognitive [@newborg2005].
 <!-- Newborg J. Battelle Developmental Inventory-2nd Edition. Rolling Meadows, IL: Riverside Publishing, 2005. -->
@@ -217,7 +218,7 @@ completed by the caregiver [@squires2009].
 <!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ- 3™). A parent-completed child-monitoring system Paul H. Brookes Publishing Co., Baltimore (2009) -->
 
 The **Stanford Binet Intelligence Scales (SB)** is a cognitive ability and
-intelligence test to diagnose developmental deficiencies in your children. The
+intelligence test to diagnose developmental deficiencies in young children. The
 items are distributed over five subtests: fluid reasoning, knowledge, quantative
 reasoning, visual-spatial processing and working memory [@roid2003][@hagen1986].
 <!-- Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS Psychological Tests, 2003. -->
