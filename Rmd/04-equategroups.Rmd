@@ -132,32 +132,25 @@ have an observed score on item $i$.
 
 ## Common latent scale
 
-The end goal for using the equate groups method to model development items is to
+The end goal for using the equate group method to model development items is to
 measure development on one common latent scale, the $D$-score. That way, the
 measure (i.e. D-score) can be obtained, irrespective of which instrument is used
 in which population.
 
-As an illustration, the  three example studies from the GCDG
-project: the Netherlands 1 study, the Ethiopia study and the Colombia 2 study are used. A
-full description of these studies is presented in \@ref(ch:data). Not
-all children in these cohorts were administered all items from their respective
-instruments and some children were assessed in repeated waves over time. To
-obtain a measurement model on the combined data for the three studies, the Rasch
-model with equate groups was fitted. Poorly fitting items were removed based on
-item infit and outfit (z-score > 0), until the model contained only items with
-good fit. In addition, the fit of active equate groups was assessed. Eight
-candidate equate groups were carefully selected based on expert judgement as
-part of the GCDG project. In total the fitted model contained 185 remaining
-items: 31 ASQ items, 84 Bayley-III items, 53 DDI items, and 17 Denver items,
-connected by 8 equates. Rasch models with and without equate groups were
-fitted with the 185 items.
-
+In Figure \@ref(fig:commonscale) the D-scores are displayed for three cohorts
+from the GCDG study: Netherlands 1, Ethiopia and Colombia 2. As decribed in
+\@ref(sec:cohorts), the Netherlands 1 study contains the DDI, Ethiopia the
+Bayley-III, and Colombia the Bayley-III, Denver-II, the ASQ-3 and BDI-2.
+Accordingly there is some natural ovelap in items between Ethiopia and Colombia
+via the Bayley-III items. However, the Netherlands 1 cohorts is not linked via
+the items. In the upper plot, no equate groups were used in the model and
+in the lower plot, equate groups linked the cohorts.
 
 ```{r commonscale, echo=FALSE, fig.cap=, message=FALSE, warning=FALSE}
 
 #nu in gcdg taal (cohort namen - moet dit naar GSED? - staat al in de gecommente stukken.)
 ##nu gewoon alleen de drie studies uit volledige 565 model gehaald, klopt niet helemaal met de beschrijving hierboven. Dit moet dus nog worden aangepast / beschrijving of model / maar daarvoor moet eerst een strategie bepaald van hoe we modellen opslaan en inladen in dbook2.
-
+library(ggplot2)
 library(ddata)
 library(dmetric)
 library(gseddata)
@@ -168,9 +161,6 @@ model2 <- fit_dmodel(varlist, equate = NULL, name = "noeq",
                         data_package = "ddata", lexicon = "gcdg")
 
 model2$dscore$agedays <- as.integer(model2$dscore$age * 365.25)
-model2$dscore$age <- NULL
-model2$beta_l$agedays <- as.integer(model2$beta_l$age * 365.25)
-model2$beta_l$age <- NULL
 model2$items <- rename_gcdg_gsed(model2$items)
 model2$itembank$lex_gsed <- rename_gcdg_gsed(model2$itembank$lex_gcdg)
 model2$itemtable$item <- rename_gcdg_gsed(model2$itemtable$item)
@@ -179,16 +169,12 @@ rownames(model2$fit$item) <- rename_gcdg_gsed(rownames(model2$fit$item))
 studies_gcdg <- c("Netherlands 1", "Ethiopia", "Columbia 2")
 df1 <- model2$dscore
 df1$study <- ifelse(df1$study=="Columbia 2", "Colombia 2", df1$study)
-df1$agemos <- df1$agedays/365.25*12
-#df1$study <- ifelse(df1$study == "Netherlands 1", "GCDG-NLD-SMOCC", df1$study)
-#df1$study <- ifelse(df1$study == "Ethiopia", "GCDG-ETH", df1$study)
-#df1$study <- ifelse(df1$study == "Columbia 2", "GCDG-COL-LT45M", df1$study)
-#palet <- gseddata::get_palette("study")
+df1$agemos <- df1$agedays/365.25 * 12
 palet <- ddata::get_palette("study")
 names(palet)[8] <- "Colombia 2"
 
-p1 <- ggplot(df1, aes(agemos, b, group=study, color=study))+
-  geom_point()+scale_colour_manual(values = palet, na.value = "grey")+ xlab("Age in Months")+ylab("Ability in logits") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
+p1 <- ggplot(df1, aes(agemos, d, group=study, color=study))+
+  geom_point()+scale_colour_manual(values = palet, na.value = "grey")+ xlab("Age (months)")+ylab("D-score") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
 
 #model with equate groups
 model <- dmetric::model_lean
@@ -203,7 +189,7 @@ names(palet)[8] <- "Colombia 2"
 
 df2$agemos <- df2$agedays/365.25*12
 p2 <- ggplot(df2, aes(agemos, b, group=cohort, color=cohort))+
-  geom_point()+scale_colour_manual(values = palet, na.value = "grey")+ xlab("Age in Months")+ylab("Ability in logits") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
+  geom_point()+scale_colour_manual(values = palet, na.value = "grey")+ xlab("Age(months)")+ylab("D-score") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
 
 grid.arrange(p1, p2)
 
@@ -211,22 +197,47 @@ grid.arrange(p1, p2)
 ```
 (ref:commonscale) Example of three cohorts with and without equage group linking.
 
-Figure \@ref(fig:commonscale) displays the predicted abilities for age for the
-model without equate groups (top figure), and the model with equate groups
-(bottom figure). In the plot for the model without equate groups it can be
-observed that the scales for the Ethiopia and Colombia 2 studies are linked
-naturally via the shared items from Bayley-III. The Netherlands 1 cohort is not
-connected and follows a different track. In the plot for the model with equate
-groups, the scales for all three cohorts are connected, due to the links via
-equate groups. This example illustrates that the use of equate groups brings the
-abilities for children in different cohorts measured with different instrument
-on one scale.
+In the plot for the model without equate groups it can be observed that the
+scales for the Ethiopia and Colombia 2 studies are linked naturally via the
+shared items from Bayley-III. The Netherlands 1 cohort is not connected and
+follows a different track. In the plot for the model with equate groups, the
+scales for all three cohorts are connected, due to the links via equate groups.
+This example illustrates that the use of equate groups brings the abilities for
+children in different cohorts measured with different instrument on one scale.
 
 
 
 ## Quantifying equate fit {#sec:equatefit}
 
->>explanation of fit measures (briefly) comparable to item fit in dbook1.
+In the Rasch philosophy it is the task of the data to fit the Rasch model. In
+order to verify the fit of the data to the model wel can assess the item fit and
+the person fit. Both fit measures are explained thorougly in
+https://stefvanbuuren.name/dbook1/ch-evaluation.html. When we use equate groups
+in the Rasch model, we can also use these fit indices to determine the fit of
+the items in the equate groups.
+
+
+### Well fitting equate groups
+
+```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqfit)', message = FALSE}
+
+ps <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::model_lean)
+grid.arrange(ps[["REC6"]], ps[["GM42"]])
+
+
+
+
+
+```
+(ref:ploteqfit) Two equate groups that present a good equate fit.
+
+The study of *equate fit* involves comparing the observed probabilities of
+endorsing the items in the equate group to the estimated probability of
+endorsing the items in the equate group. In an equate group there is an
+empirical curve for each item in the equate group and one shared estimated
+curve. The empirical curves should all be close to the estimiated curve for a
+good equate fit, presented in the two examples in Figure \@ref(fit:ploteqfit).
+
 
 ## Differential item functioning {#sec:equatedif}
 
@@ -239,5 +250,24 @@ across cohorts may introduce unwanted bias in comparisons between cohorts.
 
 >>voorbeeld van goede en slechte equate group to show DIF in equate groups.
 
+### Good equate group without DIF
 
+```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotnoeqdif)', message = FALSE}
+
+pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::model_lean, passive = TRUE)
+grid.arrange(pdif[["FM31"]], ps[["EXP26"]])
+
+```
+(ref:plotnoeqdif) Two equate groups that present no differiential item functioning within the equate group.
+
+
+### Poor equate groups with DIF for study
+
+
+```{r ploteqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqdif)', message = FALSE}
+
+grid.arrange(pdif[["GM44"]], ps[["EXP23"]])
+
+```
+(ref:ploteqdif) Two equate groups that present differiential item functioning for study within the equate group.
 
