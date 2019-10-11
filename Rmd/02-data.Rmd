@@ -64,7 +64,7 @@ South Africa | x |  | x |  | x |  |  |  |  |
 
 : (\#tab:cohorts) Overview of instruments administered in the cohorts.
 
-##Cohort descriptions
+##Cohort descriptions {#sec:cohorts}
 The **Bangladesh** study was an impact evaluation study including 1862
 children around the age of 18 months. The Bayley Scale for Infant and Todler
 Development-II (Bayley-II) was administered and long-term follow-up data were
@@ -101,7 +101,7 @@ waves, wave 1 contained 704 children at 12-24 months and wave 2 631 children at
 data were available for PPVT at 4-6 years [@Attanasio2014].
 
 The **Colombia 2** study was an instrument validation study where all
-1311 children aged 6-42 months were adminstered the Bayley-II. For a subgroup of
+1311 children aged 6-42 months were adminstered the Bayley-III. For a subgroup of
 658 children the Denver Developmental Screening Test (Denver-II), the Ages and
 Stages Questionnaire (ASQ-3) and the BDI-2 Screener were administered as well.
 Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for
