@@ -2,4 +2,12 @@
 
 ## D-score distribution by study
 
+```{r dscorerefs, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
+
+refs <- dmetric::plot_d_a_study(data = dmetric::gcdg_lean , model = dmetric::model_lean, ref_name = "gcdg")
+
+```
+(ref:dscorerefs) $D$-score distributions by study.
+
+
 ## Impact of measurement error
