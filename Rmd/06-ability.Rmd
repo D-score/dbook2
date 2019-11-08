@@ -2,12 +2,55 @@
 
 ## D-score distribution by study
 
-```{r dscorerefs, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
 
-refs <- dmetric::plot_d_a_study(data = dmetric::gcdg_lean , model = dmetric::model_lean, ref_name = "gcdg")
+```{r}
 
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
+  height = "600px")
 ```
-(ref:dscorerefs) $D$-score distributions by study.
+: (\@tab:dscorerefs) $D$-score distributions by study.
 
 
 ## Impact of measurement error
+
+Measurement error (SEM) is inversely related to the number of items and is also related to the model fit.
+
+How is SEM calculated > recap of dbook1. 
+
+Calculate sem in DAZ scale?
+How are components of SEM reflected in SEM of data
+Compare SEM per study
+ SEM for age?
+ SEM for n?
+
+
+```{r}
+library("dmetric")
+library("gseddata")
+library("dplyr")
+
+varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
+                items = gcdg_items)
+gcdg_lean <- get_data(cohorts = 40:56, items = varlist$items, adm = varlist$adm)
+
+model_lean <- fit_dmodel(varlist, data = gcdg_lean, equate = gcdg_equatelist,
+                    name = "565_18", age_unit = "years")
+
+sem_daz_a <- model_lean$dscore %>%
+  mutate(agemos = cut(a * 12, breaks = 0:max(a*12, na.rm=TRUE)), agenum = as.numeric(agemos)) %>% 
+  group_by(agenum) %>% 
+  summarize (daz = mean(daz, na.rm = TRUE), sem = mean(sem, na.rm=TRUE)/5) %>% 
+  ungroup() %>%
+  mutate(low = daz - sem, high = daz + sem) ####klopt dit? SEM moet omgezet naar daz units. nu sem/5. uitzoeken hoe?
+
+#deze per studie ook toevoegen om verschil tussen studie te laten zien
+ggplot(data = sem_daz_a )+
+  geom_point(aes(x=agenum, y=daz)) +
+  geom_errorbar(aes(x = agenum, ymin=low, ymax=high), width=.1)+
+  xlab("age(months)")
+
+## dan dat ook per cohort weergeven om verschillen tussen studies te zien? Misschien ook in shiny dat je kan doorklikken?
+
+
+
+```
