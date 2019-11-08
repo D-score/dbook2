@@ -4,7 +4,16 @@
 
 ## Empirical and fitted item response curves
 
+
+
 ## Active and non-active equate groups
+```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
+
+pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::model_lean, passive = TRUE)
+
+```
+(ref:plotequates) Active and non-active equate groups.
+
 
 ## Splitting and combining equate groups
 
