@@ -91,7 +91,7 @@ gridExtra::grid.arrange(
 ```
 (ref:poteq) Probability to pass items for age in potential bridges.
 
-When the patterns of the plotted data differs between items and/or cohorts, the
+When the patterns of the plotted data differ between items and/or cohorts, the
 mapping might not be a good one after all. This can be due to differences
 between populations or because the items work differently in different
 populations (i.e. differential item functioning). The exact cause of the
