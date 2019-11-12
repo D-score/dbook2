@@ -241,6 +241,8 @@ plot_p_d_equate_i <- function(data,
                             ...) {
   lean <- gseddata::is.lean(data)
   model_name <- model$name
+  names(model$itembank)[names(model$itembank) == "lex_gsed"] <- "item"
+
 
   if (!"agedays" %in% names(data)) {
     data$agedays <- as.integer(data$age / 12 * 365.25)
@@ -587,6 +589,7 @@ annotate_item_fit <- function(plot, itemfit, pole = TRUE, xlim=c(0,80)) {
   }
   plot
 }
+
 ```
 
 The study of *equate fit* involves comparing the observed probabilities of
@@ -625,9 +628,10 @@ across cohorts may introduce unwanted bias in comparisons between cohorts.
 ### Good equate group without DIF
 
 ```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotnoeqdif)', message = FALSE}
-
-pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::model_lean, passive = TRUE)
-grid.arrange(pdif[["FM31"]], ps[["EXP26"]])
+model <- dmetric::model_lean
+names(model$itembank)[names(model$itembank) == "lex_gsed"] <- "item"
+pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model =model, passive = TRUE)
+grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 
 ```
 (ref:plotnoeqdif) Two equate groups that present no differiential item functioning within the equate group.
@@ -638,7 +642,7 @@ grid.arrange(pdif[["FM31"]], ps[["EXP26"]])
 
 ```{r ploteqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqdif)', message = FALSE}
 
-grid.arrange(pdif[["GM44"]], ps[["EXP23"]])
+grid.arrange(pdif[["GM44"]], pdif[["EXP23"]])
 
 ```
 (ref:ploteqdif) Two equate groups that present differiential item functioning for study within the equate group.

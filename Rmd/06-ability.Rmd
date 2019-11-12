@@ -13,16 +13,47 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_reference
 
 ## Impact of measurement error
 
-Measurement error (SEM) is inversely related to the number of items and is also related to the model fit.
+For each estimated $D$-score form the calibrated model, the precision of the
+estimate can be determined. This precision can be expressed as the standard
+error of measurement. The standard error of measurement is inversely related to
+the number of items and to the test information. Thus, when more items are
+administered for a person, the measurement error for the $D$-score of this
+person will be smaller. Also, there is less measurement error when there is more
+test information. $sem = \frac{1}{\sqrt{TI}}$, accordingly the Test information
+($TI$) can be obtained as $TI = \frac{1}{sem^2}$ [REF: Embretson Reise]. The
+test information depicts the information that is in the items that are
+administered to obtain he $D$-score. Thus the test information for a person is
+the sum of the ifnormation that each item contirbutes to the $D$-score for a
+person.
 
-How is SEM calculated > recap of dbook1. 
 
-Calculate sem in DAZ scale?
-How are components of SEM reflected in SEM of data
-Compare SEM per study
- SEM for age?
- SEM for n?
+```{r}
+library("dmetric")
+library("gseddata")
+library("dplyr")
 
+varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
+                items = gcdg_items)
+gcdg_lean <- get_data(cohorts = 40:56, items = varlist$items, adm = varlist$adm)
+
+model_lean <- fit_dmodel(varlist, data = gcdg_lean, equate = gcdg_equatelist,
+                    name = "565_18", age_unit = "years")
+
+semdata <- model_lean$dscore %>%
+  mutate(var = sem*sem, info = 1/var)
+#remove outlier and South Africa cohort (has extremely high information, delutes the plot)
+semdata <- semdata[-which(semdata$info==max(semdata$info, na.rm=TRUE)|semdata$cohort == "GCDG-ZAF"),]
+ ggplot(data = semdata )+
+  geom_smooth(aes(x=n, y=sem), se = FALSE, color = "red")+
+  geom_smooth(aes(x=n, y=info), se = FALSE, color = "blue")+
+  xlab("n")
+
+
+```
+
+sample variance = $\frac{\sum(D{i}^2 - D^2 - sem{i}^2)}{N-1}$
+SEM population = sum()
+SEM at each age group (each month) reflected in error bars around the average daz. 
 
 ```{r}
 library("dmetric")
@@ -54,3 +85,13 @@ ggplot(data = sem_daz_a )+
 
 
 ```
+
+Per study. 
+
+
+```{r}
+
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
+  height = "600px")
+```
+: (\@tab:dscoresems) Standard Error of Measurment by study.
