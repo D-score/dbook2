@@ -53,15 +53,13 @@ resulted in 95 groups of mapped items.
 
 
 ```{r plot_p_a_eq, include=FALSE}
-library(dmodel)
-
+library("dmodel")
 library("dmetric")
 library("gseddata")
+
 theme_set(theme_light())
-model <- dmodel::gcdg_model_565_18
-varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
-                items = gcdg_items)
-lean <- get_data(cohorts = 40:56, items = varlist$items, adm = varlist$adm)
+model <- dmetric::model_lean
+lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 
 #plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
