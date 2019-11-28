@@ -1,97 +1,206 @@
+---
+runtime: shiny 
+---
+
 # Comparing ability {#ch:ability}
 
 ## D-score distribution by study
 
-
 ```{r}
-
-knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dsores/", 
   height = "600px")
 ```
-: (\@tab:dscorerefs) $D$-score distributions by study.
+(ref:dscoredist) $D$-score distributions by study.
 
 
 ## Impact of measurement error
 
-For each estimated $D$-score form the calibrated model, the precision of the
+For each estimated $D$-score from the calibrated model, the precision of the
 estimate can be determined. This precision can be expressed as the standard
-error of measurement. The standard error of measurement is inversely related to
-the number of items and to the test information. Thus, when more items are
-administered for a person, the measurement error for the $D$-score of this
-person will be smaller. Also, there is less measurement error when there is more
-test information. $sem = \frac{1}{\sqrt{TI}}$, accordingly the Test information
-($TI$) can be obtained as $TI = \frac{1}{sem^2}$ [REF: Embretson Reise]. The
-test information depicts the information that is in the items that are
-administered to obtain he $D$-score. Thus the test information for a person is
-the sum of the ifnormation that each item contirbutes to the $D$-score for a
-person.
+error of measurement ($sem$). The standard error of measurement is inversely
+related to the number of items. Thus, when more items are administered for a
+person, the measurement error for the $D$-score of this person will be smaller.
+As is shown in figure \@ref(fig:semforn), the sem drops fast when the number of
+items is increased to 15, and still some more until the number of items is 30.
+More than 30 items has little effect on the sem.
 
 
 ```{r}
-library("dmetric")
-library("gseddata")
-library("dplyr")
+#gcdg_lean <- dmetric::gcdg_lean
 
-varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
-                items = gcdg_items)
-gcdg_lean <- get_data(cohorts = 40:56, items = varlist$items, adm = varlist$adm)
-
-model_lean <- fit_dmodel(varlist, data = gcdg_lean, equate = gcdg_equatelist,
-                    name = "565_18", age_unit = "years")
-
-semdata <- model_lean$dscore %>%
-  mutate(var = sem*sem, info = 1/var)
-#remove outlier and South Africa cohort (has extremely high information, delutes the plot)
-semdata <- semdata[-which(semdata$info==max(semdata$info, na.rm=TRUE)|semdata$cohort == "GCDG-ZAF"),]
- ggplot(data = semdata )+
+ggplot(data = dmetric::model_lean$dscore )+
   geom_smooth(aes(x=n, y=sem), se = FALSE, color = "red")+
-  geom_smooth(aes(x=n, y=info), se = FALSE, color = "blue")+
-  xlab("n")
-
-
+  xlab("number of items")
 ```
+(ref:semforn) Standard error of measurement when the number of items increases.
 
-sample variance = $\frac{\sum(D{i}^2 - D^2 - sem{i}^2)}{N-1}$
-SEM population = sum()
-SEM at each age group (each month) reflected in error bars around the average daz. 
 
-```{r}
+The precision of the $D$-score estimate is also affected by the information in
+the items that are administered. This is partly the number of items, as depicted
+in \@ref(fig:semforn), but also if the items are informative for the $D$-score.
+For example, if the items are too easy and the probability to pass the item
+given the $D$-score is $P$ > 0.90, the $sem$ is larger than when the difficulty
+of the administered items is closer to the $D$-score (i.e. $P$ = 0.50). The sem
+for age in GCDG data shows that for some ages, the sem is larger than for others
+(see Figure \@ref(fig:semfora)). This is on the one hand due to the number of
+items available in that age range, but also to the design of the cohorts where
+sometimes relatively easy items are administered.
+
+
+```{r semfora, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:semfora)', message = FALSE}
 library("dmetric")
 library("gseddata")
 library("dplyr")
 
-varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
-                items = gcdg_items)
-gcdg_lean <- get_data(cohorts = 40:56, items = varlist$items, adm = varlist$adm)
+# voor individuele metingen
+sem_daz <- dmetric::model_lean$dscore %>%
+  mutate(agemos = a *12,
+         low_d = d - sem,
+         high_d = d +sem, 
+         low_daz = dscore::daz(low_d, x = a),
+         high_daz = dscore::daz(high_d, x = a))
 
-model_lean <- fit_dmodel(varlist, data = gcdg_lean, equate = gcdg_equatelist,
-                    name = "565_18", age_unit = "years")
 
-sem_daz_a <- model_lean$dscore %>%
-  mutate(agemos = cut(a * 12, breaks = 0:max(a*12, na.rm=TRUE)), agenum = as.numeric(agemos)) %>% 
+## of dit berekenen via de pooled sem per age group en daarna pas naar daz omzetten
+#pooled sem = srqt(sum(sem^2)/(length(sem)-1))
+#alleen gaat het dan mis dat de gemiddelde daz soms buiten het inderval komt (in begin maanden vooral)
+#>># proberen door between variantie (var(d)) toe te voegen aan de pooling van de varianties
+sem_daz_a <- sem_daz %>% 
+  mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
+         agenum = as.numeric(agecat))%>%
   group_by(agenum) %>% 
-  summarize (daz = mean(daz, na.rm = TRUE), sem = mean(sem, na.rm=TRUE)/5) %>% 
-  ungroup() %>%
-  mutate(low = daz - sem, high = daz + sem) ####klopt dit? SEM moet omgezet naar daz units. nu sem/5. uitzoeken hoe?
+  summarize (daz = mean(daz, na.rm = TRUE),
+             mean_a = mean(a, na.rm=TRUE), #voor omzetting naar daz
+             mean_d = mean(d, na.rm = TRUE),
+             var_betw = var(d, na.rm = TRUE),
+             var_with = sum(sem^2, na.rm = TRUE),
+             n =  sum(!is.na(sem))
+             ) %>% ungroup() %>%
+  mutate(sem_pool = sqrt((var_with + var_betw)/ (n-1)), 
+         low_d = mean_d - sem_pool,
+         high_d = mean_d + sem_pool,
+         mean_daz = dscore::daz(mean_d, x = mean_a),
+         low_daz = dscore::daz(low_d, x = mean_a),
+         high_daz = dscore::daz(high_d, x = mean_a))
 
-#deze per studie ook toevoegen om verschil tussen studie te laten zien
+#ggplot(data = sem_daz_a )+
+#  geom_point(aes(x=agenum, y=daz)) +
+#  geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
+#  xlab("age(months)")+
+#  ylim(c(-2,2))
+
 ggplot(data = sem_daz_a )+
-  geom_point(aes(x=agenum, y=daz)) +
-  geom_errorbar(aes(x = agenum, ymin=low, ymax=high), width=.1)+
-  xlab("age(months)")
+  geom_point(aes(x=agenum, y=mean_daz)) +
+  geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
+  xlab("age(months)")+ ylab("daz")
+  ylim(c(-2,2))
 
-## dan dat ook per cohort weergeven om verschillen tussen studies te zien? Misschien ook in shiny dat je kan doorklikken?
-
+#ggplot(data = sem_daz_a )+
+#  geom_point(aes(x=agenum, y=mean_d)) +
+#  geom_errorbar(aes(x = agenum, ymin=low_d, ymax=high_d), width=.1)+
+#  xlab("age(months)") + ylab("D-score")
 
 
 ```
+(ref:semfora) Standard error of measurement in each age group.
 
-Per study. 
-
+In Figure \@ref(fig:dscoresems), the $sem$ per age group is shown for each
+cohort seperately. This illustrates the differences in design between the
+cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the ddi was
+used as a screener and items had the probability to pass of approximately
+$P$=0.80 (quartile range between 0.62 < $P$ > 1.00), and the number of items
+administered per measurement is about 10 items (quartile range 6 to 12 items).
+The Colombia 1 cohort (GCDG-COL-LT45M) was an impact evaluation and has
+administered the by3 where each child answered on average 45 items (quartile
+range 38 to 57 items) and the probablity to pass was approximately $P$ = 0.64
+(quartile range betweeen 0.53 < $P$ > 0.79). The latter study has therefore more
+precise $D$-score estimates.
 
 ```{r}
+#n items per child Netherlands 1 cohort = 8.5
+#ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-NLD-SMOCC")]
+#itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]
+#itmn <- itm %>% group_by(subjid, agedays) %>% summarize(n=n())
+#summary(itmn)
+#p per child on average for Netherlands 1 cohort = 0.8 (median)
+#summary(model_lean$dscore$p[which(model_lean$dscore$cohort == "GCDG-NLD-SMOCC")])
+
+#n items per child Colombia cohort = 46
+#ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-COL-LT45M")]
+#itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]
+#itmn <- itm %>% group_by(subjid, agedays) %>% summarize(n=n())
+#summary(itmn)
+#p per child on average for Colombia 1 cohort = 0.63 (median)
+#summary(model_lean$dscore$p[which(model_lean$dscore$cohort == "GCDG-COL-LT45M")])
+
 
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
   height = "600px")
 ```
-: (\@tab:dscoresems) Standard Error of Measurment by study.
+(ref:dscoresems) Standard Error of Measurment for age by cohort
+
+The $sem$ for an entire cohort or sample can be obtained by pooling the
+individual $sem_i$ using general rule for pooling variances. Accordingly, the
+$sem$ for a sample is obtained by combining the within variance
+$\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in \@ref(eq:poolsem)
+
+\begin{equation}
+$$sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}}$$ (\#eq:poolsem)
+\end{equation}
+
+In Figure \@ref(fig:cohortsem) the sample $sem$ per cohort are displayed. The
+lowest sample $sem$ is found in the Ethiopia study (GCDG-ETH) and the highest in
+the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
+number of items per child, and on the other hand the difficulty of the
+administered items. Table \@ref(tab:npsem) shows the quartile ranges for the
+number of items per child (n) and the probability to pass the items (p). In The
+Ethiopia cohort 39 items (Q2; median) were administered with a median
+probability of 0.66 and in the South Africa study just 12 items with a median
+probability of 1. Accordingly, in the Ethiopia study more items were
+administered per child that also have a high level of information for the
+$D$-score. In the South Africa study only few items were administered per child
+that were also relatively easy and therefore contained less information for the
+$D$-score.
+```{r cohortsem, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:cohortsem)', message = FALSE}
+sem_daz_c <- sem_daz %>% 
+  mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
+         agenum = as.numeric(agecat))%>%
+  group_by(cohort) %>% summarize ("n Q1(0.25)" = quantile(n, probs = 0.25, na.rm=TRUE), 
+                                  "n Q2(0.50)" = median(n, na.rm = TRUE), 
+                                  "n Q3(0.75)" = quantile(n, probs = 0.75, na.rm=TRUE), 
+                                  "p Q1(0.25)" = round(quantile(p, probs = 0.25, na.rm=TRUE),2), 
+                                  "p Q2(0.50)" = round(median(p, na.rm=TRUE),2),
+                                  "p Q3(0.75)" = round(quantile(p, probs = 0.75, na.rm=TRUE),2),
+                                  daz = mean(daz, na.rm = TRUE),
+                                  mean_a = mean(a, na.rm=TRUE), #voor omzetting naar daz
+                                  mean_d = mean(d, na.rm = TRUE),
+                                  var_betw = var(d, na.rm = TRUE),
+                                  var_with = sum(sem^2, na.rm = TRUE),
+                                  n =  sum(!is.na(sem))
+  ) %>% ungroup() %>%
+  mutate(sem_pool = sqrt((var_with + var_betw)/ (n-1)), 
+         low_d = mean_d - sem_pool,
+         high_d = mean_d + sem_pool,
+         mean_daz = dscore::daz(mean_d, x = mean_a),
+         low_daz = dscore::daz(low_d, x = mean_a),
+         high_daz = dscore::daz(high_d, x = mean_a)) %>%
+  arrange(sem_pool)
+
+  ggplot(data = sem_daz_c, aes(reorder(cohort, sem_pool), sem_pool)) +
+  geom_col() + theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+    xlab("")+ ylab("cohort sem")
+  
+  ## attach main instrument to cohort and see if that relates to sem? Or study kind? Something like that?
+ 
+```
+(ref:cohortsem) Standard Error of Measurment per cohort.
+
+
+
+```{r npsem, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:npsem)', message = FALSE}
+
+sem_daz_c[,1:7]
+
+```
+(ref:npsem) Quartiles for the number of items (n) and probability to pass the items (p) per cohort.
+
