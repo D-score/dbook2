@@ -2,8 +2,83 @@
 
 ## Application I: Estimating the SDG 4.2.1 indicator from existing data
 
+Sustainable Development Goal number 4 is to ensure inclusive an equitable
+quality education and promote lifelong learning opportunities for all. Target
+4.2 holds that by 2030, ensure that all girls and boys have access to quality
+early childhood development, care and pre-primary education so that they are
+ready for primary eductation. Indicator 4.2.1 is to measure the proportion of
+children under 5 years of age who are developmentally on track in health,
+learning and psychosoical well-beying, by sex.
+
+```{r sdg4, fig.cap = '(ref:sdg4)'}
+#knitr::include_graphics("fig/equate_ex.png")
+knitr::include_url("https://sustainabledevelopment.un.org/sdg4")
+```
+(ref:sdg4) Sustainable Development Goal 4.
+
+
+The $D$-score can be obtained from any instrument that is included in the
+calibrations for the score. This makes the $D$-score suited as a global score
+for development. Accordingly, the $D$-score can be used for the SDG 4.2.1
+indicator and interpreted as the global measure for development.
+
+In the cohorts that are currently included in the GCDG study, a wide range of
+countries are represented \@ref(sec:gcdgoverview). Combining existing data from
+such a wide range of countries to create the $D$-score, broadens the
+interpretation of the $D$-score. Nevertheless, for obtaining accurate references
+that represent world-wide population, more representative (existing) data needs
+to be added.
+
 ## Definition *developmentally on track*
 
+For child growth, (global) standards are published by the World Health
+Orgnaization (WHO) that are used to monitor growth in childen and to define
+whether children are *on track*. Growth standards are defined for
+weight-for-age, length/height-for age, weight-for-length/height, etc. In 2006,
+the methods for constructing a growth reference were reviewed by statisticians
+and growth experts that resulted in an advised strategy for constructing growth
+standard [@borghi2006]. A similar strategy can be used to construct a reference
+standard child develpment-for-age. This reference standard can then be used to
+determine whether children are *developmentally on track*.
+
+In Figure \@ref(fit:dscorerefs), the strategy for constructing standards for
+development and to use them to define on track dvelopment is explained in
+several steps. In the first step the D-score is plotted by age and in the
+subsequent steps, this relation is modelled in an an LMS model. The goal of an
+LMS model is to describe the relation of the $D$-score by age with
+age-conditional z-scores. This is done by three smoothed curves representing the
+median, coefficient of variation and the skewness. The resulting age
+standardized scores for development (daz), are then used to define on-track
+development. So D-scores within 2 standard deviations from the mean can be
+defines as on-track. Scores that are outside this range, are off-track.
+
+
+```{r}
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
+  height = "600px")
+```
+(ref:dscorerefs) $D$-score reference contruction and translation to on-track development.
+
+Note that the current reference is based on the GCDG study. The cohorts that are
+currently included are representing a wide range of countries. However, they are
+not representative for a global population. The current reference standards are
+therefore temporary and should be improved when more data are available.
+
+
 ## Country-level estimates
+
+For each age-$D$-score combination, a daz can be calculated. That way we can
+calculate the daz in each country that is included in the current GCDG study. By
+using the -2SD rule, we can obtain the percentage on-track development in each
+country.
+
+```{r}
+model_lean$dscore %>%
+  mutate(track = ifelse(daz < -2, 0, 1),
+         country =  substr(cohort, 6, 8) ) %>%
+  group_by(country) %>%
+  summarize("on-track"= sum(track, na.rm=TRUE)/sum(!is.na(track)))
+```
+
 
 ## Relation to other estimates
