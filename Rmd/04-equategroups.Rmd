@@ -156,40 +156,39 @@ library(dmetric)
 library(gseddata)
 library(gridExtra)
 ## model without equate groups
-varlist <- prepare_items(study = c("Netherlands 1", "Ethiopia", "Columbia 2"))
-model2 <- fit_dmodel(varlist, equate = NULL, name = "noeq",
-                        data_package = "ddata", lexicon = "gcdg")
+varlist_o <- prepare_items(study = c("Netherlands 1", "Ethiopia", "Columbia 2"))
+sub_items <- rename_gcdg_gsed(varlist_o$items)
+varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
+                items = sub_items)
+sub_lean <- get_data(cohorts = c(43,50,53), items = varlist$items, adm = varlist$adm)
 
-model2$dscore$agedays <- as.integer(model2$dscore$age * 365.25)
-model2$items <- rename_gcdg_gsed(model2$items)
-model2$itembank$lex_gsed <- rename_gcdg_gsed(model2$itembank$lex_gcdg)
-model2$itemtable$item <- rename_gcdg_gsed(model2$itemtable$item)
-rownames(model2$fit$item) <- rename_gcdg_gsed(rownames(model2$fit$item))
+model2 <-  fit_dmodel(varlist, data = sub_lean, equate = NULL,
+                    name = "no_equates", age_unit = "years")
 
-studies_gcdg <- c("Netherlands 1", "Ethiopia", "Columbia 2")
-df1 <- model2$dscore
-df1$study <- ifelse(df1$study=="Columbia 2", "Colombia 2", df1$study)
-df1$agemos <- df1$agedays/365.25 * 12
-palet <- ddata::get_palette("study")
-names(palet)[8] <- "Colombia 2"
 
-p1 <- ggplot(df1, aes(agemos, d, group=study, color=study))+
-  geom_point()+scale_colour_manual(values = palet, na.value = "grey")+ xlab("Age (months)")+ylab("D-score") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
+#model2$dscore$agedays <- as.integer(model2$dscore$age * 365.25)
+#model2$items <- rename_gcdg_gsed(model2$items)
+#model2$itembank$lex_gsed <- rename_gcdg_gsed(model2$itembank$lex_gcdg)
+#model2$itemtable$item <- rename_gcdg_gsed(model2$itemtable$item)
+#rownames(model2$fit$item) <- rename_gcdg_gsed(rownames(model2$fit$item))
+
+#studies_gcdg <- c("Netherlands 1", "Ethiopia", "Columbia 2")
+df1 <- model2$dscore %>% mutate(agemos = a*12)
+
+p1 <- ggplot(df1, aes(agemos, d, group=cohort, color=cohort))+
+  geom_point()+
+  scale_colour_manual(values = gseddata::get_palette("study"), na.value = "grey")+
+  xlab("Age (months)")+ylab("D-score") +  
+  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
 
 #model with equate groups
 model <- dmetric::model_lean
-studies <- c("GCDG-ETH", "GCDG-NLD-SMOCC", "GCDG-COL-LT45M")
-df2 <- model$dscore[which(model$dscore$cohort %in% studies),]
-df2$cohort <- ifelse(df2$cohort == "GCDG-NLD-SMOCC", "Netherlands 1", df2$cohort)
-df2$cohort <- ifelse(df2$cohort == "GCDG-ETH", "Ethiopia", df2$cohort)
-df2$cohort <- ifelse(df2$cohort == "GCDG-COL-LT45M", "Colombia 2", df2$cohort)
-#palet <- gseddata::get_palette("study")
-palet <- ddata::get_palette("study")
-names(palet)[8] <- "Colombia 2"
+studies <- c("GCDG-ETH", "GCDG-NLD-SMOCC", "GCDG-COL-LT42M")
+df2 <- model$dscore[which(model$dscore$cohort %in% studies),] %>% mutate(agemos = a *12)
 
-df2$agemos <- df2$agedays/365.25*12
-p2 <- ggplot(df2, aes(agemos, b, group=cohort, color=cohort))+
-  geom_point()+scale_colour_manual(values = palet, na.value = "grey")+ xlab("Age(months)")+ylab("D-score") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
+#df2$agemos <- df2$agedays/365.25*12
+p2 <- ggplot(df2, aes(agemos, d, group=cohort, color=cohort))+
+  geom_point()+scale_colour_manual(values = get_palette("study"), na.value = "grey")+ xlab("Age(months)")+ylab("D-score") +  theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
 
 grid.arrange(p1, p2)
 
@@ -243,7 +242,6 @@ plot_p_d_equate_i <- function(data,
   model_name <- model$name
   names(model$itembank)[names(model$itembank) == "lex_gsed"] <- "item"
 
-
   if (!"agedays" %in% names(data)) {
     data$agedays <- as.integer(data$age / 12 * 365.25)
   }
@@ -251,7 +249,7 @@ plot_p_d_equate_i <- function(data,
   # if no equates argument is specified, get equates from the
   # model, find equate groups with at least 2 items in the model
   if (is.null(equates))
-    equatelist <- dmetric::get_equates(model, passive = passive)
+    equatelist <- dmetric::get_equates_old(model)
 
   # if list of equate groups (name with item)
   if (is.list(equates) & length(equates) > 0) equatelist <- equates
@@ -605,13 +603,45 @@ grid.arrange(ps[["REC6"]], ps[["GM42"]])
 ```
 (ref:ploteqfit) Two equate groups that present a good equate fit.
 
-The equate item *Turns head to sound of bell* is asked in slightly different formats in the Bayley I (by1), Dutch Development Instrument (ddi) and the Denver (den). The three items are combined in an equate group and the empirical data is clored differently for each instrument in Figure \@ref(fit:ploteqfit). The empirical data for each instrument is close to the fitted dashed line, which indicates a good equate fit. Equate item *Walks alone* is administered in six different instruments (Barrera-Moncada, Bayley I, Bayley II, Beyley III, Dutch Development Instrument and Griffiths).
-
-<!-- in data ook de afkortingen van de instrumente aanpassen daar gseddata lex 3 indicators (by1 ddi den etc.) -->
+The equate item *Turns head to sound of bell* is asked in slightly different formats in the Bayley I (by1), Dutch Development Instrument (ddi) and the Denver (den). The three items are combined in an equate group and the empirical data is clored differently for each instrument in Figure \@ref(fit:ploteqfit). The empirical data for each instrument is close to the fitted dashed line, which indicates a good equate fit. Equate item *Walks alone* is administered in six different instruments (bar, by1, by2, by3, ddi and gri).
 
 ### Equate groups with poor equate fit
 
 <!-- Hier een ouder model pakken, waar nog slechtere equate groups bij zitten. En daar een plot van weergeven.  -->
+```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqfit)', message = FALSE}
+load_model <-function(model_name) {
+     path <-  "C://Users/eekhouti/Dropbox/models"
+     fn <- file.path(path, model_name, "model.Rds")
+     readRDS(fn)
+   }
+#path <- "C://Users/eekhouti/Dropbox/models"
+
+poor_model <- load_model("667_19_SA")
+names(poor_model$itembank)[names(poor_model$itembank)=="lex.gcdg"] <- "item"
+poor_model$fit$equate<- lapply(poor_model$fit$equate, rename_gcdg_gsed)
+poor_model$items <- rename_gcdg_gsed(poor_model$items)
+poor_model$itembank$item <- rename_gcdg_gsed(poor_model$itembank$item)
+poor_model$data_package <- "gseddata"
+poor_model$itemtable <- gseddata::get_itemtable(items = poor_model$items)
+#refit model with extracted settings from model?
+
+ps_poor <- plot_p_d_equate_i(data = dmetric::gcdg_lean , model = poor_model, passive = TRUE, file = "C:\\Users\\eekhouti\\Desktop\\poor_equates.pdf")
+ps_poor[["COG56"]]
+ps_poor[["EXP20"]]
+ps_poor[["GM43"]]
+
+grid.arrange(ps_poor[["COG56"]], ps_poor[["EXP20"]])
+
+
+
+
+
+
+
+
+
+```
+(ref:ploteqfit) Two equate groups that present a good equate fit.
 
 
 ## Differential item functioning {#sec:equatedif}
