@@ -41,7 +41,7 @@ standard [@borghi2006]. A similar strategy can be used to construct a reference
 standard child develpment-for-age. This reference standard can then be used to
 determine whether children are *developmentally on track*.
 
-In Figure \@ref(fit:dscorerefs), the strategy for constructing standards for
+In Figure \@ref(ref:dscorerefs), the strategy for constructing standards for
 development and to use them to define on track dvelopment is explained in
 several steps. In the first step the D-score is plotted by age and in the
 subsequent steps, this relation is modelled in an an LMS model. The goal of an

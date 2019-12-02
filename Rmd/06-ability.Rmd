@@ -25,8 +25,7 @@ items is increased to 15, and still some more until the number of items is 30.
 More than 30 items has little effect on the sem.
 
 
-```{r}
-#gcdg_lean <- dmetric::gcdg_lean
+```{r semforn, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:semforn)', message = FALSE}
 
 ggplot(data = dmetric::model_lean$dscore )+
   geom_smooth(aes(x=n, y=sem), se = FALSE, color = "red")+
@@ -104,7 +103,7 @@ ggplot(data = sem_daz_a )+
 ```
 (ref:semfora) Standard error of measurement in each age group.
 
-In Figure \@ref(fig:dscoresems), the $sem$ per age group is shown for each
+In Figure \@ref(ref:dscoresems), the $sem$ per age group is shown for each
 cohort seperately. This illustrates the differences in design between the
 cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the ddi was
 used as a screener and items had the probability to pass of approximately
@@ -135,7 +134,7 @@ precise $D$-score estimates.
 
 
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
-  height = "600px")
+  height = "800px")
 ```
 (ref:dscoresems) Standard Error of Measurment for age by cohort
 
@@ -188,7 +187,7 @@ sem_daz_c <- sem_daz %>%
 
   ggplot(data = sem_daz_c, aes(reorder(cohort, sem_pool), sem_pool)) +
   geom_col() + theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-    xlab("")+ ylab("cohort sem")
+    xlab("")+ ylab("cohort sem") + ylim(c(-2,2))
   
   ## attach main instrument to cohort and see if that relates to sem? Or study kind? Something like that?
  
@@ -197,10 +196,10 @@ sem_daz_c <- sem_daz %>%
 
 
 
-```{r npsem, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:npsem)', message = FALSE}
+```{r npsem}
 
 sem_daz_c[,1:7]
 
 ```
-(ref:npsem) Quartiles for the number of items (n) and probability to pass the items (p) per cohort.
+: (\#tab:npsem) Quartiles for the number of items (n) and probability to pass the items (p) per cohort.
 

@@ -1,6 +1,7 @@
 # Data {#ch:data}
 
-##Overview of cohorts and instruments {#sec:gcdgoverview}
+## Overview of cohorts and instruments {#sec:gcdgoverview}
+
 Data from 16 cohorts were assembled by the Global Child Development Group (GCDG)
 in order to develop a population-based measure to monitor early child
 development across ages and countries. This resulted in a dataframe, with
@@ -8,7 +9,7 @@ development data from over 16,000 children from 11 countries. The countries that
 are included in the study are colored blue on the word map below
 \@ref(fig:worldmap).
 
-```{r echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 library(rworldmap)
 library(maps)
 
@@ -64,7 +65,8 @@ South Africa | x |  | x |  | x |  |  |  |  |
 
 : (\#tab:cohorts) Overview of instruments administered in the cohorts.
 
-##Cohort descriptions {#sec:cohorts}
+## Cohort descriptions {#sec:cohorts}
+
 The **Bangladesh** study (GCDG-BGD-7MO) was an impact evaluation study including 1862 children
 around the age of 18 months. The Bayley Scale for Infant and Todler
 Development-II (by2) was administered and long-term follow-up data were
@@ -224,7 +226,7 @@ reasoning, visual-spatial processing and working memory [@roid2003][@hagen1986].
 <!-- SB-4 Hagen E, Stattler J, Stanford–Binet Intelligence Scales, Fourth Edition·Thorndike, 1986. -->
 
 
-##GCDG working group members and data contributors
+## GCDG working group members and data contributors
 
 **Maureen M. Black**, RTI International and Department of Pediatrics, University of
 Maryland School of Medicine, Baltimore, MD, USA.

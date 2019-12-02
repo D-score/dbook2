@@ -677,7 +677,7 @@ grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 
 ### Poor equate groups with DIF for study
 
-In Figure \@ref(fit:ploteqdif), two passive equate groups are displayed, that
+In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that
 show differential item functioning between cohorts. The empirical curves are
 displayed for each cohort sepeartely in different colors. The difference between
 these curves shows the differential item functioning. For example, the item

@@ -22,19 +22,19 @@ in kilograms.
 In order to evaluate and analyse the data from the different cohorts as one
 large dataset, the cohorts need to be connected. On the one hand this can be
 established by using the overlapping instruments in the different cohorts as
-connections. In Table \@ref(tab:linkage) the connections between the cohorts via
+connections. In Table \@ref(ref:linkage) the connections between the cohorts via
 overlapping instruments are displayed. In the tabpanels the linkages are
 displayed by 6 month age block. As can be observed, some cohorts (and
 instruments) are not yet linked. For these cohorts and intruments, bridging was
 accomplished by mapping items.
 
 
-```{r}
+```{r linkage}
 
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/", 
   height = "600px")
 ```
-: (\@tab:linkage) Overview of linkage between the cohorts via overlapping instruments.
+(ref:linkage) Overview of linkage between the cohorts via overlapping instruments.
 
 
 ## Bridging instruments by mapping items {#sec:mapping}
