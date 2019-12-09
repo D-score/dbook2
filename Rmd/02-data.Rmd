@@ -1,13 +1,23 @@
 # Data {#ch:data}
 
+This chapter describes the data that is used to illustrate the methodologies
+described in this booklet. The data originates from a study by the Global Child
+Development Group (GCDG) where child development data from 16 cohorts were
+assembled. 
+
+* Overview of cohorts and instrument (\@ref(sec:gcdgoverview))
+* Cohort descriptions (\@ref(sec:cohorts))
+* Instruments (\@ref(sec:instruments))
+* GCDG working group members and data contributors (\@ref(sec:group))
+
 ## Overview of cohorts and instruments {#sec:gcdgoverview}
 
 Data from 16 cohorts were assembled by the Global Child Development Group (GCDG)
 in order to develop a population-based measure to monitor early child
 development across ages and countries. This resulted in a dataframe, with
 development data from over 16,000 children from 11 countries. The countries that
-are included in the study are colored blue on the word map below
-\@ref(fig:worldmap).
+are included in the study are colored blue on the word map below (Figure:
+\@ref(fig:worldmap)).
 
 ```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 library(rworldmap)
@@ -38,11 +48,12 @@ world.map<-map('world',fill=TRUE,
 (ref:worldmap) Worldmap with countries that have data in the study colored in blue.
 
 
-The cohorts included birth cohorts, impact evaluation studies and instrument
-evaluation studies. Children were assessed between 0 and 58 months and
-followed-up between 4 and 18 years. In Table \@ref(tab:cohorts) a brief overview
-of the instruments assessed per cohort is displayed. Below each cohort is
-briefly described.
+The GCDG cohorts included birth cohorts, impact evaluation studies and
+instrument evaluation studies. Children were assessed between 0 and 58 months
+and followed-up between 4 and 18 years. In Table \@ref(tab:cohorts) a brief
+overview of the instruments used in each cohort is displayed. In section
+\@ref(sec:cohorts) each cohort is briefly described and in section
+\@ref(sec:instruments) a short description for each instrument in provided.
 
 Cohort | by | den | gri | bat | vin | ddi |  bar | tep | asq | sbi
 --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------
@@ -75,7 +86,7 @@ at 5 years [@Tofail2008].
 
 The **Brazil 1** study (GCDG-BRA-1) was a birth-cohort with 3 measurement moments: 644
 children at 3 months, 1412 children at 6 months and 1362 children at 12 months.
-In each round the Denver Developmental Screening Test-II (den) was administered.
+In each round, the Denver Developmental Screening Test-II (den) was administered.
 Long-term follow-up data were available for the Wechsler Adult Intelligence
 Scale (WAIS) at 18 years [@Victora2006].
 
@@ -83,10 +94,10 @@ The **Brazil 2** study (GCDG-BRA-2) was a birth-cohort with measurements of 3907
 12 months and 3869 children at 24 months. On both occasions the Battelle
 Development Inventory (bat) was administered [@Moura2010].
 
-The **Chile 1** study (GCDG-CHL-1) was an impact evaluation study of 128 children assessed at
-6 months, 1732 children at 12 months and 279 at 18 months. At each wave the
-by1 was administered. Long-term follow-up data were available for the WPPSI
-at 5-6 years [@Lozoff2003].
+The **Chile 1** study (GCDG-CHL-1) was an impact evaluation study of 128
+children assessed at 6 months, 1732 children at 12 months and 279 at 18 months.
+The by1 was administered at each wave. Long-term follow-up data were available
+for the WPPSI at 5-6 years [@Lozoff2003].
 
 The **Chile 2** study (GCDG-CHL-2) was a brith-cohort of 4869 children who were
 administered the Battelle Developmental Inventory (bat) at 7-23 months and 9201
@@ -97,10 +108,10 @@ Picture Vocabulary Test (PPVT) at 5-6 years [@conteras2015].
 The **China** study (GCDG-CHN) was an impact evaluation study that contained 990 children
 assessed with the by3 at 18 months [@Lozoff2016]. 
 
-The **Colombia 1** study (GCDG-COL-LT45M) was an impact evaluation study that comprised two
-waves, wave 1 contained 704 children at 12-24 months and wave 2 631 children at
-24-41 months. At each wave the by3 was administered. Long-term follow-up
-data were available for PPVT at 4-6 years [@Attanasio2014].
+The **Colombia 1** study (GCDG-COL-LT45M) was an impact evaluation study that
+comprised two waves, wave 1 contained 704 children at 12-24 months and wave 2
+631 children at 24-41 months. The by3 was administered at each wave. Long-term
+follow-up data were available for PPVT at 4-6 years [@Attanasio2014].
 
 The **Colombia 2** study (GCDG-COL-LT42M) was an instrument validation study where all
 1311 children aged 6-42 months were adminstered the by3. For a subgroup of 658
@@ -119,8 +130,8 @@ months at the third wave. At each wave the by3 was administered. Long-term
 follow-up data were available for the PPVT at 10-11 years [@Hanlon2009].
 
 The **Jamaica 1** study (GCDG-JAM-LBW) was an impact evaluation study were the Griffiths Mental
-Development Scales (gri) were administed to 225 children at 15 months at
-the first wave, and 218 children at 24 months at the second wave. Long-term
+Development Scales (gri) were administed to 225 children of 15 months at
+the first wave, and 218 children of 24 months at the second wave. Long-term
 follow-up data were available for WPPSI and PPVT at 6 years [@Walker2004].
 
 The **Jamaica 2** study (GCDG-JAM-STUNTED) was an impact evaluation study were the gri were
@@ -130,7 +141,7 @@ Matrices (Ravens), and PPVT at 7-8 years and the WAIS at 17-18 years
 [@Grantham-McGregor1991].
 
 The **Madagascar** study (GCDG-MDG) was an impact evaluation study where the sbi was
-administered to 205 children ages 34-42 months. Long-term follow-up data were
+administered to 205 children aged 34-42 months. Long-term follow-up data were
 available for sbi and PPVT at 7-11 years [@Fernald2011].
 
 The **Netherlands 1** study (GCDG-NLD-SMOCC) was an instrument validation study with a total of 9
@@ -148,12 +159,12 @@ months, wave 4 1592 children at 42 months, and wave 5 1024 childen at 48 months
 [@doove2010].
 
 The **South Africa** study (GCDG-ZAF) was a birth cohort with four waves. The first wave
-inlcuded 485 children and seccond wave 275 children, who were assessed at 6 and
-12 months, respectively, with the by1 and the gri The third wave included 1802
+inlcuded 485 children and second wave 275 children, who were assessed at 6 and
+12 months, respectively, with the by1 and the gri. The third wave included 1802
 children and the fourth wave 1614 children, assessed at 24 and 48 months,
 respectively, with the Vineland Social Maturity Scale (vin) [@Richter2007].
 
-## Instruments
+## Instruments {#sec:instruments}
 
 The **Bayley Scale for Infant and Todler Development (by1, by2, by3)** is aimed to
 assess infants and toddlers, aged 1-42 months. The current version is the
@@ -170,7 +181,7 @@ subscales: Social-Emotional and Adaptive Behavior. by1 contains 229 items.
 The **Denver Developmental Screening Test (den)** is aimed to identify
 developmental problems in children up to age six. The 125 dichotomous test items
 are distributed over the age range from birth to six years.The Denver covers
-four domains: personal-social, fine motor and adaptive, language and gross
+four domains: personal-social, fine motor and adaptive, language, and gross
 motor. The test items are all directly observed by an examiner and are not
 dependent on parent report [@frankenburg1992] [@frankenburg1990].
 <!-- Frankenburg WK, Dodds J, Archer P, Shapiro H, Bresnick B. The Denver II: a major revision and restandardization of the Denver Developmental Screening Test. Pediatrics 1992; 89: 91–7. -->
@@ -202,7 +213,7 @@ behavior; communication; and gross motor [@schlesinger1981].
 <!-- Schlesinger-Was EA. Ontwikkelingsonderzoek van zuigelingen en kleuters op het consultatiebureau. 1981 -->
 
 The **Barrera Moncada (bar)** is a Spanish instrument that measures the
-growth and psychological develepment of children [@barrera1981].
+growth and psychological development of children [@barrera1981].
 <!-- Barrera Moncada, G. 1981. Crecimiento y desarrollo psicológico del niño venezolano. Ediciones psicopediátricas. Caracas. -->
 
 The **Test de Desarrollo Psicomotor (tep)** is an instrument to evaluate
@@ -211,10 +222,10 @@ three sub-tests: 16 items assess coordination; 24 items assess language skills
 and 12 items assess motor skills [@haeussler1999].
 <!-- Haeussler IM, Marchant T. Tepsi: test de desarrollo psicomotor 2-5 años. Eds. Universidad Católica de Chile, 1999 -->
 
-The **Ages and Stages Questionnaire (asq)* measures developmental progress in
+The **Ages and Stages Questionnaire (asq)** measures developmental progress in
 children between 2 months and 5,5 years. The instrument assess development in
 five areas: personal social, gross motor, fine motor, problem solving and
-communication. The ASQ contains sets of 30 items in 21 age intervals and is
+communication. The asq contains sets of 30 items in 21 age intervals and is
 completed by the caregiver [@squires2009].
 <!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ- 3™). A parent-completed child-monitoring system Paul H. Brookes Publishing Co., Baltimore (2009) -->
 
@@ -226,7 +237,7 @@ reasoning, visual-spatial processing and working memory [@roid2003][@hagen1986].
 <!-- SB-4 Hagen E, Stattler J, Stanford–Binet Intelligence Scales, Fourth Edition·Thorndike, 1986. -->
 
 
-## GCDG working group members and data contributors
+## GCDG working group members and data contributors {#sec:group}
 
 **Maureen M. Black**, RTI International and Department of Pediatrics, University of
 Maryland School of Medicine, Baltimore, MD, USA.
@@ -268,7 +279,7 @@ USA.
 Antananarivo, Madagascar.
 Sarah Reynolds, School of Public Health, University of California, Berkeley, CA,
 USA.
-**Linda Richter*, DST-NRF Centre of Excellence in Human Development, University of
+**Linda Richter**, DST-NRF Centre of Excellence in Human Development, University of
 the Witwatersrand, Johannesburg, South Africa.
 **Marta Rubio-Codina**, Inter-American Development Bank, Washington DC, USA.
 **Norbert Schady**, Inter-American Development Bank, Washington DC, USA.

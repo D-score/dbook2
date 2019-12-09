@@ -4,29 +4,39 @@ runtime: shiny
 
 # Comparability {#ch:comparability}
 
-## Challenge of comparability
+This chapter describes challenges and methodology to harmonize development
+data from different sources in the following paragraphs:
+
+* Challenge of comparability (\@ref(sec:challenge))
+* Bridging instruments by mapping items (\@ref(sec:mapping))
+* Overview of promising item mappings (\@ref(sec:viewmapping))
+
+
+
+## Challenge of comparability {#sec:challenge}
 
 The ultimate goal of having a global score for development is to compare
 children from different populations. In order to do this, the data included in
-the GCDG study had to be harmonized. A protocol was written that described a
-naming scheme for the early developmental test items and that every item should
-only have one column, items should be coded as: 1 – pass; 0 – fail, and that
-missings were coded for items not administered to the child because: item not
-age appropriate; item below floor for an individual child; or child refused.
-Additionally, the names of the background variables were described in the
-protocol and to code these variables similarly in all cohorts. For example,
-mothers education was coded in four categories: 0 - none; 1 - primary; 2 -
-secondary; 3 - above secondary, height was expressed in centimeters and weight
-in kilograms.
+the GCDG study had to be harmonized. The harmonization protocol described the following:
 
-In order to evaluate and analyse the data from the different cohorts as one
-large dataset, the cohorts need to be connected. On the one hand this can be
+* The naming scheme for the early developmental test items;
+* Every item occupies only one column;
+* Items are coded as: 1 – pass; 0 – fail;
+* Missings were coded for items not administered to the child because: item not
+age appropriate; item below floor for an individual child; or child refused;
+* The names of the background variables and harmonized coding for all cohorts.
+For example, mothers education was coded in four categories: 0 - none; 1 -
+primary; 2 - secondary; 3 - above secondary, height was expressed in centimeters
+and weight in kilograms.
+
+To evaluate and analyse the data from the different cohorts as one large
+dataset, the cohorts need to be connected. On the one hand this can be
 established by using the overlapping instruments in the different cohorts as
-connections. In Table \@ref(ref:linkage) the connections between the cohorts via
+connections. In Table \@ref(tab:linkage) the connections between the cohorts via
 overlapping instruments are displayed. In the tabpanels the linkages are
-displayed by 6 month age block. As can be observed, some cohorts (and
-instruments) are not yet linked. For these cohorts and intruments, bridging was
-accomplished by mapping items.
+displayed by 6 month age blocks. Some cohorts and instruments are not yet
+linked. For these cohorts and intruments, bridging was accomplished by mapping
+items.
 
 
 ```{r linkage}
@@ -34,23 +44,144 @@ accomplished by mapping items.
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/", 
   height = "600px")
 ```
-(ref:linkage) Overview of linkage between the cohorts via overlapping instruments.
+: (\#tab:linkage) Overview of linkage between the cohorts via overlapping instruments.
 
 
 ## Bridging instruments by mapping items {#sec:mapping}
 
-Items from different instruments can be mapped to each other by similarity. In
-the GCDG study, the mapping was done using the Bayley-III items as reference
-point. The Bayley-III was the most frequently administered instrument in te
-cohorts, so the items from other instruments were mapped to the Bayley-III items
-based on similar wordings and descriptions in reference manuals by experienced
-subject matter experts. Additionally, same-skill items across other instruments
-were mapped into groups, if they did not map onto Bayley-III items. This
-resulted in 95 groups of mapped items.
+Items from different instruments can be mapped to each other by similarity. The
+by3 was the most frequently administered instrument in the cohorts, so the items
+from other instruments were mapped to the by3 items. Mapping was done based on
+similar wordings and descriptions in reference manuals by experienced subject
+matter experts. Additionally, same-skill items across other instruments were
+mapped into groups, if they did not map onto by3 items. Item mappings were
+ordered into five domains: fine motor (FM), gross motor (GM), cognitive (COG),
+receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the
+connections between the instruments (blue nodes) via the item groups in each
+domain.
 
+```{r mapping, echo=FALSE, fig.cap='(ref:mapping)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+library(GGally)
+library(network)
+library(sna)
+library(ggplot2)
+library(dplyr)
+
+varlist_gcdg <- dmetric::prepare_items(min_cat = 10)
+eqset2 <- ddata::get_equates(varlist_gcdg$items)
+
+eqinst <- eqset2 %>% lapply(gseddata::rename_gcdg_gsed) 
+
+#instrument vector:
+instruments <- unique(gseddata::get_itemtable(gseddata::rename_gcdg_gsed(varlist_gcdg$items))$instrument)[-11]
+
+
+mappings <- lapply(eqinst, function(x){
+  y <- instruments %in% substr(x, 1, 3) * 1
+  names(y) <- instruments
+  y
+})
+
+mappings <- data.frame(mappings)
+
+#mapp <- network(mappings, matrix.type = "bipartite")
+#ggnet2(mapp, label = TRUE)
+#mappings$COG <- rowSums(mappings[, colnames(mappings)[grepl("COG", colnames(mappings))] ])
+#mappings$EXP <- rowSums(mappings[, colnames(mappings)[grepl("EXP", colnames(mappings))] ])
+#mappings$REC <- rowSums(mappings[, colnames(mappings)[grepl("REC", colnames(mappings))] ])
+#mappings$FM <- rowSums(mappings[, colnames(mappings)[grepl("FM", colnames(mappings))] ])
+#mappings$GM <- rowSums(mappings[, colnames(mappings)[grepl("GM", colnames(mappings))] ])
+#mapp2 <- network(mappings[,c("COG", "EXP", "REC", "GM", "FM")], matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
+#ggnet2(mapp2, label = TRUE)
+#col = c("actor" = "grey", "event" = "gold")
+#ggnet2(mapp2, color = "mode", palette = col, label = TRUE, edge.label = "weights")
+
+col = c("actor" = "lightblue", "event" = "#FC8D62")
+mapping_cog <- mappings[, colnames(mappings)[grepl("COG", colnames(mappings))]]
+mapping_cog <- mapping_cog[which(rowSums(mapping_cog)>0),]
+mapp_cog <-network(mapping_cog, 
+                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
+cog_network<- ggnet2(mapp_cog, 
+       label = instruments, 
+       color = "mode", 
+       alpha = "mode", 
+       alpha.palette = c(1, 0.5), 
+       palette = col, 
+       #shape = "mode",
+       #shape.palette = c(15,19), 
+       legend.position = "none")+
+  ggtitle("Cognitive equates")
+
+col = c("actor" = "lightblue", "event" = "#A6D854")
+mapping_exp <- mappings[, colnames(mappings)[grepl("EXP", colnames(mappings))]]
+mapping_exp <- mapping_exp[which(rowSums(mapping_exp)>0),]
+mapp_exp <-network(mapping_exp,
+                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
+exp_network<- ggnet2(mapp_exp, 
+       label = instruments, 
+       color = "mode", 
+       alpha = "mode", 
+       alpha.palette = c(1, 0.5), 
+       palette = col, 
+       #shape = "mode",
+       #shape.palette = c(15,19), 
+       legend.position = "none")+
+  ggtitle("Expressive equates")
+
+col = c("actor" = "lightblue", "event" = "#8DA0CB")
+mapping_fm <- mappings[, colnames(mappings)[grepl("FM", colnames(mappings))]]
+mapping_fm <- mapping_fm[which(rowSums(mapping_fm)>0),]
+mapp_fm <-network(mapping_fm,
+                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
+fm_network<- ggnet2(mapp_fm, 
+       label = instruments, 
+       color = "mode", 
+       alpha = "mode", 
+       alpha.palette = c(1, 0.5), 
+       palette = col, 
+       #shape = "mode",
+       #shape.palette = c(15,19), 
+       legend.position = "none")+
+  ggtitle("Fine motor equates")
+
+col = c("actor" = "lightblue", "event" = "#E78AC3")
+mapping_gm <- mappings[, colnames(mappings)[grepl("GM", colnames(mappings))]]
+mapping_gm <- mapping_gm[which(rowSums(mapping_gm)>0),]
+mapp_gm <-network(mapping_gm,
+                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
+gm_network<- ggnet2(mapp_gm, 
+       label = instruments, 
+       color = "mode", 
+       alpha = "mode", 
+       alpha.palette = c(1, 0.5), 
+       palette = col, 
+       #shape = "mode",
+       #shape.palette = c(15,19), 
+       legend.position = "none")+
+  ggtitle("Gross motor equates")
+
+col = c("actor" = "lightblue", "event" = "#66C2A5")
+mapping_rec <- mappings[, colnames(mappings)[grepl("REC", colnames(mappings))]]
+mapping_rec <- mapping_rec[which(rowSums(mapping_rec)>0),]
+mapp_rec <-network(mapping_rec,
+                  matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
+rec_network<- ggnet2(mapp_rec, 
+      label = instruments, 
+       color = "mode", 
+       alpha = "mode", 
+       alpha.palette = c(1, 0.5), 
+       palette = col, 
+       #shape = "mode",
+       #shape.palette = c(15,19), 
+       legend.position = "none")+
+  ggtitle("Receptive equates")
+
+gridExtra::grid.arrange(cog_network, exp_network, gm_network, fm_network, rec_network)
+
+```
+(ref:mapping) Connections between the instruments via mapped item groups.
 
 ## Overview of promising item mappings {#sec:viewmapping}
-
 
 ```{r plot_p_a_eq, include=FALSE}
 library("dmodel")
@@ -66,17 +197,16 @@ eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 
 ```
 
-The next step in selecting potential bridges after the item mapping is
-performed, is to plot the probability to pass items for age and compare these
-between cohorts for mapped items. When the data shows similar patterns between
-items and cohorts, the item mapping can be tested in the modelling phase. In
-Figure (\@ref(fig:poteq)), the probability to pass items for age is displayed
-for two potential bridges. The left plot presents a group of four cognitive
-items that assess the ability to put a cube or block in a cup or box. The items
-are administered in different studies but seem to work similarly. The plot on
-the right presents a group of six fine motor items that assess the ability to
-build a tower of six cubes or blocks. These items also seem to work similarly in
-the different cohorts they were assessed in.
+The potential of item mappings is evaluated visually by plotting the probability
+to pass items for age for the item groups and compare the curves between
+cohorts. When the data shows similar patterns between items and cohorts, the
+item mapping can be tested in the modelling phase. In Figure \@ref(fig:poteq),
+the probability to pass items for age is displayed for two potential bridges.
+The first plot presents a group of four cognitive items that assess the ability
+to put a cube or block in a cup or box. The items are administered in different
+studies and seem to work similarly. The second plot presents a group of six fine
+motor items that assess the ability to build a tower of six cubes or blocks.
+These items also seem to work similarly in the different cohorts.
 
 ```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
@@ -93,8 +223,8 @@ When the patterns of the plotted data differ between items and/or cohorts, the
 mapping might not be a good one after all. This can be due to differences
 between populations or because the items work differently in different
 populations (i.e. differential item functioning). The exact cause of the
-missmatch can be further investigated int he modelling phase. In Figure
-(\@ref(fig:badeq)), two examples of poor item mappings are presented.
+missmatch can be further investigated in the modelling phase. In Figure
+\@ref(fig:badeq), two examples of poor item mappings are presented.
 
 ```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
