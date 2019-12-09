@@ -4,7 +4,24 @@ runtime: shiny
 
 # Comparing ability {#ch:ability}
 
-## D-score distribution by study
+In this chapter the $D$-score distributions per GCDG cohort are displayed and
+the impact of measurement error is compared between the cohorts. Additionally
+the coverage of the developmental domains is displayed for different levels of
+the $D$-score.
+
+* D-score distribution by study (\@ref(sec:dsores))
+* Impact of measurement error (\@ref(sec:sem))
+* Domain coverage (\@ref(sec:domains))
+
+
+## D-score distribution by study {#sec:dsores}
+
+For each study that is included in the GCDG assembly, the $D$-score can be
+obtained using the developed global model. In the graphs below, the $D$-score
+distributions are displayed for each cohort seperately. The blue lines in the
+graphs are the (temporary) references, as explained in (@\ref(sec:references)).
+By using the "next" button below the plot you can click through the cohorts.
+Using the selection bar above the graph, you can select a specific cohort.
 
 ```{r}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dsores/", 
@@ -13,7 +30,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dsores/",
 (ref:dscoredist) $D$-score distributions by study.
 
 
-## Impact of measurement error
+## Impact of measurement error {#sec:sem}
 
 For each estimated $D$-score from the calibrated model, the precision of the
 estimate can be determined. This precision can be expressed as the standard
@@ -91,7 +108,7 @@ sem_daz_a <- sem_daz %>%
 ggplot(data = sem_daz_a )+
   geom_point(aes(x=agenum, y=mean_daz)) +
   geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
-  xlab("age(months)")+ ylab("daz")
+  xlab("age(months)")+ ylab("daz")+
   ylim(c(-2,2))
 
 #ggplot(data = sem_daz_a )+
@@ -103,7 +120,7 @@ ggplot(data = sem_daz_a )+
 ```
 (ref:semfora) Standard error of measurement in each age group.
 
-In Figure \@ref(ref:dscoresems), the $sem$ per age group is shown for each
+In Figure (\@ref(ref:dscoresems)), the $sem$ per age group is shown for each
 cohort seperately. This illustrates the differences in design between the
 cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the ddi was
 used as a screener and items had the probability to pass of approximately
@@ -141,10 +158,11 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/",
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the
 $sem$ for a sample is obtained by combining the within variance
-$\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in \@ref(eq:poolsem)
+$\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in equation
+\@ref(eq:poolsem)
 
 \begin{equation}
-$$sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}}$$ (\#eq:poolsem)
+sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} (\#eq:poolsem)
 \end{equation}
 
 In Figure \@ref(fig:cohortsem) the sample $sem$ per cohort are displayed. The
@@ -160,6 +178,7 @@ administered per child that also have a high level of information for the
 $D$-score. In the South Africa study only few items were administered per child
 that were also relatively easy and therefore contained less information for the
 $D$-score.
+
 ```{r cohortsem, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:cohortsem)', message = FALSE}
 sem_daz_c <- sem_daz %>% 
   mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
@@ -187,19 +206,126 @@ sem_daz_c <- sem_daz %>%
 
   ggplot(data = sem_daz_c, aes(reorder(cohort, sem_pool), sem_pool)) +
   geom_col() + theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-    xlab("")+ ylab("cohort sem") + ylim(c(-2,2))
+    xlab("")+ ylab("cohort sem")
   
   ## attach main instrument to cohort and see if that relates to sem? Or study kind? Something like that?
  
 ```
-(ref:cohortsem) Standard Error of Measurment per cohort.
+(ref:cohortsem) Standard Error of Measurement per cohort.
 
 
 
 ```{r npsem}
 
-sem_daz_c[,1:7]
+kable(sem_daz_c[,1:7], 
+      caption = "Quartiles for the number of items (n) and probability to pass the items (p) per cohort",
+      bootabs = TRUE)
 
 ```
-: (\#tab:npsem) Quartiles for the number of items (n) and probability to pass the items (p) per cohort.
+
+## Domain coverage {#sec:domains}
+ 
+The $D$-score is a one number score that measures early child development. To
+evaluate the content validity of the $D$-score we can make sure that all
+developmental domains are fairly respresented. We distinguish five domains for
+child development: Motor development (motor), Cognitive development (cog),
+Language development (lang), Social-emotional (sem), and Life skills (life). The
+items can be linked to one or more domains and the cumulative item information
+for each domain can be evaluated. In Figure \@ref(fit:domaincov), the coverage
+of the domains for the $D$-score is displayed. This shows that at lower levels
+of the $D$-score, motor development is more dominant and that at higher levels
+of the $D$-score the cognitive van language domains increase in importance.
+
+
+```{r}
+library(dinstrument)
+plot_info_d_domain(itembank = model_lean$itembank,
+                       domaintable = dinstrument::domaintable,
+                       delta = "tau",
+                       beta_range = 0:80, 
+                       abs = TRUE)
+
+```
+
+It is possible to calculate a $D$-score that is more representative for a
+specific domain using the current $D$-score model. We can use only the items
+that load to the domain in question to calculate the $D$-score.
+
+
+```{r}
+#calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
+#use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
+d_domain <- function(data, domain, items = NULL, vote_weight = NULL){
+  lean <- gseddata::is.lean(data)
+   
+   if(lean){
+    data <- data[["itm"]] %>% tidyr::spread(key = "item", value = "value")
+   }
+
+   data$age <- data$agedays / 365.25
+   
+   if(is.null(vote_weight)) {vote_weight <- 0}
+   
+   if(domain != "all"){
+   domain_items <- dinstrument::domaintable[dinstrument::domaintable[,domain] > vote_weight, "item"]
+   domain_items <- intersect(domain_items, names(data))
+   d_domain <- dscore::dscore(data = data, items = domain_items)
+   colnames(d_domain)[c(2:6)] <- paste(colnames(d_domain)[c(2:6)], domain, sep = "_")
+   }
+   
+  if(domain == "all"){
+    d_domain <- dscore::dscore(data = data, items = items)
+    
+    for(dom in c("motor", "cog", "lang", "sem", "life")){
+   dom_items <- dinstrument::domaintable[dinstrument::domaintable[,dom] > vote_weight, "item"]
+   dom_items <- intersect(dom_items, names(data))
+   d_dom <- dscore::dscore(data = data, items = dom_items)
+   colnames(d_dom)[c(2:6)] <- paste(colnames(d_dom)[c(2:6)], dom, sep = "_")
+   d_domain <- cbind(d_domain, d_dom[,-1])
+    }
+  }
+   
+   d_domain
+  
+}
+
+#test compare with manual for col1
+#start <- Sys.time()
+gcdg_all <- d_domain(data = dmetric::gcdg_lean, domain = "all", items = gseddata::gcdg_items, vote_weight = 0.5)
+#Sys.time() - start #2.8min
+
+gcdg_domains <- gcdg_all %>%
+  mutate(month = a * 12) %>% 
+  select(month, d, d_motor, d_cog, d_lang, d_sem, d_life) %>%
+  rename(motor = d_motor, cognitive = d_cog, language = d_lang, "social-emotional" = d_sem, "life skills" = d_life) %>%
+  pivot_longer(cols = c("motor", "cognitive", "language", "social-emotional", "life skills"), names_to = "domain", values_to = "dscore")
+
+
+#plot all domain dscore in gcdg data
+ggplot(data = gcdg_domains)+
+  geom_point(aes(x = month, y = dscore, group = domain, col = domain))+
+  xlab("Age(month)") + ylab("D-score")+
+  scale_color_manual(values = dmodel::color_domain, na.value = "grey")
+
+#example for one person
+i <- 25
+example1d <- gcdg_all[i,] %>%
+  pivot_longer(cols= c(d, d_motor, d_cog, d_lang, d_sem, d_life), names_to = "domain", values_to = "dscore")%>%
+  select(a, domain, dscore)
+
+example1sem <- gcdg_all[i,] %>%
+  pivot_longer(cols = c(sem, sem_motor, sem_cog, sem_lang, sem_sem, sem_life), names_to = "domain2", values_to = "dsem") %>% select(domain2, dsem) %>% cbind(example1d) %>%
+  select(a, domain, dscore, dsem) %>%
+  mutate(low_d = dscore - dsem, high_d = dscore +dsem, month = a * 12)
+
+  
+  
+  
+  ggplot(data = example1sem )+
+  geom_point(aes(x=domain, y=dscore)) +
+  geom_errorbar(aes(x = domain, ymin=low_d, ymax=high_d), width=.1)+
+  xlab("domain")+ ylab("D-score")
+
+
+```
 
