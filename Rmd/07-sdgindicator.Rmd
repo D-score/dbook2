@@ -1,6 +1,17 @@
 # SDG 4.2.1 Indicator {#ch:SDGindicator}
 
-## Application I: Estimating the SDG 4.2.1 indicator from existing data
+This chapter explains how the $D$-score can be used to indicate on-track
+development. The methodology to define on-track development is described and
+country-level estimates are displayed. Additionally the domain coverage of the
+$D$-score is discussed and comparisons to other estimates.
+
+* Application I: Estimating the SDG 4.2.1 indicator from existing data (\@ref(sec:application1))
+* Definition *developmentally on track* (\@ref(sec:references))
+* Country-level estimates (\@refsec:countrytrack))
+* Domain coverage (\@refsec:domains))
+* Relation to other estimates (\@refsec:otherestimates))
+
+## Application I: Estimating the SDG 4.2.1 indicator from existing data {#sec:application1}
 
 Sustainable Development Goal number 4 is to ensure inclusive an equitable
 quality education and promote lifelong learning opportunities for all. Target
@@ -16,7 +27,6 @@ knitr::include_url("https://sustainabledevelopment.un.org/sdg4")
 ```
 (ref:sdg4) Sustainable Development Goal 4.
 
-
 The $D$-score can be obtained from any instrument that is included in the
 calibrations for the score. This makes the $D$-score suited as a global score
 for development. Accordingly, the $D$-score can be used for the SDG 4.2.1
@@ -29,7 +39,7 @@ interpretation of the $D$-score. Nevertheless, for obtaining accurate references
 that represent world-wide population, more representative (existing) data needs
 to be added.
 
-## Definition *developmentally on track*
+## Definition *developmentally on track* (#sec:references)
 
 For child growth, (global) standards are published by the World Health
 Orgnaization (WHO) that are used to monitor growth in childen and to define
@@ -65,7 +75,7 @@ not representative for a global population. The current reference standards are
 therefore temporary and should be improved when more data are available.
 
 
-## Country-level estimates
+## Country-level estimates {#sec:countrytrack}
 
 For each age-$D$-score combination, a daz can be calculated. That way we can
 calculate the daz in each country that is included in the current GCDG study. By
@@ -81,4 +91,4 @@ model_lean$dscore %>%
 ```
 
 
-## Relation to other estimates
+## Relation to other estimates {#sec:otherestimates}
