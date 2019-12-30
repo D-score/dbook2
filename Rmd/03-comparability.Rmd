@@ -73,7 +73,7 @@ eqset2 <- ddata::get_equates(varlist_gcdg$items)
 eqinst <- eqset2 %>% lapply(dscore::rename_gcdg_gsed) 
 
 #instrument vector:
-instruments <- unique(gseddata::get_itemtable(dscore::rename_gcdg_gsed(varlist_gcdg$items))$instrument)[-11]
+instruments <- unique(dscore::get_itemtable(dscore::rename_gcdg_gsed(varlist_gcdg$items))$instrument)[-11]
 
 
 mappings <- lapply(eqinst, function(x){
