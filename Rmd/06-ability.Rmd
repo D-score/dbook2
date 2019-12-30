@@ -237,7 +237,8 @@ of the $D$-score, motor development is more dominant and that at higher levels
 of the $D$-score the cognitive van language domains increase in importance.
 
 
-```{r}
+```{r eval=FALSE}
+# eval = FALSE because dmodel::get_domaintable() is undefined
 info_data <-
       dinstrument::info_d_item(
         itembank = model_lean$itembank,
@@ -295,7 +296,9 @@ specific domain using the current $D$-score model. We can use only the items
 that load to the domain in question to calculate the $D$-score.
 
 
-```{r}
+```{r eval = FALSE}
+# eval = FALSE because dmodel::get_domaintable() is undefined
+
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
 d_domain <- function(data,
