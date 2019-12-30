@@ -166,7 +166,7 @@ library(dplyr)
 
 ## model without equate groups
 varlist_o <- dmetric::prepare_items(study = c("Netherlands 1", "Ethiopia", "Columbia 2"))
-sub_items <- rename_gcdg_gsed(varlist_o$items)
+sub_items <- dscore::rename_gcdg_gsed(varlist_o$items)
 varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
                 items = sub_items)
 sub_lean <- gseddata::get_data(cohorts = c(43,50,53), items = varlist$items, adm = varlist$adm)
