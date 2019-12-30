@@ -161,10 +161,10 @@ model2 <- fit_dmodel(varlist, equate = NULL, name = "noeq",
                         data_package = "ddata", lexicon = "gcdg")
 
 model2$dscore$agedays <- as.integer(model2$dscore$age * 365.25)
-model2$items <- rename_gcdg_gsed(model2$items)
-model2$itembank$lex_gsed <- rename_gcdg_gsed(model2$itembank$lex_gcdg)
-model2$itemtable$item <- rename_gcdg_gsed(model2$itemtable$item)
-rownames(model2$fit$item) <- rename_gcdg_gsed(rownames(model2$fit$item))
+model2$items <- dscore::rename_gcdg_gsed(model2$items)
+model2$itembank$lex_gsed <- dscore::rename_gcdg_gsed(model2$itembank$lex_gcdg)
+model2$itemtable$item <- dscore::rename_gcdg_gsed(model2$itemtable$item)
+rownames(model2$fit$item) <- dscore::rename_gcdg_gsed(rownames(model2$fit$item))
 
 studies_gcdg <- c("Netherlands 1", "Ethiopia", "Columbia 2")
 df1 <- model2$dscore
