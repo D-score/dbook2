@@ -2,15 +2,11 @@
 runtime: shiny 
 ---
 
-<!-- NOTE: We may need to reorganise a little. Move "Challange of
-comparabiliy" and "Bridging instruments" to before chapter 2. Then
-this chapter can concentrate on the identification and assessment of
-similar items -->
+<!-- NOTE: We may need to reorganise a little. Move "Challange of comparabiliy" and "Bridging instruments" to before chapter 2. Then this chapter can concentrate on the identification and assessment of similar items -->
 
 # Comparability {#ch:comparability}
 
-This chapter describes challenges and methodology to harmonize
-development data from different sources in the following paragraphs:
+This chapter describes challenges and methodology to harmonize development data from different sources in the following paragraphs:
 
 * Challenge of comparability (\@ref(sec:challenge))
 * Bridging instruments by mapping items (\@ref(sec:mapping))
@@ -19,28 +15,16 @@ development data from different sources in the following paragraphs:
 
 ## Challenge of comparability {#sec:challenge}
 
-The ultimate goal of having a global score for development is to compare
-children from different populations. In order to do this, the data included in
-the GCDG study had to be harmonized. The harmonization protocol described the following:
+The ultimate goal of having a global score for development is to compare children from different populations. In order to do this, the data included in the GCDG study had to be harmonized. The harmonization protocol described the following:
 
 * The naming scheme for the early developmental test items;
 * Every item occupies only one column;
 * Items are coded as: 1 – pass; 0 – fail;
-* Missings were coded for items not administered to the child because: item not
-age appropriate; item below floor for an individual child; or child refused;
+* Missings were coded for items not administered to the child because: item not age appropriate; item below floor for an individual child; or child refused;
 * The names of the background variables and harmonized coding for all cohorts.
-For example, mothers education was coded in four categories: 0 - none; 1 -
-primary; 2 - secondary; 3 - above secondary, height was expressed in centimeters
-and weight in kilograms.
+For example, mothers education was coded in four categories: 0 - none; 1 - primary; 2 - secondary; 3 - above secondary, height was expressed in centimeters and weight in kilograms.
 
-To evaluate and analyse the data from the different cohorts as one large
-dataset, the cohorts need to be connected. On the one hand this can be
-established by using the overlapping instruments in the different cohorts as
-connections. In Table \@ref(tab:linkage) the connections between the cohorts via
-overlapping instruments are displayed. In the tabpanels the linkages are
-displayed by 6 month age blocks. Some cohorts and instruments are not yet
-linked. For these cohorts and intruments, bridging was accomplished by mapping
-items.
+To evaluate and analyse the data from the different cohorts as one large dataset, the cohorts need to be connected. On the one hand this can be established by using the overlapping instruments in the different cohorts as connections. In Table \@ref(tab:linkage) the connections between the cohorts via overlapping instruments are displayed. In the tabpanels the linkages are displayed by 6 month age blocks. Some cohorts and instruments are not yet linked. For these cohorts and intruments, bridging was accomplished by mapping items.
 
 
 ```{r linkage}
@@ -53,16 +37,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_instrumen
 
 ## Bridging instruments by mapping items {#sec:mapping}
 
-Items from different instruments can be mapped to each other by similarity. The
-by3 was the most frequently administered instrument in the cohorts, so the items
-from other instruments were mapped to the by3 items. Mapping was done based on
-similar wordings and descriptions in reference manuals by experienced subject
-matter experts. Additionally, same-skill items across other instruments were
-mapped into groups, if they did not map onto by3 items. Item mappings were
-ordered into five domains: fine motor (FM), gross motor (GM), cognitive (COG),
-receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the
-connections between the instruments (blue nodes) via the item groups in each
-domain.
+Items from different instruments can be mapped to each other by similarity. The by3 was the most frequently administered instrument in the cohorts, so the items from other instruments were mapped to the by3 items. Mapping was done based on similar wordings and descriptions in reference manuals by experienced subject matter experts. Additionally, same-skill items across other instruments were mapped into groups, if they did not map onto by3 items. Item mappings were ordered into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the connections between the instruments (blue nodes) via the item groups in each domain.
 
 ```{r mapping, echo=FALSE, fig.cap='(ref:mapping)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
 library(GGally)
@@ -204,16 +179,9 @@ eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 
 <!-- NOTE: Suggesting "passing by age" as linking method may be confusing. If we do so, we should clearly explain that this is NOT the way we create equates, and explain the reasons why. -->
 
-The potential of item mappings is evaluated visually by plotting the probability
-to pass items for age for the item groups and compare the curves between
-cohorts. When the data shows similar patterns between items and cohorts, the
-item mapping can be tested in the modelling phase. In Figure \@ref(fig:poteq),
-the probability to pass items for age is displayed for two potential bridges.
-The first plot presents a group of four cognitive items that assess the ability
-to put a cube or block in a cup or box. The items are administered in different
-studies and seem to work similarly. The second plot presents a group of six fine
-motor items that assess the ability to build a tower of six cubes or blocks.
-These items also seem to work similarly in the different cohorts.
+The potential of item mappings is evaluated visually by plotting the probability to pass items for age for the item groups and compare the curves between cohorts. When the data shows similar patterns between items and cohorts, the item mapping can be tested in the modelling phase. In Figure \@ref(fig:poteq), the probability to pass items for age is displayed for two potential bridges. 
+
+The first plot presents a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The items are administered in different studies and seem to work similarly. The second plot presents a group of six fine motor items that assess the ability to build a tower of six cubes or blocks. These items also seem to work similarly in the different cohorts.
 
 ```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
@@ -226,12 +194,7 @@ gridExtra::grid.arrange(
 ```
 (ref:poteq) Probability to pass items for age in potential bridges.
 
-When the patterns of the plotted data differ between items and/or cohorts, the
-mapping might not be a good one after all. This can be due to differences
-between populations or because the items work differently in different
-populations (i.e. differential item functioning). The exact cause of the
-missmatch can be further investigated in the modelling phase. In Figure
-\@ref(fig:badeq), two examples of poor item mappings are presented.
+When the patterns of the plotted data differ between items and/or cohorts, the mapping might not be a good one after all. This can be due to differences between populations or because the items work differently in different populations (i.e. differential item functioning). The exact cause of the missmatch can be further investigated in the modelling phase. In Figure \@ref(fig:badeq), two examples of poor item mappings are presented.
 
 ```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
