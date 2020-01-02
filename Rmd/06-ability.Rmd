@@ -217,7 +217,7 @@ sem_daz_c <- sem_daz %>%
 
 ```{r npsem}
 
-kable(sem_daz_c[,1:7], 
+knitr::kable(sem_daz_c[,1:7], 
       caption = "Quartiles for the number of items (n) and probability to pass the items (p) per cohort",
       bootabs = TRUE)
 
