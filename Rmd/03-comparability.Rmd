@@ -2,15 +2,19 @@
 runtime: shiny 
 ---
 
+<!-- NOTE: We may need to reorganise a little. Move "Challange of
+comparabiliy" and "Bridging instruments" to before chapter 2. Then
+this chapter can concentrate on the identification and assessment of
+similar items -->
+
 # Comparability {#ch:comparability}
 
-This chapter describes challenges and methodology to harmonize development
-data from different sources in the following paragraphs:
+This chapter describes challenges and methodology to harmonize
+development data from different sources in the following paragraphs:
 
 * Challenge of comparability (\@ref(sec:challenge))
 * Bridging instruments by mapping items (\@ref(sec:mapping))
 * Overview of promising item mappings (\@ref(sec:viewmapping))
-
 
 
 ## Challenge of comparability {#sec:challenge}
@@ -196,6 +200,9 @@ eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 #plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
 
 ```
+
+
+<!-- NOTE: Suggesting "passing by age" as linking method may be confusing. If we do so, we should clearly explain that this is NOT the way we create equates, and explain the reasons why. -->
 
 The potential of item mappings is evaluated visually by plotting the probability
 to pass items for age for the item groups and compare the curves between
