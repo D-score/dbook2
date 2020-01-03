@@ -72,11 +72,11 @@ knitr::kable(df,
 ```
 &nbsp;
 
-An "X" in table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these groups through `den`. Other cohorts (e.g., Chile 1 and Ecuador) do not link to any other. Likewise, we might say that `aqi`, `bat`, `by3` and `den` are directly connected. Note that no indirect connections exist to this instrument group.
+An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3` and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
-Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. In reality, there are substantial differences between the child ages of the cohorts. The table at <https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/> shows the actual counts per age group. What appears here as one test may actually be two disjoint subsets, and hence some cohorts may not be connected after all.
+Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The table at <https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/> shows the counts of the number of registered scores per age group. What appears in table \@ref(tab:linkage) as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
 
-Connectedness is a necessary (though not sufficient) requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:
+Connectedness is a necessary - though not sufficient - requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:
 
 * Any differences between studies can be attributed to the ability of the children;
 * Any differences between studies can be attributed to the difficulties of the instruments.
@@ -87,14 +87,34 @@ The next section suggests a way out of the dilemma.
 
 ## Bridging instruments by mapping items {#sec:mapping}
 
-Items from different instruments can be mapped to each other by similarity. The by3 was the most frequently administered instrument in the cohorts, so the items from other instruments were mapped to the by3 items. Mapping was done based on similar wordings and descriptions in reference manuals by experienced subject matter experts. Additionally, same-skill items across other instruments were mapped into groups, if they did not map onto by3 items. Item mappings were ordered into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the connections between the instruments (blue nodes) via the item groups in each domain.
+Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak and think. 
+
+We will exploit the overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
+
+```{r example2words}
+items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
+           "grihsd217", "vinxxc016")
+labels <- dscore::get_labels(items)
+df <- tibble::tibble(Item = items, Label = labels)
+t <- knitr::kable(df, booktabs = TRUE, 
+             caption = "Example of similar items from different instruments.")
+kableExtra::column_spec(t, 1, monospace = TRUE)
+```
+
+The idea is to check whether these milestones measure development in the same way. If this is found to be accurate, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
+
+A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experiences in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items. 
+
+<!-- NOTE: What can we say about the number of items mapped in this way. Should we introduce the term "equate groups" here? -->
+
+We order item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the connections between the instruments (blue nodes) via the item groups in each domain.
 
 ```{r mapping, echo=FALSE, fig.cap='(ref:mapping)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-library(GGally)
-library(network)
-library(sna)
-library(ggplot2)
-library(dplyr)
+suppressPackageStartupMessages(library(GGally))
+suppressPackageStartupMessages(library(network))
+suppressPackageStartupMessages(library(sna))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(dplyr))
 
 varlist_gcdg <- dmetric::prepare_items(min_cat = 10)
 eqset2 <- ddata::get_equates(varlist_gcdg$items)
@@ -210,12 +230,15 @@ gridExtra::grid.arrange(cog_network, exp_network, gm_network, fm_network, rec_ne
 ```
 (ref:mapping) Connections between the instruments via mapped item groups.
 
+<!-- NOTE: Interesting idea, but still need some work. It is not clear how to interpret these plots. The nodes (are these items, instruments?) appear fairly large. Can we see how many links there are between instruments, and what their equate group is? 
+Would a circular plot of items per domain be more natural to interpret? -->
+
 ## Overview of promising item mappings {#sec:viewmapping}
 
 ```{r plot_p_a_eq, include=FALSE}
-library("dmodel")
-library("dmetric")
-library("gseddata")
+suppressPackageStartupMessages(library("dmodel"))
+suppressPackageStartupMessages(library("dmetric"))
+suppressPackageStartupMessages(library("gseddata"))
 
 theme_set(theme_light())
 model <- dmetric::model_lean
@@ -223,7 +246,6 @@ lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 
 #plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
-
 ```
 
 
