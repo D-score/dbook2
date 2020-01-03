@@ -233,7 +233,7 @@ gridExtra::grid.arrange(cog_network, exp_network, gm_network, fm_network, rec_ne
 <!-- NOTE: Interesting idea, but still need some work. It is not clear how to interpret these plots. The nodes (are these items, instruments?) appear fairly large. Can we see how many links there are between instruments, and what their equate group is? 
 Would a circular plot of items per domain be more natural to interpret? -->
 
-## Overview of promising item mappings {#sec:viewmapping}
+## Age profile of item mappings {#sec:viewmapping}
 
 ```{r plot_p_a_eq, include=FALSE}
 suppressPackageStartupMessages(library("dmodel"))
@@ -248,12 +248,7 @@ eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 #plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
 ```
 
-
-<!-- NOTE: Suggesting "passing by age" as linking method may be confusing. If we do so, we should clearly explain that this is NOT the way we create equates, and explain the reasons why. -->
-
-The potential of item mappings is evaluated visually by plotting the probability to pass items for age for the item groups and compare the curves between cohorts. When the data shows similar patterns between items and cohorts, the item mapping can be tested in the modelling phase. In Figure \@ref(fig:poteq), the probability to pass items for age is displayed for two potential bridges. 
-
-The first plot presents a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The items are administered in different studies and seem to work similarly. The second plot presents a group of six fine motor items that assess the ability to build a tower of six cubes or blocks. These items also seem to work similarly in the different cohorts.
+One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.
 
 ```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
@@ -264,9 +259,9 @@ gridExtra::grid.arrange(
 )
 
 ```
-(ref:poteq) Probability to pass items for age in potential bridges.
+(ref:poteq) The probability of passing by age in potential bridging items.
 
-When the patterns of the plotted data differ between items and/or cohorts, the mapping might not be a good one after all. This can be due to differences between populations or because the items work differently in different populations (i.e. differential item functioning). The exact cause of the missmatch can be further investigated in the modelling phase. In Figure \@ref(fig:badeq), two examples of poor item mappings are presented.
+The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. Also here the milestones have similar age patterns.
 
 ```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
@@ -277,3 +272,21 @@ gridExtra::grid.arrange(
 )
 ```
 (ref:badeq) Probability to pass items for age in poor bridges.
+
+Figure \@ref(fig:badeq) presents two examples of weak item mappings. Notable timing differences exist for the "babbles" and "bangs" milestones, which suggests that we should not take these as bridges. 
+
+While these plots are suggestive, their interpretation is surprisingly complicated. 
+
+We may find that age profiles of two milestones *A and B* administered in samples 1 and 2 respectively *are identical* if
+
+* A and B are equally difficult and samples 1 and 2 have the same maturation level;
+* A is more difficult than B and sample 1 is more advanced than 2.
+
+Similarly, we may find that the age profile for *A is earlier than B* if
+
+* A is easier than B and if samples 1 and 2 have the same level of maturation;
+* A and B are equally difficult and if sample 1 is more advanced than sample 2.
+
+Note that the age curves confound difficulty and ability, and hence cannot be used to evaluate the quality of the item map. 
+
+What we need to do is separate difficulty and ability. For this, we need a formal statistical model. The next chapter introduces the concepts required in such a model.
