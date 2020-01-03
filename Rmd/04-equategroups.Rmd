@@ -1,11 +1,8 @@
 # Equate groups {#ch:equategroups}
 
-This chapter explains the equate group method. The equate group method is a
-novel method to link different instruments administered across multiple cohorts.
-Combining existing data sets for meta-analyses enables analyses across multiple
-contexts and conditions. 
+This chapter introduces the concepts and tools needed to link assessments made by different instruments administered across multiple cohorts. Our methodology introduces the idea of an equate group. Systematic application of equate groups provides a robust yet flexible methodology to link different instruments. Once the links are in place, we may combine the data to enable meta-analyses and related methods.
 
-* Definition of equate groups (\@ref(sec:eqdef))
+* What is an equate groups (\@ref(sec:eqdef))
 * Concurrent calibration (\@ref(sec:concurrent))
 * Requirements of equate groups (\@ref(sec:equaterules))
 * Statistical framework (\@ref(sec:statisticalframe))
@@ -13,25 +10,24 @@ contexts and conditions.
 * Quantifying equate fit (\@ref(sec:equatefit))
 * Differential Item Functioning (\@ref(sec:equatedif))
 
-## Definition of equate groups {#sec:eqdef}
+## What is an equate group? {#sec:eqdef}
 
-A group of items that measure the same thing in (perhaps slightly) different
-ways is called an “equate group”. An equate group can link items across
-instruments by restricting their difficulty estimates to be identical. Equate
-groups provide an extra option for bridging different instruments to the same
-scale. Figure \@ref(fig:equateex) displays items from three different
-instruments that measure child development. The instruments contain some common
-items that are measured in multiple instruments, but also unique items. The
-common items can be linked in an equate group as displayed by the arrows between
-them. In the example there is one (common) item that is equivalent in all three
-instruments (i.e. walk alone). The item "sitting" occurs in both the first (i.e.
-blue) and the second (i.e. green) instrument and the item "clabs hand together"
-occurs in the second (i.e. green) and third (i.e. orange instrument).
+An *equate group* is a set of two or more milestones that measure the same thing in (perhaps slightly) different ways. Table \@ref(tab:example2words) contains an example of an equate group, containing items that measure the ability to form two-word sentences. Also, Figures \@ref(fig:poteq) and \@ref(fig:badeq) show examples of equate groups. 
+
+Equate groups can be of different quality. We can use high-quality equate groups to link instruments by restricting the difficulty of all equate group members to be identical. Equate groups thus provide a method for bridging different tools.
 
 ```{r equateex, fig.cap = '(ref:equateex)'}
 knitr::include_graphics("fig/equate_ex.png")
 ```
 (ref:equateex) Example of three instruments that are bridged by common items in equate groups.
+
+Figure \@ref(fig:equateex) displays items from three different instruments that measure child development. The instruments contain a few milestones shared by all tools. 
+
+The shared items make up equate groups, as displayed by the arrows between them. In the example, all three instruments share one milestone ("walk alone"). The "sitting" and "clap hand" items appear in two tools. There are three equate groups.
+
+Patterns as in Figure \@ref(fig:equateex) occur if we have multiple forms of the same instrument. Although in theory, there might be sequence effects, the consensus is that the information produced by each item in the equate group does not depend on the form. Such equate groups are of high-quality. We may collect the responses on all items from a high-quality equate group into the same column of the data matrix.
+
+Our methodology generalises the idea of *putting the data into the same column* to multiple - perhaps slightly dissimilar - milestones.
 
 ## Concurrent calibration {#sec:concurrent}
 
