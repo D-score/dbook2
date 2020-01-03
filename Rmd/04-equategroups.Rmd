@@ -25,15 +25,24 @@ Figure \@ref(fig:equateex) displays items from three different instruments that 
 
 The shared items make up equate groups, as displayed by the arrows between them. In the example, all three instruments share one milestone ("walk alone"). The "sitting" and "clap hand" items appear in two tools. There are three equate groups.
 
-Patterns as in Figure \@ref(fig:equateex) occur if we have multiple forms of the same instrument. Although in theory, there might be sequence effects, the consensus is that the information produced by each item in the equate group does not depend on the form. Such equate groups are of high-quality. We may collect the responses on all items from a high-quality equate group into the same column of the data matrix.
-
-Our methodology generalises the idea of *putting the data into the same column* to multiple - perhaps slightly dissimilar - milestones.
-
 ## Concurrent calibration {#sec:concurrent}
 
-When each instrument is administered in a different cohort, the cohorts can be linked by placing the common items in the same column. The common items will have the same difficulty estimates due to linking with "concurrent calibration". In concurrent calibration the item parameters for all instruments are estimated simulateously. Concurrent calibration is an attractive option, however this method warrants a strict distinction between items that are truly the same in different instruments and items that differ. In practice, items that measure the same skill may have been adapted to suit the format of the instrument (e.g. number of response options, question formulation, and so on) or to suit the local language and cultural context, which may or may not have an effect on the measurement properties of the instrument. This appeals to the possibility to explore and test different sets of equate items. Also, when in example Figure \@ref(fig:equateex) the first and second instruments are both administered in the same cohort and the third in a second, concurrent calibration is not possible for common items in the first two instruments. In these situations, the equate group method is a more flexible way to link items. The equate groups methods works with similar assumptions as the concurrent calibration method, but with the flexibility to explore, test and modify the sets of equate items (i.e. equate groups) used in the model.
+Patterns as in Figure \@ref(fig:equateex) occur if we have multiple forms of the same instrument. Although in theory, there might be sequence effects, the consensus is that we may ignore form-effects. Equate groups with truly shared items are of high-quality. We may collect the responses on all items from a high-quality equate group into the same column of the data matrix. As a consequence, the shared item from different forms will automatically have one difficulty estimate.
 
+The procedure described above is known as *concurrent calibration*. See @kim1998 for background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:
 
+* It yields a common latent scale across all instruments;
+* It is efficient because it calibrate all items in a single run;
+* It produces more stable estimates for shared items for small samples.
+
+However, concurrent calibration depends on a strict distinction between items that are indeed the same in different instruments and items that differ. 
+
+In practice, strict black-white distinctions may not be possible. Items that measure the same skill may have been adapted to suit the format of the instrument (e.g. number of response options, question formulation, and so on). Also, investigators may have altered the item to suit the local language and cultural context. Such changes may or may not affect the measurement properties. 
+
+In practice, we need to perform concurrent calibration to multiple - perhaps slightly dissimilar - milestones. When confronted with similar - but not identical - items, our strategy is first to form equate groups. We then explore and test the quality of each equate group, in the hope that we will find enough high-quality equate groups to bridge instruments.
+
+<!-- I have outcommented this because it seems to go in a different direction, and not really needed for the main story line
+Also, when in example Figure \@ref(fig:equateex) the first and second instruments are both administered in the same cohort and the third in a second, concurrent calibration is not possible for common items in the first two instruments. In these situations, the equate group method is a more flexible way to link items. The equate groups methods works with similar assumptions as the concurrent calibration method, but with the flexibility to explore, test and modify the sets of equate items (i.e. equate groups) used in the model. -->
 
 ## Requirements of equate groups {#sec:equaterules}
 
