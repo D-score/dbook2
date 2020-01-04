@@ -44,20 +44,23 @@ In practice, we need to perform concurrent calibration to multiple - perhaps sli
 <!-- I have outcommented this because it seems to go in a different direction, and not really needed for the main story line
 Also, when in example Figure \@ref(fig:equateex) the first and second instruments are both administered in the same cohort and the third in a second, concurrent calibration is not possible for common items in the first two instruments. In these situations, the equate group method is a more flexible way to link items. The equate groups methods works with similar assumptions as the concurrent calibration method, but with the flexibility to explore, test and modify the sets of equate items (i.e. equate groups) used in the model. -->
 
-## Requirements of equate groups {#sec:equaterules}
+## Strategy to form and test equate groups {#sec:equaterules}
 
-Statistical information and subject matter experts form the basis for the assignment of items to eligible equate groups. In actual modeling, there are “active” equate groups (i.e. equate groups for which the restriction is actually applied) and “passive” equate groups (i.e. similar items for which the restriction is not applied). Only active groups bridge the different instruments in the final model.
+An equate group is a collection of items. As a part of concurrent calibration, we may specify that some equate groups are *active*. The analysis will treat items within such groups as one. Any remaining equate groups are called *passive* — the model views milestones within such groups as separate.
 
-The following strategies are recommended to select equate groups:
+Only active equate groups can bridge different instruments. In general, we will set the status of an equate group to active only if we believe that interchanging items within the group does not affect the result. Note that this does not necessarily imply that all items need to be identical. In Table \@ref(tab:example2words), for example, small differences exist in item formulation. We may nevertheless believe that these are irrelevant and ignore these in practice. Reversely, there is no guarantee that the same milestone will measure child development in the same way in different samples. For example, a milestone like "climb stairs" could more difficult (and more dangerous) for children who have never seen a staircase.
 
-* As a first step, content experts can start by mapping similar items. For example use one instrument as a reference and map the items of other instruments to those items (see section \@ref(sec:mapping)).
-* In a second step, the mapping can be visualized by plotting the mapped items in one figure (see section \@ref(sec:viewmapping)). That way, potential matches can be verified and confirmed if they show similar patterns or broken up if they seem poor mappings. In this step, both statistical and content expertise can be utilized.
-* Next, the model can be fitted using a selection of potential matches as active equate groups. The technical details of this model are explained in section \@ref(sec:statisticalframe). The selection of the final active equate groups for the model is an iterative process where two important qualifications should be considered: (1) the active equate groups should link all cohorts and instruments. (2) To enhance the functioning of equate groups, the active equate groups are preferably distributed over the scale, rather than centered at one point.
-* The infit and outfit can be calculated for equate groups, which provides a natural measure of equate group quality (see section \@ref(sec:equatefit)).
-* The performance of the equategroups across subgroups or cohorts can be tested with methods designed to detect differential item functioning (see section \@ref(sec:equatedif)).
+Decisions to activate equate groups should be informed by both subject matter expertise and by fit to the statistical model. The following steps implement our strategy for forming and enabling equate groups:
 
-In general, the use of equate groups is very relevant when the abilities differ across cohorts. In that case, equate groups are very helpful to place the abilities across the different cohorts on the same scale. However, when cohort abilities are relatively uniform and the risk of mis-specification of the equate groups is high, a model without equate groups is preferred.
+* Content matter experts compare milestones from different instruments and sort similar milestones into equate groups. It may be convenient to select one instrument as a starting point, and map items from others to that (see section \@ref(sec:mapping));
+* Visualise age profiles of mapped items (see section \@ref(sec:viewmapping)). Verify the plausibility of potential matches through similar age profiles. Break up mappings for which age profiles appear implausible. This step requires both statistical and subject matter expertise;
+* Fit the model to the data using a subset of equate groups as active. Review the quality of the solution and optimise the quality of the links between tools by editing the equate group structure. The technical details of this model are explained in section \@ref(sec:statisticalframe). Refit the model until (1) active equate groups link all cohorts and instruments, (2) active equate groups  distribute over the full-scale range (rather than being centred at one point);
+* Assess the quality of equate groups by the infit and outfit (see section \@ref(sec:equatefit)).
+* Test performance of the equate groups across subgroups or cohorts by methods designed to detect differential item functioning (see section \@ref(sec:equatedif)).
 
+The application of equate groups is needed to connect different instruments to a universal scale. The technique is especially helpful in the that abilities differ across cohorts. 
+
+If the cohort abilities are relatively uniform (for example as a result of experimental design) and if the risk of misspecification of the equate groups is high, a good alternative is to rely on the equality of ability distribution. In our application, this was not an option due to the substantial age variation between cohorts.
 
 ## Statistical framework {#sec:statisticalframe}
 
