@@ -62,22 +62,32 @@ The application of equate groups is needed to connect different instruments to a
 
 If the cohort abilities are relatively uniform (for example as a result of experimental design) and if the risk of misspecification of the equate groups is high, a good alternative is to rely on the equality of ability distribution. In our application, this was not an option due to the substantial age variation between cohorts.
 
-## Statistical framework {#sec:statisticalframe}
+## Parameter estimation with equate groups {#sec:statisticalframe}
 
-The preferred measurement model for development data is the Rasch model. An introduction of the Rasch model geared towards the $D$-score is described in https://stefvanbuuren.name/dbook1/. The Rasch model, models the probability of passing an item as a logistic function of the difference between each person’s ability and the difficulty of the item, see equation \@ref(eq:rasch).
+The Rasch model is the preferred measurement model for child development data. [Chapter 4 in booklet I](https://stefvanbuuren.name/dbook1/ch-newmodel.html) provides an introduction of the Rasch model geared towards the $D$-score. 
+
+The Rasch model expresses the probability of passing an item as a logistic function of the difference between the person ability $\beta_n$ and the item difficulty $\delta_i$. Table \@ref(tab:symbols) explains the symbols used in equation \@ref(eq:rasch). Formula \@ref(eq:rasch) defines the model as
 
 \begin{equation}
 \pi_{ni} = \frac{exp(\beta_n - \delta_i)}{1+exp(\beta_n -\delta_i)} (\#eq:rasch)
 \end{equation}
 
-The symbols used in equation \@ref(eq:rasch) are explained in Table \@ref(tab:symbols). The log odds that a person with ability $\beta_n$ answers an item with difficulty $\delta_i$ correctly is the difference between the person’s ability and the item’s difficulty $(\beta_n-\delta_i)$ [@wright1982].
+One way to interpret the formula is as follows. The logarithm of the odds that a person with ability $\beta_n$ passes an item of difficulty $\delta_i$ is equal to the difference $\beta_n-\delta_i$ [@wright1982].
 
-In order to facilitate the use of equate groups to link similar items used in different instruments and cohorts, the Rasch model can be extended. This extension holds the restriction that item difficulties of similar items are constrained as equal. Wright and Masters [@wright1982] present a simple method to equate the difficulty between two test forms that have common item links. This is done by estimating the shift in difficulty as the weighted average of difficulty differences of the linked items, and using this weighted average to align the difficulties of the test forms. We can use this way of aligning forms, to align item difficulties of items in an equate group, see equation \@ref(eq:raschequate).
+In model \@ref(eq:rasch) every milestone $i$ has one parameter $\delta_i$. We can extend the Rasch model to work with equate groups by restricting the $\delta_i$ of all items within the equate group to the same value. We thereby effectively say that these items are interchangeable measures of child development.
+
+Estimation of the parameter for the equate group is straightforward. @wright1982 present a simple method for aligning two test forms with common items. There are three steps: 
+
+* Estimate the separate $\delta_i$'s per item;
+* Combine these estimates into $\delta_q$ by calculating their weighted average;
+* Overwrite each $\delta_i$ by $\delta_q$.
+
+Suppose that $Q$ is the collection of items in equate group $q$, and that $w_i$ is the number of respondents for item $i$. The parameter estimate $\delta_q$ for the equate group is
 
 \begin{equation}
-\delta_q = \frac{\sum_{l}^{i} \delta_iw_i}{\sum_{l}^{l} w_i} (\#eq:raschequate)
+\delta_q = \frac{\sum_{i\in Q} \delta_iw_i}{\sum_{i\in Q} w_i}. (\#eq:raschequate)
 \end{equation}
- 
+
 
 Symbol | Term  | Description
 ------------- | ------------- | -----------
