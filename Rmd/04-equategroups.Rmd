@@ -1,11 +1,8 @@
 # Equate groups {#ch:equategroups}
 
-This chapter explains the equate group method. The equate group method is a
-novel method to link different instruments administered across multiple cohorts.
-Combining existing data sets for meta-analyses enables analyses across multiple
-contexts and conditions. 
+This chapter introduces the concepts and tools needed to link assessments made by different instruments administered across multiple cohorts. Our methodology introduces the idea of an equate group. Systematic application of equate groups provides a robust yet flexible methodology to link different instruments. Once the links are in place, we may combine the data to enable meta-analyses and related methods.
 
-* Definition of equate groups (\@ref(sec:eqdef))
+* What is an equate groups (\@ref(sec:eqdef))
 * Concurrent calibration (\@ref(sec:concurrent))
 * Requirements of equate groups (\@ref(sec:equaterules))
 * Statistical framework (\@ref(sec:statisticalframe))
@@ -13,122 +10,84 @@ contexts and conditions.
 * Quantifying equate fit (\@ref(sec:equatefit))
 * Differential Item Functioning (\@ref(sec:equatedif))
 
-## Definition of equate groups {#sec:eqdef}
+## What is an equate group? {#sec:eqdef}
 
-A group of items that measure the same thing in (perhaps slightly) different
-ways is called an “equate group”. An equate group can link items across
-instruments by restricting their difficulty estimates to be identical. Equate
-groups provide an extra option for bridging different instruments to the same
-scale. Figure \@ref(fig:equateex) displays items from three different
-instruments that measure child development. The instruments contain some common
-items that are measured in multiple instruments, but also unique items. The
-common items can be linked in an equate group as displayed by the arrows between
-them. In the example there is one (common) item that is equivalent in all three
-instruments (i.e. walk alone). The item "sitting" occurs in both the first (i.e.
-blue) and the second (i.e. green) instrument and the item "clabs hand together"
-occurs in the second (i.e. green) and third (i.e. orange instrument).
+An *equate group* is a set of two or more milestones that measure the same thing in (perhaps slightly) different ways. Table \@ref(tab:example2words) contains an example of an equate group, containing items that measure the ability to form two-word sentences. Also, Figures \@ref(fig:poteq) and \@ref(fig:badeq) show examples of equate groups. 
+
+Equate groups can be of different quality. We can use high-quality equate groups to link instruments by restricting the difficulty of all equate group members to be identical. Equate groups thus provide a method for bridging different tools.
 
 ```{r equateex, fig.cap = '(ref:equateex)'}
 knitr::include_graphics("fig/equate_ex.png")
 ```
 (ref:equateex) Example of three instruments that are bridged by common items in equate groups.
 
+Figure \@ref(fig:equateex) displays items from three different instruments that measure child development. The instruments contain a few milestones shared by all tools. 
+
+The shared items make up equate groups, as displayed by the arrows between them. In the example, all three instruments share one milestone ("walk alone"). The "sitting" and "clap hand" items appear in two tools. There are three equate groups.
+
 ## Concurrent calibration {#sec:concurrent}
 
-When each instrument is administered in a different cohort, the cohorts can be
-linked by placing the common items in the same column. The common items will
-have the same difficulty estimates due to linking with "concurrent calibration".
-In concurrent calibration the item parameters for all instruments are estimated
-simulateously. Concurrent calibration is an attractive option, however this
-method warrants a strict distinction between items that are truly the same in
-different instruments and items that differ. In practice, items that measure the
-same skill may have been adapted to suit the format of the instrument (e.g.
-number of response options, question formulation, and so on) or to suit the
-local language and cultural context, which may or may not have an effect on the
-measurement properties of the instrument. This appeals to the possibility to
-explore and test different sets of equate items. Also, when in example Figure
-\@ref(fig:equateex) the first and second instruments are both administered in
-the same cohort and the third in a second, concurrent calibration is not
-possible for common items in the first two instruments. In these situations, the
-equate group method is a more flexible way to link items. The equate groups
-methods works with similar assumptions as the concurrent calibration method, but
-with the flexibility to explore, test and modify the sets of equate items (i.e.
-equate groups) used in the model.
+Patterns as in Figure \@ref(fig:equateex) occur if we have multiple forms of the same instrument. Although in theory, there might be sequence effects, the consensus is that we may ignore form-effects. Equate groups with truly shared items are of high-quality. We may collect the responses on all items from a high-quality equate group into the same column of the data matrix. As a consequence, the shared item from different forms will automatically have one difficulty estimate.
 
+The procedure described above is known as *concurrent calibration*. See @kim1998 for background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:
 
+* It yields a common latent scale across all instruments;
+* It is efficient because it calibrate all items in a single run;
+* It produces more stable estimates for shared items for small samples.
 
-## Requirements of equate groups {#sec:equaterules}
+However, concurrent calibration depends on a strict distinction between items that are indeed the same in different instruments and items that differ. 
 
-Statistical information and subject matter experts form the basis for the
-assignment of items to eligible equate groups. In actual modeling, there are
-“active” equate groups (i.e. equate groups for which the restriction is actually
-applied) and “passive” equate groups (i.e. similar items for which the
-restriction is not applied). Only active groups bridge the different instruments
-in the final model.
+In practice, strict black-white distinctions may not be possible. Items that measure the same skill may have been adapted to suit the format of the instrument (e.g. number of response options, question formulation, and so on). Also, investigators may have altered the item to suit the local language and cultural context. Such changes may or may not affect the measurement properties. 
 
-The following strategies are recommended to select equate groups:
+In practice, we need to perform concurrent calibration to multiple - perhaps slightly dissimilar - milestones. When confronted with similar - but not identical - items, our strategy is first to form equate groups. We then explore and test the quality of each equate group, in the hope that we will find enough high-quality equate groups to bridge instruments.
 
-* As a first step, content experts can start by mapping similar items. For
-example use one instrument as a reference and map the items of other instruments
-to those items (see section \@ref(sec:mapping)).
-* In a second step, the mapping can be visualized by plotting the mapped items
-in one figure (see section \@ref(sec:viewmapping)). That way, potential matches
-can be verified and confirmed if they show similar patterns or broken up if they
-seem poor mappings. In this step, both statistical and content expertise can be
-utilized.
-* Next, the model can be fitted using a selection of potential matches as active
-equate groups. The technical details of this model are explained in section
-\@ref(sec:statisticalframe). The selection of the final active equate groups for
-the model is an iterative process where two important qualifications should be
-considered: (1) the active equate groups should link all cohorts and
-instruments. (2) To enhance the functioning of equate groups, the active equate
-groups are preferably distributed over the scale, rather than centered at one
-point.
-* The infit and outfit can be calculated for equate groups, which provides a
-natural measure of equate group quality (see section \@ref(sec:equatefit)).
-* The performance of the equategroups across subgroups or cohorts can be tested
-with methods designed to detect differential item functioning (see section
-\@ref(sec:equatedif)).
+<!-- I have outcommented this because it seems to go in a different direction, and not really needed for the main story line
+Also, when in example Figure \@ref(fig:equateex) the first and second instruments are both administered in the same cohort and the third in a second, concurrent calibration is not possible for common items in the first two instruments. In these situations, the equate group method is a more flexible way to link items. The equate groups methods works with similar assumptions as the concurrent calibration method, but with the flexibility to explore, test and modify the sets of equate items (i.e. equate groups) used in the model. -->
 
-In general, the use of equate groups is very relevant when the abilities differ
-across cohorts. In that case, equate groups are very helpful to place the
-abilities across the different cohorts on the same scale. However, when cohort
-abilities are relatively uniform and the risk of mis-specification of the equate
-groups is high, a model without equate groups is preferred.
+## Strategy to form and test equate groups {#sec:equaterules}
 
+An equate group is a collection of items. As a part of concurrent calibration, we may specify that some equate groups are *active*. The analysis will treat items within such groups as one. Any remaining equate groups are called *passive* — the model views milestones within such groups as separate.
 
-## Statistical framework {#sec:statisticalframe}
+Only active equate groups can bridge different instruments. In general, we will set the status of an equate group to active only if we believe that interchanging items within the group does not affect the result. Note that this does not necessarily imply that all items need to be identical. In Table \@ref(tab:example2words), for example, small differences exist in item formulation. We may nevertheless believe that these are irrelevant and ignore these in practice. Reversely, there is no guarantee that the same milestone will measure child development in the same way in different samples. For example, a milestone like "climb stairs" could more difficult (and more dangerous) for children who have never seen a staircase.
 
-The preferred measurement model for development data is the Rasch model. An
-introduction of the Rasch model geared towards the $D$-score is described in
-https://stefvanbuuren.name/dbook1/. The Rasch model, models the probability of
-passing an item as a logistic function of the difference between each person’s
-ability and the difficulty of the item, see equation \@ref(eq:rasch).
+Decisions to activate equate groups should be informed by both subject matter expertise and by fit to the statistical model. The following steps implement our strategy for forming and enabling equate groups:
+
+* Content matter experts compare milestones from different instruments and sort similar milestones into equate groups. It may be convenient to select one instrument as a starting point, and map items from others to that (see section \@ref(sec:mapping));
+* Visualise age profiles of mapped items (see section \@ref(sec:viewmapping)). Verify the plausibility of potential matches through similar age profiles. Break up mappings for which age profiles appear implausible. This step requires both statistical and subject matter expertise;
+* Fit the model to the data using a subset of equate groups as active. Review the quality of the solution and optimise the quality of the links between tools by editing the equate group structure. The technical details of this model are explained in section \@ref(sec:statisticalframe). Refit the model until (1) active equate groups link all cohorts and instruments, (2) active equate groups  distribute over the full-scale range (rather than being centred at one point);
+* Assess the quality of equate groups by the infit and outfit (see section \@ref(sec:equatefit)).
+* Test performance of the equate groups across subgroups or cohorts by methods designed to detect differential item functioning (see section \@ref(sec:equatedif)).
+
+The application of equate groups is needed to connect different instruments to a universal scale. The technique is especially helpful in the that abilities differ across cohorts. 
+
+If the cohort abilities are relatively uniform (for example as a result of experimental design) and if the risk of misspecification of the equate groups is high, a good alternative is to rely on the equality of ability distribution. In our application, this was not an option due to the substantial age variation between cohorts.
+
+## Parameter estimation with equate groups {#sec:statisticalframe}
+
+The Rasch model is the preferred measurement model for child development data. [Chapter 4 in booklet I](https://stefvanbuuren.name/dbook1/ch-newmodel.html) provides an introduction of the Rasch model geared towards the $D$-score. 
+
+The Rasch model expresses the probability of passing an item as a logistic function of the difference between the person ability $\beta_n$ and the item difficulty $\delta_i$. Table \@ref(tab:symbols) explains the symbols used in equation \@ref(eq:rasch). Formula \@ref(eq:rasch) defines the model as
 
 \begin{equation}
 \pi_{ni} = \frac{exp(\beta_n - \delta_i)}{1+exp(\beta_n -\delta_i)} (\#eq:rasch)
 \end{equation}
 
-The symbols used in equation \@ref(eq:rasch) are explained in Table
-\@ref(tab:symbols). The log odds that a person with ability $\beta_n$ answers an
-item with difficulty $\delta_i$ correctly is the difference between the person’s
-ability and the item’s difficulty $(\beta_n-\delta_i)$ [@wright1982].
+One way to interpret the formula is as follows. The logarithm of the odds that a person with ability $\beta_n$ passes an item of difficulty $\delta_i$ is equal to the difference $\beta_n-\delta_i$ [@wright1982].
 
-In order to facilitate the use of equate groups to link similar items used in
-different instruments and cohorts, the Rasch model can be extended. This
-extension holds the restriction that item difficulties of similar items are
-constrained as equal. Wright and Masters [@wright1982] present a simple method
-to equate the difficulty between two test forms that have common item links.
-This is done by estimating the shift in difficulty as the weighted average of
-difficulty differences of the linked items, and using this weighted average to
-align the difficulties of the test forms. We can use this way of aligning forms,
-to align item difficulties of items in an equate group, see equation
-\@ref(eq:raschequate).
+In model \@ref(eq:rasch) every milestone $i$ has one parameter $\delta_i$. We can extend the Rasch model to work with equate groups by restricting the $\delta_i$ of all items within the equate group to the same value. We thereby effectively say that these items are interchangeable measures of child development.
+
+Estimation of the parameter for the equate group is straightforward. @wright1982 present a simple method for aligning two test forms with common items. There are three steps: 
+
+* Estimate the separate $\delta_i$'s per item;
+* Combine these estimates into $\delta_q$ by calculating their weighted average;
+* Overwrite each $\delta_i$ by $\delta_q$.
+
+Suppose that $Q$ is the collection of items in equate group $q$, and that $w_i$ is the number of respondents for item $i$. The parameter estimate $\delta_q$ for the equate group is
 
 \begin{equation}
-\delta_q = \frac{\sum_{l}^{i} \delta_iw_i}{\sum_{l}^{l} w_i} (\#eq:raschequate)
+\delta_q = \frac{\sum_{i\in Q} \delta_iw_i}{\sum_{i\in Q} w_i}. (\#eq:raschequate)
 \end{equation}
- 
+
 
 Symbol | Term  | Description
 ------------- | ------------- | -----------
@@ -143,19 +102,9 @@ $w_i$         |               | The number of respondends with an observed score
 
 ## Common latent scale {#sec:commonscale}
 
-The end goal for using the equate group method to model development items is to
-measure development on one common latent scale, the $D$-score. That way, the
-measure (i.e. $D$-score) can be obtained, irrespective of which instrument is
-used in which population.
+The end goal for using the equate group method to model development items is to measure development on one common latent scale, the $D$-score. That way, the measure (i.e. $D$-score) can be obtained, irrespective of which instrument is used in which population.
 
-In Figure \@ref(fig:commonscale) the $D$-scores are displayed for three cohorts
-from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and
-Colombia 2 (GCDG-COL-LT42M). As decribed in section \@ref(sec:cohorts), the
-Netherlands 1 study contains the ddi; Ethiopia the by3; and Colombia the by3,
-den, asq and bdi. Accordingly there is some natural ovelap in items between
-Ethiopia and Colombia via the by3 items. However, the Netherlands 1 cohorts is
-not linked via the items. In the upper plot, no equate groups were used in the
-model and in the lower plot, equate groups linked the cohorts.
+In Figure \@ref(fig:commonscale) the $D$-scores are displayed for three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M). As decribed in section \@ref(sec:cohorts), the Netherlands 1 study contains the ddi; Ethiopia the by3; and Colombia the by3, den, asq and bdi. Accordingly there is some natural ovelap in items between Ethiopia and Colombia via the by3 items. However, the Netherlands 1 cohorts is not linked via the items. In the upper plot, no equate groups were used in the model and in the lower plot, equate groups linked the cohorts.
 
 ```{r commonscale, echo=FALSE, fig.cap='(ref:commonscale)', message=FALSE, warning=FALSE, cache = TRUE}
 library(ggplot2)
@@ -166,7 +115,7 @@ library(dplyr)
 
 ## model without equate groups
 varlist_o <- dmetric::prepare_items(study = c("Netherlands 1", "Ethiopia", "Columbia 2"))
-sub_items <- rename_gcdg_gsed(varlist_o$items)
+sub_items <- dscore::rename_gcdg_gsed(varlist_o$items)
 varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
                 items = sub_items)
 sub_lean <- gseddata::get_data(cohorts = c(43,50,53), items = varlist$items, adm = varlist$adm)
@@ -200,23 +149,12 @@ grid.arrange(p1, p2)
 ```
 (ref:commonscale) Example of three cohorts with and without equage group linking.
 
-In the plot for the model without equate groups it can be observed that the
-scales for the Ethiopia and Colombia 2 studies are linked naturally via the
-shared items from by3. The Netherlands 1 cohort is not connected and follows a
-different track. In the plot for the model with equate groups, the scales for
-all three cohorts are connected. This example shows that the use of equate
-groups brings the abilities for children in different cohorts measured with
-different instrument on one scale.
+In the plot for the model without equate groups it can be observed that the scales for the Ethiopia and Colombia 2 studies are linked naturally via the shared items from by3. The Netherlands 1 cohort is not connected and follows a different track. In the plot for the model with equate groups, the scales for all three cohorts are connected. This example shows that the use of equate groups brings the abilities for children in different cohorts measured with different instrument on one scale.
 
 
 ## Quantifying equate fit {#sec:equatefit}
 
-In the Rasch philosophy it is the task of the data to fit the Rasch model. In
-order to verify the fit of the data to the model, we can assess the item fit and
-the person fit. Both fit measures are explained thorougly in
-https://stefvanbuuren.name/dbook1/ch-evaluation.html. When we use equate groups
-in the Rasch model, we can also use these fit indices to determine the fit of
-the items in the equate groups.
+In the Rasch philosophy it is the task of the data to fit the Rasch model. In order to verify the fit of the data to the model, we can assess the item fit and the person fit. Both fit measures are explained thorougly in https://stefvanbuuren.name/dbook1/ch-evaluation.html. When we use equate groups in the Rasch model, we can also use these fit indices to determine the fit of the items in the equate groups.
 
 
 ### Well fitting equate groups
@@ -593,13 +531,7 @@ annotate_item_fit <- function(plot, itemfit, pole = TRUE, xlim=c(0,80)) {
 
 ```
 
-The evaluation of *equate fit* involves comparing the observed probabilities of
-endorsing the items in the equate group to the estimated probability of
-endorsing the items in the equate group. In an equate group there is an
-empirical curve for each item in the equate group and one shared estimated
-curve. The empirical curves should all be close to the estimiated curve for a
-good equate fit, as presented in the two examples in Figure
-\@ref(fig:ploteqfit).
+The evaluation of *equate fit* involves comparing the observed probabilities of endorsing the items in the equate group to the estimated probability of endorsing the items in the equate group. In an equate group there is an empirical curve for each item in the equate group and one shared estimated curve. The empirical curves should all be close to the estimiated curve for a good equate fit, as presented in the two examples in Figure \@ref(fig:ploteqfit).
 
 ```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqfit)', message = FALSE}
 ps <- plot_p_d_equate_i(data = dmetric::gcdg_lean , model = dmetric::model_lean)
@@ -607,25 +539,11 @@ grid.arrange(ps[["REC6"]], ps[["GM42"]])
 ```
 (ref:ploteqfit) Two equate groups that present a good equate fit.
 
-The equate *Turns head to sound of bell* is asked in slightly different
-formats in the Bayley I (by1), Dutch Development Instrument (ddi) and the Denver
-(den). The three items are combined in an equate group and the empirical data
-are clored differently for each instrument in Figure \@ref(fig:ploteqfit).
-Equate *Walks alone* is administered in six different instruments (bar,
-by1, by2, by3, ddi and gri). For both equate groups, the empirical data for each
-instrument is close to the fitted dashed line, which indicates a good equate
-fit. The infit and outfit indices, shown in Figure\@ref(fig:ploteqfit), confirm
-the good fit (fit < 1).
+The equate *Turns head to sound of bell* is asked in slightly different formats in the Bayley I (by1), Dutch Development Instrument (ddi) and the Denver (den). The three items are combined in an equate group and the empirical data are clored differently for each instrument in Figure \@ref(fig:ploteqfit). Equate *Walks alone* is administered in six different instruments (bar, by1, by2, by3, ddi and gri). For both equate groups, the empirical data for each instrument is close to the fitted dashed line, which indicates a good equate fit. The infit and outfit indices, shown in Figure\@ref(fig:ploteqfit), confirm the good fit (fit < 1).
 
 ### Equate groups with poor equate fit
 
-In modeling with equate groups, selecting the perfect combination of equate
-groups is a crucial step. Poor fitting equate groups need to be set as passive
-equate groups, such that the items in the group are not restricted to the same
-difficulty anymore. In a poor fitting equate group the empirical curve for each
-item in the equate group are not close to the shared estimated curve.
-Additionally, the fit indices show poor fit as well (fit > 1). Two examples of
-poor equate fit are shown in Figure \@ref(fig:ploteqpoor).
+In modeling with equate groups, selecting the perfect combination of equate groups is a crucial step. Poor fitting equate groups need to be set as passive equate groups, such that the items in the group are not restricted to the same difficulty anymore. In a poor fitting equate group the empirical curve for each item in the equate group are not close to the shared estimated curve. Additionally, the fit indices show poor fit as well (fit > 1). Two examples of poor equate fit are shown in Figure \@ref(fig:ploteqpoor).
 
 ```{r ploteqpoor, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqpoor)', message = FALSE, cache = TRUE}
 
@@ -645,35 +563,15 @@ grid.arrange(psp[["COG24"]], psp[["EXP12"]])
 ```
 (ref:ploteqpoor) Two equate groups that present a poor equate fit.
 
-The equate *Bangs in play / Bangs 2 blocks* is asked in two different
-instruments, the Bayley I (by1) and the Denver (den). The empricial curve for
-the Bayley I item is not close to the fitted curve. The fitted curve is closer
-to the Denver item, which suggests that the equate difficulty is mostly based on
-the Denver item data. The fit indices are both larger than 1 also indicating the
-poor fit. The equate *Jabbers expressively* is asked in different forms in three
-instruments (i.e. by1, ddi, and gri). The empirical curves, with different
-colors for ech instrument, are not close to each other, nor close to the fitted
-curve. Also for this equate the fit indices confirm the poor fit (fit > 1). Both
-equates should be deactivated in an updated model.
+The equate *Bangs in play / Bangs 2 blocks* is asked in two different instruments, the Bayley I (by1) and the Denver (den). The empricial curve for the Bayley I item is not close to the fitted curve. The fitted curve is closer to the Denver item, which suggests that the equate difficulty is mostly based on the Denver item data. The fit indices are both larger than 1 also indicating the poor fit. The equate *Jabbers expressively* is asked in different forms in three instruments (i.e. by1, ddi, and gri). The empirical curves, with different colors for ech instrument, are not close to each other, nor close to the fitted curve. Also for this equate the fit indices confirm the poor fit (fit > 1). Both equates should be deactivated in an updated model.
 
 ## Differential item functioning {#sec:equatedif}
 
-An important assumption for equate groups is that the items in the group work in
-the same way across the different cohorts, i.e., there is no differential item
-functioning. This means that the items in the equate group are equally difficult
-for children in different cohorts. This assumption is critical for active equate
-groups. If it is not met, restricting the difficulty parameters as equal across
-cohorts may introduce unwanted bias in comparisons between cohorts.
-
+An important assumption for equate groups is that the items in the group work in the same way across the different cohorts, i.e., there is no differential item functioning. This means that the items in the equate group are equally difficult for children in different cohorts. This assumption is critical for active equate groups. If it is not met, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts.
 
 ### Good equate group without DIF
 
-In Figure \@ref(fig:plotnoeqdif), two active equate groups are displayed with
-empirical curves in different colors for each cohort. In both equate groups the
-curves are close to each other and to the fitted dashed curve. The lack of
-difference between the curves for the differnt cohorts, shows that there is no
-different equate functioning (i.e. different item functioning, DIF) between the
-cohorts.
+In Figure \@ref(fig:plotnoeqdif), two active equate groups are displayed with empirical curves in different colors for each cohort. In both equate groups the curves are close to each other and to the fitted dashed curve. The lack of difference between the curves for the differnt cohorts, shows that there is no different equate functioning (i.e. different item functioning, DIF) between the cohorts.
 
 ```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotnoeqdif)', message = FALSE}
 
@@ -686,17 +584,7 @@ grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 
 ### Poor equate groups with DIF for study
 
-In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that
-show differential item functioning between cohorts. The empirical curves are
-displayed for each cohort separately in different colors. The difference between
-these curves shows the differential item functioning. For example, the item
-*Throws ball*, is easier for children in the South-Africa cohort (purple curve;
-GCDG-ZAF), and more difficult for children in Colombia (blue curve;
-GCDG-COL-LT42M). In other words, the probability to pass the item given the
-D-score (i.e. item difficulty) differs between the cohorts. The same goes for
-the item *Says more than 5 words*, which is easier for childen in Jamaica
-(yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for
-children in Ecuador (green; GCDG-ECU).
+In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that show differential item functioning between cohorts. The empirical curves are displayed for each cohort separately in different colors. The difference between these curves shows the differential item functioning. For example, the item *Throws ball*, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item *Says more than 5 words*, which is easier for childen in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).
 
 ```{r ploteqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqdif)', message = FALSE}
 
