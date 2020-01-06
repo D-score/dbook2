@@ -360,6 +360,37 @@ ggplot(data = gcdg_domains)+
   scale_color_manual(values = dmodel::get_color_domain("gcdg"), 
                      na.value = "grey")
 
+gcdg_res <- gcdg_all %>%
+  mutate(Fine_motor = d_Fine.Motor - d,
+         Gross_motor = d_Gross.Motor -d,
+         Expressive = d_Expressive - d,
+         Receptive = d_Receptive - d, 
+         Cognitive = d_Cognitive - d, 
+         Adaptive = d_Adaptive - d) %>%
+  select(d, Fine_motor, Gross_motor, Expressive, Receptive, Cognitive, Adaptive, a)
+
+ggplot(data = gcdg_res, aes(x=d, y = Fine_motor)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+ggplot(data = gcdg_res, aes(x=d, y = Gross_motor)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+ggplot(data = gcdg_res, aes(x=d, y = Expressive)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+ggplot(data = gcdg_res, aes(x=d, y = Receptive)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+ggplot(data = gcdg_res, aes(x=d, y = Cognitive)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+
+
 #example for one person
 # i <- 25
 # example1d <- gcdg_all[i,] %>%
