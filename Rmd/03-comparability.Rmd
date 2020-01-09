@@ -105,125 +105,416 @@ The idea is to check whether these milestones measure development in the same wa
 
 A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experiences in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items.
 
-We order item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the connections between the instruments (blue nodes) via the item groups in each domain.
+We order item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figure \@ref(fig:mapping) displays the connections between the instruments via the item groups in each domain. The items are displayes as the leafs and are colored by instrument. The blue lines display the links between the items (and instruments). 
 
 ```{r mapping, echo=FALSE, fig.cap='(ref:mapping)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-suppressPackageStartupMessages(library(GGally))
-suppressPackageStartupMessages(library(network))
-suppressPackageStartupMessages(library(sna))
-suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(ggraph))
+suppressPackageStartupMessages(library(igraph))
+suppressPackageStartupMessages(library(tidyverse))
 
 varlist_gcdg <- dmetric::prepare_items(min_cat = 10)
 eqset2 <- ddata::get_equates(varlist_gcdg$items)
-
 eqinst <- eqset2 %>% lapply(dscore::rename_gcdg_gsed) 
+inst_colors <- dmetric::get_palette("instrument")
+names(inst_colors)[1] <- "aqi"
+#######################attempt to order nodes by instrument
+#make function to make hierachical edge network with equate list as input >> does not work bc each domain requires specific settings for the node labels.......
+#fine motor -----
+indicator <- which(grepl("FM", names(eqinst)))
+eqinst1 <- eqinst[indicator]
 
-#instrument vector:
-instruments <- unique(dscore::get_itemtable(dscore::rename_gcdg_gsed(varlist_gcdg$items))$instrument)[-11]
+eqlist <- eqinst1
+itnames <- unlist(eqlist)
+inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
+inst_grps <- inst_grps[order(inst_grps$from),]
+inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
+hierarchy <- rbind(inst_top, inst_grps)
+
+eqsub <- vector()
+for(i in names(eqlist)){
+  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
+  eqsub <- rbind(eqsub, eqdf1)
+}
+
+#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
+#hierarchy <- rbind(eqtop, eqsub)
+vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
+vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
+vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
 
 
-mappings <- lapply(eqinst, function(x){
-  y <- instruments %in% substr(x, 1, 3) * 1
-  names(y) <- instruments
-  y
-})
+#make df of connections
+eqcon <- vector()
+for(i in names(eqlist)){
+  eqcon1 <- combn(eqlist[[i]], m=2) 
+  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
+  eqcon <- rbind(eqcon, eqcon1)
+}
 
-mappings <- data.frame(mappings)
 
-#mapp <- network(mappings, matrix.type = "bipartite")
-#ggnet2(mapp, label = TRUE)
-#mappings$COG <- rowSums(mappings[, colnames(mappings)[grepl("COG", colnames(mappings))] ])
-#mappings$EXP <- rowSums(mappings[, colnames(mappings)[grepl("EXP", colnames(mappings))] ])
-#mappings$REC <- rowSums(mappings[, colnames(mappings)[grepl("REC", colnames(mappings))] ])
-#mappings$FM <- rowSums(mappings[, colnames(mappings)[grepl("FM", colnames(mappings))] ])
-#mappings$GM <- rowSums(mappings[, colnames(mappings)[grepl("GM", colnames(mappings))] ])
-#mapp2 <- network(mappings[,c("COG", "EXP", "REC", "GM", "FM")], matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
-#ggnet2(mapp2, label = TRUE)
-#col = c("actor" = "grey", "event" = "gold")
-#ggnet2(mapp2, color = "mode", palette = col, label = TRUE, edge.label = "weights")
+#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
+#calculate the ANGLE of the labels
+vertices$id  <- NA
+myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
+nleaves <- length(myleaves)
+vertices$id[ myleaves ] <- seq(1:nleaves)
+#vertices$angle <- 90 - 360 * vertices$id / nleaves 
+vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
 
-col = c("actor" = "lightblue", "event" = "#FC8D62")
-mapping_cog <- mappings[, colnames(mappings)[grepl("COG", colnames(mappings))]]
-mapping_cog <- mapping_cog[which(rowSums(mapping_cog)>0),]
-mapp_cog <-network(mapping_cog, 
-                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
-cog_network<- ggnet2(mapp_cog, 
-       label = instruments, 
-       color = "mode", 
-       alpha = "mode", 
-       alpha.palette = c(1, 0.5), 
-       palette = col, 
-       #shape = "mode",
-       #shape.palette = c(15,19), 
-       legend.position = "none")+
-  ggtitle("Cognitive equates")
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 1, 0)
 
-col = c("actor" = "lightblue", "event" = "#A6D854")
-mapping_exp <- mappings[, colnames(mappings)[grepl("EXP", colnames(mappings))]]
-mapping_exp <- mapping_exp[which(rowSums(mapping_exp)>0),]
-mapp_exp <-network(mapping_exp,
-                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
-exp_network<- ggnet2(mapp_exp, 
-       label = instruments, 
-       color = "mode", 
-       alpha = "mode", 
-       alpha.palette = c(1, 0.5), 
-       palette = col, 
-       #shape = "mode",
-       #shape.palette = c(15,19), 
-       legend.position = "none")+
-  ggtitle("Expressive equates")
+# flip angle BY to make them readable
+vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
+vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
 
-col = c("actor" = "lightblue", "event" = "#8DA0CB")
-mapping_fm <- mappings[, colnames(mappings)[grepl("FM", colnames(mappings))]]
-mapping_fm <- mapping_fm[which(rowSums(mapping_fm)>0),]
-mapp_fm <-network(mapping_fm,
-                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
-fm_network<- ggnet2(mapp_fm, 
-       label = instruments, 
-       color = "mode", 
-       alpha = "mode", 
-       alpha.palette = c(1, 0.5), 
-       palette = col, 
-       #shape = "mode",
-       #shape.palette = c(15,19), 
-       legend.position = "none")+
-  ggtitle("Fine motor equates")
+# Create a graph object with the igraph library
+mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
+# This is a network object, you visualize it as a network like shown in the network section!
+ 
+# The connection object must refer to the ids of the leaves:
+from <- match(eqcon$from, vertices$name)
+#from <- from[!is.na(from)]
+to <- match(eqcon$to, vertices$name)
+#to <- to[!is.na(to)] 
 
-col = c("actor" = "lightblue", "event" = "#E78AC3")
-mapping_gm <- mappings[, colnames(mappings)[grepl("GM", colnames(mappings))]]
-mapping_gm <- mapping_gm[which(rowSums(mapping_gm)>0),]
-mapp_gm <-network(mapping_gm,
-                 matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
-gm_network<- ggnet2(mapp_gm, 
-       label = instruments, 
-       color = "mode", 
-       alpha = "mode", 
-       alpha.palette = c(1, 0.5), 
-       palette = col, 
-       #shape = "mode",
-       #shape.palette = c(15,19), 
-       legend.position = "none")+
-  ggtitle("Gross motor equates")
 
-col = c("actor" = "lightblue", "event" = "#66C2A5")
-mapping_rec <- mappings[, colnames(mappings)[grepl("REC", colnames(mappings))]]
-mapping_rec <- mapping_rec[which(rowSums(mapping_rec)>0),]
-mapp_rec <-network(mapping_rec,
-                  matrix.type = "bipartite", ignore.eval = FALSE, names.eval = "weights")
-rec_network<- ggnet2(mapp_rec, 
-      label = instruments, 
-       color = "mode", 
-       alpha = "mode", 
-       alpha.palette = c(1, 0.5), 
-       palette = col, 
-       #shape = "mode",
-       #shape.palette = c(15,19), 
-       legend.position = "none")+
-  ggtitle("Receptive equates")
+# With igraph: 
+#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
+ 
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
+   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
+  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
+geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
+  scale_colour_manual(values = inst_colors)+
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+    ggtitle("Fine Motor")
 
-gridExtra::grid.arrange(cog_network, exp_network, gm_network, fm_network, rec_network)
+#gross motor-----
+indicator <- which(grepl("GM", names(eqinst)))
+eqinst1 <- eqinst[indicator]
+
+
+eqlist <- eqinst1
+itnames <- unlist(eqlist)
+inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
+inst_grps <- inst_grps[order(inst_grps$from),]
+inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
+hierarchy <- rbind(inst_top, inst_grps)
+
+eqsub <- vector()
+for(i in names(eqlist)){
+  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
+  eqsub <- rbind(eqsub, eqdf1)
+}
+
+#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
+#hierarchy <- rbind(eqtop, eqsub)
+vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
+vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
+vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
+
+
+#make df of connections
+eqcon <- vector()
+for(i in names(eqlist)){
+  eqcon1 <- combn(eqlist[[i]], m=2) 
+  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
+  eqcon <- rbind(eqcon, eqcon1)
+}
+
+
+#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
+#calculate the ANGLE of the labels
+vertices$id  <- NA
+myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
+nleaves <- length(myleaves)
+vertices$id[ myleaves ] <- seq(1:nleaves)
+#vertices$angle <- 90 - 360 * vertices$id / nleaves 
+vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
+
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+  vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 0, 1)
+#vertices$hjust <- vertices$hjust +1
+# flip angle BY to make them readable
+vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
+vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
+
+# Create a graph object with the igraph library
+mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
+# This is a network object, you visualize it as a network like shown in the network section!
+ 
+# The connection object must refer to the ids of the leaves:
+from <- match(eqcon$from, vertices$name)
+#from <- from[!is.na(from)]
+to <- match(eqcon$to, vertices$name)
+#to <- to[!is.na(to)] 
+
+
+# With igraph: 
+#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
+ 
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
+   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
+  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
+geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
+  scale_colour_manual(values = inst_colors)+
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+    ggtitle("Gross Motor")
+
+
+
+#cognitive ----
+indicator <- which(grepl("COG", names(eqinst)))
+eqinst1 <- eqinst[indicator]
+
+eqlist <- eqinst1
+itnames <- unlist(eqlist)
+inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
+inst_grps <- inst_grps[order(inst_grps$from),]
+inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
+hierarchy <- rbind(inst_top, inst_grps)
+
+eqsub <- vector()
+for(i in names(eqlist)){
+  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
+  eqsub <- rbind(eqsub, eqdf1)
+}
+
+#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
+#hierarchy <- rbind(eqtop, eqsub)
+vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
+vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
+vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
+
+
+#make df of connections
+eqcon <- vector()
+for(i in names(eqlist)){
+  eqcon1 <- combn(eqlist[[i]], m=2) 
+  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
+  eqcon <- rbind(eqcon, eqcon1)
+}
+
+
+#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
+#calculate the ANGLE of the labels
+vertices$id  <- NA
+myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
+nleaves <- length(myleaves)
+vertices$id[ myleaves ] <- seq(1:nleaves)
+#vertices$angle <- 90 - 360 * vertices$id / nleaves 
+vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
+
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 1, 0)
+
+# flip angle BY to make them readable
+vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
+vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
+
+# Create a graph object with the igraph library
+mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
+# This is a network object, you visualize it as a network like shown in the network section!
+ 
+# The connection object must refer to the ids of the leaves:
+from <- match(eqcon$from, vertices$name)
+#from <- from[!is.na(from)]
+to <- match(eqcon$to, vertices$name)
+#to <- to[!is.na(to)] 
+
+
+# With igraph: 
+#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
+ 
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
+   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
+  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
+geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
+  scale_colour_manual(values = inst_colors)+
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+    ggtitle("Cognitive")
+
+
+
+#exp -----
+indicator <- which(grepl("EXP", names(eqinst)))
+eqinst1 <- eqinst[indicator]
+
+
+eqlist <- eqinst1
+itnames <- unlist(eqlist)
+inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
+inst_grps <- inst_grps[order(inst_grps$from),]
+inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
+hierarchy <- rbind(inst_top, inst_grps)
+
+eqsub <- vector()
+for(i in names(eqlist)){
+  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
+  eqsub <- rbind(eqsub, eqdf1)
+}
+
+#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
+#hierarchy <- rbind(eqtop, eqsub)
+vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
+vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
+vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
+
+
+#make df of connections
+eqcon <- vector()
+for(i in names(eqlist)){
+  eqcon1 <- combn(eqlist[[i]], m=2) 
+  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
+  eqcon <- rbind(eqcon, eqcon1)
+}
+
+
+#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
+#calculate the ANGLE of the labels
+vertices$id  <- NA
+myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
+nleaves <- length(myleaves)
+vertices$id[ myleaves ] <- seq(1:nleaves)
+vertices$angle <- 90 - 360 * vertices$id / nleaves 
+#vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
+
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+vertices$hjust <- ifelse( vertices$angle < -90, 0, 1)
+
+# flip angle BY to make them readable
+vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
+#vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
+
+# Create a graph object with the igraph library
+mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
+# This is a network object, you visualize it as a network like shown in the network section!
+ 
+# The connection object must refer to the ids of the leaves:
+from <- match(eqcon$from, vertices$name)
+#from <- from[!is.na(from)]
+to <- match(eqcon$to, vertices$name)
+#to <- to[!is.na(to)] 
+
+
+# With igraph: 
+#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
+ 
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
+   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
+  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
+geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
+  scale_colour_manual(values = inst_colors)+
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+    ggtitle("Expressive")
+
+
+
+#rec -----
+indicator <- which(grepl("REC", names(eqlist)))
+eqinst1 <- eqinst[indicator]
+
+
+eqlist <- eqinst1
+itnames <- unlist(eqlist)
+inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
+inst_grps <- inst_grps[order(inst_grps$from),]
+inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
+hierarchy <- rbind(inst_top, inst_grps)
+
+eqsub <- vector()
+for(i in names(eqlist)){
+  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
+  eqsub <- rbind(eqsub, eqdf1)
+}
+
+#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
+#hierarchy <- rbind(eqtop, eqsub)
+vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
+vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
+vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
+
+
+#make df of connections
+eqcon <- vector()
+for(i in names(eqlist)){
+  eqcon1 <- combn(eqlist[[i]], m=2) 
+  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
+  eqcon <- rbind(eqcon, eqcon1)
+}
+
+
+#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
+#calculate the ANGLE of the labels
+vertices$id  <- NA
+myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
+nleaves <- length(myleaves)
+vertices$id[ myleaves ] <- seq(1:nleaves)
+#vertices$angle <- 90 - 360 * vertices$id / nleaves 
+vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
+
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 1, 0)
+
+# flip angle BY to make them readable
+vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
+vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
+
+# Create a graph object with the igraph library
+mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
+# This is a network object, you visualize it as a network like shown in the network section!
+ 
+# The connection object must refer to the ids of the leaves:
+from <- match(eqcon$from, vertices$name)
+#from <- from[!is.na(from)]
+to <- match(eqcon$to, vertices$name)
+#to <- to[!is.na(to)] 
+
+
+# With igraph: 
+#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
+ 
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
+   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
+  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
+geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
+  scale_colour_manual(values = inst_colors)+
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+    ggtitle("Receptive")
+
+
+
 
 ```
 (ref:mapping) Connections between the instruments via mapped item groups.
