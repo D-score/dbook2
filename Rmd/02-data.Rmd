@@ -52,6 +52,7 @@ The effort resulted in a database containing individual data from over
 boundary lines. Try different projections. -->
 
 ```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+
 library(rworldmap)
 library(maps)
 
@@ -73,8 +74,29 @@ datacountries$value <- ifelse(datacountries$country =="Madagascar", "skyblue1", 
 datacountries$value <- ifelse(datacountries$country =="Netherlands", "skyblue1", datacountries$value)
 datacountries$value <- ifelse(datacountries$country =="South Africa", "skyblue1", datacountries$value)
 
-world.map<-map('world',fill=TRUE, 
-               col=datacountries$value) 
+library(ggplot2)
+library(maps)
+library(ggthemes)
+
+datacountries$region <- datacountries$country
+map.world = map_data(map='world')
+map.world = left_join(map.world, datacountries, by = "region")
+
+ggplot() + 
+  borders("world", colour = "gray85", fill = "gray80") +
+  geom_map(data = map.world, map = map.world, aes(
+    map_id = region,
+#    x=long,
+#    y=lat,
+    fill=value
+  )) + 
+#  coord_quickmap()+
+  theme_map() +
+  coord_cartesian(ylim = c(-50, 90)) +
+  theme(legend.position = "none")
+
+
+
 
 ```
 (ref:worldmap) Coverage of countries included in the study.
@@ -318,86 +340,3 @@ Psychological Tests, 2003. -->
 Fourth Edition·Thorndike, 1986. -->
 
 
-## GCDG working group members and data contributors {#sec:group}
-
-<!-- NOTE: Oddly placed within the main text. Better as an appendix? -->
-
-**Maureen M. Black**, RTI International and Department of Pediatrics,
-University of Maryland School of Medicine, Baltimore, MD, USA.
-
-**Stef van Buuren**, Netherlands Organization for Applied Scientific
-Research TNO, Leiden & University of Utrecht, Utrecht, The
-Netherlands.
-
-**Gary L. Darmstadt**, Department of Pediatrics, Stanford University
-School of Medicine, USA.
-
-**M. Caridad Araujo**, Inter-American Development Bank, Washington DC,
-USA.
-
-**Susan M. Chang**, Caribbean Institute for Health Research, The
-University of the West Indies, Kingston, Jamaica.
-
-**Bernice M. Doove**, Envida JGZ, Maastricht, The Netherlands
-
-**Iris Eekhout**, The Netherlands Organization for Applied Scientific
-Research TNO, Leiden, The Netherlands.
-
-**Lia C.H. Fernald**, School of Public Health, University of
-California, Berkeley, CA, USA.
-
-**Emanuela Galasso**, The World Bank, Washington DC, USA.
-
-**Sally Grantham-McGregor**, Emerita Professor, Institute of Child
-Health, University College London, UK.
-
-**Pamela Jervis**, Centre for the Evaluation of Development Policies,
-The Institute for Fiscal Studies, UK.
-
-**Jena D. Hamadani**, International Centre for Diarrhoeal Disease
-Research, Bangladesh.
-
-**Charlotte Hanlon**, Centre for Global Mental Health, Health Services
-and Population Research Department, Institute of Psychiatry,
-Psychology and Neuroscience, King’s College London; Department of
-Psychiatry, School of Medicine, College of Health Sciences, Addis
-Ababa University, Ethiopia.
-
-**Simone M. Karam**, Medical Faculty, Department of Pediatrics, PPG
-Public Health, Federal University of Rio Grande, Brazil.
-
-**Betsy Lozoff**, Center for Human Growth and Development, University
-of Michigan, Ann Arbor, MI, USA.
-
-**Orazio Attanasio**, Department of Economics, University College
-London, UK.
-
-**Girmay Medhin**, Aklilu Lemma Institute of Pathobiology, Addis Ababa
-University, Addis Ababa, Ethiopia.
-
-**Ana M. B. Menezes and the 1993 Pelotas cohort team**, Postgraduate
-Program in Epidemiology, Federal University of Pelotas, Brazil.
-
-**Helen Pitchik**, School of Public Health, University of California,
-Berkeley, CA, USA.
-
-**Lisy Ratsifandrihamanana**, Centre Médico-Educatif "Les Orchidées
-Blanches", Antananarivo, Madagascar.
-
-**Sarah Reynolds**, School of Public Health, University of California,
-Berkeley, CA, USA.
-
-**Linda Richter**, DST-NRF Centre of Excellence in Human Development,
-University of the Witwatersrand, Johannesburg, South Africa.
-
-**Marta Rubio-Codina**, Inter-American Development Bank, Washington
-DC, USA.
-
-**Norbert Schady**, Inter-American Development Bank, Washington DC,
-USA.
-
-**Susan P. Walker**, Caribbean Institute for Health Research, The
-University of the West Indies, Kingston, Jamaica.
-
-**Ann M. Weber**, Department of Pediatrics, Stanford University School
-of Medicine, Stanford, CA, USA.
