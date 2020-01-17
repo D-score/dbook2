@@ -290,6 +290,113 @@ info_data <-
 
 ```
 
+
+Using the same methodology as described above, we can extract the domain information for an individual D-score. For that we need to know what items were adminstered to obtain the D-score. For these items we need to know to which domain(s) the item is linked and what relative information the item provides for the calculated D-score.
+
+```{r}
+
+library(dplyr)
+library(tidyr)
+library(dscore)
+#select a person from the data
+subject <- unique(gcdg_lean$itm$subjid) [sample(25410, 2)]
+
+example1 <- 
+  gcdg_lean$itm[gcdg_lean$itm$subjid %in% subject,] %>%
+  mutate(age = agedays/365.25) %>%
+  pivot_wider(id_cols= c("subjid", "agedays", "age"),
+              names_from = "item", 
+              values_from = "value")
+
+itembank <- dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("key", "item","label", "tau")]
+
+
+domain_contr <- function(data, 
+                         itembank = dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("key", "item","label", "tau")], 
+                         domaintable = dmodel::get_domaintable("gcdg")){
+
+#items + scores >> dscore
+  dscore_ex1 <-
+    dscore::dscore(
+      data = example1,
+     items = colnames(example1)[-c(1:3)],
+     itembank = itembank
+   )
+  dscore_data <- data.frame(subjid = example1$subjid, dscore_ex1)
+  
+#using votes to weight domain contribution per item
+item_information <- example1 %>% 
+  select(-"agedays",-"age")%>%
+  pivot_longer(cols = -c("subjid"), 
+               names_to = "item", 
+               values_to = "value",
+               values_drop_na = TRUE)%>%
+  mutate(tau = dscore::get_tau(items = .data$item, key = "gsed", itembank = itembank))%>%
+  drop_na(.data$tau)%>%
+  left_join(dscore_data, by = "subjid")%>%
+  mutate(info = dinstrument::info(beta = .data$d, delta = .data$tau)) %>%
+  left_join(dmodel::get_domaintable("gcdg"), by = "item")
+
+
+domain_contr <-   item_information %>%
+  select(subjid, a, d, info, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive) %>%
+  mutate("Fine Motor" = info * Fine.Motor,
+         "Gross Motor" = info * Gross.Motor,
+         "Expressive" = info * Expressive, 
+         "Receptive" = info * Receptive, 
+         "Cognitive" = info * Cognitive,
+         "Adaptive" = info * Adaptive) %>%
+  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), names_to = "domain", values_to = "contribution") %>%
+  group_by(subjid, a, d, domain) %>% summarize(proportion = sum(contribution, na.rm = TRUE) / sum(info, na.rm = TRUE))
+
+  
+#using votes to select most voted domain per item (one domain per item)
+  info_sum <- item_information %>% group_by(subjid) %>% summarize(info_sum = sum(info, na.rm=TRUE))
+domain_contr <- item_information %>%
+  left_join(info_sum, by = "subjid") %>%
+  select(subjid, a, d, info, voted_domain, info_sum) %>%
+  #mutate(voted_domain = recode(voted_domain, "Cognitive" = "COG", 
+  #                                              "Expressive" = "EXP", 
+  #                                              "Fine Motor" = "FM", 
+  #                                              "Gross Motor" = "GM", 
+  #                                              "Receptive" = "REC", 
+  #                                              "Adaptive" = "ADP"))%>%
+  group_by(subjid, a,d,voted_domain) %>% summarize(proportion = sum(info) / info_sum[1])
+
+
+}
+
+domain_colors <- dmodel::get_color_domain("gcdg")
+#names(domain_colors)[1:5] <- c("COG", "EXP", "FM", "GM", "REC")
+
+ggplot(domain_contr, aes(fill=domain, y=(d*proportion), x=(a*12))) + 
+    geom_bar(position="stack", stat="identity")+
+  xlab("Age")+ylab("D-score")+
+  scale_colour_manual(values = domain_colors)
+
+domain_contr_i <- domain_contr %>% filter(subjid == 4702253)
+
+# Compute the cumulative percentages (top of each rectangle)
+domain_contr_i$ymax = cumsum(domain_contr_i$proportion)
+# Compute the bottom of each rectangle
+domain_contr_i$ymin = c(0, head(domain_contr_i$ymax, n=-1))
+# Make the plot
+ggplot(domain_contr_i, aes(fill=domain, ymin = ymin, ymax = ymax, xmin = 3, xmax=4)) + 
+  geom_rect()+
+  scale_colour_continuous( domain_colors)+
+  coord_polar(theta = "y")+
+  theme_void()+
+   xlim(c(2, 4))+
+  geom_text(x=2,aes(y = 0, label = domain_contr_i$d[1]))
+
+
+
+```
+
+
+
+## Domain scores
+
 It is possible to calculate a $D$-score that is more representative for a
 specific domain using the current $D$-score model. We can use only the items
 that load to the domain in question to calculate the $D$-score.
@@ -338,27 +445,27 @@ d_domain <- function(data,
 
 #test compare with manual for col1
 #start <- Sys.time()
-gcdg_all <- d_domain(data = dmetric::gcdg_lean, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items, vote_weight = 0.5)
+gcdg_all <- d_domain(data = dmetric::gcdg_lean, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items, vote_weight = 0.3)
 #Sys.time() - start #2.8min
 
-gcdg_domains <- gcdg_all %>%
-  mutate(month = a * 12) %>% 
-  select(month, d, "d_Fine.Motor", "d_Gross.Motor", "d_Expressive", "d_Receptive", "d_Cognitive", "d_Adaptive") %>%
-  rename("Fine Motor" = d_Fine.Motor, 
-         "Gross Motor"= d_Gross.Motor,
-         "Expressive" = d_Expressive,
-         "Receptive" = d_Receptive,
-         "Cognitive" = d_Cognitive,
-         "Adaptive" = d_Adaptive) %>%
-  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), names_to = "domain", values_to = "dscore")
+#gcdg_domains <- gcdg_all %>%
+#  mutate(month = a * 12) %>% 
+#  select(month, d, "d_Fine.Motor", "d_Gross.Motor", "d_Expressive", #"d_Receptive", "d_Cognitive", "d_Adaptive") %>%
+#  rename("Fine Motor" = d_Fine.Motor, 
+#         "Gross Motor"= d_Gross.Motor,
+#         "Expressive" = d_Expressive,
+#         "Receptive" = d_Receptive,
+#         "Cognitive" = d_Cognitive,
+#         "Adaptive" = d_Adaptive) %>%
+#  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", #"Cognitive", "Adaptive"), names_to = "domain", values_to = "dscore")
 
 
 #plot all domain dscore in gcdg data
-ggplot(data = gcdg_domains)+
-  geom_point(aes(x = month, y = dscore, group = domain, col = domain))+
-  xlab("Age(month)") + ylab("D-score")+
-  scale_color_manual(values = dmodel::get_color_domain("gcdg"), 
-                     na.value = "grey")
+#ggplot(data = gcdg_domains)+
+#  geom_point(aes(x = month, y = dscore, group = domain, col = domain))+
+#  xlab("Age(month)") + ylab("D-score")+
+#  scale_color_manual(values = dmodel::get_color_domain("gcdg"), 
+#                     na.value = "grey")
 
 gcdg_res <- gcdg_all %>%
   mutate(Fine_motor = d_Fine.Motor - d,
@@ -367,29 +474,34 @@ gcdg_res <- gcdg_all %>%
          Receptive = d_Receptive - d, 
          Cognitive = d_Cognitive - d, 
          Adaptive = d_Adaptive - d) %>%
-  select(d, Fine_motor, Gross_motor, Expressive, Receptive, Cognitive, Adaptive, a)
+  select(d, Fine_motor, n_Fine.Motor, Gross_motor, n_Gross.Motor,
+         Expressive, n_Expressive, Receptive, n_Receptive, Cognitive, n_Cognitive, Adaptive, n_Adaptive, a)
 
-ggplot(data = gcdg_res, aes(x=d, y = Fine_motor)) +
+
+ggplot(data = subset(gcdg_res, n_Fine.Motor >=5), aes(x=d, y = Fine_motor)) +
   geom_point()+
   ylim(c(-15,15))
 
-ggplot(data = gcdg_res, aes(x=d, y = Gross_motor)) +
+ggplot(data = subset(gcdg_res, n_Gross.Motor >=5), aes(x=d, y = Gross_motor)) +
   geom_point()+
   ylim(c(-15,15))
 
-ggplot(data = gcdg_res, aes(x=d, y = Expressive)) +
-  geom_point()+
-  ylim(c(-15,15))
-
-ggplot(data = gcdg_res, aes(x=d, y = Receptive)) +
-  geom_point()+
-  ylim(c(-15,15))
-
-ggplot(data = gcdg_res, aes(x=d, y = Cognitive)) +
+ggplot(data = subset(gcdg_res, n_Cognitive >=5), aes(x=d, y = Cognitive)) +
   geom_point()+
   ylim(c(-15,15))
 
 
+ggplot(data = subset(gcdg_res, n_Expressive >=5), aes(x=d, y = Expressive)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+ggplot(data = subset(gcdg_res, n_Receptive >=5), aes(x=d, y = Receptive)) +
+  geom_point()+
+  ylim(c(-15,15))
+
+
+
+## when the vote-weight is set at 0.5 > so minimal half of the raters must agree on the domain for an item for the item to count for that domain - then there are very little items in some of the domains. This causes deviations in D-score due to the small number of items for the D-score calculations (not because of domain info). This is not what we want to measure. So now try when there is at least one vote for the domain. Then items can count for multiple domains, but that not necessarily a problem. 
 
 #example for one person
 # i <- 25
