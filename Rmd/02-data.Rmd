@@ -9,7 +9,7 @@ Booklet I [*D*-score: Turning milestones into measurement](https://stefvanbuuren
 - Compare development within the same child over time;
 - Compare development of two children of the same age;
 - Compare development of two children at different ages;
-- Compare developmemt of groups of children at different ages;
+- Compare development of groups of children at different ages;
 - And so on...
 
 In practice, the problem is more complicated. There are about 150 different instruments to measure child development. [@fernald2017toolkit]
@@ -46,64 +46,47 @@ The requirements for inclusion were
 
 The effort resulted in a database containing individual data from over
 16,000 children from 11 countries. The world map below (Figure:
-\@ref(fig:worldmap)) colours the countries included in the study.
+\@ref(fig:worldmap)) colors the countries included in the study.
 
 <!-- NOTE: Leave off Antarctica, no children there. Use thinner
 boundary lines. Try different projections. -->
 
 ```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 
-library(rworldmap)
-library(maps)
-
-world.map<-map('world', fill = FALSE, plot = FALSE) 
-#use world map to extract county names
-#add value == 1 for countries in study
-#add extra variable that indicates amount of datapoints per county?
-#attach weight and use that to color the counties
-datacountries <- data.frame(country=world.map$names, value=NA)
-datacountries$value <- ifelse(datacountries$country =="Bangladesh", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Brazil", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Chile", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="China", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Colombia", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Ecuador", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Ethiopia", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Jamaica", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Madagascar", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="Netherlands", "skyblue1", datacountries$value)
-datacountries$value <- ifelse(datacountries$country =="South Africa", "skyblue1", datacountries$value)
-
 library(ggplot2)
 library(maps)
 library(ggthemes)
 
-datacountries$region <- datacountries$country
 map.world = map_data(map='world')
-map.world = left_join(map.world, datacountries, by = "region")
+map.world$value <- NA
+map.world$value <- ifelse(map.world$region =="Bangladesh", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Brazil", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Chile", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="China", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Colombia", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Ecuador", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Ethiopia", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Jamaica", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Madagascar", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="Netherlands", "skyblue1", map.world$value)
+map.world$value <- ifelse(map.world$region =="South Africa", "skyblue1", map.world$value)
 
 ggplot() + 
   borders("world", colour = "gray85", fill = "gray80") +
   geom_map(data = map.world, map = map.world, aes(
     map_id = region,
-#    x=long,
-#    y=lat,
     fill=value
   )) + 
-#  coord_quickmap()+
   theme_map() +
   coord_cartesian(ylim = c(-50, 90)) +
   theme(legend.position = "none")
-
-
-
 
 ```
 (ref:worldmap) Coverage of countries included in the study.
 
 The GCDG data comprises of birth cohorts, impact evaluation studies
 and instrument evaluation studies. Table \@ref(tab:cohorts) displays a
-brief overview of the instruments used in each substudy.
+brief overview of the instruments used in each sub-study.
 
 Cohort | `by` | `den` | `gri` | `bat` | `vin` | `ddi` |  `bar` | `tep` | `asq` | `sbi`
 --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------
@@ -160,7 +143,7 @@ at 18 months. The `by1` was administered at each wave. Long-term
 follow-up data were available for the WPPSI at 5-6 years
 [@Lozoff2003].
 
-The **Chile 2** study (GCDG-CHL-2) was a brith-cohort of 4869 children
+The **Chile 2** study (GCDG-CHL-2) was a birth-cohort of 4869 children
 who were administered the Battelle Developmental Inventory (`bat`) at
 7-23 months and 9201 children who were administered the Test de
 Desarrollo Psicomotor (`tep`) at 24-58 months. For the latter group,
@@ -178,7 +161,7 @@ administered at each wave. Long-term follow-up data were available for
 PPVT at 4-6 years [@Attanasio2014].
 
 The **Colombia 2** study (GCDG-COL-LT42M) was an instrument validation
-study where all 1311 children aged 6-42 months were adminstered the
+study where all 1311 children aged 6-42 months were administered the
 by3. For a subgroup of 658 children the den, the Ages and Stages
 Questionnaire (`asq`) and the `bat` screener were administered as
 well. Long-term follow-up data were available for the Fifth Wechsler
@@ -186,7 +169,7 @@ Intelligence Scale for Children (WISC-V) and the PPVT
 [@Rubio-Codina2016].
 
 In **Ecuador** an impact evaluation study (GCDG-ECU) was performed for
-667 childen between 0-35 months where the Barrera Moncada (`bar`) was
+667 children between 0-35 months where the Barrera Moncada (`bar`) was
 administered. Long-term follow-up data were available for the PPVT at
 5-8 and 9-12 years [@Paxson2010].
 
@@ -197,13 +180,13 @@ wave the `by3` was administered. Long-term follow-up data were
 available for the PPVT at 10-11 years [@Hanlon2009].
 
 The **Jamaica 1** study (GCDG-JAM-LBW) was an impact evaluation study
-were the Griffiths Mental Development Scales (`gri`) were administed
+were the Griffiths Mental Development Scales (`gri`) were administered
 to 225 children of 15 months at the first wave, and 218 children of 24
 months at the second wave. Long-term follow-up data were available for
 WPPSI and PPVT at 6 years [@Walker2004].
 
 The **Jamaica 2** study (GCDG-JAM-STUNTED) was an impact evaluation
-study were the `gri` were administed to 159 children at 9-24 months,
+study were the `gri` were administered to 159 children at 9-24 months,
 21-36 months and at 33-48 months. Long-term follow-up data were
 available for `sbi`, Raven’s Coloured Progressive Matrices (Ravens),
 and PPVT at 7-8 years and the WAIS at 17-18 years
@@ -218,7 +201,7 @@ The **Netherlands 1** study (GCDG-NLD-SMOCC) was an instrument
 validation study with a total of 9 waves. At each wave the Dutch
 Developmental Instrument (`ddi`) (In the Netherlands known as Van
 Wiechenschema) was administered. The first wave included 1985 children
-at 1 month, wave 2 1807 childen at 2 months, wave 3 1963 children at 3
+at 1 month, wave 2 1807 children at 2 months, wave 3 1963 children at 3
 months, wave 4 1919 children at 6 months, wave 5 1881 children at 9
 months, wave 6 1802 children at 12 months, wave 7 1776 children at 15
 months, wave 8 1787 children at 18 months, and wave 9 1815 children at
@@ -228,7 +211,7 @@ The **Netherlands 2** study (GCDG-NLD-2) was an instrument validation
 study with a total of five waves. At each wave the `ddi` was
 administered. Wave 1 included 1016 children at 24 months, wave 2 995
 children at 30 months, wave 3 1592 children at 36 months, wave 4 1592
-children at 42 months, and wave 5 1024 childen at 48 months
+children at 42 months, and wave 5 1024 children at 48 months
 [@doove2010].
 
 The **South Africa** study (GCDG-ZAF) was a birth cohort with four
@@ -277,8 +260,8 @@ Developmental Screening Test. Pediatrics 1992; 89: 91–7. -->
 Manual. Denver, CO: Denver Developmental Materials, 1990 -->
 
 The **Griffiths Mental Development Scales (`gri`)** measure the rate
-of development in infants and young children in six developmenal
-areas: locomotor, personal-social, hearing and language, eye and hand
+of development in infants and young children in six developmental
+areas: loco motor, personal-social, hearing and language, eye and hand
 coordination, performance and practical reasoning [@griffiths1967].
 <!-- Griffiths R. The Abilities of Babies: A Study in Mental
 Measurement. University of London Press, 1967. -->
@@ -332,7 +315,7 @@ Brookes Publishing Co., Baltimore (2009) -->
 The **Stanford Binet Intelligence Scales (`sbi`)** is a cognitive
 ability and intelligence test to diagnose developmental deficiencies
 in young children. The items are distributed over five subtests: fluid
-reasoning, knowledge, quantative reasoning, visual-spatial processing
+reasoning, knowledge, quantitative reasoning, visual-spatial processing
 and working memory [@roid2003][@hagen1986].
 <!-- Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS
 Psychological Tests, 2003. -->
