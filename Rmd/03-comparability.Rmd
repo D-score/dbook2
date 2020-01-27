@@ -436,7 +436,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 
 
 #rec -----
-indicator <- which(grepl("REC", names(eqlist)))
+indicator <- which(grepl("REC", names(eqinst)))
 eqinst1 <- eqinst[indicator]
 
 
