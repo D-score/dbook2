@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SDG 4.2.1 Indicator {#ch:SDGindicator}
 
 This chapter explains how the $D$-score can be used to indicate on-track
@@ -136,4 +135,3 @@ ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
 ```
 (ref:stunt) Percentage off-track development and stuted per country.
 
-###
