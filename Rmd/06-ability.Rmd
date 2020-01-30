@@ -295,9 +295,19 @@ info_data <-
 ```
 
 
-The domain information for an individual $D$-score can also be calculated. To do that we need to know what items were adminstered to measure the D-score and for these items we need to know to which domains the items are linked and what relative information the items provide for the calculated D-score.  
+The domain information for an individual $D$-score can also be calculated. To do
+that we need to know what items were adminstered to measure the D-score and for
+these items we need to know to which domains the items are linked and what
+relative information the items provide for the calculated D-score.
 
-For example below you see the data for a child that is 1,5 years old and as part of the .. cohort has scores on by3 items. Table \@ref(tab:example_part1) shows the responses to the by3 items that are in the gcdg  model in the **Score** column. This child has a score of 57.12$D$. For each item experts have indicated to what domain(s) the item is linked. Items can link to multiple domains and based on expert voting, we have a proportional loading for each item to a domain.  
+For example below you see the data for a child that is 1,5 years old and as part
+of the .. cohort has scores on by3 items. Table \@ref(tab:example_part1) shows
+the responses to the by3 items that are in the gcdg model in the **Score**
+column. This child has a score of 57.12$D$. For each item experts have indicated
+to what domain(s) the item is linked. Items can link to multiple domains and
+based on expert voting, we have a proportional loading for each item to a
+domain.
+
 
 ```{r example_part1}
 
@@ -314,7 +324,7 @@ itembank <- builtin_itembank[builtin_itembank$key == "gsed",]
 
 ex1_resp <- gcdg_lean$itm[gcdg_lean$itm$subjid == subject, c("item", "value")] %>% left_join(itembank, by = "item") %>% select(item, label, value, tau) %>% drop_na(tau) %>%   left_join(dmodel::get_domaintable("gcdg"), by = "item") %>% select(item, label, value, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive)
 
-
+ex1_resp[,c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")] <- round(ex1_resp[,c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")],2)
 
 options(knitr.table.format = "html") 
 kable(ex1_resp, 
@@ -326,7 +336,15 @@ kable(ex1_resp,
 ```
 
 
-For each item we can calculate the relative information that it contributes tot he $D$-score of 57.12. In [the paragraph "Item information" in dbook1](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described how to calculate the item information for an ability. We can combine the porportional domain loading to the relative information that the item provides to the $D$-score of the child. In Figure \@ref(fig:example_part2)  this is displayed.
+For each item we can calculate the relative information that it contributes tot
+he $D$-score of 57.12. In [the paragraph "Item information" in
+dbook1](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
+how to calculate the item information for an ability. We can combine the
+porportional domain loading to the relative information that the item provides
+to the $D$-score of the child. In Figure \@ref(fig:example_part2)  this is
+displayed. For example the item "Attends to story" contributes to 13% of the
+$D$-score and the item is rates as partly Receptive, partly Cognitive and partly
+Adaptive.
 
 
 ```{r example_part2}
@@ -380,14 +398,19 @@ plot_data <- item_information %>%
   arrange(rel_info)
 
 
-plot_data$item <- factor(plot_data$item, levels = unique(plot_data$item[order(plot_data$rel_info)]))
+plot_data$label <- factor(plot_data$label, levels = unique(plot_data$label[order(plot_data$rel_info)]))
 
-ggplot(data = plot_data, aes(x = item, y = contribution, color = domain, fill = domain)) +
+ggplot(data = plot_data, aes(x = label, y = contribution, color = domain, fill = domain)) +
    geom_bar(position="stack", stat="identity") +
   coord_flip()
   
 ```
 
+The information that is contributed by each item can be summed and that way we
+get what information for each domain was used to get to the $D$-score for this
+child. For this example about 50% of the information was Cognitive, about 40%
+was Fine motor and additionally partly adaptive and partly receptive information
+was used.
 
 ```{r example_part3}
 ##total domain contribution for Dscore
