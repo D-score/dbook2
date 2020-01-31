@@ -2,13 +2,13 @@
 
 This chapter explains how the $D$-score can be used to indicate on-track
 development. The methodology to define on-track development is described and
-country-level estimates are displayed. Additionally the domain coverage of the
-$D$-score is discussed and comparisons to other estimates.
+country-level estimates are displayed. Additionally, the indicator is compared
+to other estimates.
 
-* Application I: Estimating the SDG 4.2.1 indicator from existing data (\@ref(sec:application1))
+* Application I: Estimating the SDG 4.2.1 indicator from existing data
+(\@ref(sec:application1))
 * Definition *developmentally on track* (\@ref(sec:references))
 * Country-level estimates (\@refsec:countrytrack))
-* Domain coverage (\@refsec:domains))
 * Relation to other estimates (\@refsec:otherestimates))
 
 ## Application I: Estimating the SDG 4.2.1 indicator from existing data {#sec:application1}
@@ -52,15 +52,16 @@ standard child develpment-for-age. This reference standard can then be used to
 determine whether children are *developmentally on track*.
 
 In Figure \@ref(ref:dscorerefs), the strategy for constructing standards for
-development and to use them to define on track dvelopment is explained in
+development and to use them to define on track development is explained in
 several steps. In the first step the D-score is plotted by age and in the
 subsequent steps, this relation is modelled in an an LMS model. The goal of an
 LMS model is to describe the relation of the $D$-score by age with
 age-conditional z-scores. This is done by three smoothed curves representing the
 median, coefficient of variation and the skewness. The resulting age
 standardized scores for development (daz), are then used to define on-track
-development. So D-scores within 2 standard deviations from the mean can be
-defines as on-track. Scores that are outside this range, are off-track.
+development. So D-scores within 2 standard deviations from the median can be
+defined as on-track. Scores that are more than two standard deveation below the
+median, can be defined as off-track.
 
 
 ```{r}
@@ -92,3 +93,45 @@ model_lean$dscore %>%
 
 
 ## Relation to other estimates {#sec:otherestimates}
+
+### Stunting
+
+Stunting is a common way to express impaired growth in children. The WHO defines
+stunted as "when the height-for-age is more than two standard deviations below
+the WHO Child Growth Standard median"
+https://www.who.int/nutrition/healthygrowthproj/en/index1.html. In Figure
+\@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
+developement in each country.
+
+
+```{r}
+library("dmetric")
+library("gseddata")
+
+varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
+                items = gcdg_items)
+gcdg_lean <- get_data(cohorts = 40:56, items = varlist$items, adm = ".", aux = ".", cov = ".")
+
+#or just load gcdg_lean form dmetric when data in package is updated
+
+sdg_stunt <- 
+gcdg_lean$visit %>% 
+  left_join(model_lean$dscore) %>%
+  mutate(track = ifelse(.data$daz < -2, 0, 1),
+         stunting = ifelse(.data$haz < -2, 1, 0)) %>%
+  group_by(ctrycd) %>%
+  summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
+            "n_d" = sum(!is.na(track)),
+            "stunted" = sum(stunting, na.rm=TRUE)/sum(!is.na(stunting)), 
+            "n_stunt" = sum(!is.na(stunting))) %>%
+  pivot_longer(cols = c("off-track", "stunted"), names_to = "Measure", values_to = "Percentage")
+
+
+ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  xlab("Country")
+
+
+```
+(ref:stunt) Percentage off-track development and stuted per country.
+
