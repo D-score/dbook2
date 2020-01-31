@@ -30,7 +30,6 @@ This chapter introduces the data that we use to illustrate our methodology. The 
 * Overview of cohorts and instrument (\@ref(sec:gcdgoverview))
 * Cohort descriptions (\@ref(sec:cohorts))
 * Instruments (\@ref(sec:instruments))
-* GCDG working group members and data contributors (\@ref(sec:group))
 
 ## Overview of cohorts and instruments {#sec:gcdgoverview}
 
@@ -44,12 +43,12 @@ The requirements for inclusion were
 3. spanning ages between 0-5 years; 
 4. availability of follow-up measures, at ages 5-10 years.
 
-The effort resulted in a database containing individual data from over
-16,000 children from 11 countries. The world map below (Figure:
-\@ref(fig:worldmap)) colors the countries included in the study.
+The effort resulted in a database containing individual data from over 16,000
+children from 11 countries. The world map below (Figure: \@ref(fig:worldmap))
+colors the countries included in the study.Section \@ref(sec:cohorts) briefly
+describes each cohort. Section \@ref(sec:instruments) reviews the measurement
+instruments.
 
-<!-- NOTE: Leave off Antarctica, no children there. Use thinner
-boundary lines. Try different projections. -->
 
 ```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 
@@ -109,8 +108,7 @@ South Africa | x |  | x |  | x |  |  |  |  |
 
 : (\#tab:cohorts) Overview of instruments administered in the cohorts.
 
-Section \@ref(sec:cohorts) briefly describes each cohort. Section
-\@ref(sec:instruments) reviews the measurement instruments.
+
 
 ## Cohort descriptions {#sec:cohorts}
 
@@ -217,9 +215,9 @@ children at 42 months, and wave 5 1024 children at 48 months
 The **South Africa** study (GCDG-ZAF) was a birth cohort with four
 waves. The first wave included 485 children and second wave 275
 children, who were assessed at 6 and 12 months, respectively, with the
-by1 and the gri. The third wave included 1802 children and the fourth
+`by1` and the `gri`. The third wave included 1802 children and the fourth
 wave 1614 children, assessed at 24 and 48 months, respectively, with
-the Vineland Social Maturity Scale (vin) [@Richter2007].
+the Vineland Social Maturity Scale (`vin`) [@Richter2007].
 
 ## Instruments {#sec:instruments}
 
@@ -229,8 +227,8 @@ by types (e.g. individual vs screener, one scale vs multiple scales,
 binary vs polytomous vs mixed)? Perhaps a simple HOMALS analysis that
 displays the most salient features? -->
 
-The **Bayley Scales for Infant and Toddler Development** (`by1`,`by2`,
-`by3`) aim to assess infants and toddlers, aged 1-42 months. The
+The **Bayley Scales for Infant and Toddler Development (`by1`,`by2`,
+`by3`)** aim to assess infants and toddlers, aged 1-42 months. The
 current version is the `by3`, but in GCDG cohorts earlier version were
 also used (i.e. `by1` and `by2`)
 [@bayley1969][@bayley1993][@bayley2006]. The 326 items of the `by3`
@@ -266,7 +264,7 @@ coordination, performance and practical reasoning [@griffiths1967].
 <!-- Griffiths R. The Abilities of Babies: A Study in Mental
 Measurement. University of London Press, 1967. -->
 
-The **Battelle Developmental Inventory (bat)** measures key
+The **Battelle Developmental Inventory (`bat`)** measures key
 developmental skills in children from birth to 7 years, 11 months. The
 instrument contains 450 items distributed over five domains: adaptive,
 personal-social, communication, motor, and cognitive [@newborg2005].
