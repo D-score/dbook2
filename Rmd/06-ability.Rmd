@@ -6,25 +6,25 @@ runtime: shiny
 
 In this chapter the $D$-score distributions per GCDG cohort are displayed and
 the impact of measurement error is compared between the cohorts. Additionally
-the coverage of the developmental domains is displayed for different levels of
-the $D$-score.
+the coverage of the developmental domains is displayed for $D$-score scale and
+for a single $D$-score.
 
-* D-score distribution by study (\@ref(sec:dsores))
+* D-score distribution by study (\@ref(sec:dscores))
 * Impact of measurement error (\@ref(sec:sem))
 * Domain coverage (\@ref(sec:domains))
 
 
-## D-score distribution by study {#sec:dsores}
+## D-score distribution by study {#sec:dscores}
 
 For each study that is included in the GCDG assembly, the $D$-score can be
 obtained using the developed global model. In the graphs below, the $D$-score
-distributions are displayed for each cohort seperately. The blue lines in the
-graphs are the (temporary) references, as explained in (@\ref(sec:references)).
-By using the "next" button below the plot you can click through the cohorts.
+distributions are displayed for each cohort separately. The blue lines in the
+graphs are the (temporary) references, as explained in \@ref(sec:references).
+By using the *next* button below the plot you can click through the cohorts.
 Using the selection bar above the graph, you can select a specific cohort.
 
 ```{r}
-knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dsores/", 
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dscores/", 
   height = "600px")
 ```
 (ref:dscoredist) $D$-score distributions by study.
@@ -37,12 +37,12 @@ estimate can be determined. This precision can be expressed as the standard
 error of measurement ($sem$). The standard error of measurement is inversely
 related to the number of items. Thus, when more items are administered for a
 person, the measurement error for the $D$-score of this person will be smaller.
-As is shown in figure \@ref(fig:semforn), the sem drops fast when the number of
+As is shown in Figure \@ref(fig:semforn), the sem drops fast when the number of
 items is increased to 15, and still some more until the number of items is 30.
 More than 30 items has little effect on the sem.
 
 
-```{r semforn, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:semforn)', message = FALSE}
+```{r semforn, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:semforn)', message = FALSE}
 library(ggplot2)
 
 ggplot(data = dmetric::model_lean$dscore )+
@@ -57,14 +57,14 @@ the items that are administered. This is partly the number of items, as depicted
 in \@ref(fig:semforn), but also if the items are informative for the $D$-score.
 For example, if the items are too easy and the probability to pass the item
 given the $D$-score is $P$ > 0.90, the $sem$ is larger than when the difficulty
-of the administered items is closer to the $D$-score (i.e. $P$ = 0.50). The sem
-for age in GCDG data shows that for some ages, the sem is larger than for others
-(see Figure \@ref(fig:semfora)). This is on the one hand due to the number of
-items available in that age range, but also to the design of the cohorts where
-sometimes relatively easy items are administered.
+of the administered items is closer to the $D$-score (i.e. $P$ = 0.50). The
+$sem$ for age in GCDG data (see Figure \@ref(fig:semfora)) shows that for some
+ages, the $sem$ is larger than for others. This is on the one hand due to the
+number of items available in that age range, but also to the design of the
+cohorts where sometimes relatively easy items are administered.
 
 
-```{r semfora, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:semfora)', message = FALSE}
+```{r semfora, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:semfora)', message = FALSE}
 library("dmetric")
 library("gseddata")
 library("dplyr")
@@ -121,19 +121,19 @@ ggplot(data = sem_daz_a )+
 ```
 (ref:semfora) Standard error of measurement in each age group.
 
-In Figure (\@ref(ref:dscoresems)), the $sem$ per age group is shown for each
-cohort seperately. This illustrates the differences in design between the
-cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the ddi was
+In Figure \@ref(fig:dscoresems), the $sem$ per age group is shown for each
+cohort separately. This illustrates the differences in design between the
+cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the `ddi` was
 used as a screener and items had the probability to pass of approximately
 $P$=0.80 (quartile range between 0.62 < $P$ > 1.00), and the number of items
 administered per measurement is about 10 items (quartile range 6 to 12 items).
 The Colombia 1 cohort (GCDG-COL-LT45M) was an impact evaluation and has
-administered the by3 where each child answered on average 45 items (quartile
-range 38 to 57 items) and the probablity to pass was approximately $P$ = 0.64
-(quartile range betweeen 0.53 < $P$ > 0.79). The latter study has therefore more
+administered the `by3` where each child answered on average 45 items (quartile
+range 38 to 57 items) and the probability to pass was approximately $P$ = 0.64
+(quartile range between 0.53 < $P$ > 0.79). The latter study has therefore more
 precise $D$-score estimates.
 
-```{r}
+```{r dscoresems}
 #n items per child Netherlands 1 cohort = 8.5
 #ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-NLD-SMOCC")]
 #itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]
@@ -154,7 +154,7 @@ precise $D$-score estimates.
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
   height = "800px")
 ```
-(ref:dscoresems) Standard Error of Measurment for age by cohort
+(ref:dscoresems) Standard Error of Measurement for age by cohort
 
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the
@@ -166,21 +166,13 @@ $\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in equation
 sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} (\#eq:poolsem)
 \end{equation}
 
-In Figure \@ref(fig:cohortsem) the sample $sem$ per cohort are displayed. The
+In Figure \@ref(fig:cohortsem) the sample $sem$ per cohort is displayed. The
 lowest sample $sem$ is found in the Ethiopia study (GCDG-ETH) and the highest in
 the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
 number of items per child, and on the other hand the difficulty of the
-administered items. Table \@ref(tab:npsem) shows the quartile ranges for the
-number of items per child (n) and the probability to pass the items (p). In The
-Ethiopia cohort 39 items (Q2; median) were administered with a median
-probability of 0.66 and in the South Africa study just 12 items with a median
-probability of 1. Accordingly, in the Ethiopia study more items were
-administered per child that also have a high level of information for the
-$D$-score. In the South Africa study only few items were administered per child
-that were also relatively easy and therefore contained less information for the
-$D$-score.
+administered items. 
 
-```{r cohortsem, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:cohortsem)', message = FALSE}
+```{r cohortsem, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:cohortsem)', message = FALSE}
 sem_daz_c <- sem_daz %>% 
   mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
          agenum = as.numeric(agecat))%>%
@@ -215,6 +207,16 @@ sem_daz_c <- sem_daz %>%
 (ref:cohortsem) Standard Error of Measurement per cohort.
 
 
+Table \@ref(tab:npsem) shows the quartile ranges for the
+number of items per child (n) and the probability to pass the items (p). In The
+Ethiopia cohort 39 items (Q2; median) were administered with a median
+probability of 0.66 and in the South Africa study just 12 items with a median
+probability of 1. Accordingly, in the Ethiopia study more items were
+administered per child that also have a high level of information for the
+$D$-scores. In the South Africa study only few items were administered per child
+that were also relatively easy and therefore contained less information for the
+$D$-scores.
+
 
 ```{r npsem}
 library(kableExtra)
@@ -228,16 +230,20 @@ kable(sem_daz_c[,1:7],
  
 The $D$-score is a one number score that measures early child development. To
 evaluate the content validity of the $D$-score we can make sure that all
-developmental domains are fairly respresented. We distinguish five domains for
-child development: Fine Motor, Gross Motor, Expressive, Receptive, Cognitive. The
-items can be linked to one or more domains and the cumulative item information
-for each domain can be evaluated. In Figure \@ref(fit:domaincov), the coverage
-of the domains for the $D$-score is displayed. This shows that at lower levels
-of the $D$-score, motor development is more dominant and that at higher levels
-of the $D$-score the cognitive van language domains increase in importance.
+developmental domains are fairly represented. We distinguish five domains for
+child development: Fine Motor, Gross Motor, Expressive, Receptive, Cognitive. 
+
+### Domain coverage of the scale
+
+The items in the $D$-score model can be linked to one or more domains and the
+cumulative item information to the $D$-score for each domain can be evaluated.
+In Figure \@ref(fig:domaincov), the coverage of the domains for the $D$-score is
+displayed. This shows that at lower levels of the $D$-score, motor development
+is more dominant and that at higher levels of the $D$-score the cognitive van
+language domains increase in importance.
 
 
-```{r}
+```{r domaincov, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaincov)', message = FALSE}
 library(tidyr)
 library(dplyr)
 
@@ -293,17 +299,21 @@ info_data <-
   
 
 ```
+(ref:domaincov) Domain coverage of the $D$-score scale.
 
+
+
+### Domain coverage of a single $D$-score
 
 The domain information for an individual $D$-score can also be calculated. To do
-that we need to know what items were adminstered to measure the D-score and for
-these items we need to know to which domains the items are linked and what
-relative information the items provide for the calculated D-score.
+that we need the following information:
 
-For example below you see the data for a child that is 1,5 years old and as part
-of the .. cohort has scores on by3 items. Table \@ref(tab:example_part1) shows
-the responses to the by3 items that are in the gcdg model in the **Score**
-column. This child has a score of 57.12$D$. For each item experts have indicated
+* what items were administered to measure the $D$-score
+* to which domains are the items linked 
+* what part of the information provides each item to the calculated $D$-score.
+
+
+In Table \@ref(tab:example_part1) the item scores for a 1,5 year old child from the China cohort is displayed. This child has a $D$-score of 57.12. For each item, experts have indicated
 to what domain(s) the item is linked. Items can link to multiple domains and
 based on expert voting, we have a proportional loading for each item to a
 domain.
@@ -334,20 +344,18 @@ kable(ex1_resp,
   kableExtra::kable_styling() %>%
   kableExtra::scroll_box(width = "100%", height = "300px")
 ```
+&nbsp;
 
-
-For each item we can calculate the relative information that it contributes tot
-he $D$-score of 57.12. In [the paragraph "Item information" in
-dbook1](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
-how to calculate the item information for an ability. We can combine the
-porportional domain loading to the relative information that the item provides
-to the $D$-score of the child. In Figure \@ref(fig:example_part2)  this is
-displayed. For example the item "Attends to story" contributes to 13% of the
+For each item we can calculate the relative information that it contributes to the $D$-score of 57.12. In the paragraph [Item information in dbook I](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
+how to calculate the item information for a $D$-score We can combine the
+proportional domain loading to the relative information that the item provides
+to the $D$-score of the child. In Figure \@ref(fig:example_part2) this is
+displayed. For example the item *Attends to story* contributes to 13% of the
 $D$-score and the item is rates as partly Receptive, partly Cognitive and partly
 Adaptive.
 
 
-```{r example_part2}
+```{r example_part2, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:example_part2)', message = FALSE}
 
 example1 <- 
   gcdg_lean$itm[gcdg_lean$itm$subjid %in% subject,] %>%
@@ -405,14 +413,19 @@ ggplot(data = plot_data, aes(x = label, y = contribution, color = domain, fill =
   coord_flip()
   
 ```
+(ref:example_part2) Relative domain contribution per item for a $D$-score.
 
-The information that is contributed by each item can be summed and that way we
-get what information for each domain was used to get to the $D$-score for this
-child. For this example about 50% of the information was Cognitive, about 40%
-was Fine motor and additionally partly adaptive and partly receptive information
-was used.
 
-```{r example_part3}
+
+
+The relative information that each item holds per domain can be summed. That way
+we get what domain information is composed in the $D$-score for this child.
+Figure \@ref(fig:example_part3) displays the domain formation for the $D$-score
+of the example. About 50% of the information was Cognitive, about 40% was Fine
+motor and additionally partly adaptive and partly receptive information was
+used.
+
+```{r example_part3, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:example_part3)', message = FALSE}
 ##total domain contribution for Dscore
 d_domain_contribution <- item_information %>%
   pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), names_to = "domain", values_to = "contribution") %>%
@@ -435,6 +448,7 @@ ggplot(d_domain_contribution, aes(fill=domain, ymin = ymin, ymax = ymax, xmin = 
 
 
 ```
+(ref:example_part3) Relative domain contribution for a $D$-score.
 
 
 
