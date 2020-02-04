@@ -8,18 +8,18 @@ to other estimates.
 * Application I: Estimating the SDG 4.2.1 indicator from existing data
 (\@ref(sec:application1))
 * Definition *developmentally on track* (\@ref(sec:references))
-* Country-level estimates (\@refsec:countrytrack))
-* Relation to other estimates (\@refsec:otherestimates))
+* Country-level estimates (\@ref(sec:countrytrack))
+* Relation to other estimates (\@ref(sec:otherestimates))
 
 ## Application I: Estimating the SDG 4.2.1 indicator from existing data {#sec:application1}
 
-Sustainable Development Goal number 4 is to ensure inclusive an equitable
+Sustainable Development Goal number 4 is to ensure inclusive and equitable
 quality education and promote lifelong learning opportunities for all. Target
-4.2 holds that by 2030, ensure that all girls and boys have access to quality
+4.2 is to ensure that by 2030, all girls and boys have access to quality
 early childhood development, care and pre-primary education so that they are
-ready for primary eductation. Indicator 4.2.1 is to measure the proportion of
+ready for primary education. Indicator 4.2.1 is to measure the proportion of
 children under 5 years of age who are developmentally on track in health,
-learning and psychosoical well-beying, by sex.
+learning and psychosocial well-being, by sex.
 
 ```{r sdg4, fig.cap = '(ref:sdg4)'}
 #knitr::include_graphics("fig/equate_ex.png")
@@ -42,25 +42,25 @@ to be added.
 ## Definition *developmentally on track* (#sec:references)
 
 For child growth, (global) standards are published by the World Health
-Orgnaization (WHO) that are used to monitor growth in childen and to define
+Organization (WHO) that are used to monitor growth in children and to define
 whether children are *on track*. Growth standards are defined for
 weight-for-age, length/height-for age, weight-for-length/height, etc. In 2006,
 the methods for constructing a growth reference were reviewed by statisticians
 and growth experts that resulted in an advised strategy for constructing growth
 standard [@borghi2006]. A similar strategy can be used to construct a reference
-standard child develpment-for-age. This reference standard can then be used to
+standard child development-for-age. This reference standard can then be used to
 determine whether children are *developmentally on track*.
 
 In Figure \@ref(ref:dscorerefs), the strategy for constructing standards for
 development and to use them to define on track development is explained in
 several steps. In the first step the D-score is plotted by age and in the
-subsequent steps, this relation is modelled in an an LMS model. The goal of an
+subsequent steps, this relation is modeled in an an LMS model. The goal of an
 LMS model is to describe the relation of the $D$-score by age with
 age-conditional z-scores. This is done by three smoothed curves representing the
 median, coefficient of variation and the skewness. The resulting age
 standardized scores for development (daz), are then used to define on-track
 development. So D-scores within 2 standard deviations from the median can be
-defined as on-track. Scores that are more than two standard deveation below the
+defined as on-track. Scores that are more than two standard deviation below the
 median, can be defined as off-track.
 
 
@@ -68,7 +68,7 @@ median, can be defined as off-track.
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
   height = "600px")
 ```
-(ref:dscorerefs) $D$-score reference contruction and translation to on-track development.
+(ref:dscorerefs) $D$-score reference construction and translation to on-track development.
 
 Note that the current reference is based on the GCDG study. The cohorts that are
 currently included are representing a wide range of countries. However, they are
@@ -84,27 +84,43 @@ using the -2SD rule, we can obtain the percentage on-track development in each
 country.
 
 ```{r}
-model_lean$dscore %>%
+tabtrack <- model_lean$dscore %>%
   mutate(track = ifelse(daz < -2, 0, 1),
          country =  substr(cohort, 6, 8) ) %>%
   group_by(country) %>%
   summarize("on-track"= sum(track, na.rm=TRUE)/sum(!is.na(track)))
+
+library(kableExtra)
+kable(tabtrack,
+      caption = "Percentage of on-track children per country",
+      digits = 2)
+
 ```
 
 
 ## Relation to other estimates {#sec:otherestimates}
 
+In the publication on the $D$-score from the GCDG project [@Weber2019], the concurrent, discriminant and predictive validity of the $D$-score is thorougly presented and discussed. In this paragraph we mainly focus on stunting, which commonly used to express impaired growth in children due to nutrition problems. 
+
 ### Stunting
 
-Stunting is a common way to express impaired growth in children. The WHO defines
-stunted as "when the height-for-age is more than two standard deviations below
-the WHO Child Growth Standard median"
-https://www.who.int/nutrition/healthygrowthproj/en/index1.html. In Figure
+The WHO defines stunted as [when the height-for-age is more than two standard deviations below
+the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html).
+
+```{r}
+##DAZ in stunted vs non-stunted (as done in Weber paper)
+
+
+```
+
+In Figure
 \@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
-developement in each country.
+development in each country.
 
 
 ```{r}
+
+##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
 library("dmetric")
 library("gseddata")
 
@@ -133,5 +149,49 @@ ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
 
 
 ```
-(ref:stunt) Percentage off-track development and stuted per country.
+(ref:stunt) Percentage off-track development and stunted per country.
 
+In this plot we can see that the percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different construct. 
+
+
+
+<!--# To validate the off-track development measured by the $D$-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
+-->
+
+
+```{r eval=FALSE, include=FALSE}
+##cohorts with by3
+##cohort with by2
+##does not work yet!!!!
+
+#select by3 cohorts
+by3_COH <- c("GCDG-CHN", "GCDG-COL-LT42M", "GCDG-COL-LT45M", "GCDG-ETH")
+#calculate mean of "b_tot_cog"     "b_tot_lr"      "b_tot_le"      "b_tot_mf"      "b_tot_mg"  for bayley total score. 
+# add score to dscore data (and visit data for stunting)
+#cut score at 70 (or 78) for bayley delay score.
+
+b_vars <- c("b_tot_cog","b_tot_lr","b_tot_le","b_tot_mf","b_tot_mg")
+
+b_scores <- gcdg_lean$aux %>% filter(variable %in% b_vars) %>%
+  group_by(subjid)%>% summarize(b_score = mean(value, na.rm=TRUE))
+
+sdg_by <- 
+gcdg_lean$visit %>% filter(cohort %in% by3_COH) %>%
+  left_join(b_scores) %>%
+  left_join(model_lean$dscore) %>%
+  mutate(track = ifelse(.data$daz < -2, 0, 1),
+                  stunting = ifelse(.data$haz < -2, 1, 0),
+         by_d = ifelse(.data$b_score < 70, 1, 0)) %>%
+  group_by(ctrycd) %>%
+  summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
+            "n_d" = sum(!is.na(track)),
+            "stunted" = sum(stunting, na.rm=TRUE)/sum(!is.na(stunting)), 
+            "n_stunt" = sum(!is.na(stunting)),
+            "b_delay" = sum(by_d, na.rm = TRUE)/sum(!is.na(by_d))) %>%
+  pivot_longer(cols = c("off-track", "stunted"), names_to = "Measure", values_to = "Percentage")
+
+
+ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  xlab("Country")
+```
