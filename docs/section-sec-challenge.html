@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>D-score: Tuning instruments to unitiy</title>
+  <title>3.1 Are instruments connected? | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="3.1 Are instruments connected? | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="3.1 Are instruments connected? | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="section-ch-introduction2.html"/>
+<link rel="prev" href="section-ch-comparability.html"/>
+<link rel="next" href="section-sec-mapping.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,37 +155,689 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-header">
-<h1 class="title">D-score: Tuning instruments to unitiy</h1>
-<p class="author"><em>Editor: Iris Eekhout (Netherlands Organization for Applied Scientific Research TNO, Leiden)</em></p>
+<div id="section-sec:challenge" class="section level2">
+<h2><span class="header-section-number">3.1</span> Are instruments connected?</h2>
+<p>The ultimate goal is to compare child development across populations and cultures. A complication is that measurements are made by different instruments. To do deal with this issue, we harmonize the data included in the GCDG cohorts. In particular, we process the milestone responses such that the following requirements hold:</p>
+<ul>
+<li>Every milestone in an instrument has a unique name and a descriptive label;</li>
+<li>Every milestone occupies one column in the dataset;</li>
+<li>Item scores are (re)coded as: 1 = PASS; 0 = FAIL;</li>
+<li>Items not administered or not answered are a missing value;</li>
+<li>Every row in the dataset corresponds to a unique cohort-child-age combination.</li>
+</ul>
+<p>Cohorts and milestones need to be <em>connected</em>. There are several ways to connect cohorts:</p>
+<ul>
+<li>Two cohorts are directly connected if they use the same instrument;</li>
+<li>Two cohorts are indirectly connected if both connect to a third cohort that connects them.</li>
+</ul>
+<p>Likewise, instruments can be connected:</p>
+<ul>
+<li>Two instruments are directly connected if the same cohort measures both;</li>
+<li>Two instruments are indirectly connected if both connect to a third instrument that connects them.</li>
+</ul>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:linkage">Table 3.1: </span>Linkage pattern indicating combinations of cohorts and instruments.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+aqi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+bar
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+bat
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+by1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+by2
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+by3
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+ddi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+den
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+gri
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+mac
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+peg
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+sbi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+sgr
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+tep
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+vin
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Bangladesh
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Brazil 1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Brazil 2
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chile 1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chile 2
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+China
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Colombia 1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Colombia 2
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ecuador
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ethiopia
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jamaica 1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jamaica 2
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Madagascar
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Netherlds 1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Netherlds 2
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S Africa
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+X
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="section-welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>The <span class="math inline">\(D\)</span>-score is a one-number summary that quantifies generic
-development of children. Here you find introductory booklets on the
-<span class="math inline">\(D\)</span>-score, each of which addresses a particular aspect of the general
-idea.</p>
-<p>The <span class="math inline">\(D\)</span>-score booklet series consists of the following titles:</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://stefvanbuuren.github.io/dbook1/"><span class="math inline">\(D\)</span>-score: Turning milestones into measurements</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook2/"><span class="math inline">\(D\)</span>-score: Tuning instruments to unity</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook3/"><span class="math inline">\(D\)</span>-score: Tailoring tests to fit the occasion</a></li>
-</ol>
-<p><a href="https://stefvanbuuren.github.io/dbook1/">Booklet I</a> is currently
-available as complete draft. Booklets 2 and 3 are planned for 2019 and
-2020.</p>
-<p>This work is kindly supported by the <em>knowledge integration (ki)</em>
-program of the <em>Bill &amp; Melinda Gates Foundation</em>.</p>
-<p>If you have any suggestions or comments, please let me know.</p>
-
+<p> </p>
+<p>An <code>X</code> in Table <a href="section-sec-challenge.html#tab:linkage">3.1</a> identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by <code>by3</code>). Brazil 1 indirectly connects to these studies through <code>den</code>. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that <code>aqi</code>, <code>bat</code>, <code>by3</code> and <code>den</code> are directly connected. Note that no indirect connections exist to this instrument group.</p>
+<p>Table <a href="section-sec-challenge.html#tab:linkage">3.1</a> is a somewhat simplified version of the linkage pattern. As we saw in section <a href="section-sec-cohorts.html#section-sec:cohorts">2.2</a>, there are substantial age differences between the cohorts. The table at <a href="https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/" class="uri">https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/</a> shows the counts of the number of registered scores per age group. What appears in table <a href="section-sec-challenge.html#tab:linkage">3.1</a> as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.</p>
+<p>Connectedness is a necessary - though not sufficient - requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:</p>
+<ul>
+<li>Any differences between studies can be attributed to the ability of the children;</li>
+<li>Any differences between studies can be attributed to the difficulties of the instruments.</li>
+</ul>
+<p>The data do not contain the necessary information to discriminate between these two explanations. Since many cohorts in Table <a href="section-sec-challenge.html#tab:linkage">3.1</a> are unconnected, it seems that we are stuck.</p>
+<p>The next section suggests a way out of the dilemma.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-ch-introduction2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-ch-comparability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-mapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

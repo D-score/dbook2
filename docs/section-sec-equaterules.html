@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>D-score: Tuning instruments to unitiy</title>
+  <title>4.3 Strategy to form and test equate groups | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="4.3 Strategy to form and test equate groups | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="4.3 Strategy to form and test equate groups | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="section-ch-introduction2.html"/>
+<link rel="prev" href="section-sec-concurrent.html"/>
+<link rel="next" href="section-sec-statisticalframe.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,37 +155,28 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-header">
-<h1 class="title">D-score: Tuning instruments to unitiy</h1>
-<p class="author"><em>Editor: Iris Eekhout (Netherlands Organization for Applied Scientific Research TNO, Leiden)</em></p>
-</div>
-<div id="section-welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>The <span class="math inline">\(D\)</span>-score is a one-number summary that quantifies generic
-development of children. Here you find introductory booklets on the
-<span class="math inline">\(D\)</span>-score, each of which addresses a particular aspect of the general
-idea.</p>
-<p>The <span class="math inline">\(D\)</span>-score booklet series consists of the following titles:</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://stefvanbuuren.github.io/dbook1/"><span class="math inline">\(D\)</span>-score: Turning milestones into measurements</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook2/"><span class="math inline">\(D\)</span>-score: Tuning instruments to unity</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook3/"><span class="math inline">\(D\)</span>-score: Tailoring tests to fit the occasion</a></li>
-</ol>
-<p><a href="https://stefvanbuuren.github.io/dbook1/">Booklet I</a> is currently
-available as complete draft. Booklets 2 and 3 are planned for 2019 and
-2020.</p>
-<p>This work is kindly supported by the <em>knowledge integration (ki)</em>
-program of the <em>Bill &amp; Melinda Gates Foundation</em>.</p>
-<p>If you have any suggestions or comments, please let me know.</p>
-
+<div id="section-sec:equaterules" class="section level2">
+<h2><span class="header-section-number">4.3</span> Strategy to form and test equate groups</h2>
+<p>An equate group is a collection of items. As a part of concurrent calibration, we may specify that some equate groups are <em>active</em>. The analysis will treat items within such groups as one. The milestones within an active equate group will have the same difficulty estimate. Any remaining equate groups are called <em>passive</em> — the model views milestones within such groups as distinct. The milestones within a passive equate group will have separate difficulty estimates.</p>
+<p>Active equate groups bridge different instruments. In general, we will set the status of an equate group to active only if we believe that the milestones in that group measure the underlying construct in the same way. Note that this does not necessarily imply that all items need to be identical. In Table <a href="section-sec-mapping.html#tab:example2words">3.2</a>, for example, small differences exist in item formulation. We may nevertheless believe that these are irrelevant and ignore these in practice. Reversely, there is no guarantee that the same milestone will measure child development in the same way in different samples. For example, a milestone like “climb stairs” could be more difficult (and more dangerous) for children who have never seen a staircase.</p>
+<p>Decisions to activate equate groups should be informed by both subject matter expertise and by the fit to the measurement model. The following steps implement our strategy for forming and enabling equate groups:</p>
+<ul>
+<li>Content matter experts compare milestones from different instruments and sort similar milestones into equate groups. It may be convenient to select one instrument as a starting point, and map items from others to that (see section <a href="section-sec-mapping.html#section-sec:mapping">3.2</a>);</li>
+<li>Visualize age profiles of mapped items (see section <a href="section-sec-viewmapping.html#section-sec:viewmapping">3.3</a>). Verify the plausibility of potential matches through similar age profiles. Break up mappings for which age profiles appear implausible. This step requires both statistical and subject matter expertise;</li>
+<li>Fit the model to the data using a subset of equate groups as active. Review the quality of the solution and optimize the quality of the links between tools by editing the equate group structure. The technical details of this model are explained in section <a href="section-sec-statisticalframe.html#section-sec:statisticalframe">4.4</a>. Refit the model until (1) active equate groups link all cohorts and instruments, (2) active equate groups distribute over the full-scale range (rather than being centered at one point);</li>
+<li>Assess the quality of equate groups by the infit and outfit (see section <a href="section-sec-equatefit.html#section-sec:equatefit">4.6</a>).</li>
+<li>Test performance of the equate groups across subgroups or cohorts by methods designed to detect differential item functioning (see section <a href="section-sec-equatedif.html#section-sec:equatedif">4.7</a>).</li>
+</ul>
+<p>The application of equate groups is needed to connect different instruments to a universal scale. The technique is especially helpful in the situation where abilities differ across cohorts.</p>
+<p>If the cohort abilities are relatively uniform (for example as a result of experimental design) and if the risk of misspecification of the equate groups is high, a good alternative is to rely on the equality of ability distribution. In our application, this was not an option due to the substantial age variation between cohorts.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-ch-introduction2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-concurrent.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-statisticalframe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

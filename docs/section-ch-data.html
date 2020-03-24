@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>D-score: Tuning instruments to unitiy</title>
+  <title>Chapter 2 Data | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="Chapter 2 Data | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="Chapter 2 Data | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="section-ch-introduction2.html"/>
+<link rel="prev" href="section-individual-programmatic-population-settings.html"/>
+<link rel="next" href="section-sec-gcdgoverview.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,37 +155,42 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-header">
-<h1 class="title">D-score: Tuning instruments to unitiy</h1>
-<p class="author"><em>Editor: Iris Eekhout (Netherlands Organization for Applied Scientific Research TNO, Leiden)</em></p>
-</div>
-<div id="section-welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>The <span class="math inline">\(D\)</span>-score is a one-number summary that quantifies generic
-development of children. Here you find introductory booklets on the
-<span class="math inline">\(D\)</span>-score, each of which addresses a particular aspect of the general
-idea.</p>
-<p>The <span class="math inline">\(D\)</span>-score booklet series consists of the following titles:</p>
+<div id="section-ch:data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Data</h1>
+<!-- NOTE: We need to include a clear statement of the scope of this
+booklet. What is the major problem? What would be progress? What data
+would help us to advance? -->
+<p>Booklet I <a href="https://stefvanbuuren.name/dbook1/"><em>D</em>-score: Turning milestones into measurement</a> highlighted the concepts and tools needed to obtain a quantitative score from milestones from an instrument. Once we have such a score, we may</p>
+<ul>
+<li>Compare development within the same child over time;</li>
+<li>Compare development of two children of the same age;</li>
+<li>Compare development of two children at different ages;</li>
+<li>Compare development of groups of children at different ages;</li>
+<li>And so on…</li>
+</ul>
+<p>In practice, the problem is more complicated. There are about 150 different instruments to measure child development. <span class="citation">(Fernald et al. <a href="section-references.html#section-ref-fernald2017toolkit">2017</a>)</span></p>
+<p>In principle, one could apply the methodology of booklet I to each instrument separately. Every instrument would thus define its own quantitative scale. The problem with this approach is that measurements made on those scales cannot be compared to each other. More in particular, scores will be specific to the milestones, study samples, and the domain coverage of the particular instrument. In sum, we wouldn’t be able to compare development across instruments, a major impediment.</p>
+<p>What is needed instead is either</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://stefvanbuuren.github.io/dbook1/"><span class="math inline">\(D\)</span>-score: Turning milestones into measurements</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook2/"><span class="math inline">\(D\)</span>-score: Tuning instruments to unity</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook3/"><span class="math inline">\(D\)</span>-score: Tailoring tests to fit the occasion</a></li>
+<li>Everybody uses the same instrument;</li>
+<li>We extract comparable scores from different instruments.</li>
 </ol>
-<p><a href="https://stefvanbuuren.github.io/dbook1/">Booklet I</a> is currently
-available as complete draft. Booklets 2 and 3 are planned for 2019 and
-2020.</p>
-<p>This work is kindly supported by the <em>knowledge integration (ki)</em>
-program of the <em>Bill &amp; Melinda Gates Foundation</em>.</p>
-<p>If you have any suggestions or comments, please let me know.</p>
-
+<p>Option 1 seems easy, but may effectively halt the science of measuring child development. Until we have the <em>perfect instrument</em> option 2 is the only realistic choice.</p>
+<p>In this booklet we aim to exploit the overlap between instruments to create comparable scores. For example, most instruments have milestones like <em>Can stack two blocks</em>, <em>Is able to stand</em> or <em>Says baba</em>. By carefully mapping out the similarities between instruments we are able constrain the statistical model in a sensible way. As a result, we can map different instruments onto the same scale.</p>
+<p>This chapter introduces the data that we use to illustrate our methodology. The data originates from a study by the Global Child Development Group (GCDG) gathering child development data from 16 cohorts.</p>
+<ul>
+<li>Overview of cohorts and instrument (<a href="section-sec-gcdgoverview.html#section-sec:gcdgoverview">2.1</a>)</li>
+<li>Cohort descriptions (<a href="section-sec-cohorts.html#section-sec:cohorts">2.2</a>)</li>
+<li>Instruments (<a href="section-sec-instruments.html#section-sec:instruments">2.3</a>)</li>
+</ul> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-ch-introduction2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-individual-programmatic-population-settings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-gcdgoverview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

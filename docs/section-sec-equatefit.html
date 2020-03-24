@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>D-score: Tuning instruments to unitiy</title>
+  <title>4.6 Quantifying equate fit | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="4.6 Quantifying equate fit | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="4.6 Quantifying equate fit | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="section-ch-introduction2.html"/>
+<link rel="prev" href="section-sec-commonscale.html"/>
+<link rel="next" href="section-sec-equatedif.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,37 +155,41 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-header">
-<h1 class="title">D-score: Tuning instruments to unitiy</h1>
-<p class="author"><em>Editor: Iris Eekhout (Netherlands Organization for Applied Scientific Research TNO, Leiden)</em></p>
+<div id="section-sec:equatefit" class="section level2">
+<h2><span class="header-section-number">4.6</span> Quantifying equate fit</h2>
+<p>In the Rasch philosophy it is the task of the data to fit the Rasch model. In order to verify the fit of the data to the model, we can assess the item fit and the person fit. Both fit measures are explained thoroughly in <a href="https://stefvanbuuren.name/dbook1/ch-evaluation.html">Chapter 6 of booklet I</a>. When we use equate groups in the Rasch model, we can also use these fit indices to determine the fit of the items in the equate groups.</p>
+<div id="section-well-fitting-equate-groups" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> Well fitting equate groups</h3>
+<p>The evaluation of <em>equate fit</em> involves comparing the observed probabilities of endorsing the items in the equate group to the estimated probability of endorsing the items in the equate group. In an equate group there is an empirical curve for each item in the equate group and one shared estimated curve. The empirical curves should all be close to the estimated curve for a good equate fit, as presented in the examples in Figure <a href="section-sec-equatefit.html#fig:ploteqfit">4.3</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:ploteqfit"></span>
+<img src="dbook2_files/figure-html/ploteqfit-1.png" alt="Two equate groups that present a good equate fit." width="672" />
+<p class="caption">
+Figure 4.3: Two equate groups that present a good equate fit.
+</p>
 </div>
-<div id="section-welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>The <span class="math inline">\(D\)</span>-score is a one-number summary that quantifies generic
-development of children. Here you find introductory booklets on the
-<span class="math inline">\(D\)</span>-score, each of which addresses a particular aspect of the general
-idea.</p>
-<p>The <span class="math inline">\(D\)</span>-score booklet series consists of the following titles:</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://stefvanbuuren.github.io/dbook1/"><span class="math inline">\(D\)</span>-score: Turning milestones into measurements</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook2/"><span class="math inline">\(D\)</span>-score: Tuning instruments to unity</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook3/"><span class="math inline">\(D\)</span>-score: Tailoring tests to fit the occasion</a></li>
-</ol>
-<p><a href="https://stefvanbuuren.github.io/dbook1/">Booklet I</a> is currently
-available as complete draft. Booklets 2 and 3 are planned for 2019 and
-2020.</p>
-<p>This work is kindly supported by the <em>knowledge integration (ki)</em>
-program of the <em>Bill &amp; Melinda Gates Foundation</em>.</p>
-<p>If you have any suggestions or comments, please let me know.</p>
 
+<p>The equate <em>Turns head to sound of bell</em> is asked in slightly different formats in the Bayley I (<code>by1</code>), Dutch Development Instrument (<code>ddi</code>) and the Denver (<code>den</code>). The three items are combined in an equate group and the empirical data are colored differently for each instrument in the upper plot of Figure <a href="section-sec-equatefit.html#fig:ploteqfit">4.3</a>. Equate <em>Walks alone</em> is administered in six different instruments (<code>bar</code>, <code>by1</code>, <code>by2</code>, <code>by3</code>, <code>ddi</code> and <code>gri</code>) and is shown in the lower plot. For both equate groups, the empirical data for each instrument is close to the fitted dashed line, which indicates a good equate fit. The infit and outfit indices, shown in the upper left corners, confirm the good fit (fit &lt; 1).</p>
+</div>
+<div id="section-equate-groups-with-poor-equate-fit" class="section level3">
+<h3><span class="header-section-number">4.6.2</span> Equate groups with poor equate fit</h3>
+<p>In modeling with equate groups, selecting the perfect combination of equate groups is a crucial step. Poor fitting equate groups need to be set as passive equate groups, such that the items in the group are not restricted to the same difficulty anymore. In a poor fitting equate group, the empirical curves for each item in the equate group are not close to the shared estimated curve. Additionally, the fit indices show poor fit as well (fit &gt; 1). Two examples of poor equate fit are shown in Figure <a href="section-sec-equatefit.html#fig:ploteqpoor">4.4</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:ploteqpoor"></span>
+<img src="dbook2_files/figure-html/ploteqpoor-1.png" alt="Two equate groups that present a poor equate fit." width="672" />
+<p class="caption">
+Figure 4.4: Two equate groups that present a poor equate fit.
+</p>
+</div>
+
+<p>The equate <em>Bangs in play / Bangs 2 blocks</em> is asked in two different instruments, the Bayley I (<code>by1</code>) and the Denver (<code>den</code>). The empirical curve for the <code>by1</code> item is not close to the fitted curve. The fitted curve is closer to the <code>den</code> item, which suggests that the equate difficulty is mostly based on the <code>den</code> item data. The fit indices are both larger than 1 also indicating the poor fit. The equate <em>Jabbers expressively</em> is asked in different forms in three instruments (i.e. <code>by1</code>, <code>ddi</code>, and <code>gri</code>). The empirical curves, with different colors for ech instrument, are not close to each other, nor close to the fitted curve. Also for this equate the fit indices confirm the poor fit (fit &gt; 1). Both equates should be deactivated in an updated model.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-ch-introduction2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-commonscale.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-equatedif.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

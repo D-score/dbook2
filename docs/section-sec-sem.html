@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>D-score: Tuning instruments to unitiy</title>
+  <title>6.2 Impact of measurement error | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="6.2 Impact of measurement error | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="6.2 Impact of measurement error | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="section-ch-introduction2.html"/>
+<link rel="prev" href="section-sec-dscores.html"/>
+<link rel="next" href="section-sec-domains.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,37 +155,468 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-header">
-<h1 class="title">D-score: Tuning instruments to unitiy</h1>
-<p class="author"><em>Editor: Iris Eekhout (Netherlands Organization for Applied Scientific Research TNO, Leiden)</em></p>
+<div id="section-sec:sem" class="section level2">
+<h2><span class="header-section-number">6.2</span> Impact of measurement error</h2>
+<p>For each estimated <span class="math inline">\(D\)</span>-score from the calibrated model, the precision of the
+estimate can be determined. This precision can be expressed as the standard
+error of measurement (<span class="math inline">\(sem\)</span>). The standard error of measurement is inversely
+related to the number of items. Thus, when more items are administered for a
+person, the measurement error for the <span class="math inline">\(D\)</span>-score of this person will be smaller.
+As is shown in Figure <a href="section-sec-sem.html#fig:semforn">6.1</a>, the sem drops fast when the number of
+items is increased to 15, and still some more until the number of items is 30.
+More than 30 items has little effect on the sem.</p>
+<div class="figure" style="text-align: center"><span id="fig:semforn"></span>
+<img src="dbook2_files/figure-html/semforn-1.png" alt="Standard error of measurement when the number of items increases." width="672" />
+<p class="caption">
+Figure 6.1: Standard error of measurement when the number of items increases.
+</p>
 </div>
-<div id="section-welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>The <span class="math inline">\(D\)</span>-score is a one-number summary that quantifies generic
-development of children. Here you find introductory booklets on the
-<span class="math inline">\(D\)</span>-score, each of which addresses a particular aspect of the general
-idea.</p>
-<p>The <span class="math inline">\(D\)</span>-score booklet series consists of the following titles:</p>
-<ol style="list-style-type: decimal">
-<li><a href="https://stefvanbuuren.github.io/dbook1/"><span class="math inline">\(D\)</span>-score: Turning milestones into measurements</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook2/"><span class="math inline">\(D\)</span>-score: Tuning instruments to unity</a></li>
-<li><a href="https://stefvanbuuren.github.io/dbook3/"><span class="math inline">\(D\)</span>-score: Tailoring tests to fit the occasion</a></li>
-</ol>
-<p><a href="https://stefvanbuuren.github.io/dbook1/">Booklet I</a> is currently
-available as complete draft. Booklets 2 and 3 are planned for 2019 and
-2020.</p>
-<p>This work is kindly supported by the <em>knowledge integration (ki)</em>
-program of the <em>Bill &amp; Melinda Gates Foundation</em>.</p>
-<p>If you have any suggestions or comments, please let me know.</p>
 
+<p>The precision of the <span class="math inline">\(D\)</span>-score estimate is also affected by the information in
+the items that are administered. This is partly the number of items, as depicted
+in <a href="section-sec-sem.html#fig:semforn">6.1</a>, but also if the items are informative for the <span class="math inline">\(D\)</span>-score.
+For example, if the items are too easy and the probability to pass the item
+given the <span class="math inline">\(D\)</span>-score is <span class="math inline">\(P\)</span> &gt; 0.90, the <span class="math inline">\(sem\)</span> is larger than when the difficulty
+of the administered items is closer to the <span class="math inline">\(D\)</span>-score (i.e. <span class="math inline">\(P\)</span> = 0.50). The
+<span class="math inline">\(sem\)</span> for age in GCDG data (see Figure <a href="section-sec-sem.html#fig:semfora">6.2</a>) shows that for some
+ages, the <span class="math inline">\(sem\)</span> is larger than for others. This is on the one hand due to the
+number of items available in that age range, but also to the design of the
+cohorts where sometimes relatively easy items are administered.</p>
+<div class="figure" style="text-align: center"><span id="fig:semfora"></span>
+<img src="dbook2_files/figure-html/semfora-1.png" alt="Standard error of measurement in each age group." width="672" />
+<p class="caption">
+Figure 6.2: Standard error of measurement in each age group.
+</p>
+</div>
+
+<p>In Figure <a href="#fig:dscoresems"><strong>??</strong></a>, the <span class="math inline">\(sem\)</span> per age group is shown for each
+cohort separately. This illustrates the differences in design between the
+cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the <code>ddi</code> was
+used as a screener and items had the probability to pass of approximately
+<span class="math inline">\(P\)</span>=0.80 (quartile range between 0.62 &lt; <span class="math inline">\(P\)</span> &gt; 1.00), and the number of items
+administered per measurement is about 10 items (quartile range 6 to 12 items).
+The Colombia 1 cohort (GCDG-COL-LT45M) was an impact evaluation and has
+administered the <code>by3</code> where each child answered on average 45 items (quartile
+range 38 to 57 items) and the probability to pass was approximately <span class="math inline">\(P\)</span> = 0.64
+(quartile range between 0.53 &lt; <span class="math inline">\(P\)</span> &gt; 0.79). The latter study has therefore more
+precise <span class="math inline">\(D\)</span>-score estimates.</p>
+<iframe src="https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/?showcase=0" width="672" height="800px">
+</iframe>
+
+<p>The <span class="math inline">\(sem\)</span> for an entire cohort or sample can be obtained by pooling the
+individual <span class="math inline">\(sem_i\)</span> using general rule for pooling variances. Accordingly, the
+<span class="math inline">\(sem\)</span> for a sample is obtained by combining the within variance
+<span class="math inline">\(\sum{sem_{i}^2}\)</span> and the between variance <span class="math inline">\(\sigma_d\)</span> as in equation
+<a href="section-sec-sem.html#eq:poolsem">(6.1)</a></p>
+<p><span class="math display" id="eq:poolsem">\[\begin{equation}
+sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} \tag{6.1}
+\end{equation}\]</span></p>
+<p>In Figure <a href="section-sec-sem.html#fig:cohortsem">6.3</a> the sample <span class="math inline">\(sem\)</span> per cohort is displayed. The
+lowest sample <span class="math inline">\(sem\)</span> is found in the Ethiopia study (GCDG-ETH) and the highest in
+the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
+number of items per child, and on the other hand the difficulty of the
+administered items.</p>
+<div class="figure" style="text-align: center"><span id="fig:cohortsem"></span>
+<img src="dbook2_files/figure-html/cohortsem-1.png" alt="Standard Error of Measurement per cohort." width="672" />
+<p class="caption">
+Figure 6.3: Standard Error of Measurement per cohort.
+</p>
+</div>
+
+<p>Table <a href="section-sec-sem.html#tab:npsem">6.1</a> shows the quartile ranges for the
+number of items per child (n) and the probability to pass the items (p). In The
+Ethiopia cohort 39 items (Q2; median) were administered with a median
+probability of 0.66 and in the South Africa study just 12 items with a median
+probability of 1. Accordingly, in the Ethiopia study more items were
+administered per child that also have a high level of information for the
+<span class="math inline">\(D\)</span>-scores. In the South Africa study only few items were administered per child
+that were also relatively easy and therefore contained less information for the
+<span class="math inline">\(D\)</span>-scores.</p>
+<table>
+<caption>
+<span id="tab:npsem">Table 6.1: </span>Quartiles for the number of items (n) and probability to pass the items (p) per cohort
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+cohort
+</th>
+<th style="text-align:right;">
+n Q1(0.25)
+</th>
+<th style="text-align:right;">
+n Q2(0.50)
+</th>
+<th style="text-align:right;">
+n Q3(0.75)
+</th>
+<th style="text-align:right;">
+p Q1(0.25)
+</th>
+<th style="text-align:right;">
+p Q2(0.50)
+</th>
+<th style="text-align:right;">
+p Q3(0.75)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GCDG-ETH
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+0.54
+</td>
+<td style="text-align:right;">
+0.66
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-CHL-1
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-COL-LT45M
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-COL-LT42M
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:right;">
+0.52
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-JAM-LBW
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+<td style="text-align:right;">
+0.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-CHN
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-JAM-STUNTED
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-CHL-2
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-BGD-7MO
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-MDG
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-BRA-1
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0.89
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-NLD-SMOCC
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-NLD-2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-ECU
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-ZAF
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.83
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="section-ch-introduction2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-dscores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-domains.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
