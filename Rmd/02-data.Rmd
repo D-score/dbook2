@@ -45,12 +45,12 @@ The requirements for inclusion were
 
 The effort resulted in a database containing individual data from over 16,000
 children from 11 countries. The world map below (Figure: \@ref(fig:worldmap))
-colors the countries included in the study.Section \@ref(sec:cohorts) briefly
+colors the countries included in the study. Section \@ref(sec:cohorts) briefly
 describes each cohort. Section \@ref(sec:instruments) reviews the measurement
 instruments.
 
 
-```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide', fig.align='center', fig.height=4, fig.width=8}
 
 library(ggplot2)
 library(maps)
