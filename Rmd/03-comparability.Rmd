@@ -34,7 +34,9 @@ Likewise, instruments can be connected:
 * Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
 
-```{r linkage, echo = FALSE}
+```{r linkage, eval=FALSE, include=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+
 pattern <- matrix("", nrow = 16, ncol = 15)
 pattern[8, 1] <- "X"
 pattern[9, 2] <- "X"
@@ -67,8 +69,8 @@ df <- data.frame(
 knitr::kable(df, 
   caption = "Linkage pattern indicating combinations of cohorts and instruments.",
   booktabs = TRUE) %>%
-  kable_styling() %>%
-  scroll_box(width = "100%", height = "500px")
+  kableExtra::kable_styling() %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 &nbsp;
 
@@ -91,7 +93,7 @@ Many instruments for measuring child development have appeared since the works o
 
 We will exploit the overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
-```{r example2words}
+```{r example2words, echo = FALSE}
 items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
            "grihsd217", "vinxxc016")
 labels <- dscore::get_labels(items)
@@ -111,6 +113,7 @@ We order item mappings into five domains: fine motor (FM), gross motor (GM), cog
 suppressPackageStartupMessages(library(ggraph))
 suppressPackageStartupMessages(library(igraph))
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(dplyr))
 
 varlist_gcdg <- dmetric::prepare_items(min_cat = 10)
 eqset2 <- ddata::get_equates(varlist_gcdg$items)
@@ -532,8 +535,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 ```
 (ref:mapping_rec) Connections between the instruments via mapped item groups in the Receptive language domain.
 
-<!-- NOTE: Interesting idea, but still need some work. It is not clear how to interpret these plots. The nodes (are these items, instruments?) appear fairly large. Can we see how many links there are between instruments, and what their equate group is? 
-Would a circular plot of items per domain be more natural to interpret? -->
+<!-- NOTE: cannot get the refernced figure names to be linked, I don't know what I'm doing wrong.. -->
 
 ## Age profile of item mappings {#sec:viewmapping}
 
@@ -545,7 +547,8 @@ suppressPackageStartupMessages(library("gseddata"))
 theme_set(theme_light())
 model <- dmetric::model_lean
 lean <- dmetric::gcdg_lean
-eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
+eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE)
+
 
 #plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
 ```
@@ -554,7 +557,7 @@ eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 
 One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. Also here the milestones have similar age patterns.
 
-```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
+```{r poteq, echo=FALSE, fig.height=12, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
 ##promising equates
 gridExtra::grid.arrange(
@@ -568,7 +571,7 @@ gridExtra::grid.arrange(
 
 Figure \@ref(fig:badeq) presents two examples of weak item mappings. Notable timing differences exist for the "babbles" and "bangs" milestones, which suggests that we should not take these as bridges.
 
-```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
+```{r badeq, echo=FALSE,  fig.height=12, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
 ##bad equates
 gridExtra::grid.arrange(
