@@ -1,6 +1,4 @@
----
-runtime: shiny 
----
+
 
 <!-- NOTE: We may need to reorganise a little. Move "Challenge of comparability" and "Bridging instruments" to before chapter 2. Then this chapter can concentrate on the identification and assessment of similar items 
 Jan2SvB: Now rewritten 3.1 to connectedness -->
@@ -76,7 +74,7 @@ knitr::kable(df,
 
 An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3` and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
-Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The table at <https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/> shows the counts of the number of registered scores per age group. What appears in table \@ref(tab:linkage) as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
+Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The linked [instrument linkage table](https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/) shows the counts of the number of registered scores per age group. What appears in Table \@ref(tab:linkage) as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
 
 Connectedness is a necessary - though not sufficient - requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:
 
@@ -102,14 +100,22 @@ t <- knitr::kable(df, booktabs = TRUE,
              caption = "Example of similar items from different instruments.")
 kableExtra::column_spec(t, 1, monospace = TRUE)
 ```
+&nbsp;
+
 
 The idea is to check whether these milestones measure development in the same way. If this is found to be accurate, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
 
 A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items.
 
-We order item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figures \@ref(fig:mapping_fm), \@ref(fig:mapping_gm), \@ref(fig:mapping_cog), \@ref(fig:mapping_rec) and \@ref(fig:mapping_exp)  display the connections between the instruments via the item groups in each domain. The items are displayed as the leafs and are colored by instrument. The blue lines display the links between the items (and instruments). 
+We order item mappings into five domains: fine motor (FM), gross motor (GM),
+cognitive (COG), receptive (REC) and expressive (EXP). Figure
+\@ref(fig:mappingshiny) displays the connections
+between the instruments via the item groups in each domain. The items are
+displayed as the leafs and are colored by instrument. The blue lines display the
+links between the items (and instruments).
 
-```{r mapping_fm, echo=FALSE, fig.cap='(ref:mapping_fm)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+```{r mappingfm, echo=FALSE, warning=FALSE, results='hide'}
+#fig.cap='(ref:mappingfm)', fig.height=7, fig.keep='all',
 suppressPackageStartupMessages(library(ggraph))
 suppressPackageStartupMessages(library(igraph))
 suppressPackageStartupMessages(library(tidyverse))
@@ -185,7 +191,7 @@ to <- match(eqcon$to, vertices$name)
 
 # With igraph: 
 #plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
+finemotormap <- 
 ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
    geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
   geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
@@ -197,13 +203,15 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
     plot.margin=unit(c(0,0,0,0),"cm"),
   ) +
   expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
-    ggtitle("Fine Motor")
+  ggtitle("Fine Motor Domain")
 
+#finemotormap
+#(ref:mappingfm) Connections between the instruments via mapped item groups in the Fine motor domain.
 ```
-(ref:mapping_fm) Connections between the instruments via mapped item groups in the Fine motor domain.
 
-```{r mapping_gm, echo=FALSE, fig.cap='(ref:mapping_gm)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
 
+```{r mappinggm, echo=FALSE, warning=FALSE, results='hide'}
+#fig.cap='(ref:mappinggm)', fig.height=7, fig.keep='all',
 #gross motor-----
 indicator <- which(grepl("GM", names(eqinst)))
 eqinst1 <- eqinst[indicator]
@@ -268,7 +276,7 @@ to <- match(eqcon$to, vertices$name)
 
 # With igraph: 
 #plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
+grossmotormap <- 
 ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
    geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
   geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
@@ -279,13 +287,15 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
     legend.position="none",
     plot.margin=unit(c(0,0,0,0),"cm"),
   ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
-
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+  ggtitle("Gross Motor Domain")
+#grossmotormap
+#(ref:mappinggm) Connections between the instruments via mapped item groups in the Gross motor domain.
 ```
-(ref:mapping_gm) Connections between the instruments via mapped item groups in the Gross motor domain.
 
-```{r mapping_cog, echo=FALSE, fig.cap='(ref:mapping_cog)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
 
+```{r mappingcog, echo=FALSE,  warning=FALSE, results='hide'}
+#fig.cap='(ref:mappingcog)', fig.height=7, fig.keep='all',
 
 #cognitive ----
 indicator <- which(grepl("COG", names(eqinst)))
@@ -350,7 +360,7 @@ to <- match(eqcon$to, vertices$name)
 
 # With igraph: 
 #plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
+cognitivemap <- 
 ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
    geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
   geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
@@ -361,12 +371,17 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
     legend.position="none",
     plot.margin=unit(c(0,0,0,0),"cm"),
   ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+  ggtitle("Cognitive Domain")
 
+#cognitivemap
+#(ref:mappingcog) Connections between the instruments via mapped item groups in the Cognitive domain.
 ```
-(ref:mapping_cog) Connections between the instruments via mapped item groups in the Cognitive domain.
 
-```{r mapping_exp, echo=FALSE, fig.cap='(ref:mapping_exp)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
+
+```{r mappingexp, echo=FALSE, warning=FALSE, results='hide'}
+
+#, fig.cap='(ref:mappingexp)', fig.height=7, fig.keep='all'}
 
 
 #exp -----
@@ -433,7 +448,7 @@ to <- match(eqcon$to, vertices$name)
 
 # With igraph: 
 #plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
+expressivemap <-
 ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
    geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
   geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
@@ -444,14 +459,16 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
     legend.position="none",
     plot.margin=unit(c(0,0,0,0),"cm"),
   ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+  ggtitle("Expressive Domain")
 
-
+#expressivemap
+#(ref:mappingexp) Connections between the instruments via mapped item groups in the Expressive language domain.
 ```
-(ref:mapping_exp) Connections between the instruments via mapped item groups in the Expressive language domain.
 
-```{r mapping_rec, echo=FALSE, fig.cap='(ref:mapping_rec)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
 
+```{r mappingrec, echo=FALSE,  warning=FALSE, results='hide'}
+#fig.cap='(ref:mappingrec)', fig.height=7, fig.keep='all',
 #rec -----
 indicator <- which(grepl("REC", names(eqinst)))
 eqinst1 <- eqinst[indicator]
@@ -516,7 +533,7 @@ to <- match(eqcon$to, vertices$name)
 
 # With igraph: 
 #plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
+receptivemap <- 
 ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
    geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
   geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
@@ -527,15 +544,76 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
     legend.position="none",
     plot.margin=unit(c(0,0,0,0),"cm"),
   ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
+  ggtitle("Receptive Domain")
 
+#receptivemap
+#(ref:mappingrec) Connections between the instruments via mapped item groups in the Receptive language domain.
+
+```
+
+
+```{r mappingshiny, echo=FALSE, fig.cap='(ref:mappingshiny)', fig.width=12, fig.keep = 'all', fig.align="center"}
+library(ggplot2)
+library(gtools)
+library(shiny)
+library(shinyWidgets)
+library(shinydashboard)
+maplist <- list(finemotormap, grossmotormap, cognitivemap, expressivemap, receptivemap)
+titlelist <- list(
+  "Fine motor domain",
+  "Gross motor domain",
+  "Cognitive domain", 
+  "Expressive domain", 
+  "Receptive domain"
+  
+)
+  steps <- reactiveVal(1)
+
+  observeEvent(input$run1, {
+    old_count = steps()
+    if(old_count < 5){
+    steps(old_count + 1)}
+    if(old_count == 5){
+      steps(old_count <- 1)
+    }
+  })
+  observeEvent(input$prev1, {
+    old_count = steps()
+    if(old_count > 1){
+      steps(old_count - 1)}
+    if(old_count == 1){
+      steps(old_count <- 5)
+    }
+  })
+
+
+##UI
+ # fluidRow(box(width = 1100,
+#               column(6, offset = 5,
+#     renderUI(
+#    HTML(print(titlelist[[steps()]])))
+#   )))
+   fluidRow(box(width = 1100,
+        column(1, offset = 0, actionButton("prev1", "Prev")),
+        column(1, offset = 4, actionButton("run1", "Next"))
+   )) 
+   
+   fluidRow(box(width = 900, 
+  box(
+     renderPlot({
+         maplist[[steps()]]
+  })
+    )
+   ))
+  
+   
 
 
 
 ```
-(ref:mapping_rec) Connections between the instruments via mapped item groups in the Receptive language domain.
+(ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
-<!-- NOTE: cannot get the refernced figure names to be linked, I don't know what I'm doing wrong.. -->
 
 ## Age profile of item mappings {#sec:viewmapping}
 
@@ -546,6 +624,7 @@ suppressPackageStartupMessages(library("gseddata"))
 
 theme_set(theme_light())
 model <- dmetric::model_lean
+model$package <- model$data_package #fix this in dscore::get_itemtable or in dmetric plot_p_a_equate (model$package == "ddata")
 lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE)
 
@@ -557,7 +636,7 @@ eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "
 
 One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. Also here the milestones have similar age patterns.
 
-```{r poteq, echo=FALSE, fig.height=12, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
+```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
 ##promising equates
 gridExtra::grid.arrange(
@@ -571,7 +650,7 @@ gridExtra::grid.arrange(
 
 Figure \@ref(fig:badeq) presents two examples of weak item mappings. Notable timing differences exist for the "babbles" and "bangs" milestones, which suggests that we should not take these as bridges.
 
-```{r badeq, echo=FALSE,  fig.height=12, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
+```{r badeq, echo=FALSE,  fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
 ##bad equates
 gridExtra::grid.arrange(

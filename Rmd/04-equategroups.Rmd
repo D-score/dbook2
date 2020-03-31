@@ -16,7 +16,7 @@ An *equate group* is a set of two or more milestones that measure the same thing
 
 Equate groups vary in quality. We can use high-quality equate groups to link instruments by restricting the difficulty of all milestones in the equate group to be identical. Equate groups thus provide a method for bridging different tools.
 
-```{r equateex, fig.cap = '(ref:equateex)'}
+```{r equateex, eval=FALSE, fig.cap=, include=FALSE}
 knitr::include_graphics("fig/equate_ex.png")
 ```
 (ref:equateex) Example of three instruments that are bridged by common items in equate groups.
@@ -191,7 +191,7 @@ plot_p_d_equate_i <- function(data,
 
   # if names in character vector, get equates subset from model
   if (!is.list(equates) & !is.null(equates))
-    equatelist <- model$fit$equate[equates]
+    equatelist <- dmetric::get_equates(model)[equates]
 
   items_eq <- unique(unlist(equatelist))
   items <- intersect(model$items, items_eq)
@@ -527,9 +527,9 @@ annotate_item_fit <- function(plot, itemfit, pole = TRUE, xlim=c(0,80)) {
 
 The evaluation of *equate fit* involves comparing the observed probabilities of endorsing the items in the equate group to the estimated probability of endorsing the items in the equate group. In an equate group there is an empirical curve for each item in the equate group and one shared estimated curve. The empirical curves should all be close to the estimated curve for a good equate fit, as presented in the examples in Figure \@ref(fig:ploteqfit).
 
-```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqfit)', message = FALSE}
+```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:ploteqfit)', message = FALSE}
 ps <- plot_p_d_equate_i(data = dmetric::gcdg_lean , model = dmetric::model_lean)
-grid.arrange(ps[["REC6"]], ps[["GM42"]])
+gridExtra::grid.arrange(ps[["REC6"]], ps[["GM42"]])
 ```
 (ref:ploteqfit) Two equate groups that present a good equate fit.
 
@@ -539,7 +539,7 @@ The equate *Turns head to sound of bell* is asked in slightly different formats 
 
 In modeling with equate groups, selecting the perfect combination of equate groups is a crucial step. Poor fitting equate groups need to be set as passive equate groups, such that the items in the group are not restricted to the same difficulty anymore. In a poor fitting equate group, the empirical curves for each item in the equate group are not close to the shared estimated curve. Additionally, the fit indices show poor fit as well (fit > 1). Two examples of poor equate fit are shown in Figure \@ref(fig:ploteqpoor).
 
-```{r ploteqpoor, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqpoor)', message = FALSE, cache = TRUE}
+```{r ploteqpoor, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:ploteqpoor)', message = FALSE, cache = TRUE}
 
 varlist <- list(adm = c("subjid", "agedays", "cohort", "subjido"),
                 items = gseddata::gcdg_items)
@@ -551,9 +551,9 @@ equatelist_poor$EXP12 <- c("by1mdd101", "ddicmm034", "grihsd011")
 model_poor <- fit_dmodel(varlist, data = dmetric::gcdg_lean, equate = equatelist_poor,
                     name = "", age_unit = "years")
 
-psp <- plot_p_d_equate_i(data = dmetric::gcdg_lean, model = model_poor)
+psp <- plot_p_d_equate_i(data = dmetric::gcdg_lean, equates = c("COG24", "EXP12"), model = model_poor)
 
-grid.arrange(psp[["COG24"]], psp[["EXP12"]])
+gridExtra::grid.arrange(psp[["COG24"]], psp[["EXP12"]])
 ```
 (ref:ploteqpoor) Two equate groups that present a poor equate fit.
 
@@ -567,13 +567,16 @@ An important assumption for equate groups is that the items in the group work in
 
 In Figure \@ref(fig:plotnoeqdif), two active equate groups are displayed with empirical curves in different colors for each cohort. In both equate groups the curves are close to each other and to the fitted dashed curve. The lack of difference between the curves for the different cohorts, shows that there is no different equate functioning (i.e. different item functioning, DIF) between the cohorts.
 
-```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotnoeqdif)', message = FALSE}
+```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:plotnoeqdif)', message = FALSE}
 eqs <- c("FM31", "EXP26", "GM44", "EXP23")
+
+eqs <- dmetric::get_equates(model = dmetric::model_lean, passive = TRUE)[eqs]
+
 pdif <- dmetric::plot_p_d_equate(data =  dmetric::gcdg_lean, 
                                  model = dmetric::model_lean, 
                                  equates = eqs,
                                  passive = TRUE, show_fit = FALSE)
-grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
+gridExtra::grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 ```
 (ref:plotnoeqdif) Two equate groups that present no differential item functioning between cohorts.
 
@@ -582,9 +585,9 @@ grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 
 In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that show differential item functioning between cohorts. The empirical curves are displayed for each cohort separately in different colors. The difference between these curves shows the differential item functioning. For example, the item *Throws ball*, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item *Says more than 5 words*, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).
 
-```{r ploteqdif, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:ploteqdif)', message = FALSE}
+```{r ploteqdif, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:ploteqdif)', message = FALSE}
 
-grid.arrange(pdif[["GM44"]], pdif[["EXP23"]])
+gridExtra::grid.arrange(pdif[["GM44"]], pdif[["EXP23"]])
 
 ```
 (ref:ploteqdif) Two equate groups that present differential item functioning between cohorts.

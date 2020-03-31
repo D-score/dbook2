@@ -1,7 +1,3 @@
----
-runtime: shiny 
----
-
 # Comparing ability {#ch:ability}
 
 In this chapter the $D$-score distributions per GCDG cohort are displayed and
@@ -394,10 +390,10 @@ sem_daz_c <- sem_daz %>%
   mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
          agenum = as.numeric(agecat))%>%
   group_by(cohort) %>% summarize ("n Q1(0.25)" = quantile(n, probs = 0.25, na.rm=TRUE), 
-                                  "n Q2(0.50)" = median(n, na.rm = TRUE), 
+                                  "median test length" = median(n, na.rm = TRUE), 
                                   "n Q3(0.75)" = quantile(n, probs = 0.75, na.rm=TRUE), 
                                   "p Q1(0.25)" = round(quantile(p, probs = 0.25, na.rm=TRUE),2), 
-                                  "p Q2(0.50)" = round(median(p, na.rm=TRUE),2),
+                                  "median pass probability" = round(median(p, na.rm=TRUE),2),
                                   "p Q3(0.75)" = round(quantile(p, probs = 0.75, na.rm=TRUE),2),
                                   daz = mean(daz, na.rm = TRUE),
                                   mean_a = mean(a, na.rm=TRUE), #voor omzetting naar daz
@@ -437,11 +433,12 @@ $D$-scores.
 
 ```{r npsem}
 library(kableExtra)
-kable(sem_daz_c[,1:7], 
+kable(sem_daz_c[,c(1,3,6)], 
       caption = "Quartiles for the number of items (n) and probability to pass the items (p) per cohort",
       bootabs = TRUE)
 
 ```
+&nbsp;
 
 ## Domain coverage {#sec:domains}
  
@@ -473,7 +470,7 @@ info_data <-
         long = TRUE,
         beta_range = 0:80
       )
- domaintable <- dmodel::get_domaintable("gcdg")
+ domaintable <- ddomain::get_domaintable("gcdg")
  info_wby_domain <- info_data %>% left_join(domaintable) %>%
         mutate(
           gm_info = .data$Gross.Motor * .data$info,
@@ -534,7 +531,7 @@ In Table \@ref(tab:example_part1) the item scores for a 1,5 year old child from 
 
 
 ```{r example_part1}
-
+library(ddomain)
 library(dplyr)
 library(tidyr)
 library(dscore)
@@ -546,7 +543,7 @@ subject <- 4100485
 
 itembank <- builtin_itembank[builtin_itembank$key == "gsed",]
 
-ex1_resp <- gcdg_lean$itm[gcdg_lean$itm$subjid == subject, c("item", "value")] %>% left_join(itembank, by = "item") %>% select(item, label, value, tau) %>% drop_na(tau) %>%   left_join(dmodel::get_domaintable("gcdg"), by = "item") %>% select(item, label, value, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive)
+ex1_resp <- gcdg_lean$itm[gcdg_lean$itm$subjid == subject, c("item", "value")] %>% left_join(itembank, by = "item") %>% select(item, label, value, tau) %>% drop_na(tau) %>%   left_join(ddomain::get_domaintable("gcdg"), by = "item") %>% select(item, label, value, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive)
 
 ex1_resp[,c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")] <- round(ex1_resp[,c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")],2)
 
@@ -604,7 +601,7 @@ item_information <- example1 %>%
   left_join(dscore_data, by = "subjid")%>%
   mutate(info = dinstrument::info(beta = .data$d, delta = .data$tau),
      rel_info = info / sum(info)) %>%
-  left_join(dmodel::get_domaintable("gcdg"), by = "item") %>%
+  left_join(ddomain::get_domaintable("gcdg"), by = "item") %>%
   select(item, label, rel_info, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive) %>%
   mutate("Fine Motor" = rel_info * Fine.Motor,
          "Gross Motor" = rel_info * Gross.Motor,
@@ -682,7 +679,7 @@ itembank <- dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("
 
 domain_contr <- function(data, 
                          itembank = dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("key", "item","label", "tau")], 
-                         domaintable = dmodel::get_domaintable("gcdg"),
+                         domaintable = ddomain::get_domaintable("gcdg"),
                          vote_weight = TRUE){
 
 #items + scores >> dscore
@@ -705,7 +702,7 @@ item_information <- example1 %>%
   drop_na(.data$tau)%>%
   left_join(dscore_data, by = "subjid")%>%
    mutate(info = dinstrument::info(beta = .data$d, delta = .data$tau)) %>%
-  left_join(dmodel::get_domaintable("gcdg"), by = "item") 
+  left_join(ddomain::get_domaintable("gcdg"), by = "item") 
 
 
 
@@ -785,7 +782,7 @@ that load to the domain in question to calculate the $D$-score.
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
 d_domain <- function(data,
-                     domaintable = dmodel::get_domaintable("gcdg"),
+                     domaintable = ddomain::get_domaintable("gcdg"),
                      domain, 
                      items = NULL, 
                      vote_weight = NULL){
