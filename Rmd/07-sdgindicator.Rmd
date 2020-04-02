@@ -1,4 +1,5 @@
 
+
 # SDG 4.2.1 Indicator {#ch:SDGindicator}
 
 This chapter explains how the $D$-score can be used to indicate on-track
@@ -65,12 +66,12 @@ defined as on-track. Scores that are more than two standard deviation below the
 median, can be defined as off-track.
 
 
-```{r eval=FALSE, include=FALSE}
+```{r echo=FALSE}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
   height = "600px")
 ```
 
-```{r inside shiny references, echo=FALSE, message=FALSE, warning=FALSE}
+```{r inside shiny references, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 ##global part:
 
 ##CHECK POSSIBILITY TO USE CACHED PLOTS IN ORDER TO LOAD FASTER
@@ -228,7 +229,7 @@ calculate the daz in each country that is included in the current GCDG study. By
 using the -2SD rule, we can obtain the percentage on-track development in each
 country.
 
-```{r}
+```{r, echo = FALSE}
 tabtrack <- model_lean$dscore %>%
   mutate(track = ifelse(daz < -2, 0, 1),
          country =  substr(cohort, 6, 8) ) %>%
@@ -241,7 +242,7 @@ kable(tabtrack,
       digits = 2)
 
 ```
-
+&nbsp;
 
 ## Relation to other estimates {#sec:otherestimates}
 
@@ -252,7 +253,7 @@ In the publication on the $D$-score from the GCDG project [@Weber2019], the conc
 The WHO defines stunted as [when the height-for-age is more than two standard deviations below
 the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html).
 
-```{r}
+```{r, echo=FALSE}
 ##DAZ in stunted vs non-stunted (as done in Weber paper)
 
 
@@ -263,7 +264,7 @@ In Figure
 development in each country.
 
 
-```{r}
+```{r,echo=FALSE}
 
 ##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
 library("dmetric")

@@ -1,5 +1,6 @@
 
 
+
 <!-- NOTE: We may need to reorganise a little. Move "Challenge of comparability" and "Bridging instruments" to before chapter 2. Then this chapter can concentrate on the identification and assessment of similar items 
 Jan2SvB: Now rewritten 3.1 to connectedness -->
 
@@ -553,7 +554,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 ```
 
 
-```{r mappingshiny, echo=FALSE, fig.cap='(ref:mappingshiny)', fig.width=12, fig.keep = 'all', fig.align="center"}
+```{r mappingshiny, eval=FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=12, include=FALSE}
 library(ggplot2)
 library(gtools)
 library(shiny)
@@ -612,19 +613,20 @@ titlelist <- list(
 
 
 ```
+
 (ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
 
 ## Age profile of item mappings {#sec:viewmapping}
 
-```{r plot_p_a_eq, include=FALSE}
+```{r plot_p_a_eq, echo=FALSE}
 suppressPackageStartupMessages(library("dmodel"))
 suppressPackageStartupMessages(library("dmetric"))
 suppressPackageStartupMessages(library("gseddata"))
 
 theme_set(theme_light())
 model <- dmetric::model_lean
-model$package <- model$data_package #fix this in dscore::get_itemtable or in dmetric plot_p_a_equate (model$package == "ddata")
+#model$package <- model$data_package #fix this in dscore::get_itemtable or in dmetric plot_p_a_equate (model$package == "ddata")
 lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE)
 
