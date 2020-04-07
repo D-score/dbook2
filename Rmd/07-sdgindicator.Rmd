@@ -62,14 +62,15 @@ age-conditional z-scores. This is done by three smoothed curves representing the
 median, coefficient of variation and the skewness. The resulting age
 standardized scores for development (daz), are then used to define on-track
 development. So D-scores within 2 standard deviations from the median can be
-defined as on-track. Scores that are more than two standard deviation below the
+defined as on-track. Scores that are more than two standard deviation *below* the
 median, can be defined as off-track.
 
 
-```{r echo=FALSE, fig.width=11}
+```{r dscorerefs, echo=FALSE, fig.width=11, fig.cap='(ref:dscorerefs)' }
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
   height = "700px")
 ```
+(ref:dscorerefs) Method to define on track development
 
 ```{r inside shiny references, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 ##global part:
@@ -213,7 +214,6 @@ steps_list <- list(txt_p1,txt_p2,txt_p3,txt_p4,txt_p5,txt_p6)
 
 
 ```
-(ref:dscorerefs) $D$-score reference construction and translation to on-track development.
 
 
 Note that the current reference is based on the GCDG study. The cohorts that are
