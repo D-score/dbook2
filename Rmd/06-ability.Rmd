@@ -783,7 +783,7 @@ Reconsider if we want to add this here. The residual plots do not give us a lot 
 
 It is possible to calculate a $D$-score that is more representative for a
 specific domain using the current $D$-score model. We can use only the items
-that load to the domain in question to calculate the $D$-score. In Figure \@ref(fig:domaind) example scores are displayed for a 3 year old boy from the Chili 2 (`GCDG-CHL-2`) cohort. The grey line displayes the overall $D$-score (38.55$D$) and the colored points are the domain $D$-scores. This plots shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively lower. The bars at the bottom of the plots display the available items per domain. Note that the number of items for Gross Motor is very low (only 3 items). The white overlayed line at 5 items, indicates the bare minimum for a $D$-score.  
+that load to the domain in question to calculate the $D$-score. In Figure \@ref(fig:domaind) example scores are displayed for a 3 year old boy from the Chili 2 (GCDG-CHL-2) cohort. The grey line displayes the overall $D$-score (38.55$D$) and the colored points are the domain $D$-scores. This plots shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively lower. The bars at the bottom of the plots display the available items per domain. Note that the number of items for Gross Motor is very low (only 3 items). The white overlayed line at 5 items, indicates the bare minimum for a $D$-score.  
 
 
 ```{r domaind, echo = FALSE, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaind)'}
