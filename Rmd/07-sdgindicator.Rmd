@@ -264,7 +264,7 @@ In Figure
 development in each country.
 
 
-```{r,echo=FALSE}
+```{r stunt,echo=FALSE, fig.cap = '(ref:stunt)'}
 
 ##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
 library("dmetric")
