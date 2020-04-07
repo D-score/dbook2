@@ -110,10 +110,11 @@ A first step in the bridging process is to group items from different instrument
 
 We order item mappings into five domains: fine motor (FM), gross motor (GM),
 cognitive (COG), receptive (REC) and expressive (EXP). Figure
-\@ref(fig:mappingshiny) displays the connections
-between the instruments via the item groups in each domain. The items are
-displayed as the leafs and are colored by instrument. The blue lines display the
-links between the items (and instruments).
+\@ref(fig:mappingshiny) displays the connections between the instruments via the
+item groups in each domain, with the `Prev` and `Next` buttons you can click
+through the five domains. The items are displayed as the leafs and are colored
+by instrument. The blue lines display the links between the items (and
+instruments).
 
 ```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=11}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
@@ -124,7 +125,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/"
 
 ## Age profile of item mappings {#sec:viewmapping}
 
-```{r plot_p_a_eq, echo=FALSE, message=FALSE, warning=FALSE}
+```{r plot_p_a_eq, message=FALSE, warning=FALSE, include=FALSE}
 suppressPackageStartupMessages(library("dmodel"))
 suppressPackageStartupMessages(library("dmetric"))
 suppressPackageStartupMessages(library("gseddata"))
