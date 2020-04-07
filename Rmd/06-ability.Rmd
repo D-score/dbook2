@@ -19,7 +19,7 @@ For each study that is included in the GCDG assembly, the $D$-score can be
 obtained using the developed global model. In the graphs below, the $D$-score
 distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
-By using the *next* button below the plot you can click through the cohorts.
+By using the `next` button below the plot you can click through the cohorts.
 Using the selection bar above the graph, you can select a specific cohort.
 
 ```{r echo=FALSE, fig.width=11}
@@ -783,10 +783,51 @@ Reconsider if we want to add this here. The residual plots do not give us a lot 
 
 It is possible to calculate a $D$-score that is more representative for a
 specific domain using the current $D$-score model. We can use only the items
-that load to the domain in question to calculate the $D$-score. In Figure \@ref(fig:domaind) example scores are displayed for a 3 year old boy from the Chili 2 (GCDG-CHL-2) cohort. The grey line displayes the overall $D$-score (38.55$D$) and the colored points are the domain $D$-scores. This plots shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively lower. The bars at the bottom of the plots display the available items per domain. Note that the number of items for Gross Motor is very low (only 3 items). The white overlayed line at 5 items, indicates the bare minimum for a $D$-score.  
+that load to the domain in question to calculate the $D$-score for that specific domain. Since items may relate to multiple domain, an item can contribute to the $D$-score for multiple domains. As the $D$-score methodology is developed to measure a single construct for development, the domain $D$-scores correlate highly ($r > 0.95$). However, these scores can potentially inform on the cohort level (Figure \@ref(fig:domaind)) or the individual level (see Figure \@ref(fig:domaindex)).
 
 
-```{r domaind, echo = FALSE, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaind)'}
+```{r domaind, echo = FALSE, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaind)', cache=TRUE}
+
+library(ddomain)
+library(dplyr)
+library(tidyr)
+
+data_w <- dmetric::gcdg_lean[["itm"]] %>% spread(key = "item", value = "value") %>%
+  left_join(gcdg_lean[["visit"]]) %>%
+  mutate(age = agedays/365.25)
+
+d_dom <- d_domain(data = data_w, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items,domaintable = ddomain::get_domaintable(key = "gcdg"), vote_weight = 0)
+
+cor(d_dom[,c("d" ,"d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive")], use = "complete.obs")
+
+d_dom_d <- d_dom %>% 
+  cbind(data_w[,c("cohort", "age"),]) %>%
+  pivot_longer(cols = c("d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive"), names_to = "domain1", values_to = "d1") %>% 
+  select(c("cohort", "domain1", "d1", "a"))%>% 
+  mutate(domain = gsub("d_", "", .data$domain1)) %>%
+  rename(d = d1) %>% group_by(cohort, domain) %>%
+  summarize( d= mean(d, na.rm = TRUE))
+
+ggplot(d_dom_d, aes( x= cohort, y = d, color = domain))+
+  geom_point()+
+  coord_flip()+
+  ylab("Average domain specific D-scores") +
+  xlab("")
+
+```
+(ref:domaind) Domain $D$-scores per cohort. 
+
+In Figure \@ref(fig:domaindex) example scores are displayed for a 3 year old boy
+from the Chili 2 (GCDG-CHL-2) cohort. The grey line displayes the overall
+$D$-score (38.55$D$) and the colored points are the domain $D$-scores. This
+plots shows that for the language domains (i.e. Expressive and Receptive), this
+boy scores relatively lower. The bars at the bottom of the plots display the
+available items per domain. Note that the number of items for Gross Motor is
+very low (only 3 items). The white overlayed line at 5 items, indicates the bare
+minimum for a $D$-score.
+
+
+```{r domaindex, echo = FALSE, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaindex)'}
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
 
@@ -826,4 +867,4 @@ ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
 
 
 ```
-(ref:domaind) Domain $D$-scores for a 3 year old boy from the Chile 2 cohort. 
+(ref:domaindex) Domain $D$-scores for a 3 year old boy from the Chile 2 cohort. 
