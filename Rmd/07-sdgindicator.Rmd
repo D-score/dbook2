@@ -41,7 +41,7 @@ interpretation of the $D$-score. Nevertheless, for obtaining accurate references
 that represent world-wide population, more representative (existing) data needs
 to be added.
 
-## Definition *developmentally on track* (#sec:references)
+## Definition *developmentally on track* {#sec:references}
 
 For child growth, (global) standards are published by the World Health
 Organization (WHO) that are used to monitor growth in children and to define
@@ -66,9 +66,9 @@ defined as on-track. Scores that are more than two standard deviation below the
 median, can be defined as off-track.
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.width=11}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
-  height = "600px")
+  height = "700px")
 ```
 
 ```{r inside shiny references, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
