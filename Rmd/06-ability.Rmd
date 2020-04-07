@@ -148,7 +148,7 @@ number of items available in that age range, but also to the design of the
 cohorts where sometimes relatively easy items are administered.
 
 
-```{r semfora, echo=, fig.cap='(ref:semfora)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 library("dmetric")
 library("gseddata")
 library("dplyr")
@@ -373,7 +373,7 @@ sem_daz_a <- sem_daz %>%
 
 
 ```
-(ref:dscoresems) Standard Error of Measurement for age by cohort
+
 
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the
