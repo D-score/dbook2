@@ -16,7 +16,7 @@ An *equate group* is a set of two or more milestones that measure the same thing
 
 Equate groups vary in quality. We can use high-quality equate groups to link instruments by restricting the difficulty of all milestones in the equate group to be identical. Equate groups thus provide a method for bridging different tools.
 
-```{r equateex, eval=FALSE, fig.cap=, include=FALSE}
+```{r equateex, echo=FALSE, fig.cap='(ref:equateex)'}
 knitr::include_graphics("fig/equate_ex.png")
 ```
 (ref:equateex) Example of three instruments that are bridged by common items in equate groups.
