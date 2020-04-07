@@ -33,7 +33,7 @@ Likewise, instruments can be connected:
 * Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
 
-```{r linkage, eval=FALSE, include=FALSE}
+```{r linkage, echo=FALSE}
 suppressPackageStartupMessages(library(dplyr))
 
 pattern <- matrix("", nrow = 16, ncol = 15)
@@ -115,7 +115,7 @@ between the instruments via the item groups in each domain. The items are
 displayed as the leafs and are colored by instrument. The blue lines display the
 links between the items (and instruments).
 
-```{r mappingfm, echo=FALSE, warning=FALSE, results='hide'}
+```{r mappingfm, echo=FALSE, warning=FALSE,include=FALSE, results='hide'}
 #fig.cap='(ref:mappingfm)', fig.height=7, fig.keep='all',
 suppressPackageStartupMessages(library(ggraph))
 suppressPackageStartupMessages(library(igraph))
@@ -211,7 +211,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 ```
 
 
-```{r mappinggm, echo=FALSE, warning=FALSE, results='hide'}
+```{r mappinggm, echo=FALSE, warning=FALSE,include=FALSE, results='hide'}
 #fig.cap='(ref:mappinggm)', fig.height=7, fig.keep='all',
 #gross motor-----
 indicator <- which(grepl("GM", names(eqinst)))
@@ -295,7 +295,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 ```
 
 
-```{r mappingcog, echo=FALSE,  warning=FALSE, results='hide'}
+```{r mappingcog, echo=FALSE,  warning=FALSE,include=FALSE, results='hide'}
 #fig.cap='(ref:mappingcog)', fig.height=7, fig.keep='all',
 
 #cognitive ----
@@ -380,7 +380,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 ```
 
 
-```{r mappingexp, echo=FALSE, warning=FALSE, results='hide'}
+```{r mappingexp, echo=FALSE, warning=FALSE,include=FALSE, results='hide'}
 
 #, fig.cap='(ref:mappingexp)', fig.height=7, fig.keep='all'}
 
@@ -468,7 +468,7 @@ geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle,
 ```
 
 
-```{r mappingrec, echo=FALSE,  warning=FALSE, results='hide'}
+```{r mappingrec, eval=FALSE, warning=FALSE, include=FALSE, results='hide'}
 #fig.cap='(ref:mappingrec)', fig.height=7, fig.keep='all',
 #rec -----
 indicator <- which(grepl("REC", names(eqinst)))
@@ -614,12 +614,18 @@ titlelist <- list(
 
 ```
 
+
+
+```{r mappinshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=11}
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
+  height = "600px")
+```
 (ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
 
 ## Age profile of item mappings {#sec:viewmapping}
 
-```{r plot_p_a_eq, echo=FALSE}
+```{r plot_p_a_eq, echo=FALSE, message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library("dmodel"))
 suppressPackageStartupMessages(library("dmetric"))
 suppressPackageStartupMessages(library("gseddata"))
@@ -664,9 +670,7 @@ gridExtra::grid.arrange(
 
  
 
-While these plots are suggestive, their interpretation is surprisingly complicated. 
-
-We may find that age profiles of two milestones *A and B* administered in samples 1 and 2 respectively *are identical* if
+While these plots are suggestive, their interpretation is surprisingly complicated. We may find that age profiles of two milestones *A and B* administered in samples 1 and 2 respectively *are identical* if
 
 * A and B are equally difficult and samples 1 and 2 have the same maturation level;
 * A is more difficult than B and sample 1 is more advanced than 2.
