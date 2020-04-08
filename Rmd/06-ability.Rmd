@@ -1,7 +1,3 @@
----
-runtime: shiny 
----
-
 # Comparing ability {#ch:ability}
 
 In this chapter the $D$-score distributions per GCDG cohort are displayed and
@@ -11,8 +7,7 @@ for a single $D$-score.
 
 * D-score distribution by study (\@ref(sec:dscores))
 * Impact of measurement error (\@ref(sec:sem))
-* Domain coverage (\@ref(sec:domains))
-
+* Domain coverage and scores (\@ref(sec:domains))
 
 ## D-score distribution by study {#sec:dscores}
 
@@ -20,14 +15,99 @@ For each study that is included in the GCDG assembly, the $D$-score can be
 obtained using the developed global model. In the graphs below, the $D$-score
 distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
-By using the *next* button below the plot you can click through the cohorts.
+By using the `next` button below the plot you can click through the cohorts.
 Using the selection bar above the graph, you can select a specific cohort.
 
-```{r}
+```{r echo=FALSE, fig.width=10}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dscores/", 
-  height = "600px")
+  height = "700px")
 ```
 (ref:dscoredist) $D$-score distributions by study.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(dmetric)
+library(gtools)
+library(shiny)
+library(shinyWidgets)
+library(shinydashboard)
+
+# d by study
+coh_ls <-
+  as.character(unlist(mixedsort(unique(
+    dmetric::model_lean$dscore["cohort"]
+  ))))
+#show the sem by cohort
+coh_ls <- coh_ls[!is.na(coh_ls)]
+
+    count_coh <- reactiveVal(1)
+
+    observeEvent(input$run1,{
+        old_count = count_coh()
+        count_coh(old_count + 1)
+    })
+    observeEvent(input$prev1,{
+        old_count = count_coh()
+        count_coh(old_count - 1)
+    })
+
+    observeEvent(input$cohort_list,{
+        count_coh(which(coh_ls == input$cohort_list))
+    })
+
+    observe({
+        if (length(count_coh()) > 0) {
+            updateSelectInput(session,
+                              "cohort_list",
+                              choices = coh_ls,
+                              selected = coh_ls[count_coh()])
+        }
+        if (length(count_coh()) == 0) {
+            updateSelectInput(session,
+                              "cohort_list",
+                              choices = coh_ls,
+                              selected = coh_ls[1])
+        }
+    })
+
+    
+    
+        fluidRow(box(
+                     column(width = 5, offset = 0,
+                            selectInput(
+                                inputId = "cohort_list",
+                                label = "cohort list",
+                                choices = ""
+                            ))))
+
+            fluidRow(
+                          renderPlot({
+   
+    print(
+      dmetric::plot_d_a_group(
+        data = dmetric::gcdg_lean,
+        model = dmetric::model_lean,
+        by = "cohort",
+        ref_name = "gcdg",
+        grouping = coh_ls[which(coh_ls == input$cohort_list)],
+        print_model_name = FALSE
+      )
+    )
+
+        }) 
+                                        
+                                        )
+        
+            
+            fluidRow(
+                column(1, offset = 1, actionButton("prev1", "Prev")),
+                column(1, offset = 5, actionButton("run1", "Next"))
+            )
+        
+```
+
 
 
 ## Impact of measurement error {#sec:sem}
@@ -42,7 +122,7 @@ items is increased to 15, and still some more until the number of items is 30.
 More than 30 items has little effect on the sem.
 
 
-```{r semforn, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:semforn)', message = FALSE}
+```{r semforn, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:semforn)', message = FALSE, echo = FALSE}
 library(ggplot2)
 
 ggplot(data = dmetric::model_lean$dscore )+
@@ -64,7 +144,7 @@ number of items available in that age range, but also to the design of the
 cohorts where sometimes relatively easy items are administered.
 
 
-```{r semfora, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:semfora)', message = FALSE}
+```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 library("dmetric")
 library("gseddata")
 library("dplyr")
@@ -133,7 +213,7 @@ range 38 to 57 items) and the probability to pass was approximately $P$ = 0.64
 (quartile range between 0.53 < $P$ > 0.79). The latter study has therefore more
 precise $D$-score estimates.
 
-```{r dscoresems}
+```{r dscoresems, echo=FALSE, fig.width=10, fig.cap = '(ref:dscoresems)'}
 #n items per child Netherlands 1 cohort = 8.5
 #ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-NLD-SMOCC")]
 #itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]
@@ -152,9 +232,144 @@ precise $D$-score estimates.
 
 
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
-  height = "800px")
+  height = "700px")
 ```
-(ref:dscoresems) Standard Error of Measurement for age by cohort
+(ref:dscoresems) The standard error of measurement around the standardized $D$-scores (DAZ) per cohort
+
+
+```{r eval=FALSE, message=FALSE, include=FALSE, warnings=FALSE, echo = FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(dmetric)
+library(gtools)
+library(shiny)
+library(shinyWidgets)
+library(shinydashboard)
+
+
+model <- dmetric::model_lean
+data_input <- dmetric::gcdg_lean
+
+# d by study
+coh_ls <-
+  as.character(unlist(mixedsort(unique(
+    dmetric::model_lean$dscore["cohort"]
+  ))))
+#show the sem by cohort
+coh_ls <- coh_ls[!is.na(coh_ls)]
+
+sem_daz <- dmetric::model_lean$dscore %>%
+  mutate(agemos = a *12,
+         low_d = d - sem,
+         high_d = d +sem,
+         low_daz = dscore::daz(low_d, x = a),
+         high_daz = dscore::daz(high_d, x = a))
+
+sem_daz_a <- sem_daz %>%
+  mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)),
+         agenum = as.numeric(agecat))%>%
+  group_by(agenum, cohort) %>%
+  summarize (daz = mean(daz, na.rm = TRUE),
+             mean_a = mean(a, na.rm=TRUE), #voor omzetting naar daz
+             mean_d = mean(d, na.rm = TRUE),
+             var_betw = var(d, na.rm = TRUE),
+             var_with = sum(sem^2, na.rm = TRUE),
+             n =  sum(!is.na(sem))
+  ) %>% ungroup() %>%
+  mutate(sem_pool = sqrt((var_with + var_betw)/ (n-1)),
+         low_d = mean_d - sem_pool,
+         high_d = mean_d + sem_pool,
+         mean_daz = dscore::daz(mean_d, x = mean_a),
+         low_daz = dscore::daz(low_d, x = mean_a),
+         high_daz = dscore::daz(high_d, x = mean_a))
+
+
+    count_coh <- reactiveVal(1)
+
+    observeEvent(input$run1,{
+        old_count = count_coh()
+        count_coh(old_count + 1)
+    })
+    observeEvent(input$prev1,{
+        old_count = count_coh()
+        count_coh(old_count - 1)
+    })
+
+    observeEvent(input$cohort_list,{
+        count_coh(which(coh_ls == input$cohort_list))
+    })
+
+    observe({
+        if (length(count_coh()) > 0) {
+            updateSelectInput(session,
+                              "cohort_list",
+                              choices = coh_ls,
+                              selected = coh_ls[count_coh()])
+        }
+        if (length(count_coh()) == 0) {
+            updateSelectInput(session,
+                              "cohort_list",
+                              choices = coh_ls,
+                              selected = coh_ls[1])
+        }
+    })
+
+    
+    
+        fluidRow(box(
+                     column(width = 5, offset = 0,
+                            selectInput(
+                                inputId = "cohort_list",
+                                label = "cohort list",
+                                choices = ""
+                            ))))
+
+            fluidRow(
+                          renderPlot({
+        print(
+            ggplot()+
+                geom_point(data = subset(sem_daz,cohort == coh_ls[which(coh_ls == input$cohort_list)]),aes(x = agemos, y = daz), color = "lightgrey")+
+                geom_errorbar(data = subset(sem_daz,cohort == coh_ls[which(coh_ls == input$cohort_list)]),aes(x = agemos, ymin = low_daz, ymax = high_daz), color = "lightgrey")+
+            geom_point(data = subset(sem_daz_a,cohort == coh_ls[which(coh_ls == input$cohort_list)]), aes(x = agenum, y = mean_daz))+
+            geom_errorbar(data = subset(sem_daz_a,cohort == coh_ls[which(coh_ls == input$cohort_list)]),aes(x = agenum, ymin = low_daz, ymax = high_daz))+
+                xlab("age(month)")+ ylab("daz(sem)")+
+                ylim(c(-2,2))+xlim(c(0,48))+
+                ggtitle("All data points")
+
+        )}) 
+                                        
+                                        )
+        
+            
+            fluidRow(
+                column(1, offset = 1, actionButton("prev1", "Prev")),
+                column(1, offset = 5, actionButton("run1", "Next"))
+            )
+        
+
+        
+
+#ggplot(data = sem_daz_a )+
+#  geom_point(aes(x=agenum, y=daz)) +
+#  geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
+#  xlab("age(months)")+
+#  ylim(c(-2,2))
+
+#ggplot(data = sem_daz_a )+
+#  geom_point(aes(x=agenum, y=mean_daz)) +
+#  geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
+#  xlab("age(months)")+ ylab("daz")
+#  ylim(c(-2,2))
+
+#ggplot(data = sem_daz_a )+
+#  geom_point(aes(x=agenum, y=mean_d)) +
+#  geom_errorbar(aes(x = agenum, ymin=low_d, ymax=high_d), width=.1)+
+#  xlab("age(months)") + ylab("D-score")
+
+
+```
+
 
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the
@@ -172,15 +387,15 @@ the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
 number of items per child, and on the other hand the difficulty of the
 administered items. 
 
-```{r cohortsem, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:cohortsem)', message = FALSE}
+```{r cohortsem, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:cohortsem)', message = FALSE, echo = FALSE}
 sem_daz_c <- sem_daz %>% 
   mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
          agenum = as.numeric(agecat))%>%
   group_by(cohort) %>% summarize ("n Q1(0.25)" = quantile(n, probs = 0.25, na.rm=TRUE), 
-                                  "n Q2(0.50)" = median(n, na.rm = TRUE), 
+                                  "test length (median)" = median(n, na.rm = TRUE), 
                                   "n Q3(0.75)" = quantile(n, probs = 0.75, na.rm=TRUE), 
                                   "p Q1(0.25)" = round(quantile(p, probs = 0.25, na.rm=TRUE),2), 
-                                  "p Q2(0.50)" = round(median(p, na.rm=TRUE),2),
+                                  "pass probability (median)" = round(median(p, na.rm=TRUE),2),
                                   "p Q3(0.75)" = round(quantile(p, probs = 0.75, na.rm=TRUE),2),
                                   daz = mean(daz, na.rm = TRUE),
                                   mean_a = mean(a, na.rm=TRUE), #voor omzetting naar daz
@@ -207,9 +422,9 @@ sem_daz_c <- sem_daz %>%
 (ref:cohortsem) Standard Error of Measurement per cohort.
 
 
-Table \@ref(tab:npsem) shows the quartile ranges for the
-number of items per child (n) and the probability to pass the items (p). In The
-Ethiopia cohort 39 items (Q2; median) were administered with a median
+Table \@ref(tab:npsem) shows the median
+number of items per child (test length) and the probability to pass the items (p). In The
+Ethiopia cohort 39 items were administered with a median
 probability of 0.66 and in the South Africa study just 12 items with a median
 probability of 1. Accordingly, in the Ethiopia study more items were
 administered per child that also have a high level of information for the
@@ -218,15 +433,16 @@ that were also relatively easy and therefore contained less information for the
 $D$-scores.
 
 
-```{r npsem}
+```{r npsem, echo = FALSE}
 library(kableExtra)
-kable(sem_daz_c[,1:7], 
-      caption = "Quartiles for the number of items (n) and probability to pass the items (p) per cohort",
+kable(sem_daz_c[,c(1,3,6)], 
+      caption = "Test length and probability to pass the items per cohort",
       bootabs = TRUE)
 
 ```
+&nbsp;
 
-## Domain coverage {#sec:domains}
+## Domain coverage and scores {#sec:domains}
  
 The $D$-score is a one number score that measures early child development. To
 evaluate the content validity of the $D$-score we can make sure that all
@@ -238,12 +454,12 @@ child development: Fine Motor, Gross Motor, Expressive, Receptive, Cognitive.
 The items in the $D$-score model can be linked to one or more domains and the
 cumulative item information to the $D$-score for each domain can be evaluated.
 In Figure \@ref(fig:domaincov), the coverage of the domains for the $D$-score is
-displayed. This shows that at lower levels of the $D$-score, motor development
-is more dominant and that at higher levels of the $D$-score the cognitive van
+displayed. This shows that at lower levels of the $D$-score, gross motor development
+is more dominant and that at higher levels of the $D$-score the cognitive and
 language domains increase in importance.
 
 
-```{r domaincov, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaincov)', message = FALSE}
+```{r domaincov, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaincov)', message = FALSE, echo = FALSE}
 library(tidyr)
 library(dplyr)
 
@@ -256,7 +472,7 @@ info_data <-
         long = TRUE,
         beta_range = 0:80
       )
- domaintable <- dmodel::get_domaintable("gcdg")
+ domaintable <- ddomain::get_domaintable("gcdg")
  info_wby_domain <- info_data %>% left_join(domaintable) %>%
         mutate(
           gm_info = .data$Gross.Motor * .data$info,
@@ -267,15 +483,15 @@ info_data <-
           adp_info = .data$Adaptive * .data$info) %>%
         group_by(ability) %>%
         summarise(
-          "Gross Motor" = sum(.data$gm_info, na.rm = TRUE),
-          "Fine Motor" = sum(.data$fm_info, na.rm = TRUE),
-          "Expressive" = sum(.data$exp_info, na.rm = TRUE),
-          "Receptive" = sum(.data$rec_info, na.rm = TRUE),
-          "Cognitive" = sum(.data$cog_info, na.rm = TRUE),
-          "Adaptive" = sum(.data$adp_info, na.rm=TRUE),
+          "Gross Motor" = sum(.data$gm_info, na.rm = TRUE)/sum(.data$info, na.rm = TRUE) *100,
+          "Fine Motor" = sum(.data$fm_info, na.rm = TRUE)/sum(.data$info, na.rm = TRUE) *100,
+          "Expressive" = sum(.data$exp_info, na.rm = TRUE)/sum(.data$info, na.rm = TRUE) *100,
+          "Receptive" = sum(.data$rec_info, na.rm = TRUE)/sum(.data$info, na.rm = TRUE) *100,
+          "Cognitive" = sum(.data$cog_info, na.rm = TRUE)/sum(.data$info, na.rm = TRUE) *100,
+          "Adaptive" = sum(.data$adp_info, na.rm=TRUE)/sum(.data$info, na.rm = TRUE) *100,
           missing = (sum(.data$info) - sum(.data$gm_info, na.rm = TRUE) -
                        sum(.data$fm_info, na.rm = TRUE) - sum(.data$cog_info, na.rm = TRUE) -
-                       sum(.data$exp_info, na.rm = TRUE) - sum(.data$rec_info, na.rm = TRUE) - sum(.data$adp_info, na.rm=TRUE) )
+                       sum(.data$exp_info, na.rm = TRUE) - sum(.data$rec_info, na.rm = TRUE) - sum(.data$adp_info, na.rm=TRUE) ) /sum(.data$info, na.rm = TRUE) *100
         ) %>%
         gather(key = "domain",
                value = "info",
@@ -291,7 +507,7 @@ info_data <-
  
     ggplot(data = info_wby_domain, aes(x = ability, y = info, fill = domain)) +
       geom_bar(stat = "identity") +
-      ylab("Information") +
+      ylab("% of information") +
       xlab("Ability (D-score)")+
       scale_color_manual(values = dmodel::get_color_domain("gcdg"),
                          na.value = "grey")
@@ -302,390 +518,101 @@ info_data <-
 (ref:domaincov) Domain coverage of the $D$-score scale.
 
 
-
-### Domain coverage of a single $D$-score
-
-The domain information for an individual $D$-score can also be calculated. To do
-that we need the following information:
-
-* what items were administered to measure the $D$-score
-* to which domains are the items linked 
-* what part of the information provides each item to the calculated $D$-score.
-
-
-In Table \@ref(tab:example_part1) the item scores for a 1,5 year old child from the China cohort is displayed. This child has a $D$-score of 57.12. For each item, experts have indicated
-to what domain(s) the item is linked. Items can link to multiple domains and
-based on expert voting, we have a proportional loading for each item to a
-domain.
-
-
-```{r example_part1}
-
-library(dplyr)
-library(tidyr)
-library(dscore)
-library(ggplot2)
-library(kableExtra)
-#select a person from the data
-#subject <- unique(dmetric::gcdg_lean$itm$subjid) [sample(25410, 1)]
-subject <- 4100485
-
-itembank <- builtin_itembank[builtin_itembank$key == "gsed",]
-
-ex1_resp <- gcdg_lean$itm[gcdg_lean$itm$subjid == subject, c("item", "value")] %>% left_join(itembank, by = "item") %>% select(item, label, value, tau) %>% drop_na(tau) %>%   left_join(dmodel::get_domaintable("gcdg"), by = "item") %>% select(item, label, value, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive)
-
-ex1_resp[,c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")] <- round(ex1_resp[,c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")],2)
-
-options(knitr.table.format = "html") 
-kable(ex1_resp, 
-      caption = "Responses for example child",
-      row.names = FALSE, 
-      col.names = c("Item", "Label", "Score", "Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")) %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::scroll_box(width = "100%", height = "300px")
-```
-&nbsp;
-
-For each item we can calculate the relative information that it contributes to the $D$-score of 57.12. In the paragraph [Item information in dbook I](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
-how to calculate the item information for a $D$-score We can combine the
-proportional domain loading to the relative information that the item provides
-to the $D$-score of the child. In Figure \@ref(fig:example_part2) this is
-displayed. For example the item *Attends to story* contributes to 13% of the
-$D$-score and the item is rates as partly Receptive, partly Cognitive and partly
-Adaptive.
-
-
-```{r example_part2, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:example_part2)', message = FALSE}
-
-example1 <- 
-  gcdg_lean$itm[gcdg_lean$itm$subjid %in% subject,] %>%
-  mutate(age = agedays/365.25) %>%
-  pivot_wider(id_cols= c("subjid", "agedays", "age"),
-              names_from = "item", 
-              values_from = "value")
-
-itembank <- dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("key", "item","label", "tau")]
-
-domain_colors <- dmodel::get_color_domain("gcdg")
-
-#items + scores >> dscore
-  dscore_ex1 <-
-    dscore::dscore(
-      data = example1,
-     items = colnames(example1)[-c(1:3)],
-     itembank = itembank
-   )
-  dscore_data <- data.frame(subjid = example1$subjid, dscore_ex1)
-  
-#using votes to weight domain contribution per item
-item_information <- example1 %>% 
-  select(-"agedays",-"age")%>%
-  pivot_longer(cols = -c("subjid"), 
-               names_to = "item", 
-               values_to = "value",
-               values_drop_na = TRUE)%>%
-  left_join(itembank, by = "item") %>%
-  #mutate(tau = dscore::get_tau(items = .data$item, key = "gsed", itembank = itembank))%>%
-  drop_na(.data$tau)%>%
-  left_join(dscore_data, by = "subjid")%>%
-  mutate(info = dinstrument::info(beta = .data$d, delta = .data$tau),
-     rel_info = info / sum(info)) %>%
-  left_join(dmodel::get_domaintable("gcdg"), by = "item") %>%
-  select(item, label, rel_info, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive) %>%
-  mutate("Fine Motor" = rel_info * Fine.Motor,
-         "Gross Motor" = rel_info * Gross.Motor,
-         "Expressive" = rel_info * Expressive, 
-         "Receptive" = rel_info * Receptive, 
-         "Cognitive" = rel_info * Cognitive,
-         "Adaptive" = rel_info * Adaptive) %>%
-  select("item", "label", "rel_info", "Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive")
-
-
-plot_data <- item_information %>%
-  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), names_to = "domain", values_to = "contribution") %>%
-  arrange(rel_info)
-
-
-plot_data$label <- factor(plot_data$label, levels = unique(plot_data$label[order(plot_data$rel_info)]))
-
-ggplot(data = plot_data, aes(x = label, y = contribution, color = domain, fill = domain)) +
-   geom_bar(position="stack", stat="identity") +
-  coord_flip()
-  
-```
-(ref:example_part2) Relative domain contribution per item for a $D$-score.
-
-
-
-
-The relative information that each item holds per domain can be summed. That way
-we get what domain information is composed in the $D$-score for this child.
-Figure \@ref(fig:example_part3) displays the domain formation for the $D$-score
-of the example. About 50% of the information was Cognitive, about 40% was Fine
-motor and additionally partly adaptive and partly receptive information was
-used.
-
-```{r example_part3, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:example_part3)', message = FALSE}
-##total domain contribution for Dscore
-d_domain_contribution <- item_information %>%
-  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), names_to = "domain", values_to = "contribution") %>%
-  group_by(domain) %>% summarize(proportion = sum(contribution, na.rm = TRUE))
-
-
-# Compute the cumulative percentages (top of each rectangle)
-d_domain_contribution$ymax = cumsum(d_domain_contribution$proportion)
-# Compute the bottom of each rectangle
-d_domain_contribution$ymin = c(0, head(d_domain_contribution$ymax, n=-1))
-# Make the plot
-ggplot(d_domain_contribution, aes(fill=domain, ymin = ymin, ymax = ymax, xmin = 3, xmax=4)) + 
-  geom_rect()+
-  scale_colour_continuous( domain_colors)+
-  coord_polar(theta = "y")+
-  theme_void()+
-   xlim(c(2, 4))+
-  geom_text(x=2,aes(y = 0, label = paste("D =", dscore_data$d[1])))
-
-
-
-```
-(ref:example_part3) Relative domain contribution for a $D$-score.
-
-
-
-
-```{r eval=FALSE, include=FALSE}
-subject <- 4100485
-example1 <- 
-  gcdg_lean$itm[gcdg_lean$itm$subjid %in% subject,] %>%
-  mutate(age = agedays/365.25) %>%
-  pivot_wider(id_cols= c("subjid", "agedays", "age"),
-              names_from = "item", 
-              values_from = "value")
-
-itembank <- dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("key", "item","label", "tau")]
-
-
-domain_contr <- function(data, 
-                         itembank = dscore::builtin_itembank[dscore::builtin_itembank$key == "gsed", c("key", "item","label", "tau")], 
-                         domaintable = dmodel::get_domaintable("gcdg"),
-                         vote_weight = TRUE){
-
-#items + scores >> dscore
-  dscore_ex1 <-
-    dscore::dscore(
-      data = example1,
-     items = colnames(example1)[-c(1:3)],
-     itembank = itembank
-   )
-  dscore_data <- data.frame(subjid = example1$subjid, dscore_ex1)
-  
-#using votes to weight domain contribution per item
-item_information <- example1 %>% 
-  select(-"agedays",-"age")%>%
-  pivot_longer(cols = -c("subjid"), 
-               names_to = "item", 
-               values_to = "value",
-               values_drop_na = TRUE)%>%
-  left_join(itembank, by = "item") %>%
-  drop_na(.data$tau)%>%
-  left_join(dscore_data, by = "subjid")%>%
-   mutate(info = dinstrument::info(beta = .data$d, delta = .data$tau)) %>%
-  left_join(dmodel::get_domaintable("gcdg"), by = "item") 
-
-
-
-if(vote_weight){
-domain_contr <-   item_information %>%
-  select(subjid, a, d, info, Fine.Motor, Gross.Motor, Expressive, Receptive, Cognitive, Adaptive) %>%
-  mutate("Fine Motor" = info * Fine.Motor,
-         "Gross Motor" = info * Gross.Motor,
-         "Expressive" = info * Expressive, 
-         "Receptive" = info * Receptive, 
-         "Cognitive" = info * Cognitive,
-         "Adaptive" = info * Adaptive) %>%
-  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), names_to = "domain", values_to = "contribution") %>%
-  group_by(subjid, a, d, domain) %>% summarize(proportion = sum(contribution, na.rm = TRUE) / sum(info, na.rm = TRUE))
-}
-
-if(!vote_weight){
-#using votes to select most voted domain per item (one domain per item)
-  info_sum <- item_information %>% group_by(subjid) %>% summarize(info_sum = sum(info, na.rm=TRUE))
-domain_contr <- item_information %>%
-  left_join(info_sum, by = "subjid") %>%
-  select(subjid, a, d, info, voted_domain, info_sum) %>%
-  #mutate(voted_domain = recode(voted_domain, "Cognitive" = "COG", 
-  #                                              "Expressive" = "EXP", 
-  #                                              "Fine Motor" = "FM", 
-  #                                              "Gross Motor" = "GM", 
-  #                                              "Receptive" = "REC", 
-  #                                              "Adaptive" = "ADP"))%>%
-  group_by(subjid, a,d,voted_domain) %>% summarize(proportion = sum(info) / info_sum[1])
-}
-
-domain_contr
-
-}
-
-domain_contribution <- domain_contr(data = example1)
-
-domain_colors <- dmodel::get_color_domain("gcdg")
-#names(domain_colors)[1:5] <- c("COG", "EXP", "FM", "GM", "REC")
-
-ggplot(domain_contribution, aes(fill=domain, y=(d*proportion), x=(a*12))) + 
-    geom_bar(position="stack", stat="identity")+
-  xlab("Age")+ylab("D-score")+
-  scale_colour_manual(values = domain_colors)
-
-domain_contr_i <- domain_contribution #%>% filter(subjid == 4702253)
-
-# Compute the cumulative percentages (top of each rectangle)
-domain_contr_i$ymax = cumsum(domain_contr_i$proportion)
-# Compute the bottom of each rectangle
-domain_contr_i$ymin = c(0, head(domain_contr_i$ymax, n=-1))
-# Make the plot
-ggplot(domain_contr_i, aes(fill=domain, ymin = ymin, ymax = ymax, xmin = 3, xmax=4)) + 
-  geom_rect()+
-  scale_colour_continuous( domain_colors)+
-  coord_polar(theta = "y")+
-  theme_void()+
-   xlim(c(2, 4))+
-  geom_text(x=2,aes(y = 0, label = domain_contr_i$d[1]))
-
-
-
-```
-
-
-<!-- 
-Reconsider if we want to add this here. The residual plots do not give us a lot of information and I think they are strongly related to the number of items that are asked per domain. So more related to the number of items in de domain-score vs d-score than the score accuracy itself....
-
-## Domain scores
+### Domain $D$-scores
 
 It is possible to calculate a $D$-score that is more representative for a
 specific domain using the current $D$-score model. We can use only the items
-that load to the domain in question to calculate the $D$-score.
--->
+that load to the domain in question to calculate the $D$-score for that specific
+domain. Since items may relate to multiple domain, an item can contribute to the
+$D$-score for multiple domains. As the $D$-score methodology is developed to
+measure a single construct for development, the domain $D$-scores correlate
+highly ($r > 0.95$). However, these scores can potentially inform on the cohort
+level (Figure \@ref(fig:domaind)) or the individual level (see Figure
+\@ref(fig:domaindex)).
 
-```{r eval=FALSE, include=FALSE}
+
+```{r domaind, echo=FALSE, fig.cap='(ref:domaind)', fig.keep='all', message=FALSE, warning=FALSE, cache=TRUE, results='hide'}
+
+library(ddomain)
+library(dplyr)
+library(tidyr)
+
+data_w <- dmetric::gcdg_lean[["itm"]] %>% spread(key = "item", value = "value") %>%
+  left_join(gcdg_lean[["visit"]]) %>%
+  mutate(age = agedays/365.25)
+
+d_dom <- ddomain::d_domain(data = data_w, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items,domaintable = ddomain::get_domaintable(key = "gcdg"), vote_weight = 0)
+d_all <- dscore(data = data_w, items = gseddata::gcdg_items, itembank = dscore::builtin_itembank, key = "gcdg")
+d_dom <- cbind(d_all, d_dom)
+
+cor(d_dom[,c("d" ,"d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive")], use = "complete.obs")
+
+d_dom_d <- d_dom %>% 
+  cbind(data_w[,c("cohort", "age"),]) %>%
+  pivot_longer(cols = c("d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive"), names_to = "domain1", values_to = "d1") %>% 
+  select(c("cohort", "domain1", "d1", "a"))%>% 
+  mutate(domain = gsub("d_", "", .data$domain1)) %>%
+  rename(d = d1) %>% group_by(cohort, domain) %>%
+  summarize( d= mean(d, na.rm = TRUE))
+
+ggplot(d_dom_d, aes( x= cohort, y = d, color = domain))+
+  geom_point()+
+  coord_flip()+
+  ylab("Average domain specific D-score") +
+  xlab("")+
+  theme( legend.position = "top", legend.title = element_blank())
+
+```
+(ref:domaind) Domain $D$-scores per cohort. 
+
+In Figure \@ref(fig:domaindex) example scores are displayed for a 3 year old boy
+from the Chili 2 (GCDG-CHL-2) cohort. The grey line displayes the overall
+$D$-score (38.55$D$) and the colored points are the domain $D$-scores. This
+plots shows that for the language domains (i.e. Expressive and Receptive), this
+boy scores relatively low as compared to the motor and cognitive domains. The
+bars at the bottom of the plots display the available items per domain. Note
+that the number of items for Gross Motor is very low (only 3 items). The white
+overlayed line at 5 items, indicates the bare minimum for a $D$-score.
+
+
+```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
-d_domain <- function(data,
-                     domaintable = dmodel::get_domaintable("gcdg"),
-                     domain, 
-                     items = NULL, 
-                     vote_weight = NULL){
-  lean <- gseddata::is.lean(data)
-   
-   if(lean){
-    data <- data[["itm"]] %>% tidyr::spread(key = "item", value = "value")
-   }
 
-   data$age <- data$agedays / 365.25
-   
-   if(is.null(vote_weight)) {vote_weight <- 0}
-   
-   if(length(domain) == 1){
-   domain_items <- domaintable[domaintable[,domain] > vote_weight, "item"]
-   domain_items <- intersect(domain_items, names(data))
-   d_domain <- dscore::dscore(data = data, items = domain_items)
-   colnames(d_domain)[c(2:6)] <- paste(colnames(d_domain)[c(2:6)], domain, sep = "_")
-   }
-   
-  if(length(domain) > 1){
-    d_domain <- dscore::dscore(data = data, items = items)
-    
-    for(dom in domain){
-   dom_items <- domaintable[domaintable[,dom] > vote_weight, "item"]
-   dom_items <- intersect(dom_items, names(data))
-   d_dom <- dscore::dscore(data = data, items = dom_items)
-   colnames(d_dom)[c(2:6)] <- paste(colnames(d_dom)[c(2:6)], dom, sep = "_")
-   d_domain <- cbind(d_domain, d_dom[,-1])
-    }
-  }
-   
-   d_domain
-  
-}
+data_w <- dmetric::gcdg_lean[["itm"]] %>% spread(key = "item", value = "value") %>%
+  left_join(gcdg_lean[["visit"]]) %>%
+  mutate(age = agedays/365.25)
+dati <- data_w[9817,]
 
-#test compare with manual for col1
-#start <- Sys.time()
-gcdg_all <- d_domain(data = dmetric::gcdg_lean, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items, vote_weight = 0.3)
-#Sys.time() - start #2.8min
-
-#gcdg_domains <- gcdg_all %>%
-#  mutate(month = a * 12) %>% 
-#  select(month, d, "d_Fine.Motor", "d_Gross.Motor", "d_Expressive", #"d_Receptive", "d_Cognitive", "d_Adaptive") %>%
-#  rename("Fine Motor" = d_Fine.Motor, 
-#         "Gross Motor"= d_Gross.Motor,
-#         "Expressive" = d_Expressive,
-#         "Receptive" = d_Receptive,
-#         "Cognitive" = d_Cognitive,
-#         "Adaptive" = d_Adaptive) %>%
-#  pivot_longer(cols = c("Fine Motor", "Gross Motor", "Expressive", "Receptive", #"Cognitive", "Adaptive"), names_to = "domain", values_to = "dscore")
+library(ddomain)
+d_dom_ex <- d_domain(data = dati, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items,domaintable = ddomain::get_domaintable(key = "gcdg"), vote_weight = 0)
 
 
-#plot all domain dscore in gcdg data
-#ggplot(data = gcdg_domains)+
-#  geom_point(aes(x = month, y = dscore, group = domain, col = domain))+
-#  xlab("Age(month)") + ylab("D-score")+
-#  scale_color_manual(values = dmodel::get_color_domain("gcdg"), 
-#                     na.value = "grey")
+d_dom_ex_d <- d_dom_ex %>% pivot_longer(cols = c("d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive"), names_to = "domain", values_to = "d") %>% select(c("domain", "d", "a"))%>% mutate(domain = gsub("d_", "", .data$domain))
 
-gcdg_res <- gcdg_all %>%
-  mutate(Fine_motor = d_Fine.Motor - d,
-         Gross_motor = d_Gross.Motor -d,
-         Expressive = d_Expressive - d,
-         Receptive = d_Receptive - d, 
-         Cognitive = d_Cognitive - d, 
-         Adaptive = d_Adaptive - d) %>%
-  select(d, Fine_motor, n_Fine.Motor, Gross_motor, n_Gross.Motor,
-         Expressive, n_Expressive, Receptive, n_Receptive, Cognitive, n_Cognitive, Adaptive, n_Adaptive, a)
+d_dom_ex_sem <- d_dom_ex %>% pivot_longer(cols = c("sem_Fine.Motor", "sem_Gross.Motor", "sem_Cognitive", "sem_Receptive", "sem_Expressive"), names_to = "domain", values_to = "sem") %>% select(c("domain", "sem"))%>% mutate(domain = gsub("sem_", "", .data$domain))
+
+d_dom_ex_n <- d_dom_ex %>% pivot_longer(cols = c("n_Fine.Motor", "n_Gross.Motor", "n_Cognitive", "n_Receptive", "n_Expressive"), names_to = "domain", values_to = "n") %>% select(c("domain", "n")) %>% mutate(domain = gsub("n_", "", .data$domain))
+
+d_dom_plot <- left_join(d_dom_ex_d, d_dom_ex_n, by = "domain")
+d_dom_plot <- left_join(d_dom_plot, d_dom_ex_sem, by = "domain")
+
+d_all <- dscore::dscore(data = dati, items =gseddata::gcdg_items )
 
 
-ggplot(data = subset(gcdg_res, n_Fine.Motor >=5), aes(x=d, y = Fine_motor)) +
-  geom_point()+
-  ylim(c(-15,15))
+ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
+  geom_point() + geom_errorbar(aes(x = domain, ymin = (d-sem), ymax = (d+sem)), width = .1)+
+  geom_abline(intercept = d_all$d, slope = 0, col = "darkgrey")+
+  geom_abline(intercept = (d_all$d-d_all$sem), slope = 0, lty=2, col = "grey")+
+  geom_abline(intercept =(d_all$d+d_all$sem), slope = 0, lty = 2, col = "grey")+
+  geom_bar(stat = "identity", aes(x = domain, y = n, fill = domain))+
+  geom_abline(intercept = 5, slope = 0, col = "white")+
 
-ggplot(data = subset(gcdg_res, n_Gross.Motor >=5), aes(x=d, y = Gross_motor)) +
-  geom_point()+
-  ylim(c(-15,15))
-
-ggplot(data = subset(gcdg_res, n_Cognitive >=5), aes(x=d, y = Cognitive)) +
-  geom_point()+
-  ylim(c(-15,15))
-
-
-ggplot(data = subset(gcdg_res, n_Expressive >=5), aes(x=d, y = Expressive)) +
-  geom_point()+
-  ylim(c(-15,15))
-
-ggplot(data = subset(gcdg_res, n_Receptive >=5), aes(x=d, y = Receptive)) +
-  geom_point()+
-  ylim(c(-15,15))
-
-
-
-## when the vote-weight is set at 0.5 > so minimal half of the raters must agree on the domain for an item for the item to count for that domain - then there are very little items in some of the domains. This causes deviations in D-score due to the small number of items for the D-score calculations (not because of domain info). This is not what we want to measure. So now try when there is at least one vote for the domain. Then items can count for multiple domains, but that not necessarily a problem. 
-
-#example for one person
-# i <- 25
-# example1d <- gcdg_all[i,] %>%
-#   pivot_longer(cols= c(d, d_motor, d_cog, d_lang, d_sem, d_life), names_to = "domain", values_to = "dscore")%>%
-#   select(a, domain, dscore)
-# 
-# example1sem <- gcdg_all[i,] %>%
-#   pivot_longer(cols = c(sem, sem_motor, sem_cog, sem_lang, sem_sem, sem_life), names_to = "domain2", values_to = "dsem") %>% select(domain2, dsem) %>% cbind(example1d) %>%
-#   select(a, domain, dscore, dsem) %>%
-#   mutate(low_d = dscore - dsem, high_d = dscore +dsem, month = a * 12)
-# 
-#   
-#   
-#   
-#   ggplot(data = example1sem )+
-#   geom_point(aes(x=domain, y=dscore)) +
-#   geom_errorbar(aes(x = domain, ymin=low_d, ymax=high_d), width=.1)+
-#   xlab("domain")+ ylab("D-score")
+ ylim(0,80) +
+  ylab("number of items                                        D-score") +
+  xlab("")+
+  theme(legend.position = "none")
 
 
 ```
-
+(ref:domaindex) Domain $D$-scores for a 3 year old boy from the Chile 2 cohort. 

@@ -1,6 +1,5 @@
----
-runtime: shiny 
----
+
+
 
 <!-- NOTE: We may need to reorganise a little. Move "Challenge of comparability" and "Bridging instruments" to before chapter 2. Then this chapter can concentrate on the identification and assessment of similar items 
 Jan2SvB: Now rewritten 3.1 to connectedness -->
@@ -34,7 +33,9 @@ Likewise, instruments can be connected:
 * Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
 
-```{r linkage, echo = FALSE}
+```{r linkage, echo=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+
 pattern <- matrix("", nrow = 16, ncol = 15)
 pattern[8, 1] <- "X"
 pattern[9, 2] <- "X"
@@ -67,14 +68,14 @@ df <- data.frame(
 knitr::kable(df, 
   caption = "Linkage pattern indicating combinations of cohorts and instruments.",
   booktabs = TRUE) %>%
-  kable_styling() %>%
-  scroll_box(width = "100%", height = "500px")
+  kableExtra::kable_styling() %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 &nbsp;
 
 An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3` and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
-Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The table at <https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/> shows the counts of the number of registered scores per age group. What appears in table \@ref(tab:linkage) as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
+Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The linked [instrument linkage table](https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/) shows the counts of the number of registered scores per age group. What appears in Table \@ref(tab:linkage) as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
 
 Connectedness is a necessary - though not sufficient - requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:
 
@@ -91,7 +92,7 @@ Many instruments for measuring child development have appeared since the works o
 
 We will exploit the overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
-```{r example2words}
+```{r example2words, echo = FALSE}
 items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
            "grihsd217", "vinxxc016")
 labels <- dscore::get_labels(items)
@@ -100,452 +101,41 @@ t <- knitr::kable(df, booktabs = TRUE,
              caption = "Example of similar items from different instruments.")
 kableExtra::column_spec(t, 1, monospace = TRUE)
 ```
+&nbsp;
+
 
 The idea is to check whether these milestones measure development in the same way. If this is found to be accurate, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
 
 A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items.
 
-We order item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figures \@ref(fig:mapping_fm), \@ref(fig:mapping_gm), \@ref(fig:mapping_cog), \@ref(fig:mapping_rec) and \@ref(fig:mapping_exp)  display the connections between the instruments via the item groups in each domain. The items are displayed as the leafs and are colored by instrument. The blue lines display the links between the items (and instruments). 
+We order item mappings into five domains: fine motor (FM), gross motor (GM),
+cognitive (COG), receptive (REC) and expressive (EXP). Figure
+\@ref(fig:mappingshiny) displays the connections between the instruments via the
+item groups in each domain, with the `Prev` and `Next` buttons you can click
+through the five domains. The items are displayed as the leafs and are colored
+by instrument. The blue lines display the links between the items (and
+instruments).
 
-```{r mapping_fm, echo=FALSE, fig.cap='(ref:mapping_fm)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-suppressPackageStartupMessages(library(ggraph))
-suppressPackageStartupMessages(library(igraph))
-suppressPackageStartupMessages(library(tidyverse))
-
-varlist_gcdg <- dmetric::prepare_items(min_cat = 10)
-eqset2 <- ddata::get_equates(varlist_gcdg$items)
-eqinst <- eqset2 %>% lapply(dscore::rename_gcdg_gsed) 
-inst_colors <- dmetric::get_palette("instrument")
-names(inst_colors)[1] <- "aqi"
-#######################attempt to order nodes by instrument
-#make function to make hierachical edge network with equate list as input >> does not work bc each domain requires specific settings for the node labels.......
-#fine motor -----
-indicator <- which(grepl("FM", names(eqinst)))
-eqinst1 <- eqinst[indicator]
-
-eqlist <- eqinst1
-itnames <- unlist(eqlist)
-inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
-inst_grps <- inst_grps[order(inst_grps$from),]
-inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
-hierarchy <- rbind(inst_top, inst_grps)
-
-eqsub <- vector()
-for(i in names(eqlist)){
-  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
-  eqsub <- rbind(eqsub, eqdf1)
-}
-
-#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
-#hierarchy <- rbind(eqtop, eqsub)
-vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
-vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
-vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
-
-
-#make df of connections
-eqcon <- vector()
-for(i in names(eqlist)){
-  eqcon1 <- combn(eqlist[[i]], m=2) 
-  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
-  eqcon <- rbind(eqcon, eqcon1)
-}
-
-
-#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
-#calculate the ANGLE of the labels
-vertices$id  <- NA
-myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
-nleaves <- length(myleaves)
-vertices$id[ myleaves ] <- seq(1:nleaves)
-#vertices$angle <- 90 - 360 * vertices$id / nleaves 
-vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
-
-# calculate the alignment of labels: right or left
-# If I am on the left part of the plot, my labels have currently an angle < -90
-vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 1, 0)
-
-# flip angle BY to make them readable
-vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
-vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
-
-# Create a graph object with the igraph library
-mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
-# This is a network object, you visualize it as a network like shown in the network section!
- 
-# The connection object must refer to the ids of the leaves:
-from <- match(eqcon$from, vertices$name)
-#from <- from[!is.na(from)]
-to <- match(eqcon$to, vertices$name)
-#to <- to[!is.na(to)] 
-
-
-# With igraph: 
-#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
-ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
-   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
-  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
-geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
-  scale_colour_manual(values = inst_colors)+
-  theme_void() +
-  theme(
-    legend.position="none",
-    plot.margin=unit(c(0,0,0,0),"cm"),
-  ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))+
-    ggtitle("Fine Motor")
-
+```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=10}
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
+  height = "600px")
 ```
-(ref:mapping_fm) Connections between the instruments via mapped item groups in the Fine motor domain.
+(ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
-```{r mapping_gm, echo=FALSE, fig.cap='(ref:mapping_gm)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-
-#gross motor-----
-indicator <- which(grepl("GM", names(eqinst)))
-eqinst1 <- eqinst[indicator]
-
-
-eqlist <- eqinst1
-itnames <- unlist(eqlist)
-inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
-inst_grps <- inst_grps[order(inst_grps$from),]
-inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
-hierarchy <- rbind(inst_top, inst_grps)
-
-eqsub <- vector()
-for(i in names(eqlist)){
-  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
-  eqsub <- rbind(eqsub, eqdf1)
-}
-
-#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
-#hierarchy <- rbind(eqtop, eqsub)
-vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
-vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
-vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
-
-
-#make df of connections
-eqcon <- vector()
-for(i in names(eqlist)){
-  eqcon1 <- combn(eqlist[[i]], m=2) 
-  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
-  eqcon <- rbind(eqcon, eqcon1)
-}
-
-
-#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
-#calculate the ANGLE of the labels
-vertices$id  <- NA
-myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
-nleaves <- length(myleaves)
-vertices$id[ myleaves ] <- seq(1:nleaves)
-#vertices$angle <- 90 - 360 * vertices$id / nleaves 
-vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
-
-# calculate the alignment of labels: right or left
-# If I am on the left part of the plot, my labels have currently an angle < -90
-  vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 0, 1)
-#vertices$hjust <- vertices$hjust +1
-# flip angle BY to make them readable
-vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
-vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
-
-# Create a graph object with the igraph library
-mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
-# This is a network object, you visualize it as a network like shown in the network section!
- 
-# The connection object must refer to the ids of the leaves:
-from <- match(eqcon$from, vertices$name)
-#from <- from[!is.na(from)]
-to <- match(eqcon$to, vertices$name)
-#to <- to[!is.na(to)] 
-
-
-# With igraph: 
-#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
-ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
-   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
-  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
-geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
-  scale_colour_manual(values = inst_colors)+
-  theme_void() +
-  theme(
-    legend.position="none",
-    plot.margin=unit(c(0,0,0,0),"cm"),
-  ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
-
-```
-(ref:mapping_gm) Connections between the instruments via mapped item groups in the Gross motor domain.
-
-```{r mapping_cog, echo=FALSE, fig.cap='(ref:mapping_cog)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-
-
-#cognitive ----
-indicator <- which(grepl("COG", names(eqinst)))
-eqinst1 <- eqinst[indicator]
-
-eqlist <- eqinst1
-itnames <- unlist(eqlist)
-inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
-inst_grps <- inst_grps[order(inst_grps$from),]
-inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
-hierarchy <- rbind(inst_top, inst_grps)
-
-eqsub <- vector()
-for(i in names(eqlist)){
-  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
-  eqsub <- rbind(eqsub, eqdf1)
-}
-
-#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
-#hierarchy <- rbind(eqtop, eqsub)
-vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
-vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
-vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
-
-
-#make df of connections
-eqcon <- vector()
-for(i in names(eqlist)){
-  eqcon1 <- combn(eqlist[[i]], m=2) 
-  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
-  eqcon <- rbind(eqcon, eqcon1)
-}
-
-
-#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
-#calculate the ANGLE of the labels
-vertices$id  <- NA
-myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
-nleaves <- length(myleaves)
-vertices$id[ myleaves ] <- seq(1:nleaves)
-#vertices$angle <- 90 - 360 * vertices$id / nleaves 
-vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
-
-# calculate the alignment of labels: right or left
-# If I am on the left part of the plot, my labels have currently an angle < -90
-vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 1, 0)
-
-# flip angle BY to make them readable
-vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
-vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
-
-# Create a graph object with the igraph library
-mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
-# This is a network object, you visualize it as a network like shown in the network section!
- 
-# The connection object must refer to the ids of the leaves:
-from <- match(eqcon$from, vertices$name)
-#from <- from[!is.na(from)]
-to <- match(eqcon$to, vertices$name)
-#to <- to[!is.na(to)] 
-
-
-# With igraph: 
-#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
-ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
-   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
-  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
-geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
-  scale_colour_manual(values = inst_colors)+
-  theme_void() +
-  theme(
-    legend.position="none",
-    plot.margin=unit(c(0,0,0,0),"cm"),
-  ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
-
-```
-(ref:mapping_cog) Connections between the instruments via mapped item groups in the Cognitive domain.
-
-```{r mapping_exp, echo=FALSE, fig.cap='(ref:mapping_exp)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-
-
-#exp -----
-indicator <- which(grepl("EXP", names(eqinst)))
-eqinst1 <- eqinst[indicator]
-
-
-eqlist <- eqinst1
-itnames <- unlist(eqlist)
-inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
-inst_grps <- inst_grps[order(inst_grps$from),]
-inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
-hierarchy <- rbind(inst_top, inst_grps)
-
-eqsub <- vector()
-for(i in names(eqlist)){
-  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
-  eqsub <- rbind(eqsub, eqdf1)
-}
-
-#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
-#hierarchy <- rbind(eqtop, eqsub)
-vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
-vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
-vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
-
-
-#make df of connections
-eqcon <- vector()
-for(i in names(eqlist)){
-  eqcon1 <- combn(eqlist[[i]], m=2) 
-  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
-  eqcon <- rbind(eqcon, eqcon1)
-}
-
-
-#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
-#calculate the ANGLE of the labels
-vertices$id  <- NA
-myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
-nleaves <- length(myleaves)
-vertices$id[ myleaves ] <- seq(1:nleaves)
-vertices$angle <- 90 - 360 * vertices$id / nleaves 
-#vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
-
-# calculate the alignment of labels: right or left
-# If I am on the left part of the plot, my labels have currently an angle < -90
-vertices$hjust <- ifelse( vertices$angle < -90, 0, 1)
-
-# flip angle BY to make them readable
-vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
-#vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
-
-# Create a graph object with the igraph library
-mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
-# This is a network object, you visualize it as a network like shown in the network section!
- 
-# The connection object must refer to the ids of the leaves:
-from <- match(eqcon$from, vertices$name)
-#from <- from[!is.na(from)]
-to <- match(eqcon$to, vertices$name)
-#to <- to[!is.na(to)] 
-
-
-# With igraph: 
-#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
-ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
-   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
-  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
-geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
-  scale_colour_manual(values = inst_colors)+
-  theme_void() +
-  theme(
-    legend.position="none",
-    plot.margin=unit(c(0,0,0,0),"cm"),
-  ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
-
-
-```
-(ref:mapping_exp) Connections between the instruments via mapped item groups in the Expressive language domain.
-
-```{r mapping_rec, echo=FALSE, fig.cap='(ref:mapping_rec)', fig.height=7, fig.keep='all', warning=FALSE, results='hide'}
-
-#rec -----
-indicator <- which(grepl("REC", names(eqinst)))
-eqinst1 <- eqinst[indicator]
-
-
-eqlist <- eqinst1
-itnames <- unlist(eqlist)
-inst_grps <- data.frame(from = substr(itnames, 1,3), to = itnames)
-inst_grps <- inst_grps[order(inst_grps$from),]
-inst_top <- data.frame(from = "origin", to = unique(inst_grps$from))
-hierarchy <- rbind(inst_top, inst_grps)
-
-eqsub <- vector()
-for(i in names(eqlist)){
-  eqdf1 <- data.frame(eq = i, item = eqlist[[i]])
-  eqsub <- rbind(eqsub, eqdf1)
-}
-
-#eqsub <- eqsub[order(as.character(eqsub[,"to"])),]
-#hierarchy <- rbind(eqtop, eqsub)
-vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ) 
-vertices$group  <-  hierarchy$from[ match(vertices$name, hierarchy$to) ]
-vertices$eq <- eqsub[match(vertices$name, eqsub$item), "eq"]
-
-
-#make df of connections
-eqcon <- vector()
-for(i in names(eqlist)){
-  eqcon1 <- combn(eqlist[[i]], m=2) 
-  eqcon1 <- data.frame(from = eqcon1[1,], to = eqcon1[2,])
-  eqcon <- rbind(eqcon, eqcon1)
-}
-
-
-#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
-#calculate the ANGLE of the labels
-vertices$id  <- NA
-myleaves <- which(is.na(match(vertices$name, hierarchy$from) ))
-nleaves <- length(myleaves)
-vertices$id[ myleaves ] <- seq(1:nleaves)
-#vertices$angle <- 90 - 360 * vertices$id / nleaves 
-vertices$angle <- 180 - 360 * vertices$id / nleaves ##!!! dit aangepast van voorbeeld! Werkt
-
-# calculate the alignment of labels: right or left
-# If I am on the left part of the plot, my labels have currently an angle < -90
-vertices$hjust <- ifelse( vertices$angle < -90 | vertices$angle > 90, 1, 0)
-
-# flip angle BY to make them readable
-vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
-vertices$angle <- ifelse(vertices$angle > 90, vertices$angle - 180, vertices$angle)
-
-# Create a graph object with the igraph library
-mygraph <- graph_from_data_frame( hierarchy, vertices=vertices )
-# This is a network object, you visualize it as a network like shown in the network section!
- 
-# The connection object must refer to the ids of the leaves:
-from <- match(eqcon$from, vertices$name)
-#from <- from[!is.na(from)]
-to <- match(eqcon$to, vertices$name)
-#to <- to[!is.na(to)] 
-
-
-# With igraph: 
-#plot(mygraph, vertex.label="", edge.arrow.size=0, vertex.size=2)
- 
-ggraph(mygraph, layout = 'dendrogram', circular = TRUE) + 
-   geom_node_point(aes(filter = leaf, x = x*1.05, y = y*1.05, colour = group), size = 3)+
-  geom_conn_bundle(data = get_con(from= from, to = to), colour = "skyblue", alpha = 1, width = 0.9, tension = 0.9)+
-geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust, colour = group), size=3, alpha=1) +
-  scale_colour_manual(values = inst_colors)+
-  theme_void() +
-  theme(
-    legend.position="none",
-    plot.margin=unit(c(0,0,0,0),"cm"),
-  ) +
-  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
-
-
-
-
-```
-(ref:mapping_rec) Connections between the instruments via mapped item groups in the Receptive language domain.
-
-<!-- NOTE: Interesting idea, but still need some work. It is not clear how to interpret these plots. The nodes (are these items, instruments?) appear fairly large. Can we see how many links there are between instruments, and what their equate group is? 
-Would a circular plot of items per domain be more natural to interpret? -->
 
 ## Age profile of item mappings {#sec:viewmapping}
 
-```{r plot_p_a_eq, include=FALSE}
+```{r plot_p_a_eq, message=FALSE, warning=FALSE, include=FALSE}
 suppressPackageStartupMessages(library("dmodel"))
 suppressPackageStartupMessages(library("dmetric"))
 suppressPackageStartupMessages(library("gseddata"))
 
 theme_set(theme_light())
 model <- dmetric::model_lean
+#model$package <- model$data_package #fix this in dscore::get_itemtable or in dmetric plot_p_a_equate (model$package == "ddata")
 lean <- dmetric::gcdg_lean
-eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
+eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE)
+
 
 #plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
 ```
@@ -554,7 +144,7 @@ eq_plots <- plot_p_a_equate(lean, model, passive = TRUE)
 
 One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. Also here the milestones have similar age patterns.
 
-```{r poteq, echo=FALSE, fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
+```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 
 ##promising equates
 gridExtra::grid.arrange(
@@ -568,7 +158,7 @@ gridExtra::grid.arrange(
 
 Figure \@ref(fig:badeq) presents two examples of weak item mappings. Notable timing differences exist for the "babbles" and "bangs" milestones, which suggests that we should not take these as bridges.
 
-```{r badeq, echo=FALSE,  fig.height=7, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
+```{r badeq, echo=FALSE,  fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:badeq)'}
 
 ##bad equates
 gridExtra::grid.arrange(
@@ -580,9 +170,7 @@ gridExtra::grid.arrange(
 
  
 
-While these plots are suggestive, their interpretation is surprisingly complicated. 
-
-We may find that age profiles of two milestones *A and B* administered in samples 1 and 2 respectively *are identical* if
+While these plots are suggestive, their interpretation is surprisingly complicated. We may find that age profiles of two milestones *A and B* administered in samples 1 and 2 respectively *are identical* if
 
 * A and B are equally difficult and samples 1 and 2 have the same maturation level;
 * A is more difficult than B and sample 1 is more advanced than 2.
