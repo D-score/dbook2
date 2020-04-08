@@ -116,7 +116,7 @@ through the five domains. The items are displayed as the leafs and are colored
 by instrument. The blue lines display the links between the items (and
 instruments).
 
-```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=11}
+```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=10}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
   height = "600px")
 ```

@@ -66,7 +66,7 @@ defined as on-track. Scores that are more than two standard deviation *below* th
 median, can be defined as off-track.
 
 
-```{r dscorerefs, echo=FALSE, fig.width=11, fig.cap='(ref:dscorerefs)' }
+```{r dscorerefs, echo=FALSE, fig.width=10, fig.cap='(ref:dscorerefs)' }
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
   height = "700px")
 ```
