@@ -56,6 +56,7 @@ gcdg_iteminfo2 <-gcdg_iteminfo %>% filter(!item %in% eqdf$item)
 
 
 
+
 ggplot()+
   geom_point(data = gcdg_iteminfo2, aes(x = tau, y = grade, group = grade, color = grade)) +
   geom_point(data = gcdg_equateinfo, aes(x = tau, y = grade, group = grade, color = grade), shape = 8, color = "black", size = 2, stroke = 1.5) +
