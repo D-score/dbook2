@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Bridging instruments by mapping items | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Bridging instruments by mapping items | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
@@ -107,19 +107,20 @@
 <li class="chapter" data-level="5.2" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.2</b> Empirical and fitted item response curves</a></li>
 <li class="chapter" data-level="5.3" data-path="section-active-and-non-active-equate-groups.html"><a href="section-active-and-non-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Active and non-active equate groups</a></li>
 <li class="chapter" data-level="5.4" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.4</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.5" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.5</b> modeling strategies</a></li>
+<li class="chapter" data-level="5.5" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.5</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.6" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.6</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
 <li class="chapter" data-level="6.2" data-path="section-sec-sem.html"><a href="section-sec-sem.html"><i class="fa fa-check"></i><b>6.2</b> Impact of measurement error</a></li>
-<li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage</a><ul>
+<li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage and scores</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-coverage-of-the-scale"><i class="fa fa-check"></i><b>6.3.1</b> Domain coverage of the scale</a></li>
-<li class="chapter" data-level="6.3.2" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-coverage-of-a-single-d-score"><i class="fa fa-check"></i><b>6.3.2</b> Domain coverage of a single <span class="math inline">\(D\)</span>-score</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-d-scores"><i class="fa fa-check"></i><b>6.3.2</b> Domain <span class="math inline">\(D\)</span>-scores</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-ch-SDGindicator.html"><a href="section-ch-SDGindicator.html"><i class="fa fa-check"></i><b>7</b> SDG 4.2.1 Indicator</a><ul>
 <li class="chapter" data-level="7.1" data-path="section-sec-application1.html"><a href="section-sec-application1.html"><i class="fa fa-check"></i><b>7.1</b> Application I: Estimating the SDG 4.2.1 indicator from existing data</a></li>
-<li class="chapter" data-level="7.2" data-path="section-definition-developmentally-on-track-secreferences.html"><a href="section-definition-developmentally-on-track-secreferences.html"><i class="fa fa-check"></i><b>7.2</b> Definition <em>developmentally on track</em> (#sec:references)</a></li>
+<li class="chapter" data-level="7.2" data-path="section-sec-references.html"><a href="section-sec-references.html"><i class="fa fa-check"></i><b>7.2</b> Definition <em>developmentally on track</em></a></li>
 <li class="chapter" data-level="7.3" data-path="section-sec-countrytrack.html"><a href="section-sec-countrytrack.html"><i class="fa fa-check"></i><b>7.3</b> Country-level estimates</a></li>
 <li class="chapter" data-level="7.4" data-path="section-sec-otherestimates.html"><a href="section-sec-otherestimates.html"><i class="fa fa-check"></i><b>7.4</b> Relation to other estimates</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="section-sec-otherestimates.html"><a href="section-sec-otherestimates.html#section-stunting"><i class="fa fa-check"></i><b>7.4.1</b> Stunting</a></li>
@@ -224,46 +225,24 @@ use a short sentence
 </tr>
 </tbody>
 </table>
+<p> </p>
 <p>The idea is to check whether these milestones measure development in the same way. If this is found to be accurate, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.</p>
 <p>A first step in the bridging process is to group items from different instruments by similarity. As the <code>by3</code> is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to <code>by3</code> items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto <code>by3</code> items.</p>
-<p>We order item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). Figures @ref(fig:mapping_fm), @ref(fig:mapping_gm), @ref(fig:mapping_cog), @ref(fig:mapping_rec) and @ref(fig:mapping_exp) display the connections between the instruments via the item groups in each domain. The items are displayed as the leafs and are colored by instrument. The blue lines display the links between the items (and instruments).</p>
-<div class="figure" style="text-align: center">
-<img src="dbook2_files/figure-html/mapping_fm-1.png" alt="(ref:mapping_fm)" width="672" />
+<p>We order item mappings into five domains: fine motor (FM), gross motor (GM),
+cognitive (COG), receptive (REC) and expressive (EXP). Figure
+<a href="section-sec-mapping.html#fig:mappingshiny">3.1</a> displays the connections between the instruments via the
+item groups in each domain, with the <code>Prev</code> and <code>Next</code> buttons you can click
+through the five domains. The items are displayed as the leafs and are colored
+by instrument. The blue lines display the links between the items (and
+instruments).</p>
+<div class="figure" style="text-align: center"><span id="fig:mappingshiny"></span>
+<iframe src="https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/?showcase=0" width="960" height="600px">
+</iframe>
 <p class="caption">
-(#fig:mapping_fm)(ref:mapping_fm)
+Figure 3.1: Connections between the instruments via mapped item groups in each domain.
 </p>
 </div>
-<p>(ref:mapping_fm) Connections between the instruments via mapped item groups in the Fine motor domain.</p>
-<div class="figure" style="text-align: center">
-<img src="dbook2_files/figure-html/mapping_gm-1.png" alt="(ref:mapping_gm)" width="672" />
-<p class="caption">
-(#fig:mapping_gm)(ref:mapping_gm)
-</p>
-</div>
-<p>(ref:mapping_gm) Connections between the instruments via mapped item groups in the Gross motor domain.</p>
-<div class="figure" style="text-align: center">
-<img src="dbook2_files/figure-html/mapping_cog-1.png" alt="(ref:mapping_cog)" width="672" />
-<p class="caption">
-(#fig:mapping_cog)(ref:mapping_cog)
-</p>
-</div>
-<p>(ref:mapping_cog) Connections between the instruments via mapped item groups in the Cognitive domain.</p>
-<div class="figure" style="text-align: center">
-<img src="dbook2_files/figure-html/mapping_exp-1.png" alt="(ref:mapping_exp)" width="672" />
-<p class="caption">
-(#fig:mapping_exp)(ref:mapping_exp)
-</p>
-</div>
-<p>(ref:mapping_exp) Connections between the instruments via mapped item groups in the Expressive language domain.</p>
-<div class="figure" style="text-align: center">
-<img src="dbook2_files/figure-html/mapping_rec-1.png" alt="(ref:mapping_rec)" width="672" />
-<p class="caption">
-(#fig:mapping_rec)(ref:mapping_rec)
-</p>
-</div>
-<p>(ref:mapping_rec) Connections between the instruments via mapped item groups in the Receptive language domain.</p>
-<!-- NOTE: Interesting idea, but still need some work. It is not clear how to interpret these plots. The nodes (are these items, instruments?) appear fairly large. Can we see how many links there are between instruments, and what their equate group is? 
-Would a circular plot of items per domain be more natural to interpret? -->
+
 </div>
             </section>
 
