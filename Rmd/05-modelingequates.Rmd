@@ -17,4 +17,64 @@ pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::mo
 
 ## Splitting and combining equate groups
 
-## modeling strategies
+## Modeling strategies
+
+
+## Item information
+
+Item information is a psychometric measure the quatifies the utility of the item, given the ability level. So, depending on the person that fills in the item (i.e. the persons ability level), the item provides a certain amount of information to that persons final $D$-score. The item information can be calculated as the conditional probability to endorse an item ($P(\hat\delta_i)$) times the conditional probability to fail an item ($1-P(\hat\delta_i)$). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when $P(\hat\delta_i) = 0.5$.
+
+The information is inversely related to the error of measurement, thus more information amouts to less error of measurement. For each item score in the data, we can compute the amount of information it contributed to the model $D$-score. By summing this information for each item in the model, we can obtain a measure of certainty about the difficulty estimate of the item. This sum of information holds the number of times the item was administered, and the probability of endorsing the item for each assessment. We can grade the items by the information into categories A (best) to D (worst) and visualize how certain we are about the difficulty estimates of the items. In Figure \@ref(fig:iteminfo), the grades are displayed for each item by their difficulty (tau). Most items are graded higher than C, 30 items have an information grade of D and may benefit from more data from future studies. The equate groups are displayed as black asterisk and mostly have grade A.    
+
+```{r iteminfo, echo = FALSE, warning = FALSE, message = FALSE,fig.cap='(ref:iteminfo)', fig.keep='all',}
+library(dmetric)
+library(dinstrument)
+
+itembank <- dscore::builtin_itembank[dscore::builtin_itembank$key == "gcdg",]
+#calculate item information given the dscores from gsed 807 model
+gcdg_iteminfo <- dmetric::gcdg_lean$itm %>% filter(item %in% itembank$item) %>%
+  left_join(dmetric::model_lean$dscore, by = c("subjid", "agedays")) %>%
+  left_join(itembank, by = "item") %>% select(subjid, agedays, item, value, cohort, d, tau) %>% mutate(info = dinstrument::info(beta = .data$d, delta = .data$tau)) %>% group_by(item) %>% summarize(n = n(), info = sum(info, na.rm = TRUE), tau = mean(tau)) %>%
+  mutate(grade = cut(info, breaks = c(0,5,25,100,10000),
+                     labels = c("D", "C", "B", "A")),
+         grade = factor(grade, labels = c("D", "C", "B", "A")))
+
+  eqdf <- vector()
+ for(i in names(dmetric::model_lean$fit$equate)){
+    eqdf1 <- data.frame(equate = i, item = dmetric::model_lean$fit$equate[[i]])
+    eqdf <- rbind(eqdf, eqdf1)
+  }
+
+gcdg_equateinfo <- 
+gcdg_iteminfo %>% filter(item %in% eqdf$item) %>% left_join(eqdf, by = "item") %>%
+  group_by(equate) %>%summarize(n = sum(n), info = sum(info, na.rm = TRUE), tau = mean(tau)) %>%
+  mutate(grade = cut(info, breaks = c(0,5,25,100,10000),
+                     labels = c("D", "C", "B", "A"))) %>%
+  arrange(.data$tau)
+
+gcdg_iteminfo2 <-gcdg_iteminfo %>% filter(!item %in% eqdf$item)
+
+
+
+ggplot()+
+  geom_point(data = gcdg_iteminfo2, aes(x = tau, y = grade, group = grade, color = grade)) +
+  geom_point(data = gcdg_equateinfo, aes(x = tau, y = grade, group = grade, color = grade), shape = 8, color = "black", size = 2, stroke = 1.5) +
+  theme(legend.position = "none")
+
+```
+(ref:iteminfo) Item information grade by item difficulty (tau) for the final model
+
+<!-- Weet even niet zeker of het stukje hieronder erbij moeten doen. Het geeft net wat meer "informatie" over de equate groups, maar het belangrijkste staat eigenlijk al in de plot hierboven.
+-->
+
+In our model, equate groups are very important and the selection of the best performing item groups was one of the main modelling steps and an important modeling focus. Hence, the information grade for the equate groups in our model is very high (17 equate groups were graded an A and 1 a B). In Table \@ref(tab:equateinfo) the information for each item is displayed with in the "n" column the number of times the items in the equate groups were administered in the data.    
+
+
+```{r equateinfo, echo = FALSE}
+knitr::kable(gcdg_equateinfo, 
+  caption = "Equate group information in the final model.",
+  booktabs = TRUE) %>%
+  kableExtra::kable_styling() %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+
+```
