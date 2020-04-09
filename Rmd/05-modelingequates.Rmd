@@ -50,7 +50,8 @@ gcdg_iteminfo %>% filter(item %in% eqdf$item) %>% left_join(eqdf, by = "item") %
   group_by(equate) %>%summarize(n = sum(n), info = sum(info, na.rm = TRUE), tau = mean(tau)) %>%
   mutate(grade = cut(info, breaks = c(0,5,25,100,10000),
                      labels = c("D", "C", "B", "A"))) %>%
-  arrange(.data$tau)
+  arrange(.data$tau) %>%
+  select(equaate, tau, n, info, grade)
 
 gcdg_iteminfo2 <-gcdg_iteminfo %>% filter(!item %in% eqdf$item)
 
