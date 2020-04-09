@@ -344,11 +344,27 @@ cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(
 
  gcdg_d_aux <- gcdg_aux %>%
             mutate(subjido = as.character(id), 
-                   cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"]) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
+                   cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"], 
+                   b_total = rowMeans(select(.,b_tot_cog, b_tot_lr, b_tot_le, b_tot_mf, b_tot_mg), na.rm =TRUE)) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
  
+ 
+ by_track <- gcdg_d_aux %>%
+   mutate(track = ifelse(.data$daz < -2, 0, 1), 
+          by_d = ifelse(.data$b_total < 70, 1, 0)) %>%
+ group_by(country) %>%
+  summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
+            "n_d" = sum(!is.na(track)),
+            "b_delay" = sum(by_d, na.rm=TRUE)/sum(!is.na(by_d)), 
+            "n_b" = sum(!is.na(by_d))) %>%
+  pivot_longer(cols = c("off-track", "b_delay"), names_to = "Measure", values_to = "Percentage")
 
 
+ggplot(data = by_track, aes(x = country, y = Percentage, fill = Measure)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  xlab("Country")
+
  
+
  ##vanaf hier verder gaan bij vergeliking met totaal scores op andere measures. 
  
  ##verder deze data gebruiken voor CH8.
