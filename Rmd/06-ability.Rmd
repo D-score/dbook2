@@ -459,7 +459,7 @@ is more dominant and that at higher levels of the $D$-score the cognitive and
 language domains increase in importance.
 
 
-```{r domaincov, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaincov)', message = FALSE, echo = FALSE}
+```{r domaincov, results = 'hide', fig.keep = 'all', warning = FALSE, fig.cap = '(ref:domaincov)', message = FALSE, echo = FALSE, fig.width=11}
 library(tidyr)
 library(dplyr)
 
@@ -506,7 +506,7 @@ info_data <-
 
  
     ggplot(data = info_wby_domain, aes(x = ability, y = info, fill = domain)) +
-      geom_bar(stat = "identity") +
+      geom_bar(stat = "identity", width = 1) +
       ylab("% of information") +
       xlab("Ability (D-score)")+
       scale_color_manual(values = dmodel::get_color_domain("gcdg"),
@@ -531,11 +531,13 @@ level (Figure \@ref(fig:domaind)) or the individual level (see Figure
 \@ref(fig:domaindex)).
 
 
-```{r domaind, echo=FALSE, fig.cap='(ref:domaind)', fig.keep='all', message=FALSE, warning=FALSE, cache=TRUE, results='hide'}
+```{r domaind, echo=FALSE, fig.cap='(ref:domaind)', fig.keep='all', message=FALSE, warning=FALSE, cache=TRUE, results='hide', fig.width=11}
 
 library(ddomain)
 library(dplyr)
 library(tidyr)
+library(dscore)
+library(ggplot2)
 
 data_w <- dmetric::gcdg_lean[["itm"]] %>% spread(key = "item", value = "value") %>%
   left_join(gcdg_lean[["visit"]]) %>%
@@ -575,7 +577,7 @@ that the number of items for Gross Motor is very low (only 3 items). The white
 overlayed line at 5 items, indicates the bare minimum for a $D$-score.
 
 
-```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', message=FALSE, warning=FALSE, results='hide', fig.width=11}
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
 
