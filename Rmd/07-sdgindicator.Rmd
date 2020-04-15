@@ -53,20 +53,21 @@ standard [@borghi2006]. A similar strategy can be used to construct a reference
 standard child development-for-age. This reference standard can then be used to
 determine whether children are *developmentally on track*.
 
-In Figure \@ref(ref:dscorerefs), the strategy for constructing standards for
+In Figure \@ref(fig:dscorerefs), the strategy for constructing standards for
 development and to use them to define on track development is explained in
-several steps. In the first step the D-score is plotted by age and in the
-subsequent steps, this relation is modeled in an an LMS model. The goal of an
-LMS model is to describe the relation of the $D$-score by age with
-age-conditional z-scores. This is done by three smoothed curves representing the
-median, coefficient of variation and the skewness. The resulting age
-standardized scores for development (daz), are then used to define on-track
-development. So D-scores within 2 standard deviations from the median can be
-defined as on-track. Scores that are more than two standard deviation *below* the
-median, can be defined as off-track.
+several steps. By clicking on the `next` button below the plot, the next test
+shows.  In the first step the D-score is plotted by age and in the subsequent
+steps, this relation is modeled in an an LMS model. The goal of an LMS model is
+to describe the relation of the $D$-score by age with age-conditional z-scores.
+This is done by three smoothed curves representing the median, coefficient of
+variation and the skewness. The resulting age standardized scores for
+development (daz), are then used to define on-track development. So D-scores
+within 2 standard deviations from the median can be defined as on-track. Scores
+that are more than two standard deviation *below* the median, can be defined as
+off-track.
 
 
-```{r dscorerefs, echo=FALSE, fig.width=11, fig.cap='(ref:dscorerefs)' }
+```{r dscorerefs, echo=FALSE, fig.width=10, fig.cap='(ref:dscorerefs)' }
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
   height = "700px")
 ```
@@ -251,34 +252,19 @@ In the publication on the $D$-score from the GCDG project [@Weber2019], the conc
 ### Stunting
 
 The WHO defines stunted as [when the height-for-age is more than two standard deviations below
-the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html).
+the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html). In Figure \@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
+development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different construct. 
 
-```{r, echo=FALSE}
-##DAZ in stunted vs non-stunted (as done in Weber paper)
-
-
-```
-
-In Figure
-\@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
-development in each country.
-
-
-```{r stunt,echo=FALSE, fig.cap = '(ref:stunt)'}
+```{r stunt, echo=FALSE, fig.cap='(ref:stunt)', message=FALSE, warning=FALSE}
 
 ##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
 library("dmetric")
 library("gseddata")
 
-varlist <- list(adm = c("subjid", "agedays", "cohort", "cohortn", "subjido"),
-                items = gcdg_items)
-gcdg_lean <- get_data(cohorts = 40:56, items = varlist$items, adm = ".", aux = ".", cov = ".")
-
 #or just load gcdg_lean form dmetric when data in package is updated
-
 sdg_stunt <- 
-gcdg_lean$visit %>% 
-  left_join(model_lean$dscore) %>%
+dmetric::gcdg_lean$visit %>% 
+  left_join(dmetric::model_lean$dscore) %>%
   mutate(track = ifelse(.data$daz < -2, 0, 1),
          stunting = ifelse(.data$haz < -2, 1, 0)) %>%
   group_by(ctrycd) %>%
@@ -294,11 +280,46 @@ ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
   xlab("Country")
 
 
+# hazdaz <- dmetric::gcdg_lean$visit %>% 
+#   left_join(dmetric::model_lean$dscore) %>%
+#   mutate(track = ifelse(.data$daz < -2, 0, 1),
+#          stunting = ifelse(.data$haz < -2, 1, 0))%>%
+#   group_by(ctrycd) %>%
+#   summarize(haz = mean(haz, na.rm = TRUE),
+#             daz = mean(daz, na.rm = TRUE),
+#             track = mean(track, na.rm = TRUE),
+#             stunt = mean(stunting, na.rm = TRUE))
+# 
+# 
+# ggplot(data = hazdaz, aes(x = haz, y = daz, color = ctrycd)) +
+#   geom_point() +
+#   coord_equal()
+# 
+# ggplot(data = hazdaz, aes(x = haz, y = daz)) +
+#   geom_point() + xlim(-2,2) + ylim(-2,2)+
+#   coord_equal()
+
+
 ```
-(ref:stunt) Percentage off-track development and stunted per country.
+(ref:stunt) Percentage off-track development and stunted per country
 
-In this plot we can see that the percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different construct. 
 
+However, we can see a relation between stunting and development ($D$-score). When we compare the Standardized $D$-score (DAZ) in each country for the stunted versus not-stunted children (Figure \@ref(fig:stuntdaz))
+
+```{r stuntdaz, echo=FALSE, fig.width=11, fig.cap= '(ref:stuntdaz)'}
+##DAZ in stunted vs non-stunted (as done in Weber paper)
+sdg_stuntdaz <- 
+dmetric::gcdg_lean$visit %>% 
+  left_join(dmetric::model_lean$dscore) %>%
+  mutate(stunting = ifelse(.data$haz < -2, "stunted", "not-stunted")) %>%
+  group_by(ctrycd, stunting) %>%
+  summarize("DAZ" =  mean(daz, na.rm = TRUE)) %>%
+  drop_na()
+
+ggplot(sdg_stuntdaz, aes(x = ctrycd, y = DAZ, fill = stunting))+
+  geom_bar(stat = "identity", position = "dodge")
+```
+(ref:stuntdaz) DAZ for stunted versus not-stunted per country
 
 
 <!--# To validate the off-track development measured by the $D$-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
@@ -310,6 +331,44 @@ In this plot we can see that the percentages of stunting differ a lot from the o
 ##cohort with by2
 ##does not work yet!!!!
 
+#join based on subjido & cohort/study. So translate study in ddata gcdg data to cohort in GSEDDATA.
+
+gsed_cohort <- unique(dmetric::model_lean$dscore$cohort)
+gcdg_aux <- ddata::get_gcdg(items = FALSE, adm=TRUE, aux = TRUE, cov = TRUE)
+gcdg_study <- unique(gcdg_aux$study) #brazil2 not in model?
+
+cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(4,6,9,10,13,
+                                                                                1,5,16,7,8,
+                                                                                2,14,15,11,12)])
+
+
+ gcdg_d_aux <- gcdg_aux %>%
+            mutate(subjido = as.character(id), 
+                   cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"], 
+                   b_total = rowMeans(select(.,b_tot_cog, b_tot_lr, b_tot_le, b_tot_mf, b_tot_mg), na.rm =TRUE)) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
+ 
+ 
+ by_track <- gcdg_d_aux %>%
+   mutate(track = ifelse(.data$daz < -2, 0, 1), 
+          by_d = ifelse(.data$b_total < 70, 1, 0)) %>%
+ group_by(country) %>%
+  summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
+            "n_d" = sum(!is.na(track)),
+            "b_delay" = sum(by_d, na.rm=TRUE)/sum(!is.na(by_d)), 
+            "n_b" = sum(!is.na(by_d))) %>%
+  pivot_longer(cols = c("off-track", "b_delay"), names_to = "Measure", values_to = "Percentage")
+
+
+ggplot(data = by_track, aes(x = country, y = Percentage, fill = Measure)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  xlab("Country")
+
+ 
+
+ ##vanaf hier verder gaan bij vergeliking met totaal scores op andere measures. 
+ 
+ ##verder deze data gebruiken voor CH8.
+ 
 #select by3 cohorts
 by3_COH <- c("GCDG-CHN", "GCDG-COL-LT42M", "GCDG-COL-LT45M", "GCDG-ETH")
 #calculate mean of "b_tot_cog"     "b_tot_lr"      "b_tot_le"      "b_tot_mf"      "b_tot_mg"  for bayley total score. 
@@ -320,6 +379,8 @@ b_vars <- c("b_tot_cog","b_tot_lr","b_tot_le","b_tot_mf","b_tot_mg")
 
 b_scores <- gcdg_lean$aux %>% filter(variable %in% b_vars) %>%
   group_by(subjid)%>% summarize(b_score = mean(value, na.rm=TRUE))
+
+
 
 sdg_by <- 
 gcdg_lean$visit %>% filter(cohort %in% by3_COH) %>%
