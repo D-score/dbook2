@@ -31,7 +31,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="section-ch-modelingequates.html"/>
-<link rel="next" href="section-empirical-and-fitted-item-response-curves.html"/>
+<link rel="next" href="section-modeling-strategies.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,9 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/trelliscopejs_widget-0.3.2/trelliscope.min.js"></script>
+<script src="libs/trelliscopejs_widget-binding-0.2.4/trelliscopejs_widget.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
 
@@ -104,11 +107,12 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-ch-modelingequates.html"><a href="section-ch-modelingequates.html"><i class="fa fa-check"></i><b>5</b> Modeling equates</a><ul>
 <li class="chapter" data-level="5.1" data-path="section-gcdg-data-design-and-description.html"><a href="section-gcdg-data-design-and-description.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
-<li class="chapter" data-level="5.2" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.2</b> Empirical and fitted item response curves</a></li>
-<li class="chapter" data-level="5.3" data-path="section-active-and-non-active-equate-groups.html"><a href="section-active-and-non-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Active and non-active equate groups</a></li>
-<li class="chapter" data-level="5.4" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.4</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.5" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.5</b> Modeling strategies</a></li>
-<li class="chapter" data-level="5.6" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.6</b> Item information</a></li>
+<li class="chapter" data-level="5.2" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.2</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.3" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.3</b> Empirical and fitted item response curves</a></li>
+<li class="chapter" data-level="5.4" data-path="section-active-and-non-active-equate-groups.html"><a href="section-active-and-non-active-equate-groups.html"><i class="fa fa-check"></i><b>5.4</b> Active and non-active equate groups</a></li>
+<li class="chapter" data-level="5.5" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.5</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.6" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.6</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.7" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.7</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
@@ -158,6 +162,10 @@
             <section class="normal" id="section-">
 <div id="section-gcdg-data-design-and-description" class="section level2">
 <h2><span class="header-section-number">5.1</span> GCDG data: design and description</h2>
+<p>Chapter <span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(#sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts.</p>
+<p>We coded every items as 0 (fail), 1 (pass) or missing. The Battelle Developmental Inventory scores items as 0 (fail), 1 or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 of these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1.</p>
+<p>We concatenated the datasets from these cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.</p>
+<p>Subject matter experts classified items into groups of similar appearing items, thus forming 184 equate groups. Each equate group contains at least two items.</p>
 </div>
             </section>
 
@@ -165,7 +173,7 @@
         </div>
       </div>
 <a href="section-ch-modelingequates.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-empirical-and-fitted-item-response-curves.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-modeling-strategies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

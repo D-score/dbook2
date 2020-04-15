@@ -1,4 +1,6 @@
 bookdown::gitbook:
+  self_contained: false
+  lib_dir: libs
   highlight: tango
   css: style.css
   split_by: section

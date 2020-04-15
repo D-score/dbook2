@@ -50,6 +50,9 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/trelliscopejs_widget-0.3.2/trelliscope.min.js"></script>
+<script src="libs/trelliscopejs_widget-binding-0.2.4/trelliscopejs_widget.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
 
@@ -104,11 +107,12 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-ch-modelingequates.html"><a href="section-ch-modelingequates.html"><i class="fa fa-check"></i><b>5</b> Modeling equates</a><ul>
 <li class="chapter" data-level="5.1" data-path="section-gcdg-data-design-and-description.html"><a href="section-gcdg-data-design-and-description.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
-<li class="chapter" data-level="5.2" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.2</b> Empirical and fitted item response curves</a></li>
-<li class="chapter" data-level="5.3" data-path="section-active-and-non-active-equate-groups.html"><a href="section-active-and-non-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Active and non-active equate groups</a></li>
-<li class="chapter" data-level="5.4" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.4</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.5" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.5</b> Modeling strategies</a></li>
-<li class="chapter" data-level="5.6" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.6</b> Item information</a></li>
+<li class="chapter" data-level="5.2" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.2</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.3" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.3</b> Empirical and fitted item response curves</a></li>
+<li class="chapter" data-level="5.4" data-path="section-active-and-non-active-equate-groups.html"><a href="section-active-and-non-active-equate-groups.html"><i class="fa fa-check"></i><b>5.4</b> Active and non-active equate groups</a></li>
+<li class="chapter" data-level="5.5" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.5</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.6" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.6</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.7" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.7</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
@@ -162,20 +166,24 @@
 <div id="section-stunting" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Stunting</h3>
 <p>The WHO defines stunted as <a href="https://www.who.int/nutrition/healthygrowthproj/en/index1.html">when the height-for-age is more than two standard deviations below
-the WHO Child Growth Standard median</a>.</p>
-<p>In Figure
-<a href="section-sec-otherestimates.html#fig:stunt">7.3</a> we compare the percentage stunted to the percentage off-track
-development in each country.</p>
-<pre><code>Joining, by = c(&quot;cohort&quot;, &quot;cohortn&quot;, &quot;subjid&quot;, &quot;subjido&quot;, &quot;agedays&quot;)</code></pre>
-<pre><code>Warning: Removed 1 rows containing missing values (geom_bar).</code></pre>
+the WHO Child Growth Standard median</a>. In Figure <a href="section-sec-otherestimates.html#fig:stunt">7.3</a> we compare the percentage stunted to the percentage off-track
+development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that “growth” and “development” are very different construct.</p>
 <div class="figure" style="text-align: center"><span id="fig:stunt"></span>
-<img src="dbook2_files/figure-html/stunt-1.png" alt="Percentage off-track development and stunted per country." width="672" />
+<img src="dbook2_files/figure-html/stunt-1.png" alt="Percentage off-track development and stunted per country" width="672" />
 <p class="caption">
-Figure 7.3: Percentage off-track development and stunted per country.
+Figure 7.3: Percentage off-track development and stunted per country
 </p>
 </div>
 
-<p>In this plot we can see that the percentages of stunting differ a lot from the off-track developmental percentages. This indicates that “growth” and “development” are very different construct.</p>
+<p>However, we can see a relation between stunting and development (<span class="math inline">\(D\)</span>-score). When we compare the Standardized <span class="math inline">\(D\)</span>-score (DAZ) in each country for the stunted versus not-stunted children (Figure <a href="section-sec-otherestimates.html#fig:stuntdaz">7.4</a>)</p>
+<pre><code>Joining, by = c(&quot;cohort&quot;, &quot;cohortn&quot;, &quot;subjid&quot;, &quot;subjido&quot;, &quot;agedays&quot;)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:stuntdaz"></span>
+<img src="dbook2_files/figure-html/stuntdaz-1.png" alt="DAZ for stunted versus not-stunted per country" width="1056" />
+<p class="caption">
+Figure 7.4: DAZ for stunted versus not-stunted per country
+</p>
+</div>
+
 <!--# To validate the off-track development measured by the $D$-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
 -->
 
