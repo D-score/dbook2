@@ -1,11 +1,9 @@
 bookdown::gitbook:
-  self_contained: false
-  lib_dir: libs
   highlight: tango
   css: style.css
   split_by: section
   includes:
-      in_header: mathjax-init.html
+      in_header: init.html
   config:
     toc:
       before: |
