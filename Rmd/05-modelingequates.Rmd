@@ -2,9 +2,58 @@
 
 ## GCDG data: design and description
 
+Chapter @ref(#sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts. 
+
+We coded every items as 0 (fail), 1 (pass) or missing. The Battelle Developmental Inventory scores items as 0 (fail), 1 or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 of these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1. 
+
+We concatenated the datasets from these cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.
+
+Subject matter experts classified items into groups of similar appearing items, thus forming 184 equate groups. Each equate group contains at least two items. 
+
+## Modeling strategies
+
+The analytic challenge is twofold:
+
+- to find a subset of items that form a scale;
+- to find a subset of equate groups with items similar enough to bridge instruments.
+
+Note that both subsets are related, i.e., changing one affects the other. Thus, we cannot first identify items and then equate groups, or first identify equate groups followed by the items. Rather we need to find the two subsets in an iterative fashion, primarily by hand. This chapter described some of the modelling issues the analyst need to confront.
+
+In general, we look for a final model that
+
+- preserves the items that best fit the Rasch model;
+- uses active equate groups with items that behave the same across many cohorts and instruments;
+- displays reasonable age-conditional distributions of the D-scores under the model;
+- has difficulty estimates that are similar to previous estimates.
+
+The modeling strategy is a delicate balancing act to achieve all of the above objective. Particular actions that we could take to improve a given model are:
+
+- remove bad items;
+- inactivate bad equate groups;
+- break up bad equate groups;
+- move items from one equate group to another;
+- create new equate groups;
+- remove entire instruments;
+- remove persons;
+- remove studies.
+
+In order to steer our actions, we look at the following diagnostics (in order of importance): 
+
+- quality of equate group (both visually and through infit);
+- plausibility of the distribution of the D-score by age per study;
+- correspondence of difficulty estimates from published (single study) Dutch data and the new model;
+- infit of the items remaining in the model.
+
+Various routes are possible, and may result different final models. The strategy adopted here is to thicken active equate groups by covering as many studies as possible, in the hope of minimizing the number of active equates needed.
+
 ## Empirical and fitted item response curves
 
+```{r model1339, fig.cap = '(ref:model1339)', out.width="760px"}
+knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/models1339", height = "600px")
+```
+(ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 equate groups. [ZOOM](https://stefvanbuuren.name/dbook-apps/models1339)
 
+Figure \@ref(fig:model1339) displays ...
 
 ## Active and non-active equate groups
 ```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
@@ -51,7 +100,7 @@ gcdg_iteminfo %>% filter(item %in% eqdf$item) %>% left_join(eqdf, by = "item") %
   mutate(grade = cut(info, breaks = c(0,5,25,100,10000),
                      labels = c("D", "C", "B", "A"))) %>%
   arrange(.data$tau) %>%
-  select(equaate, tau, n, info, grade)
+  select(equate, tau, n, info, grade)
 
 gcdg_iteminfo2 <-gcdg_iteminfo %>% filter(!item %in% eqdf$item)
 
