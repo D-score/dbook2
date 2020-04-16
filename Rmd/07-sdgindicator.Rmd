@@ -261,6 +261,8 @@ development in each country. The percentages of stunting differ a lot from the o
 library("dmetric")
 library("gseddata")
 
+
+
 #or just load gcdg_lean form dmetric when data in package is updated
 sdg_stunt <- 
 dmetric::gcdg_lean$visit %>% 
@@ -330,8 +332,16 @@ ggplot(sdg_stuntdaz, aes(x = ctrycd, y = DAZ, fill = stunting))+
 ##cohorts with by3
 ##cohort with by2
 ##does not work yet!!!!
+#note 14/4/2020: the Bayley scores (and other) are obtianed via study owners and are not part of the data. So we only have the (standardized) scores per cohort, but not specifically related to sdg(off-track). New idea: relate ontrack vs offtrack to the standardized scores per cohort. Hypothesis: when more off-track - lower standardized scores... >>>>> later uitvoeren (staat er nu nog niet in). Eerst even op ch8 richten. 
 
 #join based on subjido & cohort/study. So translate study in ddata gcdg data to cohort in GSEDDATA.
+library(dmetric)
+library(ddata)
+library(dscore)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
 
 gsed_cohort <- unique(dmetric::model_lean$dscore$cohort)
 gcdg_aux <- ddata::get_gcdg(items = FALSE, adm=TRUE, aux = TRUE, cov = TRUE)
@@ -345,8 +355,16 @@ cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(
  gcdg_d_aux <- gcdg_aux %>%
             mutate(subjido = as.character(id), 
                    cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"], 
-                   b_total = rowMeans(select(.,b_tot_cog, b_tot_lr, b_tot_le, b_tot_mf, b_tot_mg), na.rm =TRUE)) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
+                   b_total = rowSums(select(.,b_tot_cog, b_tot_lr, b_tot_le, b_tot_mf, b_tot_mg), na.rm =TRUE)) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
  
+ gcdg_d_aux %>% group_by(cohort) %>%
+   summarize(cog = mean(b_pc_cog, na.rm=TRUE),
+             lang = mean(b_pc_lang, na.rm=TRUE),
+             mot = mean(b_pc_mot, na.rm=TRUE),
+             fm = mean(b_tot_mf, na.rm=TRUE),
+             gm = mean(b_tot_mg, na.rm=TRUE),
+             asq_cog = mean(asq_cog, na.rm =TRUE),
+             den_mf = mean(den_mf, na.rm = TRUE))
  
  by_track <- gcdg_d_aux %>%
    mutate(track = ifelse(.data$daz < -2, 0, 1), 
