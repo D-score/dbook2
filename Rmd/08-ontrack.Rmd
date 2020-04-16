@@ -1,9 +1,243 @@
 # Who is on-track? {#ch:ontrack}
 
-## Application II: What determines who is developmentally on-track?
+In the previous chapter @ref(ch:SDGindicator) we described how to determine off-track development to be used as SDG indicator for early child development. In the current chapter we describe the group that is on-track and what explanatory factors relate to being developmentally on-track. We will order these explanatory factors to relative importance and relate them to opportunities for interventions. 
 
-## Types of explanatory factors
+* Application II: What determines who is developmentally on-track (\@ref(sec:application2))
+* Types of explanatory factors (\@ref(sec:factors))
+* Relative importance (\@ref(sec:importance))
+* Opportunities for intervention (\@ref(sec:intervention))
 
-## Relative importance
 
-## Opportunities for intervention
+## Application II: What determines who is developmentally on-track? {#sec:application2}
+<!---- 
+decribe the group on track vs off-track by background variables that can be discriminant
+--->
+
+Table /@ref(tab:ontracktab) describes the background characteristics for the children that are on-track versus off-track for development.  
+
+```{r ontracktab, echo = FALSE, message = FALSE, warning = FALSE}
+library(dmetric)
+library(ddata)
+library(dscore)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+
+
+gsed_cohort <- unique(dmetric::model_lean$dscore$cohort)
+gcdg_aux <- ddata::get_gcdg(items = FALSE, adm=TRUE, aux = TRUE, cov = TRUE)
+gcdg_study <- unique(gcdg_aux$study) #brazil2 not in model?
+
+cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(4,6,9,10,13,
+                                                                                1,5,16,7,8,
+                                                                                2,14,15,11,12)])
+
+
+ gcdg_d_cov <- gcdg_aux %>%
+            mutate(subjido = as.character(id), 
+                   cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"]) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort")) %>%
+   mutate(ontrack = ifelse(daz > -2, 1, 0))
+ 
+ #note: check for birthweigth low vs normal categories in analyses for BMJ paper.
+ #per factor the descriptives and proportions
+ cohort_des <- 
+ gcdg_d_cov %>% select(cohort,ontrack)  %>%
+  group_by(cohort) %>%
+  count(ontrack) %>%
+  group_by(cohort) %>%             # now required with changes to dplyr::count()
+  mutate(prop = prop.table(n)) %>%
+   pivot_wider(id_cols = c("cohort"), names_from = "ontrack", values_from = c("n", "prop")) %>%
+   rename(category = cohort) %>%
+   mutate(factor = "cohort" 
+          ) %>% select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+
+  country_des <- 
+ gcdg_d_cov %>% select(country,ontrack)  %>%
+  group_by(country) %>%
+  count(ontrack) %>%
+  group_by(country) %>%             # now required with changes to dplyr::count()
+  mutate(prop = prop.table(n)) %>%
+   pivot_wider(id_cols = c("country"), names_from = "ontrack", values_from = c("n", "prop")) %>%
+   rename(category = country) %>%
+   mutate(factor = "country" 
+          ) %>% select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+ 
+edu_des <- 
+ gcdg_d_cov %>% select(edumocat,ontrack)  %>%
+  group_by(edumocat) %>%
+  count(ontrack) %>%
+  group_by(edumocat) %>%             # now required with changes to dplyr::count()
+  mutate(prop = prop.table(n)) %>%
+   pivot_wider(id_cols = c("edumocat"), names_from = "ontrack", values_from = c("n", "prop")) %>%
+   rename(category = edumocat) %>% ungroup() %>%
+   mutate(factor = "edumocat",
+          category = ifelse(category == 0, "no education", category),
+          category = ifelse(category == 1, "any primary", category),
+          category = ifelse(category == 2, "any secondary", category),
+          category = ifelse(category == 3, "higher secondary", category)
+          )%>% 
+     select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+
+sex_des <- 
+ gcdg_d_cov %>% select(male,ontrack)  %>%
+  group_by(male) %>%
+  count(ontrack) %>%
+  group_by(male) %>%             # now required with changes to dplyr::count()
+  mutate(prop = prop.table(n)) %>%
+   pivot_wider(id_cols = c("male"), names_from = "ontrack", values_from = c("n", "prop")) %>%
+   rename(category = male) %>% ungroup() %>%
+   mutate(factor = "male",
+          category = ifelse(category == 0, "female", category),
+          category = ifelse(category == 1, "male", category)
+          )%>% 
+     select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+
+res_des <- 
+ gcdg_d_cov %>% select(residence,ontrack)  %>%
+  group_by(residence) %>%
+  count(ontrack) %>%
+  group_by(residence) %>%             # now required with changes to dplyr::count()
+  mutate(prop = prop.table(n)) %>%
+   pivot_wider(id_cols = c("residence"), names_from = "ontrack", values_from = c("n", "prop")) %>%
+   rename(category = residence) %>% ungroup() %>%
+   mutate(factor = "residence",
+          category = ifelse(category == 0, "rural", category),
+          category = ifelse(category == 1, "semi-urban", category),
+          category = ifelse(category == 2, "urban", category),
+          category = ifelse(category == 3, "metropolitan", category)
+          )%>% 
+     select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+
+  desc_table <- bind_rows(cohort_des, country_des, edu_des, sex_des, res_des)
+
+kable(desc_table, caption = "Descriptive table for on-track versus off-track development") %>%
+  kable_styling("striped", full_width = F) %>%
+  add_header_above(c(" " = 2, "On-track" = 2, "Off-track" = 2, "unknown D" = 2)) %>%
+    collapse_rows(columns = 1, valign = "top")# %>%
+ # pack_rows("country", 1, 11) %>%
+#  pack_rows("mother's eductation", 12, 16)%>%
+#  pack_rows("sex", 17, 19)%>%
+#  pack_rows("residence", 20, 24)%>%
+#  pack_rows("study", 25, 40)
+
+```
+&nbsp;
+
+
+```{r descplot, echo = FALSE, message = FALSE, warning = FALSE}
+#join based on subjido & cohort/study. So translate study in ddata gcdg data to cohort in GSEDDATA.
+
+desc_plot <- desc_table  %>%
+  pivot_longer(cols = c("prop_0", "prop_1", "prop_NA"), names_to = "ontrack", values_to ="percentage", names_prefix = "prop_") %>% mutate(ontrack = as.numeric(ontrack))
+
+ ggplot(desc_plot, aes(x = factor(category), y = percentage, fill = factor(ontrack)))+
+   geom_bar(stat = "identity")
+   scale_fill_discrete(name = "Development", labels = c("off-track", "on-track"))
+ 
+ 
+library(plotly)
+   
+   
+   py <-  ggplot(desc_plot, aes(x = factor(category), y = percentage, fill = factor(ontrack)), frame = factor)+
+   geom_bar(stat = "identity")
+   scale_fill_discrete(name = "Development", labels = c("off-track", "on-track")) 
+
+ply % animation_opts(0, redraw=FALSE)
+ply$x$data[[2]]$hoverinfo <- "none"
+ply$x$data[[3]]$hoverinfo <- "none"
+saveWidget(as_widget(ply), "FunnelChart_YearSelection.html", selfcontained=FALSE)
+ 
+#  
+#  
+#  
+#  gcdg_d_on <- gcdg_d_cov %>% drop_na(.data$ontrack) %>% group_by(ontrack) %>% mutate(n.ontrack = n()) %>% 
+#    ungroup() %>%
+#    mutate(education = factor(edumocat, labels = c("4. no education", "3. any primary", "2. any secondary", "1. above secondary")),
+#           education = factor(education)) %>%
+#    group_by(ontrack, education) %>% summarize(n = n(),
+#                                                       n.ontrack = mean(n.ontrack),
+#                                                       p = n()/n.ontrack)
+# 
+#  gcdg_d_on <- gcdg_d_cov %>% drop_na(.data$ontrack) %>% group_by(ontrack) %>% mutate(n.ontrack = n()) %>% 
+#    ungroup() %>%
+#    mutate(education = factor(edumocat, labels = c("4. no education", "3. any primary", "2. any secondary", "1. above secondary")),
+#           education = factor(education)) %>%
+#    group_by(ontrack, education) %>% summarize(n = n(),
+#                                                       n.ontrack = mean(n.ontrack),
+#                                                       p = n()/n.ontrack)
+#  
+#  
+#  
+#  
+#  
+#  
+#  
+#  ggplot(data = gcdg_d_on, aes(x = ontrack, y = p, fill = factor(education)))+
+#    geom_bar(stat = "identity")
+#  
+# # library(lme4)
+# # fit1 <- glm(ontrack ~ male+ edumocat+ residence+ birthweight+ haz, data = gcdg_d_cov, family = #"binomial") 
+# # fit2 <- nlmer(ontrack ~ male+ edumocat+ residence+ birthweight+ haz + (1|cohort), data = gcdg_d_cov, #family = "binomial") 
+#  
+# #country
+# prop.table(with(gcdg_d_cov, table(ontrack, country)))
+# sum(with(gcdg_d_cov, table(ontrack, country)))
+# fit1.ct <- lm(daz ~ country, data = gcdg_d_cov) 
+# summary(fit1.ct)
+# fit2.ct <- glm(ontrack ~ country, data = gcdg_d_cov, family = "binomial") 
+# summary(fit2.ct)
+#  
+# #cohort
+# prop.table(with(gcdg_d_cov, table(ontrack, cohort)))
+# sum(with(gcdg_d_cov, table(ontrack, cohort)))
+# fit1.ch <- lm(daz ~ cohort, data = gcdg_d_cov) 
+# summary(fit1.ch)
+# fit2.ch <- glm(ontrack ~ cohort, data = gcdg_d_cov, family = "binomial") 
+# summary(fit2.ch)
+#   
+# #edumocat
+# prop.table(with(gcdg_d_cov, table(ontrack, edumocat)))
+# sum(with(gcdg_d_cov, table(ontrack, edumocat)))
+# fit1.ed <- lm(daz ~ factor(edumocat), data = gcdg_d_cov) 
+# summary(fit1.ed)
+# fit2.ed <- glm(ontrack ~ factor(edumocat), data = gcdg_d_cov, family = "binomial") 
+# summary(fit2.ed)
+# 
+# #male
+# prop.table(with(gcdg_d_cov, table(ontrack, male)))
+# sum(with(gcdg_d_cov, table(ontrack, male)))
+# fit1.m <- lm(daz ~ male, data = gcdg_d_cov) 
+# summary(fit1.m)
+# fit2.m <- glm(ontrack ~ male, data = gcdg_d_cov, family = "binomial") 
+# summary(fit2.m)
+# 
+# #residence
+# prop.table(with(gcdg_d_cov, table(ontrack, residence)))
+# sum(with(gcdg_d_cov, table(ontrack, residence)))
+# fit1.res <- lm(daz ~ factor(residence), data = gcdg_d_cov)
+# summary(fit1.res)
+# fit2.res <- glm(ontrack ~ factor(residence), data = gcdg_d_cov, family = "binomial") 
+# summary(fit2.res)
+
+```
+
+
+
+## Types of explanatory factors {#sec:factors}
+
+<!---- 
+analyze relation between background variables for on-track in logistic regression
+--->
+
+## Relative importance {#sec:importance}
+
+<!---- 
+relative importance for daz?
+--->
+
+
+## Opportunities for intervention {#sec:intervention}
+
+<!---- 
+in words conclusions based on previous paragraphs. What can we say (now) about where to intervene--->
