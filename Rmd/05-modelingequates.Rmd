@@ -46,16 +46,49 @@ In order to steer our actions, we look at the following diagnostics (in order of
 
 Various routes are possible, and may result different final models. The strategy adopted here is to thicken active equate groups by covering as many studies as possible, in the hope of minimizing the number of active equates needed.
 
-## Empirical and fitted item response curves
+## Impact of number of active equate groups
 
 ```{r model1339, fig.cap = '(ref:model1339)', out.width="760px"}
 knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/models1339", height = "600px")
 ```
-(ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 equate groups. [ZOOM](https://stefvanbuuren.name/dbook-apps/models1339)
+(ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. [ZOOM](https://stefvanbuuren.name/dbook-apps/models1339)
 
-Figure \@ref(fig:model1339) displays ...
+Figure \@ref(fig:model1339) is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculate from the [SMOCC study](https://stefvanbuuren.name/dbook1/sec-smoccstudy.html). In order to speed up calculation, the figure shows a random subsample of 25\% of all points. Manipulate the plot controls to switch cohorts.
 
-## Active and non-active equate groups
+All models contain 1339 items, but differ in the number of active equate groups. The most salient features per model are:
+
+- `1339_0`: No equate groups, so different instruments in different cohorts are fitted independently;
+- `1339_11`: Connects all cohorts through one or more equated items using 11 equate groups in total;
+- `1339_33`: There are 33 equate groups that bridge cohort and instruments;
+- `1339_184`: Maximally connects instruments and cohort by all equate groups.
+
+Comparison of the D-score distibution by age across these models yields various insights:
+
+- The locations of cohorts on the vertical scale depends on the number of active equate groups. For example, for Madagascar (MDG) the points are located around 52 when no equate groups are actived, whereas if all are activated it about 68.
+
+- The age trend depends on the number of active equate groups. For example, for Colombia (COL) or Ethiopia (ETH), the model without equate groups has a shallow age trend, whereas it is steep for the `1339_184` model.
+
+- The vertical spread depends on the number of equate groups. For example, the spread in the Chile-2 (CHL-2) cohort substantially increases with the number of active equates.
+
+- Model `1339_0` for the Dutch NLD-SMOCC cohort is equivalent to the model fitted to the [SMOCC study](https://stefvanbuuren.name/dbook1/sec-smoccstudy.html) alone. Introducing equate groups compresses the range of scores, especially at the higher end.
+
+Since model `1339_0` produces no joint scale across cohort, we will not study it further. At the other extreme, model `1339_184` uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between `1339_11` and `1339_33`. We opt to continue with `1339_11` for a number of reasons:
+
+- It is better to use a few really good equate groups than a larger number of equate groups of lower quality (INCLUDE REF);
+- Model `1339_11` allows for assessment of comparability of more inactive equates;
+- Model `1339_11` is closer to model `1339_0`, which increases the likelihood that the D-score scale as developed for the Dutch data will generalise to the other 15 cohorts.
+
+The next step is to select those items that best fit the Rasch model.
+
+## Selection of best milestones
+
+
+## Quality of equate groups
+
+
+
+## Empirical and fitted item response curves
+
 ```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
 
 pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::model_lean, passive = TRUE)
