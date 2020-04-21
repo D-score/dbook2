@@ -1,6 +1,6 @@
 # Who is on-track? {#ch:ontrack}
 
-In the previous chapter @ref(ch:SDGindicator) we described how to determine off-track development to be used as SDG indicator for early child development. In the current chapter we describe the group that is on-track and what explanatory factors relate to early child develoment. We will order these explanatory factors to relative importance and relate them to opportunities for interventions. 
+In the previous chapter \@ref(ch:SDGindicator) we described how to determine off-track development to be used as SDG indicator for early child development. In the current chapter we describe the group that is on-track and what explanatory factors relate to early child develoment. We will order these explanatory factors to relative importance and relate them to opportunities for interventions. 
 
 * Application II: What determines who is developmentally on-track (\@ref(sec:application2))
 * Types of explanatory factors (\@ref(sec:factors))
@@ -12,7 +12,7 @@ In the previous chapter @ref(ch:SDGindicator) we described how to determine off-
 
 There are several methodologies available to define on-track development. It is possible to define on-track development based on expert opinion, where many experts are consulted to formulate a definition based on their experience and subject matter knowledge. 
 
-Another option is to define on-track development based on (representative) population data. The methodological process to develop such a reference is visualized in Figure /@ref(fig:dscorerefs) in section /@ref(sec:references). Ideally, the data used to define a reference is representative for the norm population. 
+Another option is to define on-track development based on (representative) population data. The methodological process to develop such a reference is visualized in Figure \@ref(fig:dscorerefs) in section \@ref(sec:references). Ideally, the data used to define a reference is representative for the norm population. 
 
 In this study we do define on-track development as having $D$-scores within 2 standard deviations from the median, more specifically, $D$-scores not more than two standard deviation *below* the median. The $D$-scores in the green-shaded area in Figure \@ref(fig:ontrackref) are considered as on-track. However, the references used are based on the data from the included cohorts in this study and may not be representative for the global population. 
 
@@ -49,7 +49,7 @@ analyze relation between background variables for on-track in logistic regressio
 --->
 There are many known factors that relate to early child development. For example, the educational level of the parents is positively related to development, but also environmental factors such as nutritional status or medical factors such as disease history or birth defects. 
 
-Unfortunately we do not have all of these factors measured in our data, but for some factors we can describe the frequency distributions for the on-track children versus off-track children. Table /@ref(tab:ontracktab) describes the background characteristics for the children that are on-track versus off-track for development.  
+Unfortunately we do not have all of these factors measured in our data, but for some factors we can describe the frequency distributions for the on-track children versus off-track children. Table \@ref(tab:ontracktab) describes the background characteristics for the children that are on-track versus off-track for development.  
 
 We can see some differences between the countries and cohorts, but the differences seem small. For mothers education we can see that the higher the educational level, the lower the off-track percentages. And for the residential area we see that the percentage on-track seems higer in the more rural areas. 
 
@@ -205,7 +205,7 @@ desc_plot <- desc_table  %>%
 <!---- 
 relative importance for daz?
 --->
-The explanatory variables described in the previous section /@ref(sec:factors) differ in their importance to explain early child development. When we look at a combination of possible explanatory factors that were measured in this study (i.e. country, sex, birthweight, mother's education, height for age and residential area) explain about 6.5% of the variance in the standardized $D$-score for age. In Figure /@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the $D$-score. Birthweigth is the second important factor.
+The explanatory variables described in the previous section \@ref(sec:factors) differ in their importance to explain early child development. When we look at a combination of possible explanatory factors that were measured in this study (i.e. country, sex, birthweight, mother's education, height for age and residential area) explain about 6.5% of the variance in the standardized $D$-score for age. In Figure \@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the $D$-score. Birthweigth is the second important factor.
 
 ```{r imppie, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
 library(RColorBrewer)
