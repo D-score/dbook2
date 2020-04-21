@@ -19,7 +19,10 @@ runtime: shiny
 ```{r initbook, include = FALSE}
 opts_chunk$set(comment = NA, background = "#FBFBFB",
                fig.align = 'center', cache = TRUE, 
+               message = FALSE, warnings = FALSE,
                echo = FALSE)
+theme_set(theme_light())
+
 ```
 
 # Welcome {-}
