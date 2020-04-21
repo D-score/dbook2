@@ -1,5 +1,10 @@
-# Data {#ch:data}
+```{r ch2libs, include=FALSE}
+library(ggplot2)
+library(maps)
+library(ggthemes)
+```
 
+# Data {#ch:data}
 <!-- NOTE: We need to include a clear statement of the scope of this
 booklet. What is the major problem? What would be progress? What data
 would help us to advance? -->
@@ -50,11 +55,7 @@ describes each cohort. Section \@ref(sec:instruments) reviews the measurement
 instruments.
 
 
-```{r worldmap, echo=FALSE, fig.cap='(ref:worldmap)', fig.keep='all', message=FALSE, warning=FALSE, results='hide', fig.align='center', fig.height=4, fig.width=8}
-
-library(ggplot2)
-library(maps)
-library(ggthemes)
+```{r worldmap, fig.cap='(ref:worldmap)', fig.keep='all', results='hide', fig.align='center', fig.height=4, fig.width=8}
 
 map.world = map_data(map='world')
 map.world$value <- NA

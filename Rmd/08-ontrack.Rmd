@@ -1,3 +1,20 @@
+```{r ch8libs, include=FALSE}
+
+library(gseddata)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(dmetric)
+library(ddata)
+library(dscore)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+library(RColorBrewer)
+
+```
+
 # Who is on-track? {#ch:ontrack}
 
 In the previous chapter \@ref(ch:SDGindicator) we described how to determine off-track development to be used as SDG indicator for early child development. In the current chapter we describe the group that is on-track and what explanatory factors relate to early child develoment. We will order these explanatory factors to relative importance and relate them to opportunities for interventions. 
@@ -17,9 +34,6 @@ Another option is to define on-track development based on (representative) popul
 In this study we do define on-track development as having $D$-scores within 2 standard deviations from the median, more specifically, $D$-scores not more than two standard deviation *below* the median. The $D$-scores in the green-shaded area in Figure \@ref(fig:ontrackref) are considered as on-track. However, the references used are based on the data from the included cohorts in this study and may not be representative for the global population. 
 
 ````{r ontrackref, echo=FALSE, message = FALSE, warning = FALSE, fig.width = 10, fig.cap = '(ref:ontrackref)'}
-library(tidyr)
-library(dplyr)
-library(ggplot2)
 references <- dscore::get_reference("gcdg") %>%
   mutate(month = age * 12, 
          ymax = 80) %>%
@@ -54,15 +68,6 @@ Unfortunately we do not have all of these factors measured in our data, but for 
 We can see some differences between the countries and cohorts, but the differences seem small. For mothers education we can see that the higher the educational level, the lower the off-track percentages. And for the residential area we see that the percentage on-track seems higer in the more rural areas. 
 
 ```{r ontracktab, echo = FALSE, message = FALSE, warning = FALSE}
-library(dmetric)
-library(ddata)
-library(dscore)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(kableExtra)
-
-
 gsed_cohort <- unique(dmetric::model_lean$dscore$cohort)
 gcdg_aux <- ddata::get_gcdg(items = FALSE, adm=TRUE, aux = TRUE, cov = TRUE)
 gcdg_study <- unique(gcdg_aux$study) #brazil2 not in model?
@@ -208,20 +213,11 @@ relative importance for daz?
 The explanatory variables described in the previous section \@ref(sec:factors) differ in their importance to explain early child development. When we look at a combination of possible explanatory factors that were measured in this study (i.e. country, sex, birthweight, mother's education, height for age and residential area) explain about 6.5% of the variance in the standardized $D$-score for age. In Figure \@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the $D$-score. Birthweigth is the second important factor.
 
 ```{r imppie, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
-library(RColorBrewer)
-#library(relaimpo)
-
-#step 1 standardize data
-gcdg_scale_cov <- gcdg_d_cov %>% 
-  mutate(gestage = scale(gestage),
-         birthweight = scale(birthweight),
-         birthsize = scale(birthweight),
-         agemom = scale(agemom))
 
 #step 2
 #multiple regression on daz (linear model)
 ols.sat <- lm(daz ~ factor(country) + factor(male) + birthweight+ factor(edumocat) +  haz +
-                factor(residence), data = gcdg_scale_cov)
+                factor(residence), data = gcdg_d_cov)
 #summary(ols.sat)
 fit.country <- lm(daz ~ country, data = gcdg_d_cov)
 fit.male <- lm(daz ~ male, data = gcdg_d_cov)

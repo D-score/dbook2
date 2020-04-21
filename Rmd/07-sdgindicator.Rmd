@@ -1,4 +1,11 @@
-
+```{r ch7libs, include=FALSE}
+library(kableExtra)
+library(dmetric)
+library(gseddata)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
 
 # SDG 4.2.1 Indicator {#ch:SDGindicator}
 
@@ -73,7 +80,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_reference
 ```
 (ref:dscorerefs) Method to define on track development
 
-```{r inside shiny references, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r inside shiny references, eval=FALSE, include=FALSE}
 ##global part:
 
 ##CHECK POSSIBILITY TO USE CACHED PLOTS IN ORDER TO LOAD FASTER
@@ -237,7 +244,6 @@ tabtrack <- model_lean$dscore %>%
   group_by(country) %>%
   summarize("on-track"= sum(track, na.rm=TRUE)/sum(!is.na(track)))
 
-library(kableExtra)
 kable(tabtrack,
       caption = "Percentage of on-track children per country",
       digits = 2)
@@ -255,14 +261,9 @@ The WHO defines stunted as [when the height-for-age is more than two standard de
 the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html). In Figure \@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
 development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different construct. 
 
-```{r stunt, echo=FALSE, fig.cap='(ref:stunt)', message=FALSE, warning=FALSE}
+```{r stunt, echo=FALSE, fig.cap='(ref:stunt)'}
 
 ##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
-library("dmetric")
-library("gseddata")
-
-
-
 #or just load gcdg_lean form dmetric when data in package is updated
 sdg_stunt <- 
 dmetric::gcdg_lean$visit %>% 
