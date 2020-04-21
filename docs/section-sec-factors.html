@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.2 Bridging instruments by mapping items | D-score: Tuning instruments to unitiy</title>
+  <title>8.2 Types of explanatory factors | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.2 Bridging instruments by mapping items | D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="8.2 Types of explanatory factors | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.2 Bridging instruments by mapping items | D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="8.2 Types of explanatory factors | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-challenge.html"/>
-<link rel="next" href="section-sec-viewmapping.html"/>
+<link rel="prev" href="section-sec-application2.html"/>
+<link rel="next" href="section-sec-importance.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -161,101 +161,698 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:mapping" class="section level2">
-<h2><span class="header-section-number">3.2</span> Bridging instruments by mapping items</h2>
-<p>Many instruments for measuring child development have appeared since the works of <span class="citation">Shirley (<a href="section-references.html#section-ref-shirley1933">1933</a>)</span> and <span class="citation">Gesell (<a href="section-references.html#section-ref-gesell1943">1943</a>)</span>. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak and think.</p>
-<p>We will exploit the overlap to bridge different instruments. For example, Table <a href="section-sec-mapping.html#tab:example2words">3.2</a> displays the labels of milestones from six instruments. All items probe the ability of the child to formulate “sentences” of two words.</p>
-<table>
+<div id="section-sec:factors" class="section level2">
+<h2><span class="header-section-number">8.2</span> Types of explanatory factors</h2>
+<!---- 
+analyze relation between background variables for on-track in logistic regression
+--->
+<p>There are many known factors that relate to early child development. For example, the educational level of the parents is positively related to development, but also environmental factors such as nutritional status or medical factors such as disease history or birth defects.</p>
+<p>Unfortunately we do not have all of these factors measured in our data, but for some factors we can describe the frequency distributions for the on-track children versus off-track children. Table <a href="section-sec-factors.html#tab:ontracktab">8.1</a> describes the background characteristics for the children that are on-track versus off-track for development.</p>
+<p>We can see some differences between the countries and cohorts, but the differences seem small. For mothers education we can see that the higher the educational level, the lower the off-track percentages. And for the residential area we see that the percentage on-track seems higer in the more rural areas.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:example2words">Table 3.2: </span>Example of similar items from different instruments.
+<span id="tab:ontracktab">Table 8.1: </span>Descriptive table for on-track versus off-track development
 </caption>
 <thead>
 <tr>
+<th style="border-bottom:hidden" colspan="2">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+On-track
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Off-track
+</div>
+</th>
+</tr>
+<tr>
 <th style="text-align:left;">
-Item
 </th>
 <th style="text-align:left;">
-Label
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+%
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;font-family: monospace;">
-by1mdd136
+<td style="text-align:left;vertical-align: top !important;" rowspan="15">
+cohort
 </td>
 <td style="text-align:left;">
-sentence of 2 words
+GCDG-BGD-7MO
+</td>
+<td style="text-align:right;">
+1734
+</td>
+<td style="text-align:right;">
+0.931
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+0.050
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-family: monospace;">
-by2mdd114
-</td>
 <td style="text-align:left;">
-Uses a two-word utterance
+GCDG-BRA-1
+</td>
+<td style="text-align:right;">
+5447
+</td>
+<td style="text-align:right;">
+0.995
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0.005
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-family: monospace;">
-ddicmm041
-</td>
 <td style="text-align:left;">
-Says sentences with 2 words
+GCDG-CHL-1
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+0.943
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.001
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-family: monospace;">
-denlgd019
-</td>
 <td style="text-align:left;">
-Combine Words
+GCDG-CHL-2
+</td>
+<td style="text-align:right;">
+16071
+</td>
+<td style="text-align:right;">
+0.689
+</td>
+<td style="text-align:right;">
+322
+</td>
+<td style="text-align:right;">
+0.014
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-family: monospace;">
-grihsd217
-</td>
 <td style="text-align:left;">
-Uses word combinations
+GCDG-CHN
+</td>
+<td style="text-align:right;">
+981
+</td>
+<td style="text-align:right;">
+0.991
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.001
 </td>
 </tr>
 <tr>
-<td style="text-align:left;font-family: monospace;">
-vinxxc016
+<td style="text-align:left;">
+GCDG-COL-LT42M
+</td>
+<td style="text-align:right;">
+1298
+</td>
+<td style="text-align:right;">
+0.990
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-COL-LT45M
+</td>
+<td style="text-align:right;">
+2557
+</td>
+<td style="text-align:right;">
+0.987
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-ECU
+</td>
+<td style="text-align:right;">
+621
+</td>
+<td style="text-align:right;">
+0.931
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-ETH
+</td>
+<td style="text-align:right;">
+2545
+</td>
+<td style="text-align:right;">
+0.991
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+0.007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-JAM-LBW
+</td>
+<td style="text-align:right;">
+873
+</td>
+<td style="text-align:right;">
+0.995
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-JAM-STUNTED
+</td>
+<td style="text-align:right;">
+1425
+</td>
+<td style="text-align:right;">
+0.996
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-MDG
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+0.961
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-NLD-2
+</td>
+<td style="text-align:right;">
+14313
+</td>
+<td style="text-align:right;">
+0.702
+</td>
+<td style="text-align:right;">
+228
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-NLD-SMOCC
+</td>
+<td style="text-align:right;">
+136147
+</td>
+<td style="text-align:right;">
+0.956
+</td>
+<td style="text-align:right;">
+4799
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GCDG-ZAF
+</td>
+<td style="text-align:right;">
+8398
+</td>
+<td style="text-align:right;">
+0.977
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="11">
+country
 </td>
 <td style="text-align:left;">
-use a short sentence
+BD
+</td>
+<td style="text-align:right;">
+1734
+</td>
+<td style="text-align:right;">
+0.931
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+0.050
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BR
+</td>
+<td style="text-align:right;">
+5447
+</td>
+<td style="text-align:right;">
+0.411
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CL
+</td>
+<td style="text-align:right;">
+18088
+</td>
+<td style="text-align:right;">
+0.710
+</td>
+<td style="text-align:right;">
+325
+</td>
+<td style="text-align:right;">
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CN
+</td>
+<td style="text-align:right;">
+981
+</td>
+<td style="text-align:right;">
+0.991
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CO
+</td>
+<td style="text-align:right;">
+3855
+</td>
+<td style="text-align:right;">
+0.988
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EC
+</td>
+<td style="text-align:right;">
+621
+</td>
+<td style="text-align:right;">
+0.931
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ET
+</td>
+<td style="text-align:right;">
+2545
+</td>
+<td style="text-align:right;">
+0.991
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+0.007
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JM
+</td>
+<td style="text-align:right;">
+2298
+</td>
+<td style="text-align:right;">
+0.996
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MG
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+0.961
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NL
+</td>
+<td style="text-align:right;">
+150460
+</td>
+<td style="text-align:right;">
+0.924
+</td>
+<td style="text-align:right;">
+5027
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ZA
+</td>
+<td style="text-align:right;">
+8398
+</td>
+<td style="text-align:right;">
+0.977
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+edumocat
+</td>
+<td style="text-align:left;">
+no education
+</td>
+<td style="text-align:right;">
+3672
+</td>
+<td style="text-align:right;">
+0.947
+</td>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+any primary
+</td>
+<td style="text-align:right;">
+52919
+</td>
+<td style="text-align:right;">
+0.870
+</td>
+<td style="text-align:right;">
+2085
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+any secondary
+</td>
+<td style="text-align:right;">
+93430
+</td>
+<td style="text-align:right;">
+0.899
+</td>
+<td style="text-align:right;">
+2709
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+higher secondary
+</td>
+<td style="text-align:right;">
+28404
+</td>
+<td style="text-align:right;">
+0.901
+</td>
+<td style="text-align:right;">
+624
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+sex
+</td>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+91703
+</td>
+<td style="text-align:right;">
+0.897
+</td>
+<td style="text-align:right;">
+2462
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+88606
+</td>
+<td style="text-align:right;">
+0.886
+</td>
+<td style="text-align:right;">
+3098
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+residence
+</td>
+<td style="text-align:left;">
+rural
+</td>
+<td style="text-align:right;">
+2717
+</td>
+<td style="text-align:right;">
+0.988
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+semi-urban
+</td>
+<td style="text-align:right;">
+4685
+</td>
+<td style="text-align:right;">
+0.983
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+urban
+</td>
+<td style="text-align:right;">
+120981
+</td>
+<td style="text-align:right;">
+0.888
+</td>
+<td style="text-align:right;">
+4195
+</td>
+<td style="text-align:right;">
+0.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+metropolitan
+</td>
+<td style="text-align:right;">
+38023
+</td>
+<td style="text-align:right;">
+0.864
+</td>
+<td style="text-align:right;">
+901
+</td>
+<td style="text-align:right;">
+0.020
 </td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>*</sup> n and % do not add to total size due to missings in D-score estimation
+</td>
+</tr>
+</tfoot>
 </table>
 <p> </p>
-<p>The idea is to check whether these milestones measure development in the same way. If this is found to be accurate, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.</p>
-<p>A first step in the bridging process is to group items from different instruments by similarity. As the <code>by3</code> is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to <code>by3</code> items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto <code>by3</code> items.</p>
-<p>We order item mappings into five domains: fine motor (FM), gross motor (GM),
-cognitive (COG), receptive (REC) and expressive (EXP). Figure
-<a href="section-sec-mapping.html#fig:mappingshiny">3.1</a> displays the connections between the instruments via the
-item groups in each domain, with the <code>Prev</code> and <code>Next</code> buttons you can click
-through the five domains. The items are displayed as the leafs and are colored
-by instrument. The blue lines display the links between the items (and
-instruments).</p>
-<div class="figure" style="text-align: center"><span id="fig:mappingshiny"></span>
-<iframe src="https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/?showcase=0" width="960" height="600px">
-</iframe>
-<p class="caption">
-Figure 3.1: Connections between the instruments via mapped item groups in each domain.
-</p>
-</div>
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-challenge.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-sec-viewmapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-application2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-importance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
