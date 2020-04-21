@@ -1,3 +1,15 @@
+```{r ch4libs, include=FALSE}
+library(ggplot2)
+library(dmetric)
+library(gseddata)
+library(gridExtra)
+library(dplyr)
+library(dscore)
+library(ddata)
+library(tidyr)
+
+```
+
 # Equate groups {#ch:equategroups}
 
 This chapter introduces the concepts and tools needed to link assessments made by different instruments administered across multiple cohorts. Our methodology introduces the idea of an equate group. Systematic application of equate groups provides a robust yet flexible methodology to link different instruments. Once the links are in place, we may combine the data to enable meta-analyses and related methods.
@@ -102,12 +114,7 @@ The end goal for using the equate group method to model development items is to 
 
 In Figure \@ref(fig:commonscale) the $D$-scores are displayed for three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M). As described in section \@ref(sec:cohorts), the Netherlands 1 study contains the ddi; Ethiopia the by3; and Colombia the by3, den, asq and bdi. Accordingly there is some natural overlap in items between Ethiopia and Colombia via the by3 items. However, the Netherlands 1 cohorts is not linked via the items. In the upper plot, no equate groups were used and in the lower plot, equate groups link the cohorts.
 
-```{r commonscale, echo=FALSE, fig.width = 8, fig.height = 4, fig.cap='(ref:commonscale)', message=FALSE, warning=FALSE, cache = TRUE}
-library(ggplot2)
-library(dmetric)
-library(gseddata)
-library(gridExtra)
-library(dplyr)
+```{r commonscale, echo=FALSE, fig.width = 8, fig.height = 4, fig.cap='(ref:commonscale)', cache = TRUE}
 
 ## model without equate groups
 varlist_o <- dmetric::prepare_items(study = c("Netherlands 1", "Ethiopia", "Columbia 2"))
@@ -153,15 +160,7 @@ In the Rasch philosophy it is the task of the data to fit the Rasch model. In or
 
 ### Well fitting equate groups
 
-```{r plot_p_d_equate, message=FALSE, warning=FALSE, include=FALSE}
-library(gridExtra)
-library(dmetric)
-library(dscore)
-library(ddata)
-library(dplyr)
-library(tidyr)
-##plot p d equate but group for item instead of study.
-
+```{r plot_p_d_equate, include=FALSE}
 plot_p_d_equate_i <- function(data,
                             model,
                             equates = NULL,
@@ -527,7 +526,7 @@ annotate_item_fit <- function(plot, itemfit, pole = TRUE, xlim=c(0,80)) {
 
 The evaluation of *equate fit* involves comparing the observed probabilities of endorsing the items in the equate group to the estimated probability of endorsing the items in the equate group. In an equate group there is an empirical curve for each item in the equate group and one shared estimated curve. The empirical curves should all be close to the estimated curve for a good equate fit, as presented in the examples in Figure \@ref(fig:ploteqfit).
 
-```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:ploteqfit)', message = FALSE}
+```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqfit)'}
 ps <- plot_p_d_equate_i(data = dmetric::gcdg_lean , model = dmetric::model_lean)
 gridExtra::grid.arrange(ps[["REC6"]], ps[["GM42"]])
 ```
@@ -539,7 +538,7 @@ The equate *Turns head to sound of bell* is asked in slightly different formats 
 
 In modeling with equate groups, selecting the perfect combination of equate groups is a crucial step. Poor fitting equate groups need to be set as passive equate groups, such that the items in the group are not restricted to the same difficulty anymore. In a poor fitting equate group, the empirical curves for each item in the equate group are not close to the shared estimated curve. Additionally, the fit indices show poor fit as well (fit > 1). Two examples of poor equate fit are shown in Figure \@ref(fig:ploteqpoor).
 
-```{r ploteqpoor, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:ploteqpoor)', message = FALSE, cache = TRUE}
+```{r ploteqpoor, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqpoor)',cache = TRUE}
 
 varlist <- list(adm = c("subjid", "agedays", "cohort", "subjido"),
                 items = gseddata::gcdg_items)
@@ -567,7 +566,7 @@ An important assumption for equate groups is that the items in the group work in
 
 In Figure \@ref(fig:plotnoeqdif), two active equate groups are displayed with empirical curves in different colors for each cohort. In both equate groups the curves are close to each other and to the fitted dashed curve. The lack of difference between the curves for the different cohorts, shows that there is no different equate functioning (i.e. different item functioning, DIF) between the cohorts.
 
-```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:plotnoeqdif)', message = FALSE}
+```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:plotnoeqdif)'}
 eqs <- c("FM31", "EXP26", "GM44", "EXP23")
 
 eqs <- dmetric::get_equates(model = dmetric::model_lean, passive = TRUE)[eqs]
@@ -585,7 +584,7 @@ gridExtra::grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 
 In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that show differential item functioning between cohorts. The empirical curves are displayed for each cohort separately in different colors. The difference between these curves shows the differential item functioning. For example, the item *Throws ball*, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item *Says more than 5 words*, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).
 
-```{r ploteqdif, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, warning = FALSE, fig.cap = '(ref:ploteqdif)', message = FALSE}
+```{r ploteqdif, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqdif)'}
 
 gridExtra::grid.arrange(pdif[["GM44"]], pdif[["EXP23"]])
 

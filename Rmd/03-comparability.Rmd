@@ -1,3 +1,11 @@
+```{r ch3libs, include=FALSE}
+library("dmodel")
+library("dmetric")
+library("gseddata")
+library(dplyr)
+library(kableExtra)
+library(knitr)
+```
 
 
 
@@ -33,8 +41,7 @@ Likewise, instruments can be connected:
 * Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
 
-```{r linkage, echo=FALSE}
-suppressPackageStartupMessages(library(dplyr))
+```{r linkage, echo = FALSE}
 
 pattern <- matrix("", nrow = 16, ncol = 15)
 pattern[8, 1] <- "X"
@@ -60,8 +67,8 @@ df <- data.frame(
   row.names = 
     c("Bangladesh", "Brazil 1", "Brazil 2", "Chile 1", "Chile 2", 
     "China", "Colombia 1", "Colombia 2", "Ecuador", "Ethiopia",
-    "Jamaica 1", "Jamaica 2", "Madagascar", "Netherlds 1", 
-    "Netherlds 2", "S Africa")
+    "Jamaica 1", "Jamaica 2", "Madagascar", "Netherlands 1", 
+    "Netherlands 2", "South Africa")
 
 )
 
@@ -125,19 +132,10 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/"
 
 ## Age profile of item mappings {#sec:viewmapping}
 
-```{r plot_p_a_eq, message=FALSE, warning=FALSE, include=FALSE}
-suppressPackageStartupMessages(library("dmodel"))
-suppressPackageStartupMessages(library("dmetric"))
-suppressPackageStartupMessages(library("gseddata"))
-
-theme_set(theme_light())
+```{r plot_p_a_eq, include=FALSE}
 model <- dmetric::model_lean
-#model$package <- model$data_package #fix this in dscore::get_itemtable or in dmetric plot_p_a_equate (model$package == "ddata")
 lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE)
-
-
-#plot_p_a_equate(lean, model, passive = TRUE, file = "C:/Users/eekhouti/Desktop/eq_a_dbook2.pdf")
 ```
 
 
@@ -145,7 +143,6 @@ eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "
 One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. Also here the milestones have similar age patterns.
 
 ```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
-
 ##promising equates
 gridExtra::grid.arrange(
   eq_plots[["COG36"]],
