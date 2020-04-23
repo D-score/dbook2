@@ -31,7 +31,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="section-modeling-strategies.html"/>
-<link rel="next" href="section-selection-of-best-milestones.html"/>
+<link rel="next" href="section-percent-pass-by-age.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -108,12 +108,13 @@
 <li class="chapter" data-level="5.1" data-path="section-gcdg-data-design-and-description.html"><a href="section-gcdg-data-design-and-description.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
 <li class="chapter" data-level="5.2" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.2</b> Modeling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-impact-of-number-of-active-equate-groups.html"><a href="section-impact-of-number-of-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
-<li class="chapter" data-level="5.4" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.4</b> Selection of best milestones</a></li>
-<li class="chapter" data-level="5.5" data-path="section-quality-of-equate-groups.html"><a href="section-quality-of-equate-groups.html"><i class="fa fa-check"></i><b>5.5</b> Quality of equate groups</a></li>
-<li class="chapter" data-level="5.6" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.6</b> Empirical and fitted item response curves</a></li>
-<li class="chapter" data-level="5.7" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.7</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.8" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.8</b> Modeling strategies</a></li>
-<li class="chapter" data-level="5.9" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.9</b> Item information</a></li>
+<li class="chapter" data-level="5.4" data-path="section-percent-pass-by-age.html"><a href="section-percent-pass-by-age.html"><i class="fa fa-check"></i><b>5.4</b> Percent pass by age</a></li>
+<li class="chapter" data-level="5.5" data-path="section-percent-pass-by-d-score.html"><a href="section-percent-pass-by-d-score.html"><i class="fa fa-check"></i><b>5.5</b> Percent pass by D-score</a></li>
+<li class="chapter" data-level="5.6" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.6</b> Selection of best milestones</a></li>
+<li class="chapter" data-level="5.7" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.7</b> Empirical and fitted item response curves</a></li>
+<li class="chapter" data-level="5.8" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.8</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.9" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.9</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.10" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.10</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
@@ -186,13 +187,7 @@ Figure 5.1: D-score by age of four models with all 1339 items using 0, 11, 33 an
 <li><p>The vertical spread depends on the number of equate groups. For example, the spread in the Chile-2 (CHL-2) cohort substantially increases with the number of active equates.</p></li>
 <li><p>Model <code>1339_0</code> for the Dutch NLD-SMOCC cohort is equivalent to the model fitted to the <a href="https://stefvanbuuren.name/dbook1/sec-smoccstudy.html">SMOCC study</a> alone. Introducing equate groups compresses the range of scores, especially at the higher end.</p></li>
 </ul>
-<p>Since model <code>1339_0</code> produces no joint scale across cohort, we will not study it further. At the other extreme, model <code>1339_184</code> uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between <code>1339_11</code> and <code>1339_33</code>. We opt to continue with <code>1339_11</code> for a number of reasons:</p>
-<ul>
-<li>It is better to use a few really good equate groups than a larger number of equate groups of lower quality (INCLUDE REF);</li>
-<li>Model <code>1339_11</code> allows for assessment of comparability of more inactive equates;</li>
-<li>Model <code>1339_11</code> is closer to model <code>1339_0</code>, which increases the likelihood that the D-score scale as developed for the Dutch data will generalise to the other 15 cohorts.</li>
-</ul>
-<p>The next step is to select those items that best fit the Rasch model.</p>
+<p>We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.</p>
 </div>
             </section>
 
@@ -200,7 +195,7 @@ Figure 5.1: D-score by age of four models with all 1339 items using 0, 11, 33 an
         </div>
       </div>
 <a href="section-modeling-strategies.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-selection-of-best-milestones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-percent-pass-by-age.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

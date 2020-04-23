@@ -108,12 +108,13 @@
 <li class="chapter" data-level="5.1" data-path="section-gcdg-data-design-and-description.html"><a href="section-gcdg-data-design-and-description.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
 <li class="chapter" data-level="5.2" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.2</b> Modeling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-impact-of-number-of-active-equate-groups.html"><a href="section-impact-of-number-of-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
-<li class="chapter" data-level="5.4" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.4</b> Selection of best milestones</a></li>
-<li class="chapter" data-level="5.5" data-path="section-quality-of-equate-groups.html"><a href="section-quality-of-equate-groups.html"><i class="fa fa-check"></i><b>5.5</b> Quality of equate groups</a></li>
-<li class="chapter" data-level="5.6" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.6</b> Empirical and fitted item response curves</a></li>
-<li class="chapter" data-level="5.7" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.7</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.8" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.8</b> Modeling strategies</a></li>
-<li class="chapter" data-level="5.9" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.9</b> Item information</a></li>
+<li class="chapter" data-level="5.4" data-path="section-percent-pass-by-age.html"><a href="section-percent-pass-by-age.html"><i class="fa fa-check"></i><b>5.4</b> Percent pass by age</a></li>
+<li class="chapter" data-level="5.5" data-path="section-percent-pass-by-d-score.html"><a href="section-percent-pass-by-d-score.html"><i class="fa fa-check"></i><b>5.5</b> Percent pass by D-score</a></li>
+<li class="chapter" data-level="5.6" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.6</b> Selection of best milestones</a></li>
+<li class="chapter" data-level="5.7" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.7</b> Empirical and fitted item response curves</a></li>
+<li class="chapter" data-level="5.8" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.8</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.9" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.9</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.10" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.10</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
@@ -163,12 +164,14 @@
             <section class="normal" id="section-">
 <div id="section-sec:otherestimates" class="section level2">
 <h2><span class="header-section-number">7.4</span> Relation to other estimates</h2>
-<p>In the publication on the <span class="math inline">\(D\)</span>-score from the GCDG project <span class="citation">(Weber et al. <a href="section-references.html#section-ref-Weber2019" role="doc-biblioref">2019</a>)</span>, the concurrent, discriminant and predictive validity of the <span class="math inline">\(D\)</span>-score is thorougly presented and discussed. In this paragraph we mainly focus on stunting, which commonly used to express impaired growth in children due to nutrition problems.</p>
+<p>In the publication on the <span class="math inline">\(D\)</span>-score from the GCDG project <span class="citation">(Weber et al. <a href="section-references.html#section-ref-Weber2019">2019</a>)</span>, the concurrent, discriminant and predictive validity of the <span class="math inline">\(D\)</span>-score is thorougly presented and discussed. In this paragraph we mainly focus on stunting, which commonly used to express impaired growth in children due to nutrition problems.</p>
 <div id="section-stunting" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Stunting</h3>
 <p>The WHO defines stunted as <a href="https://www.who.int/nutrition/healthygrowthproj/en/index1.html">when the height-for-age is more than two standard deviations below
 the WHO Child Growth Standard median</a>. In Figure <a href="section-sec-otherestimates.html#fig:stunt">7.3</a> we compare the percentage stunted to the percentage off-track
 development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that “growth” and “development” are very different construct.</p>
+<pre><code>Joining, by = c(&quot;cohort&quot;, &quot;cohortn&quot;, &quot;subjid&quot;, &quot;subjido&quot;, &quot;agedays&quot;)</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_bar).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:stunt"></span>
 <img src="dbook2_files/figure-html/stunt-1.png" alt="Percentage off-track development and stunted per country" width="672" />
 <p class="caption">
@@ -177,6 +180,7 @@ Figure 7.3: Percentage off-track development and stunted per country
 </div>
 
 <p>However, we can see a relation between stunting and development (<span class="math inline">\(D\)</span>-score). When we compare the Standardized <span class="math inline">\(D\)</span>-score (DAZ) in each country for the stunted versus not-stunted children (Figure <a href="section-sec-otherestimates.html#fig:stuntdaz">7.4</a>)</p>
+<pre><code>Joining, by = c(&quot;cohort&quot;, &quot;cohortn&quot;, &quot;subjid&quot;, &quot;subjido&quot;, &quot;agedays&quot;)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:stuntdaz"></span>
 <img src="dbook2_files/figure-html/stuntdaz-1.png" alt="DAZ for stunted versus not-stunted per country" width="1056" />
 <p class="caption">

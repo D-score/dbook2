@@ -72,19 +72,28 @@ Comparison of the D-score distibution by age across these models yields various 
 
 - Model `1339_0` for the Dutch NLD-SMOCC cohort is equivalent to the model fitted to the [SMOCC study](https://stefvanbuuren.name/dbook1/sec-smoccstudy.html) alone. Introducing equate groups compresses the range of scores, especially at the higher end.
 
-Since model `1339_0` produces no joint scale across cohort, we will not study it further. At the other extreme, model `1339_184` uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between `1339_11` and `1339_33`. We opt to continue with `1339_11` for a number of reasons:
+We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.
 
-- It is better to use a few really good equate groups than a larger number of equate groups of lower quality (INCLUDE REF);
-- Model `1339_11` allows for assessment of comparability of more inactive equates;
-- Model `1339_11` is closer to model `1339_0`, which increases the likelihood that the D-score scale as developed for the Dutch data will generalise to the other 15 cohorts.
+## Percent pass by age
 
-The next step is to select those items that best fit the Rasch model.
+```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', out.width="760px"}
+knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339", height = "450px")
+```
+(ref:p-a-equate-1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-a-equate-1339)
+
+Figure \@ref(fig:p-a-equate-1339) is a display of the percentage of children that pass a milestone by age, split out according to equate groups. 
+
+## Percent pass by D-score
+
+<!-- Since model `1339_0` produces no joint scale across cohort, we will not study it further. At the other extreme, model `1339_184` uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between `1339_11` and `1339_33`. We lean towards pt to continue with `1339_11` for a number of reasons: -->
+
+<!-- - It is better to use a few really good equate groups than a larger number of equate groups of lower quality (INCLUDE REF); -->
+<!-- - Model `1339_11` allows for assessment of comparability of more inactive equates; -->
+<!-- - Model `1339_11` is closer to model `1339_0`, which increases the likelihood that the D-score scale as developed for the Dutch data will generalise to the other 15 cohorts. -->
+
+<!-- The next step is to select those items that best fit the Rasch model. -->
 
 ## Selection of best milestones
-
-
-## Quality of equate groups
-
 
 
 ## Empirical and fitted item response curves

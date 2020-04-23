@@ -108,12 +108,13 @@
 <li class="chapter" data-level="5.1" data-path="section-gcdg-data-design-and-description.html"><a href="section-gcdg-data-design-and-description.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
 <li class="chapter" data-level="5.2" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.2</b> Modeling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-impact-of-number-of-active-equate-groups.html"><a href="section-impact-of-number-of-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
-<li class="chapter" data-level="5.4" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.4</b> Selection of best milestones</a></li>
-<li class="chapter" data-level="5.5" data-path="section-quality-of-equate-groups.html"><a href="section-quality-of-equate-groups.html"><i class="fa fa-check"></i><b>5.5</b> Quality of equate groups</a></li>
-<li class="chapter" data-level="5.6" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.6</b> Empirical and fitted item response curves</a></li>
-<li class="chapter" data-level="5.7" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.7</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.8" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.8</b> Modeling strategies</a></li>
-<li class="chapter" data-level="5.9" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.9</b> Item information</a></li>
+<li class="chapter" data-level="5.4" data-path="section-percent-pass-by-age.html"><a href="section-percent-pass-by-age.html"><i class="fa fa-check"></i><b>5.4</b> Percent pass by age</a></li>
+<li class="chapter" data-level="5.5" data-path="section-percent-pass-by-d-score.html"><a href="section-percent-pass-by-d-score.html"><i class="fa fa-check"></i><b>5.5</b> Percent pass by D-score</a></li>
+<li class="chapter" data-level="5.6" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.6</b> Selection of best milestones</a></li>
+<li class="chapter" data-level="5.7" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.7</b> Empirical and fitted item response curves</a></li>
+<li class="chapter" data-level="5.8" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.8</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.9" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.9</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.10" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.10</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
 <li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
@@ -171,6 +172,8 @@ person, the measurement error for the <span class="math inline">\(D\)</span>-sco
 As is shown in Figure <a href="section-sec-sem.html#fig:semforn">6.1</a>, the sem drops fast when the number of
 items is increased to 15, and still some more until the number of items is 30.
 More than 30 items has little effect on the sem.</p>
+<pre><code>`geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>Warning: Removed 1863 rows containing non-finite values (stat_smooth).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:semforn"></span>
 <img src="dbook2_files/figure-html/semforn-1.png" alt="Standard error of measurement when the number of items increases." width="672" />
 <p class="caption">
@@ -183,11 +186,12 @@ the items that are administered. This is partly the number of items, as depicted
 in <a href="section-sec-sem.html#fig:semforn">6.1</a>, but also if the items are informative for the <span class="math inline">\(D\)</span>-score.
 For example, if the items are too easy and the probability to pass the item
 given the <span class="math inline">\(D\)</span>-score is <span class="math inline">\(P\)</span> &gt; 0.90, the <span class="math inline">\(sem\)</span> is larger than when the difficulty
-of the administered items is closer to the <span class="math inline">\(D\)</span>-score (i.e. <span class="math inline">\(P\)</span> = 0.50). The
+of the administered items is closer to the <span class="math inline">\(D\)</span>-score (i.e. <span class="math inline">\(P\)</span> = 0.50). The
 <span class="math inline">\(sem\)</span> for age in GCDG data (see Figure <a href="section-sec-sem.html#fig:semfora">6.2</a>) shows that for some
 ages, the <span class="math inline">\(sem\)</span> is larger than for others. This is on the one hand due to the
 number of items available in that age range, but also to the design of the
 cohorts where sometimes relatively easy items are administered.</p>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:semfora"></span>
 <img src="dbook2_files/figure-html/semfora-1.png" alt="Standard error of measurement in each age group." width="672" />
 <p class="caption">
