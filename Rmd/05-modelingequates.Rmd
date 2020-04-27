@@ -2,7 +2,7 @@
 
 ## GCDG data: design and description
 
-Chapter @ref(#sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts. 
+Chapter \@ref(sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts. 
 
 We coded every items as 0 (fail), 1 (pass) or missing. The Battelle Developmental Inventory scores items as 0 (fail), 1 or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 of these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1. 
 
@@ -113,7 +113,7 @@ pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::mo
 
 ## Item information
 
-Item information is a psychometric measure the quatifies the utility of the item, given the ability level. So, depending on the person that fills in the item (i.e. the persons ability level), the item provides a certain amount of information to that persons final $D$-score. The item information can be calculated as the conditional probability to endorse an item ($P(\hat\delta_i)$) times the conditional probability to fail an item ($1-P(\hat\delta_i)$). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when $P(\hat\delta_i) = 0.5$.
+Item information is a psychometric measure the quantifies the utility of the item, given the ability level. So, depending on the person that fills in the item (i.e. the persons ability level), the item provides a certain amount of information to that persons final $D$-score. The item information can be calculated as the conditional probability to endorse an item ($P(\hat\delta_i)$) times the conditional probability to fail an item ($1-P(\hat\delta_i)$). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when $P(\hat\delta_i) = 0.5$.
 
 The information is inversely related to the error of measurement, thus more information amouts to less error of measurement. For each item score in the data, we can compute the amount of information it contributed to the model $D$-score. By summing this information for each item in the model, we can obtain a measure of certainty about the difficulty estimate of the item. This sum of information holds the number of times the item was administered, and the probability of endorsing the item for each assessment. We can grade the items by the information into categories A (best) to D (worst) and visualize how certain we are about the difficulty estimates of the items. In Figure \@ref(fig:iteminfo), the grades are displayed for each item by their difficulty (tau). Most items are graded higher than C, 30 items have an information grade of D and may benefit from more data from future studies. The equate groups are displayed as black asterisk and mostly have grade A.    
 

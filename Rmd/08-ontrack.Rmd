@@ -235,7 +235,7 @@ rsq <- c("country" = summary(fit.country)$r.squared,
 
 # 
 
-pie(rsq, border = "white", col = brewer.pal(6, "Set3"))
+pie(rsq, border = "white", col = brewer.pal(6, "Set3"), radius = 1)
 
 #step 3:
 

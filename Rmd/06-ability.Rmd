@@ -22,13 +22,11 @@ for a single $D$-score.
 ## $D$-score distribution by study {#sec:dscores}
 
 For each study that is included in the GCDG assembly, the $D$-score can be
-obtained using the developed global model. In the graphs below, the $D$-score
+obtained using the developed global model. In Figure \@ref(fig:dscoredist), the $D$-score
 distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
-By using the `next` button below the plot you can click through the cohorts.
-Using the selection bar above the graph, you can select a specific cohort.
 
-```{r echo=FALSE, fig.width=10}
+```{r dscoredist, echo=FALSE, fig.width=10}
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/", 
   height = "600px")
 ```
@@ -52,7 +50,7 @@ ggplot(data = dmetric::model_lean$dscore )+
   geom_smooth(aes(x=n, y=sem), se = FALSE, color = "red")+
   xlab("number of items")
 ```
-(ref:semforn) Standard error of measurement when the number of items increases.
+(ref:semforn) Standard error of measurement ($sem$) when the number of items increase.
 
 
 The precision of the $D$-score estimate is also affected by the information in
@@ -118,7 +116,7 @@ ggplot(data = sem_daz_a )+
 
 
 ```
-(ref:semfora) Standard error of measurement in each age group.
+(ref:semfora) Standard error of measurement ($sem$) in each age group.
 
 In Figure \@ref(fig:dscoresems), the $sem$ per age group is shown for each
 cohort separately. This illustrates the differences in design between the
@@ -153,7 +151,7 @@ precise $D$-score estimates.
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/",
                    height = "600px")
 ```
-(ref:dscoresems) The standard error of measurement around the age-standardized $D$-scores (DAZ) per cohort
+(ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized $D$-scores (DAZ) per cohort
 
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the
@@ -203,7 +201,7 @@ sem_daz_c <- sem_daz %>%
   ## attach main instrument to cohort and see if that relates to sem? Or study kind? Something like that?
  
 ```
-(ref:cohortsem) Standard Error of Measurement per cohort.
+(ref:cohortsem) Standard Error of Measurement ($sem$) per cohort.
 
 
 Table \@ref(tab:npsem) shows the median
@@ -340,9 +338,9 @@ ggplot(d_dom_d, aes( x= cohort, y = d, color = domain))+
 (ref:domaind) Domain $D$-scores per cohort. 
 
 In Figure \@ref(fig:domaindex) example scores are displayed for a 3 year old boy
-from the Chili 2 (GCDG-CHL-2) cohort. The grey line displayes the overall
+from the Chili 2 (GCDG-CHL-2) cohort. The grey line displays the overall
 $D$-score (38.55$D$) and the colored points are the domain $D$-scores. This
-plots shows that for the language domains (i.e. Expressive and Receptive), this
+plot shows that for the language domains (i.e. Expressive and Receptive), this
 boy scores relatively low as compared to the motor and cognitive domains. The
 bars at the bottom of the plots display the available items per domain. Note
 that the number of items for Gross Motor is very low (only 3 items). The white

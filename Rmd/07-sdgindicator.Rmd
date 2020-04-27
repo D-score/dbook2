@@ -28,7 +28,7 @@ quality education and promote lifelong learning opportunities for all. Target
 early childhood development, care and pre-primary education so that they are
 ready for primary education. Indicator 4.2.1 is to measure the proportion of
 children under 5 years of age who are developmentally on track in health,
-learning and psychosocial well-being, by sex.
+learning and psycho-social well-being, by sex.
 
 ```{r sdg4, fig.cap = '(ref:sdg4)'}
 #knitr::include_graphics("fig/equate_ex.png")
@@ -62,15 +62,17 @@ determine whether children are *developmentally on track*.
 
 In Figure \@ref(fig:dscorerefs), the strategy for constructing standards for
 development and to use them to define on track development is explained in
-several steps. In the first step the $D$-score is plotted by age and in the subsequent
-steps, this relation is modeled in an LMS model. The goal of an LMS model is
-to describe the relation of the $D$-score by age with age-conditional z-scores.
-This is done by three smoothed curves representing the median (step 2), coefficient of
-variation and the skewness. In step 3 the centile lines for this model are presented. The resulting age-standardized scores for
-development (DAZ), are plotted in step 4 to 6. The DAZ is used to define on-track development. So $D$-scores
-within 2 standard deviations from the median can be defined as on-track. Scores
-that are more than two standard deviation *below* the median, can be defined as
-off-track (red dots in step 6).
+several steps. By clicking 'Next', the next step will show in the plot. In the
+first step the $D$-score is plotted by age and in the subsequent steps, this
+relation is modeled in an LMS model. The goal of an LMS model is to describe the
+relation of the $D$-score by age with age-conditional z-scores. This is done by
+three smoothed curves representing the median (step 2), coefficient of variation
+and the skewness. In step 3 the centile lines for this model are presented. The
+resulting age-standardized scores for development (DAZ), are plotted in step 4
+to 6. The DAZ is used to define on-track development. So $D$-scores within 2
+standard deviations from the median can be defined as on-track. Scores that are
+more than two standard deviation *below* the median, can be defined as off-track
+(red dots in step 6).
 
 
 ```{r dscorerefs, echo=FALSE, fig.width=10, fig.cap='(ref:dscorerefs)' }
@@ -79,7 +81,7 @@ off-track (red dots in step 6).
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
                    height = "600px")
 ```
-(ref:dscorerefs) Method to define on track development
+(ref:dscorerefs) Illustration of the method to define on-track development
 
 Note that the current reference is based on the GCDG study. The cohorts that are
 currently included are representing a wide range of countries. However, they are
@@ -110,7 +112,7 @@ kable(tabtrack,
 
 ## Relation to other estimates {#sec:otherestimates}
 
-In the publication on the $D$-score from the GCDG project [@Weber2019], the concurrent, discriminant and predictive validity of the $D$-score is thorougly presented and discussed. In this paragraph we mainly focus on stunting, which commonly used to express impaired growth in children due to nutrition problems. 
+In the publication on the global $D$-score from the GCDG project [@Weber2019], the concurrent, discriminant and predictive validity of the $D$-score is thoroughly presented and discussed. In this paragraph we mainly focus on stunting, which is commonly used to express impaired growth in children due to nutrition problems. 
 
 ### Stunting
 

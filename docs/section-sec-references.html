@@ -117,7 +117,7 @@
 <li class="chapter" data-level="5.10" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.10</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
-<li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
+<li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> <span class="math inline">\(D\)</span>-score distribution by study</a></li>
 <li class="chapter" data-level="6.2" data-path="section-sec-sem.html"><a href="section-sec-sem.html"><i class="fa fa-check"></i><b>6.2</b> Impact of measurement error</a></li>
 <li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage and scores</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-coverage-of-the-scale"><i class="fa fa-check"></i><b>6.3.1</b> Domain coverage of the scale</a></li>
@@ -170,26 +170,27 @@ whether children are <em>on track</em>. Growth standards are defined for
 weight-for-age, length/height-for age, weight-for-length/height, etc. In 2006,
 the methods for constructing a growth reference were reviewed by statisticians
 and growth experts that resulted in an advised strategy for constructing growth
-standard <span class="citation">(Borghi et al. <a href="section-references.html#section-ref-borghi2006">2006</a>)</span>. A similar strategy can be used to construct a reference
+standard <span class="citation">(Borghi et al. <a href="section-references.html#section-ref-borghi2006" role="doc-biblioref">2006</a>)</span>. A similar strategy can be used to construct a reference
 standard child development-for-age. This reference standard can then be used to
 determine whether children are <em>developmentally on track</em>.</p>
 <p>In Figure <a href="section-sec-references.html#fig:dscorerefs">7.2</a>, the strategy for constructing standards for
 development and to use them to define on track development is explained in
-several steps. By clicking on the <code>next</code> button below the plot, the next test
-shows. In the first step the D-score is plotted by age and in the subsequent
-steps, this relation is modeled in an an LMS model. The goal of an LMS model is
-to describe the relation of the <span class="math inline">\(D\)</span>-score by age with age-conditional z-scores.
-This is done by three smoothed curves representing the median, coefficient of
-variation and the skewness. The resulting age standardized scores for
-development (daz), are then used to define on-track development. So D-scores
-within 2 standard deviations from the median can be defined as on-track. Scores
-that are more than two standard deviation <em>below</em> the median, can be defined as
-off-track.</p>
+several steps. By clicking ‘Next’, the next step will show in the plot. In the
+first step the <span class="math inline">\(D\)</span>-score is plotted by age and in the subsequent steps, this
+relation is modeled in an LMS model. The goal of an LMS model is to describe the
+relation of the <span class="math inline">\(D\)</span>-score by age with age-conditional z-scores. This is done by
+three smoothed curves representing the median (step 2), coefficient of variation
+and the skewness. In step 3 the centile lines for this model are presented. The
+resulting age-standardized scores for development (DAZ), are plotted in step 4
+to 6. The DAZ is used to define on-track development. So <span class="math inline">\(D\)</span>-scores within 2
+standard deviations from the median can be defined as on-track. Scores that are
+more than two standard deviation <em>below</em> the median, can be defined as off-track
+(red dots in step 6).</p>
 <div class="figure" style="text-align: center"><span id="fig:dscorerefs"></span>
-<iframe src="https://tnochildhealthstatistics.shinyapps.io/GCDG_references/?showcase=0" width="960" height="700px">
+<iframe src="https://iriseekhout.github.io/dbook2tools/gcdgreferences/" width="960" height="600px">
 </iframe>
 <p class="caption">
-Figure 7.2: Method to define on track development
+Figure 7.2: Illustration of the method to define on-track development
 </p>
 </div>
 
