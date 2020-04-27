@@ -15,11 +15,11 @@ the impact of measurement error is compared between the cohorts. Additionally
 the coverage of the developmental domains is displayed for $D$-score scale and
 for a single $D$-score.
 
-* D-score distribution by study (\@ref(sec:dscores))
+* $D$-score distribution by study (\@ref(sec:dscores))
 * Impact of measurement error (\@ref(sec:sem))
 * Domain coverage and scores (\@ref(sec:domains))
 
-## D-score distribution by study {#sec:dscores}
+## $D$-score distribution by study {#sec:dscores}
 
 For each study that is included in the GCDG assembly, the $D$-score can be
 obtained using the developed global model. In the graphs below, the $D$-score
@@ -29,8 +29,8 @@ By using the `next` button below the plot you can click through the cohorts.
 Using the selection bar above the graph, you can select a specific cohort.
 
 ```{r echo=FALSE, fig.width=10}
-knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_dscores/", 
-  height = "700px")
+knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/", 
+  height = "600px")
 ```
 (ref:dscoredist) $D$-score distributions by study.
 
@@ -108,7 +108,7 @@ sem_daz_a <- sem_daz %>%
 ggplot(data = sem_daz_a )+
   geom_point(aes(x=agenum, y=mean_daz)) +
   geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
-  xlab("age(months)")+ ylab("daz")+
+  xlab("age(months)")+ ylab("DAZ")+
   ylim(c(-2,2))
 
 #ggplot(data = sem_daz_a )+
@@ -148,10 +148,12 @@ precise $D$-score estimates.
 #summary(itmn)
 #p per child on average for Colombia 1 cohort = 0.63 (median)
 #summary(model_lean$dscore$p[which(model_lean$dscore$cohort == "GCDG-COL-LT45M")])
-knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
-  height = "700px")
+#knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
+#  height = "700px")
+knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/",
+                   height = "600px")
 ```
-(ref:dscoresems) The standard error of measurement around the standardized $D$-scores (DAZ) per cohort
+(ref:dscoresems) The standard error of measurement around the age-standardized $D$-scores (DAZ) per cohort
 
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the

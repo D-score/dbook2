@@ -62,167 +62,24 @@ determine whether children are *developmentally on track*.
 
 In Figure \@ref(fig:dscorerefs), the strategy for constructing standards for
 development and to use them to define on track development is explained in
-several steps. By clicking on the `next` button below the plot, the next test
-shows.  In the first step the D-score is plotted by age and in the subsequent
-steps, this relation is modeled in an an LMS model. The goal of an LMS model is
+several steps. In the first step the $D$-score is plotted by age and in the subsequent
+steps, this relation is modeled in an LMS model. The goal of an LMS model is
 to describe the relation of the $D$-score by age with age-conditional z-scores.
-This is done by three smoothed curves representing the median, coefficient of
-variation and the skewness. The resulting age standardized scores for
-development (daz), are then used to define on-track development. So D-scores
+This is done by three smoothed curves representing the median (step 2), coefficient of
+variation and the skewness. In step 3 the centile lines for this model are presented. The resulting age-standardized scores for
+development (DAZ), are plotted in step 4 to 6. The DAZ is used to define on-track development. So $D$-scores
 within 2 standard deviations from the median can be defined as on-track. Scores
 that are more than two standard deviation *below* the median, can be defined as
-off-track.
+off-track (red dots in step 6).
 
 
 ```{r dscorerefs, echo=FALSE, fig.width=10, fig.cap='(ref:dscorerefs)' }
-knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
-  height = "700px")
+#knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
+#  height = "700px")
+knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
+                   height = "600px")
 ```
 (ref:dscorerefs) Method to define on track development
-
-```{r inside shiny references, eval=FALSE, include=FALSE}
-##global part:
-
-##CHECK POSSIBILITY TO USE CACHED PLOTS IN ORDER TO LOAD FASTER
-
-#make the GCDG references
-library(gseddata)
-library(ggplot2)
-library(gtools)
-library(dbook2tools)
-library(shiny)
-library(shinyWidgets)
-library(shinydashboard)
-library(dplyr)
-library(tidyr)
-
-
-theme_set(theme_light())
-
-dscores <- dbook2tools::model_lean$dscore %>%
-  mutate(agemos = a * 12, track = ifelse(daz > 2 | daz < (-2), "off", "on")) %>%
-  filter(agemos <= 60)
-
-references <- dscore::get_reference("gcdg") %>%
-  mutate(month = age * 12) %>%
-  select(month, SDM2:SDP2) %>%
-  filter(month <= 60) %>%
-  pivot_longer(names_to = "centile", values_to = "d", cols = -month)
-
-#make a list of plots, and render the one in the correct step
-##step 1: dscores by age geom_point
-p_s1 <- ggplot()+
-  geom_point(data = dscores, aes(x = agemos, y = d), color = "grey")+
-  xlab("Age (months)") + ylab("D-score")+
-  ylim(c(0,80)) + xlim(c(0,60))
-
-##step 2: grey geom_point and added median line
-p_s2 <- ggplot()+
-  geom_point(data = dscores, aes(x = agemos, y = d), color = "grey")+
-  xlab("Age (months)") + ylab("D-score")+
-  ylim(c(0,80)) + xlim(c(0,60))+
-  geom_line(data = subset(references, centile == "SD0"), aes(x = month, y = d), size = 1.1)+
-  annotate("label", x = 50, y = 74, label = "median")
-
-##step 3: add the centile distribution
-p_s3 <-ggplot()+
-  geom_point(data = dscores, aes(x = agemos, y = d), color = "grey")+
-  xlab("Age (months)") + ylab("D-score")+
-  ylim(c(0,80)) + xlim(c(0,60))+
-  geom_line(data = references, aes(x = month, y = d, group = centile), size = 1.1)+
-  annotate("label", x = 50, y = 69, label = "-2SD")  +
-  annotate("label", x = 50, y = 71.5, label = "-1SD")  +
-  annotate("label", x = 50, y = 74, label = "median")  +
-  annotate("label", x = 50, y = 76.4, label = "+1SD")  +
-  annotate("label", x = 50, y = 78.9, label = "+2SD")
-
-##step 4: plot the z-scores (daz) by age
-p_s4 <- ggplot()+
-  geom_point(data = dscores, aes(x= agemos, y = daz), color = "grey")+
-  geom_abline(aes(intercept = 0, slope = 0), size = 1.1)+
-  ylim(c(-4,4))+ xlim(c(0,60))+
-  annotate("label", x = 50, y = 0, label = "median")
-
-##step 5: add lines for -/+ 2sd
-p_s5 <- ggplot()+
-  geom_point(data = dscores, aes(x= agemos, y = daz), color = "grey")+
-  geom_abline(aes(intercept = 0, slope = 0), size = 1.1)+
-  ylim(c(-4,4))+ xlim(c(0,60))+
-  geom_abline(aes(intercept = -2, slope = 0), size = 1.1)+
-  geom_abline(aes(intercept = -1, slope = 0), size = 1)+
-  geom_abline(aes(intercept = 1, slope = 0), size = 1)+
-  geom_abline(aes(intercept = 2, slope = 0), size = 1.1)+
-  annotate("label", x = 50, y = -2, label = "-2SD")  +
-  annotate("label", x = 50, y = -1, label = "-1SD")  +
-  annotate("label", x = 50, y = 0, label = "median")  +
-  annotate("label", x = 50, y = 1, label = "+1SD")  +
-  annotate("label", x = 50, y = 2, label = "+2SD")
-
-p_s6 <-  ggplot()+
-  geom_point(data = dscores, aes(x= agemos, y = daz, group = track, color = track))+
-  scale_colour_manual(values = c("red", "grey")) +
-  geom_abline(aes(intercept = -2, slope = 0), size = 1.1)+
-  geom_abline(aes(intercept = -1, slope = 0), size = 0.9)+
-  geom_abline(aes(intercept = 0, slope = 0), size = 1)+
-  geom_abline(aes(intercept = 1, slope = 0), size = 0.9)+
-  geom_abline(aes(intercept = 2, slope = 0), size = 1.1)+
-  theme(legend.position = "none")+
-  ylim(c(-4,4))+ xlim(c(0,60))+
-  annotate("label", x = 50, y = -2, label = "-2SD")  +
-  annotate("label", x = 50, y = -1, label = "-1SD")  +
-  annotate("label", x = 50, y = 0, label = "median")  +
-  annotate("label", x = 50, y = 1, label = "+1SD")  +
-  annotate("label", x = 50, y = 2, label = "+2SD")
-
-
-
-
-plot_list <- list(p_s1, p_s2, p_s3, p_s4, p_s5, p_s6)
-
-
-txt_p1 <- ("<b>Step 1:</b> plot the D-scores by age.")
-txt_p2 <- ("<b>Step 2:</b> fit a smooth curve for the median relation between age and development (D-score)")
-txt_p3 <- ("<b>Step 3:</b> estimate the variation and skewness and draw standard deviation lines")
-txt_p4 <- ("<b>Step 4:</b> tranform the D-score to z-scores (daz)")
-txt_p5 <- ("<b>Step 5:</b> mark the standard deviation lines in daz")
-txt_p6 <- ("<b>Step 6:</b> observations that are more than 2 standard deviations away from the mean are off-track.")
-steps_list <- list(txt_p1,txt_p2,txt_p3,txt_p4,txt_p5,txt_p6)
-
-#SERVER
-  steps <- reactiveVal(1)
-
-  observeEvent(input$run1, {
-    old_count = steps()
-    if(old_count < 6){
-    steps(old_count + 1)}
-  })
-  observeEvent(input$prev1, {
-    old_count = steps()
-    if(old_count > 1){
-      steps(old_count - 1)}
-  })
-
-
-##UI
-   fluidRow(box(width = 1100,
-        column(1, offset = 1, actionButton("prev1", "Prev")),
-        column(1, offset = 8, actionButton("run1", "Next"))
-   ))
-   fluidRow(width = 1000,
-    column(12, offset = 1,
-    renderUI(
-    HTML(print(steps_list[[steps()]]))
-    )))
-   box(
-     renderPlot({
-         plot_list[[steps()]]
-  }),height = 500, width = 1000
-    )
-
-
-
-```
-
 
 Note that the current reference is based on the GCDG study. The cohorts that are
 currently included are representing a wide range of countries. However, they are
@@ -232,9 +89,9 @@ therefore temporary and should be improved when more data are available.
 
 ## Country-level estimates {#sec:countrytrack}
 
-For each age-$D$-score combination, a daz can be calculated. That way we can
-calculate the daz in each country that is included in the current GCDG study. By
-using the -2SD rule, we can obtain the percentage on-track development in each
+For each age-$D$-score combination, a standardized score (DAZ) can be calculated. That way we can
+calculate the DAZ in each country that is included in the current GCDG study. By
+using the -2SD rule, we can obtain the percentage on-track development for each
 country.
 
 ```{r, echo = FALSE}
