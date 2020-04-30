@@ -21,8 +21,8 @@ opts_chunk$set(comment = NA, background = "#FBFBFB",
                fig.align = 'center', cache = TRUE, 
                message = FALSE, warning = FALSE,
                echo = FALSE)
+options(knitr.kable.NA = '')
 theme_set(theme_light())
-
 ```
 
 # Welcome {-}

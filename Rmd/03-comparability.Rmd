@@ -135,7 +135,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/"
 ```{r plot_p_a_eq, include=FALSE}
 model <- dmetric::model_lean
 lean <- dmetric::gcdg_lean
-eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE)
+eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), show_passive = TRUE)
 ```
 
 
