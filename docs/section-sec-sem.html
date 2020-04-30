@@ -109,16 +109,15 @@
 <li class="chapter" data-level="5.2" data-path="section-modeling-strategies.html"><a href="section-modeling-strategies.html"><i class="fa fa-check"></i><b>5.2</b> Modeling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-impact-of-number-of-active-equate-groups.html"><a href="section-impact-of-number-of-active-equate-groups.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
 <li class="chapter" data-level="5.4" data-path="section-percent-pass-by-age.html"><a href="section-percent-pass-by-age.html"><i class="fa fa-check"></i><b>5.4</b> Percent pass by age</a></li>
-<li class="chapter" data-level="5.5" data-path="section-percent-pass-by-d-score.html"><a href="section-percent-pass-by-d-score.html"><i class="fa fa-check"></i><b>5.5</b> Percent pass by D-score</a></li>
-<li class="chapter" data-level="5.6" data-path="section-equate-group-configuration.html"><a href="section-equate-group-configuration.html"><i class="fa fa-check"></i><b>5.6</b> Equate group configuration</a></li>
-<li class="chapter" data-level="5.7" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.7</b> Selection of best milestones</a></li>
-<li class="chapter" data-level="5.8" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.8</b> Empirical and fitted item response curves</a></li>
-<li class="chapter" data-level="5.9" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.9</b> Splitting and combining equate groups</a></li>
-<li class="chapter" data-level="5.10" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.10</b> Modeling strategies</a></li>
-<li class="chapter" data-level="5.11" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.11</b> Item information</a></li>
+<li class="chapter" data-level="5.5" data-path="section-percent-pass-by-d-score-per-by-equate-group.html"><a href="section-percent-pass-by-d-score-per-by-equate-group.html"><i class="fa fa-check"></i><b>5.5</b> Percent pass by D-score per by equate group</a></li>
+<li class="chapter" data-level="5.6" data-path="section-selection-of-best-milestones.html"><a href="section-selection-of-best-milestones.html"><i class="fa fa-check"></i><b>5.6</b> Selection of best milestones</a></li>
+<li class="chapter" data-level="5.7" data-path="section-empirical-and-fitted-item-response-curves.html"><a href="section-empirical-and-fitted-item-response-curves.html"><i class="fa fa-check"></i><b>5.7</b> Empirical and fitted item response curves</a></li>
+<li class="chapter" data-level="5.8" data-path="section-splitting-and-combining-equate-groups.html"><a href="section-splitting-and-combining-equate-groups.html"><i class="fa fa-check"></i><b>5.8</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.9" data-path="section-modeling-strategies-1.html"><a href="section-modeling-strategies-1.html"><i class="fa fa-check"></i><b>5.9</b> Modeling strategies</a></li>
+<li class="chapter" data-level="5.10" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.10</b> Item information</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
-<li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
+<li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> <span class="math inline">\(D\)</span>-score distribution by study</a></li>
 <li class="chapter" data-level="6.2" data-path="section-sec-sem.html"><a href="section-sec-sem.html"><i class="fa fa-check"></i><b>6.2</b> Impact of measurement error</a></li>
 <li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage and scores</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-coverage-of-the-scale"><i class="fa fa-check"></i><b>6.3.1</b> Domain coverage of the scale</a></li>
@@ -173,7 +172,6 @@ person, the measurement error for the <span class="math inline">\(D\)</span>-sco
 As is shown in Figure <a href="section-sec-sem.html#fig:semforn">6.1</a>, the sem drops fast when the number of
 items is increased to 15, and still some more until the number of items is 30.
 More than 30 items has little effect on the sem.</p>
-<pre><code>`geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
 <pre><code>Warning: Removed 1863 rows containing non-finite values (stat_smooth).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:semforn"></span>
 <img src="dbook2_files/figure-html/semforn-1.png" alt="Standard error of measurement when the number of items increases." width="672" />
@@ -212,10 +210,10 @@ range 38 to 57 items) and the probability to pass was approximately <span class=
 (quartile range between 0.53 &lt; <span class="math inline">\(P\)</span> &gt; 0.79). The latter study has therefore more
 precise <span class="math inline">\(D\)</span>-score estimates.</p>
 <div class="figure" style="text-align: center"><span id="fig:dscoresems"></span>
-<iframe src="https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/?showcase=0" width="960" height="700px">
+<iframe src="https://iriseekhout.github.io/dbook2tools/gcdgsem/" width="960" height="600px">
 </iframe>
 <p class="caption">
-Figure 6.3: The standard error of measurement around the standardized <span class="math inline">\(D\)</span>-scores (DAZ) per cohort
+Figure 6.3: The standard error of measurement around the age-standardized <span class="math inline">\(D\)</span>-scores (DAZ) per cohort
 </p>
 </div>
 
