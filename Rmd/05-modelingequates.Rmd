@@ -83,7 +83,31 @@ knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339"
 
 Figure \@ref(fig:p-a-equate-1339) is a display of the percentage of children that pass a milestone by age, split out according to equate groups. 
 
-## Percent pass by D-score
+## Percent pass by D-score per by equate group
+
+```{r equateconfig, results = "asis"}
+df <- data.frame(
+  Item = LETTERS[1:6],
+  In_model = c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE),
+  Equate = c("", "", "EQ1", "EQ2", "EQ3", "EQ4"),
+  Active = c(NA, NA, FALSE, TRUE, FALSE, TRUE),
+  Description = c("Not plotted",
+                  "Not plotted",
+                  "Passive, not plotted",
+                  "Not permitted",
+                  "Passive, plotted",
+                  "Active, plotted")
+)
+
+knitr::kable(df, 
+  caption = "Plots for equated items for six combinations of items and equate groups.",
+  booktabs = TRUE) %>%
+  kableExtra::kable_styling() %>%
+  kableExtra::scroll_box(width = "100%")
+```
+&nbsp;
+
+Table \@ref(tab:equateconfig) lists six possible combinations of items and equate group. An item can be either in or out of the model. The equate group of a given item can be unspecied, passive or active. We create no plots for items that conform to one of the first four combinations. Item D is not permitted, since it is not sensible that an item is part of an active equate group, but not in the model. We routinely change combination D to F by including the item into the model. As an alternative the user may remove the item by hand from the equate group, thereby converting it to type A.
 
 <!-- Since model `1339_0` produces no joint scale across cohort, we will not study it further. At the other extreme, model `1339_184` uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between `1339_11` and `1339_33`. We lean towards pt to continue with `1339_11` for a number of reasons: -->
 

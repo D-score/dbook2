@@ -20,6 +20,7 @@ runtime: shiny
 opts_chunk$set(comment = NA, background = "#FBFBFB",
                fig.align = 'center', cache = TRUE, 
                echo = FALSE)
+options(knitr.kable.NA = '')
 ```
 
 # Welcome {-}
