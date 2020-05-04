@@ -74,14 +74,19 @@ Comparison of the D-score distibution by age across these models yields various 
 
 We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.
 
-## Percent pass by age
+## Age profiles of similar milestones
 
 ```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', out.width="760px"}
 knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=", height = "450px")
 ```
 (ref:p-a-equate-1339) Percentage of children that pass similar milestones at a given age. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=)
 
-Figure \@ref(fig:p-a-equate-1339) is a display of the percentage of children that pass a milestone by age, split out according to equate groups. 
+Figure \@ref(fig:p-a-equate-1339) displays the percentage of children that pass milestones at various ages. Subject matter experts clustered similar items stemming from different instruments into equate groups. There are 184 equate groups that contain two or more milestones.
+
+Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or ). Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://stefvanbuuren.name/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`jabber expressively`) shows more heterogeneity across cohorts, and is therefore less likely to be useful for equating. Equate group is `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profiles across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
+
+We could follow different strategies in selecting which eqeate group to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as pososble between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
+
 
 ## Quality of equate groups
 
