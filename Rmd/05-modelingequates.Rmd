@@ -95,6 +95,15 @@ knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/
 ```
 (ref:p-d-equate-1339) Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=)
 
+Figure \@ref(fig:p-d-equate-1339) shows how the passing percentage depends on the child's D-score as calculated under four models. All models include the same 1339 milestones, but differ in the number of active equates. The grey curve corresponds to the estimate made under assumption of that milestones are equally difficult. Good milestones for bridging instruments will have a tight bundle of curves. For example, equate `EXP26` has tight bundles especially in models `1339_11` and `1339_33`. By comparison, the curves of the two extreme models vary considerably: the model without any bridge (`1339_0`) or the model with all bridges (`1339_184`) are thus less than ideal. The shallow grey curve of model `1339_184` indicates a poorer overall fit.
+
+Outfit and infit statistics measure the residual deviation of the items to the grey curve. High values (e.g. above 1.4) are undesirable, and  indicate lack of fit to the model. For example, the values for model `1339_184` (1.70 and 1.25) indicate a mediocre fit, whereas models `1339_33` and `1339_11` fit well. Sometimes the individual item curves are steeper than the grey curve. This indicates that these milestones are more discriminative than the combined item. Model `1339_0` lacks a grey curve and has no fit statistics because that model does not form the combined item.
+
+The probability curves provide a quick visual method for spotting promising and problematic equate groups. Examples of promising equate groups include `COG36`, `FM31`, `GM26` and `GM42`. A little more weaker are `FM26` (has more variability), `FM52` (looks promising, but has a problem with the item `grigcd402` from the `GCDG_JAM_STUNTED` cohort), and `GM35` (does not align cohort `GCDG-ZAF`). In such cases, one may wish to move an item out of an equate group, combine equate groups, or inactivate troublesome links.  
+
+Until now we only looked at models that include all 1339 items. In practice, we may improve upon the model by selecting that subset of milestones that fit the Rasch model. The next section looks in this modelling step in more detail.
+
+## Milestone selection
 
 ```{r equateconfig, results = "asis", include = FALSE}
 df <- data.frame(
@@ -127,8 +136,6 @@ knitr::kable(df,
 <!-- - Model `1339_11` is closer to model `1339_0`, which increases the likelihood that the D-score scale as developed for the Dutch data will generalise to the other 15 cohorts. -->
 
 <!-- The next step is to select those items that best fit the Rasch model. -->
-
-## Selection of best milestones
 
 
 ## Empirical and fitted item response curves
