@@ -77,15 +77,21 @@ We have no seen that the number of active equate groups has a large effect on th
 ## Percent pass by age
 
 ```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', out.width="760px"}
-knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339", height = "450px")
+knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=", height = "450px")
 ```
-(ref:p-a-equate-1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-a-equate-1339)
+(ref:p-a-equate-1339) Percentage of children that pass similar milestones at a given age. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=)
 
 Figure \@ref(fig:p-a-equate-1339) is a display of the percentage of children that pass a milestone by age, split out according to equate groups. 
 
-## Percent pass by D-score per by equate group
+## Quality of equate groups
 
-```{r equateconfig, results = "asis"}
+```{r p-d-equate-1339, fig.cap = '(ref:p-d-equate-1339)', out.width="760px"}
+knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=", height = "450px")
+```
+(ref:p-d-equate-1339) Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=)
+
+
+```{r equateconfig, results = "asis", include = FALSE}
 df <- data.frame(
   Item = LETTERS[1:6],
   In_model = c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE),
@@ -107,7 +113,7 @@ knitr::kable(df,
 ```
 &nbsp;
 
-Table \@ref(tab:equateconfig) lists six possible combinations of items and equate group. An item can be either in or out of the model. The equate group of a given item can be unspecied, passive or active. We create no plots for items that conform to one of the first four combinations. Item D is not permitted, since it is not sensible that an item is part of an active equate group, but not in the model. We routinely change combination D to F by including the item into the model. As an alternative the user may remove the item by hand from the equate group, thereby converting it to type A.
+<!-- Table \@ref(tab:equateconfig) lists six possible combinations of items and equate group. An item can be either in or out of the model. The equate group of a given item can be unspecied, passive or active. We create no plots for items that conform to one of the first four combinations. Item D is not permitted, since it is not sensible that an item is part of an active equate group, but not in the model. We routinely change combination D to F by including the item into the model. As an alternative the user may remove the item by hand from the equate group, thereby converting it to type A. -->
 
 <!-- Since model `1339_0` produces no joint scale across cohort, we will not study it further. At the other extreme, model `1339_184` uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between `1339_11` and `1339_33`. We lean towards pt to continue with `1339_11` for a number of reasons: -->
 
