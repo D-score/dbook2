@@ -1,3 +1,7 @@
+```{r}
+library(dmetric, warn.conflicts = FALSE)
+```
+
 # Modeling equates {#ch:modelingequates}
 
 ## GCDG data: design and description
@@ -105,6 +109,31 @@ Until now we only looked at models that include all 1339 items. In practice, we 
 
 ## Milestone selection
 
+
+```{r itemfit, echo=FALSE, fig.cap='(ref:itemfit)', fig.height=6}
+m_011 <- load_model("1339_11",  model_dir = "models_2020", project = "Jamaica")
+ggplot(data = m_011$item_fit, aes(x = infit, y = outfit)) +
+  geom_point(cex = 0.5, col = "grey30") + 
+  coord_fixed() +
+  scale_x_log10(breaks = c(seq(0.4, 1, 0.1), seq(1.2, 2.2, 0.2)),
+                limits = c(0.4, 2.2), minor_breaks = FALSE) +
+  scale_y_log10(breaks = c(seq(0.4, 1, 0.1), seq(1.2, 2.2, 0.2)), 
+                limits = c(0.4, 2.2), minor_breaks = FALSE) +
+  geom_hline(yintercept = 1, color = "skyblue", lty = 2) +
+  geom_vline(xintercept = 1, color = "skyblue", lty = 2) +
+  xlab("Item infit") + 
+  ylab("Item outfit") + 
+  theme_light()
+```
+(ref:itemfit) Infit and outfit of 1339 items in model `1339_11`. About 8 percent of the points falls outside the plot.
+
+Item infit and outfit are convenient statistics for selecting the milestones that fit the model better. Figure \@ref(fig:itemfit) displays the infit and outfit statistics of model `1339_11`. The correlation between infit and outfit is high ($r = 0.84$). The expected value of the infit and outfit statistics when the model fits is 1.0. The center of infit and outfit in Figure \@ref(fig:itemfit) is approximately 1.0, so on average one could say the items fit the model. Note however that fit values above and below the values of 1.0 are qualitively different. Item with fit statistics exceeding 1.0 fit the model less well than expected (**underfit**), whereas items with fit statistics lower than 1.0 fit the model better than expected (**overfit**). See [Booklet 1: Section 6.1](https://stefvanbuuren.name/dbook1/sec-itemfit.html) for more details. 
+
+Some practitioners remove both underfitting and overfitting items. However, we like to preserve overfitting items and be more strict in removing items that underfit. The reason for this strategy is twofold. First, there is no shortage of items in our application, so reduction of the item set to the best fitting subset will preserve the latent continuum. Second, preservation of the best fitting items may increase scale length, and hence reliability and measurement precision. Figure \@ref(fig:itemfit) draws two cut-off lines at 1.0. Taking only items with infit < 1.0 and outfit < 1.0 will select 631 out of 1339 items for further modelling.
+
+A practical problem of item removal is that it also affects equate group composition. By default, a removed item will also be removed from the equate group, so item removal may reduce the size of an equate group below two items. For passive equates this is no problem, since passive equates have no effect on the estimates. However, removal of an underfitting item from an active equate group will break the bridge between the instrument it pertains to and the rest of the item set. Potentially this can result in substantial effects on the D-score distribution of the cohort, as demonstrated in Figure \@ref(fig:model1339). As a solution, we force any items that are members of active equate groups to remain in the analyis. If that leads to substantially worse equate fit in the next model, the best option is to alternative equate groups that bridge the same instruments, but that are less sensitive misfit.
+
+
 ```{r equateconfig, results = "asis", include = FALSE}
 df <- data.frame(
   Item = LETTERS[1:6],
@@ -137,7 +166,6 @@ knitr::kable(df,
 
 <!-- The next step is to select those items that best fit the Rasch model. -->
 
-
 ## Empirical and fitted item response curves
 
 ```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
@@ -151,6 +179,8 @@ pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::mo
 ## Splitting and combining equate groups
 
 ## Modeling strategies
+
+There is no single index of model-data fit that will detect all of the possible disturbances. 
 
 
 ## Item information
