@@ -2,6 +2,9 @@
 library(ggplot2)
 library(maps)
 library(ggthemes)
+library(dplyr)
+library(dmetric)
+library(tidyr)
 ```
 
 # Data {#ch:data}
@@ -93,6 +96,24 @@ South Africa | x |  | x |  | x |  |  |  |  |
 probably better presented as a table. The more journalistic
 alternative would be to highlight the motivation of each study, and
 contrast sources and approaches which each other. -->
+
+The cohorts have different designs, age ranges and assessment instruments. In Figure \@ref(fig:design) for each cohort the age range for the development assessments is displayed colored by the developmental instruments that were used. Below the Figure a brief description of each cohort is written. 
+
+
+```{r design, fig.width=10, fig.keep='all', results='hide', fig.cap = '(ref:design)' }
+design1 <- dmetric::gcdg_lean$visit %>% 
+  left_join(dmetric::gcdg_lean$itm, by = c("subjid", "agedays"))%>%
+  mutate(agemos = round(agedays/365.25*12),
+         instrument = substr(item, 1, 3)) %>%
+  group_by(cohort,agemos,instrument) %>%
+  summarise(n = n())
+
+ggplot(design1, aes(x = agemos, y = cohort, group = instrument, color = instrument))+
+  geom_point(position = position_dodge(width = 0.5), aes(group = instrument))+
+  scale_colour_manual(values = dmetric::get_palette("instrument", "gsed_palettes"), na.value = "grey")+
+  xlab("Age (months)") + ylab("")
+```
+(ref:design) Age range and assessment instrument of included data for each GCDG cohort
 
 The **Bangladesh** study (GCDG-BGD-7MO) was an impact evaluation study
 including 1862 children around the age of 18 months. The Bayley Scale
@@ -195,6 +216,9 @@ children, who were assessed at 6 and 12 months, respectively, with the
 `by1` and the `gri`. The third wave included 1802 children and the fourth
 wave 1614 children, assessed at 24 and 48 months, respectively, with
 the Vineland Social Maturity Scale (`vin`) [@Richter2007].
+
+
+
 
 ## Instruments {#sec:instruments}
 
