@@ -26,9 +26,9 @@ obtained using the developed global model. In Figure \@ref(fig:dscoredist), the 
 distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
 
-```{r dscoredist, echo=FALSE, fig.width=10}
+```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:semforn)'}
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/", 
-  height = "600px")
+  height = "450px")
 ```
 (ref:dscoredist) $D$-score distributions by study.
 
@@ -39,10 +39,10 @@ For each estimated $D$-score from the calibrated model, the precision of the
 estimate can be determined. This precision can be expressed as the standard
 error of measurement ($sem$). The standard error of measurement is inversely
 related to the number of items. Thus, when more items are administered for a
-person, the measurement error for the $D$-score of this person will be smaller.
-As is shown in Figure \@ref(fig:semforn), the sem drops fast when the number of
+person, the measurement error for the $D$-score of this person is smaller.
+As is shown in Figure \@ref(fig:semforn), the $sem$ drops fast when the number of
 items is increased to 15, and still some more until the number of items is 30.
-More than 30 items has little effect on the sem.
+More than 30 items has little effect on the $sem$.
 
 
 ```{r semforn, results = 'hide', fig.keep = 'all', fig.cap = '(ref:semforn)', echo = FALSE}
@@ -53,16 +53,17 @@ ggplot(data = dmetric::model_lean$dscore )+
 (ref:semforn) Standard error of measurement ($sem$) when the number of items increase.
 
 
-The precision of the $D$-score estimate is also affected by the information in
-the items that are administered. This is partly the number of items, as depicted
-in \@ref(fig:semforn), but also if the items are informative for the $D$-score.
-For example, if the items are too easy and the probability to pass the item
-given the $D$-score is $P$ > 0.90, the $sem$ is larger than when the difficulty
-of the administered items is closer to the $D$-score (i.e. $P$ = 0.50). The
-$sem$ for age in GCDG data (see Figure \@ref(fig:semfora)) shows that for some
-ages, the $sem$ is larger than for others. This is on the one hand due to the
-number of items available in that age range, but also to the design of the
-cohorts where sometimes relatively easy items are administered.
+The precision of the $D$-score estimate is also affected by the information that
+the items that are administered contribute to the $D$-score. The information
+that in item contributes is larger when the item discrimminates well between
+different reponders. Therefore, the information is a function of the probability
+to endore the item. For example, if the items are too easy and the probability
+to pass the item given the $D$-score is $P$ > 0.90, the $sem$ is larger than
+when the difficulty of the administered items is closer to the $D$-score (i.e.
+$P$ = 0.50). The $sem$ for age in GCDG data (see Figure \@ref(fig:semfora))
+shows that for some ages, the $sem$ is larger than for others. This is on the
+one hand due to the number of items available in that age range, but also to the
+design of the cohorts where sometimes relatively easy items are administered.
 
 
 ```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', results='hide'}
@@ -130,7 +131,7 @@ range 38 to 57 items) and the probability to pass was approximately $P$ = 0.64
 (quartile range between 0.53 < $P$ > 0.79). The latter study has therefore more
 precise $D$-score estimates.
 
-```{r dscoresems, echo=FALSE, fig.width=10, fig.cap = '(ref:dscoresems)'}
+```{r dscoresems, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoresems)'}
 #n items per child Netherlands 1 cohort = 8.5
 #ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-NLD-SMOCC")]
 #itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]
@@ -149,7 +150,7 @@ precise $D$-score estimates.
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
 #  height = "700px")
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/",
-                   height = "600px")
+                   height = "450px")
 ```
 (ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized $D$-scores (DAZ) per cohort
 
@@ -167,7 +168,7 @@ In Figure \@ref(fig:cohortsem) the sample $sem$ per cohort is displayed. The
 lowest sample $sem$ is found in the Ethiopia study (GCDG-ETH) and the highest in
 the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
 number of items per child, and on the other hand the difficulty of the
-administered items. 
+administered items (i.e. the item information). 
 
 ```{r cohortsem, results = 'hide', fig.keep = 'all',  fig.cap = '(ref:cohortsem)', echo = FALSE}
 sem_daz_c <- sem_daz %>% 
@@ -205,9 +206,9 @@ sem_daz_c <- sem_daz %>%
 
 
 Table \@ref(tab:npsem) shows the median
-number of items per child (test length) and the probability to pass the items (p). In The
-Ethiopia cohort 39 items were administered with a median
-probability of 0.66 and in the South Africa study just 12 items with a median
+number of items per child (test length) and the probability to pass the items. In the
+Ethiopia cohort (`GCDG-ETH`) 39 items were administered with a median
+probability of 0.66 and in the South Africa study (`GCDG-ZAF`) just 12 items with a median
 probability of 1. Accordingly, in the Ethiopia study more items were
 administered per child that also have a high level of information for the
 $D$-scores. In the South Africa study only few items were administered per child
@@ -249,7 +250,22 @@ info_data <-
         long = TRUE,
         beta_range = 0:80
       )
- domaintable <- ddomain::get_domaintable("gcdg")
+
+ #deal with missings in votes by then setting to instrument domain for 100%
+ domaintable <- ddomain::get_domaintable("gcdg") %>%
+         mutate(Fine.Motor = ifelse(is.na(Fine.Motor) & domain == "Fine Motor", 1, Fine.Motor),
+          Fine.Motor = ifelse(is.na(Fine.Motor) & domain != "Fine Motor", 0, Fine.Motor),
+          Gross.Motor = ifelse(is.na(Gross.Motor) & domain == "Gross Motor", 1, Gross.Motor),
+          Gross.Motor = ifelse(is.na(Gross.Motor) & domain != "Gross Motor", 0, Gross.Motor), 
+          Expressive = ifelse(is.na(Expressive) & domain == "Expressive", 1, Expressive),
+          Expressive = ifelse(is.na(Expressive) & domain != "Expressive", 0, Expressive), 
+          Receptive = ifelse(is.na(Receptive) & domain == "Receptive", 1, Receptive),
+          Receptive = ifelse(is.na(Receptive) & domain != "Receptive", 0, Receptive), 
+          Cognitive = ifelse(is.na(Cognitive) & domain == "Cognitive", 1, Cognitive),
+          Cognitive = ifelse(is.na(Cognitive) & domain != "Cognitive", 0, Cognitive), 
+          Adaptive = ifelse(is.na(Adaptive) & domain == "Adaptive", 1, Adaptive),
+          Adaptive = ifelse(is.na(Adaptive) & domain != "Adaptive", 0, Adaptive))
+
  info_wby_domain <- info_data %>% left_join(domaintable) %>%
         mutate(
           gm_info = .data$Gross.Motor * .data$info,
@@ -294,15 +310,16 @@ info_data <-
 ```
 (ref:domaincov) Domain coverage of the $D$-score scale.
 
+Note that for some items the domain allocation is missing.  
 
 ### Domain $D$-scores
 
 It is possible to calculate a $D$-score that is more representative for a
 specific domain using the current $D$-score model. We can use only the items
 that load to the domain in question to calculate the $D$-score for that specific
-domain. Since items may relate to multiple domain, an item can contribute to the
-$D$-score for multiple domains. As the $D$-score methodology is developed to
-measure a single construct for development, the domain $D$-scores correlate
+domain. Since items may relate to multiple domain, an item can contribute to
+multiple domain specific $D$-scores. As the $D$-score methodology is developed
+to measure a single construct for development, the domain $D$-scores correlate
 highly ($r > 0.95$). However, these scores can potentially inform on the cohort
 level (Figure \@ref(fig:domaind)) or the individual level (see Figure
 \@ref(fig:domaindex)).
@@ -328,7 +345,7 @@ d_dom_d <- d_dom %>%
   summarize( d= mean(d, na.rm = TRUE))
 
 ggplot(d_dom_d, aes( x= cohort, y = d, color = domain))+
-  geom_point()+
+  geom_point(size = 3, pch = 10)+
   coord_flip()+
   ylab("Average domain specific D-score") +
   xlab("")+
@@ -338,13 +355,10 @@ ggplot(d_dom_d, aes( x= cohort, y = d, color = domain))+
 (ref:domaind) Domain $D$-scores per cohort. 
 
 In Figure \@ref(fig:domaindex) example scores are displayed for a 3 year old boy
-from the Chili 2 (GCDG-CHL-2) cohort. The grey line displays the overall
-$D$-score (38.55$D$) and the colored points are the domain $D$-scores. This
-plot shows that for the language domains (i.e. Expressive and Receptive), this
-boy scores relatively low as compared to the motor and cognitive domains. The
-bars at the bottom of the plots display the available items per domain. Note
+from the Chili 2 (`GCDG-CHL-2`) cohort. The filled bars display the available items per domain. Note
 that the number of items for Gross Motor is very low (only 3 items). The white
-overlayed line at 5 items, indicates the bare minimum for a $D$-score.
+overlayed line at 5 items, indicates the bare minimum for a $D$-score. The grey vertical line displays the overall
+$D$-score (38.55$D$) with the $sem$ (0.53) around as the dashed lines. The colored points are the domain $D$-scores with the $sem$ around in error bars. This plot shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively low as compared to the motor and cognitive domains. 
 
 
 ```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', results='hide', fig.width=11}
@@ -359,16 +373,16 @@ dati <- data_w[9817,]
 d_dom_ex <- d_domain(data = dati, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items,domaintable = ddomain::get_domaintable(key = "gcdg"), vote_weight = 0)
 
 
-d_dom_ex_d <- d_dom_ex %>% pivot_longer(cols = c("d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive"), names_to = "domain", values_to = "d") %>% select(c("domain", "d", "a"))%>% mutate(domain = gsub("d_", "", .data$domain))
+d_dom_ex_d <- d_dom_ex %>% select(-d) %>% pivot_longer(cols = c("d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive"), names_to = "domain", values_to = "d") %>% select(c("domain", "d", "a"))%>% mutate(domain = gsub("d_", "", .data$domain))
 
-d_dom_ex_sem <- d_dom_ex %>% pivot_longer(cols = c("sem_Fine.Motor", "sem_Gross.Motor", "sem_Cognitive", "sem_Receptive", "sem_Expressive"), names_to = "domain", values_to = "sem") %>% select(c("domain", "sem"))%>% mutate(domain = gsub("sem_", "", .data$domain))
+d_dom_ex_sem <- d_dom_ex %>% select(-sem) %>% pivot_longer(cols = c("sem_Fine.Motor", "sem_Gross.Motor", "sem_Cognitive", "sem_Receptive", "sem_Expressive"), names_to = "domain", values_to = "sem") %>% select(c("domain", "sem"))%>% mutate(domain = gsub("sem_", "", .data$domain))
 
-d_dom_ex_n <- d_dom_ex %>% pivot_longer(cols = c("n_Fine.Motor", "n_Gross.Motor", "n_Cognitive", "n_Receptive", "n_Expressive"), names_to = "domain", values_to = "n") %>% select(c("domain", "n")) %>% mutate(domain = gsub("n_", "", .data$domain))
+d_dom_ex_n <- d_dom_ex %>% select(-n) %>% pivot_longer(cols = c("n_Fine.Motor", "n_Gross.Motor", "n_Cognitive", "n_Receptive", "n_Expressive"), names_to = "domain", values_to = "n") %>% select(c("domain", "n")) %>% mutate(domain = gsub("n_", "", .data$domain))
 
 d_dom_plot <- left_join(d_dom_ex_d, d_dom_ex_n, by = "domain")
 d_dom_plot <- left_join(d_dom_plot, d_dom_ex_sem, by = "domain")
 
-d_all <- dscore::dscore(data = dati, items =gseddata::gcdg_items )
+d_all <- d_dom_ex %>% select(a, d, sem)
 
 
 ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
@@ -380,9 +394,10 @@ ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
   geom_abline(intercept = 5, slope = 0, col = "white")+
 
  ylim(0,80) +
-  ylab("number of items                                        D-score") +
+  ylab("number of items                                                                                                    D-score") +
   xlab("")+
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  coord_flip()
 
 
 ```
