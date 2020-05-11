@@ -42,7 +42,7 @@ for development. Accordingly, the $D$-score can be used for the SDG 4.2.1
 indicator and interpreted as the global measure for development.
 
 In the cohorts that are currently included in the GCDG study, a wide range of
-countries are represented \@ref(sec:gcdgoverview). Combining existing data from
+countries are represented (see Section \@ref(sec:gcdgoverview)). Combining existing data from
 such a wide range of countries to create the $D$-score, broadens the
 interpretation of the $D$-score. Nevertheless, for obtaining accurate references
 that represent world-wide population, more representative (existing) data needs
@@ -61,32 +61,36 @@ standard child development-for-age. This reference standard can then be used to
 determine whether children are *developmentally on track*.
 
 In Figure \@ref(fig:dscorerefs), the strategy for constructing standards for
-development and to use them to define on track development is explained in
-several steps. By clicking 'Next', the next step will show in the plot. In the
-first step the $D$-score is plotted by age and in the subsequent steps, this
-relation is modeled in an LMS model. The goal of an LMS model is to describe the
-relation of the $D$-score by age with age-conditional z-scores. This is done by
-three smoothed curves representing the median (step 2), coefficient of variation
-and the skewness. In step 3 the centile lines for this model are presented. The
-resulting age-standardized scores for development (DAZ), are plotted in step 4
-to 6. The DAZ is used to define on-track development. So $D$-scores within 2
-standard deviations from the median can be defined as on-track. Scores that are
-more than two standard deviation *below* the median, can be defined as off-track
-(red dots in step 6).
+development and to use them to define on track development is visualized in
+several steps. By clicking 'Next', the following step will show in the plot. 
 
 
-```{r dscorerefs, echo=FALSE, fig.width=10, fig.cap='(ref:dscorerefs)' }
+```{r dscorerefs, echo=FALSE, out.width="760px", fig.cap='(ref:dscorerefs)' }
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
 #  height = "700px")
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
-                   height = "600px")
+                   height = "450px")
 ```
 (ref:dscorerefs) Illustration of the method to define on-track development
 
-Note that the current reference is based on the GCDG study. The cohorts that are
+
+1. In the first step the $D$-score is plotted by age. 
+2. In the second step, this relation is modeled in an LMS model. The goal of an LMS model is to describe the
+relation of the $D$-score by age with age-conditional z-scores. This is done by
+three smoothed curves representing the median, coefficient of variation
+and the skewness. 
+3. In step 3 the centile lines for this model are presented. 
+4. The resulting age-standardized scores for development (DAZ), are plotted in step 4.
+5. In step 5 the standar deviation lines are drawn to indicate an 1 and 2 standard deviation from the mean.
+6. The DAZ is used to define on-track development. So $D$-scores within 2
+standard deviations from the median can be defined as on-track. Scores that are
+more than two standard deviation *below* the median, can be defined as off-track
+(red dots).
+
+*Note that the current reference is based on the GCDG study. The cohorts that are
 currently included are representing a wide range of countries. However, they are
 not representative for a global population. The current reference standards are
-therefore temporary and should be improved when more data are available.
+therefore temporary and should be improved when more data are available.*
 
 
 ## Country-level estimates {#sec:countrytrack}
@@ -118,7 +122,7 @@ In the publication on the global $D$-score from the GCDG project [@Weber2019], t
 
 The WHO defines stunted as [when the height-for-age is more than two standard deviations below
 the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html). In Figure \@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
-development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different construct. 
+development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different constructs. 
 
 ```{r stunt, echo=FALSE, fig.cap='(ref:stunt)'}
 
@@ -166,7 +170,7 @@ ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
 (ref:stunt) Percentage off-track development and stunted per country
 
 
-However, we can see a relation between stunting and development ($D$-score). When we compare the Standardized $D$-score (DAZ) in each country for the stunted versus not-stunted children (Figure \@ref(fig:stuntdaz))
+However, we can see a relation between stunting and development ($D$-score). When we compare the Standardized $D$-score (DAZ) in each country for the stunted versus not-stunted children (Figure \@ref(fig:stuntdaz)). The DAZ for the stunted children is always lower in comparison with the not-stunted children.
 
 ```{r stuntdaz, echo=FALSE, fig.width=11, fig.cap= '(ref:stuntdaz)'}
 ##DAZ in stunted vs non-stunted (as done in Weber paper)
