@@ -67,8 +67,8 @@ df <- data.frame(
   row.names = 
     c("Bangladesh", "Brazil 1", "Brazil 2", "Chile 1", "Chile 2", 
     "China", "Colombia 1", "Colombia 2", "Ecuador", "Ethiopia",
-    "Jamaica 1", "Jamaica 2", "Madagascar", "Netherlands 1", 
-    "Netherlands 2", "South Africa")
+    "Jamaica 1", "Jamaica 2", "Madagascar", "Netherlands1", 
+    "Netherlands2", "South Africa")
 
 )
 
@@ -118,7 +118,7 @@ A first step in the bridging process is to group items from different instrument
 We order item mappings into five domains: fine motor (FM), gross motor (GM),
 cognitive (COG), receptive (REC) and expressive (EXP). Figure
 \@ref(fig:mappingshiny) displays the connections between the instruments via the
-item groups in each domain, with the `Prev` and `Next` buttons you can click
+item groups in each domain. With the `Prev` and `Next` buttons you can click
 through the five domains. The items are displayed as the leafs and are colored
 by instrument. The blue lines display the links between the items (and
 instruments).
@@ -140,7 +140,7 @@ eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "
 
 
 
-One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. Also here the milestones have similar age patterns.
+One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. These milestones have similar age patterns as well.
 
 ```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 ##promising equates
