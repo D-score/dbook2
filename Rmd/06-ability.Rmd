@@ -26,7 +26,7 @@ obtained using the developed global model. In Figure \@ref(fig:dscoredist), the 
 distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
 
-```{r dscoredist, echo=FALSE, fig.width=10}
+```{r dscoredist, echo=FALSE, fig.width=10, fig.cap = '(ref:dscoredist)'}
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/", 
   height = "600px")
 ```
