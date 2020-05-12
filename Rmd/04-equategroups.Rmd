@@ -28,22 +28,26 @@ An *equate group* is a set of two or more milestones that measure the same thing
 
 Equate groups vary in quality. We can use high-quality equate groups to link instruments by restricting the difficulty of all milestones in the equate group to be identical. Equate groups thus provide a method for bridging different tools.
 
-```{r equateex, echo=FALSE, fig.cap='(ref:equateex)', fig.height=6}
+Figure \@ref(fig:equateex) displays items from three different instruments with overlapping sets of milestones. The shared items make up equate groups, as displayed by the arrows between them. In the example, all three instruments share one milestone ("walk alone"). The "sitting" and "clap hand" items appear in two tools. So in total, there are three equate groups.
+
+```{r equateex, echo=FALSE, fig.cap='(ref:equateex)', fig.width=6}
 knitr::include_graphics("fig/equate_ex.png")
 ```
 (ref:equateex) Example of three instruments that are bridged by common items in equate groups.
 
-Figure \@ref(fig:equateex) displays items from three different instruments with overlapping sets of milestones. The shared items make up equate groups, as displayed by the arrows between them. In the example, all three instruments share one milestone ("walk alone"). The "sitting" and "clap hand" items appear in two tools. So in total, there are three equate groups.
+
 
 ## Concurrent calibration {#sec:concurrent}
 
-Patterns as in Figure \@ref(fig:equateex) occur if we have multiple forms of the same instrument. Although in theory there might be sequence effects, the usual working assumption is that we may ignore them. Equate groups with truly shared items that work in the same way across samples are of high quality. We may collect the responses on identical items into the same column of the data matrix. As a consequence, usual estimation methods will automatically produce one difficulty estimate for that column.
+Patterns as in Figure \@ref(fig:equateex) occur if we have multiple forms of the same instrument. Although in theory there might be sequence effects, the usual working assumption is that we may ignore them. Equate groups with truly shared items that work in the same way across samples are of high quality. We may collect the responses on identical items into the same column of the data matrix. As a consequence, usual estimation methods will automatically produce one difficulty estimate for that column (i.e. common item).
 
 The procedure described above is known as *concurrent calibration*. See @kim1998 for background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:
 
 * It yields a common latent scale across all instruments;
 * It is efficient because it calibrates all items in a single run;
-* It produces more stable estimates for shared items for small samples.
+* It produces more stable estimates for shared items for small samples. 
+
+<!--revise to "..esimates for common items in small samples" (?) -->
 
 However, concurrent calibration depends on a strict distinction between items that are indeed the same across instruments and items that differ. 
 
@@ -93,7 +97,7 @@ Estimation of the parameter for the equate group is straightforward. @wright1982
 Suppose that $Q$ is the collection of items in equate group $q$, and that $w_i$ is the number of respondents for item $i$. The parameter estimate $\delta_q$ for the equate group is
 
 \begin{equation}
-\delta_q = \frac{\sum_{i\in Q} \delta_iw_i}{\sum_{i\in Q} w_i}. (\#eq:raschequate)
+\delta_q = \frac{\sum_{i\in Q} \delta_iw_i}{\sum_{i\in Q} w_i} (\#eq:raschequate)
 \end{equation}
 
 

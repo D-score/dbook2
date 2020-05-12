@@ -63,7 +63,7 @@ analyze relation between background variables for on-track in logistic regressio
 --->
 There are many known factors that relate to early child development. For example, the educational level of the parents is positively related to development, but also environmental factors such as nutritional status or medical factors such as disease history or birth defects. 
 
-Unfortunately we do not have all of these factors measured in our data, but for some factors we can describe the frequency distributions for the on-track children versus off-track children. Table \@ref(tab:ontracktab) describes the background characteristics for the children that are on-track versus off-track for development.  
+Unfortunately, we do not have all of these factors measured in our data, but for some factors we can describe the frequency distributions for the on-track children versus off-track children. Table \@ref(tab:ontracktab) displays the background characteristics for the children that are on-track versus off-track for development.  
 
 We can see some differences between the countries and cohorts, but the differences seem small. For mothers education we can see that the higher the educational level, the lower the off-track percentages. And for the residential area we see that the percentage on-track seems higer in the more rural areas. 
 
@@ -80,7 +80,9 @@ cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(
  gcdg_d_cov <- gcdg_aux %>%
             mutate(subjido = as.character(id), 
                    cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"]) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort")) %>%
-   mutate(ontrack = ifelse(daz > -2, 1, 0))
+   mutate(ontrack = ifelse(daz > -2, 1, 0)) %>%
+      drop_na(ontrack) #### adding this removes missings in on track (daz)
+
  
  #note: check for birthweigth low vs normal categories in analyses for BMJ paper.
  #per factor the descriptives and proportions
@@ -93,7 +95,8 @@ cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(
    pivot_wider(id_cols = c("cohort"), names_from = "ontrack", values_from = c("n", "prop")) %>%
    rename(category = cohort) %>%
    mutate(factor = "cohort" 
-          ) %>% select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+          ) %>% select(factor, category, n_1, prop_1,n_0, prop_0) %>% #, n_NA, prop_NA) %>% 
+   filter(!is.na(category))
 
   country_des <- 
  gcdg_d_cov %>% select(country,ontrack)  %>%
@@ -104,7 +107,8 @@ cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(
    pivot_wider(id_cols = c("country"), names_from = "ontrack", values_from = c("n", "prop")) %>%
    rename(category = country) %>%
    mutate(factor = "country" 
-          ) %>% select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+          ) %>% select(factor, category, n_1, prop_1,n_0, prop_0)%>%#, n_NA, prop_NA) %>% 
+    filter(!is.na(category))
  
 edu_des <- 
  gcdg_d_cov %>% select(edumocat,ontrack)  %>%
@@ -114,13 +118,14 @@ edu_des <-
   mutate(prop = prop.table(n)) %>%
    pivot_wider(id_cols = c("edumocat"), names_from = "ontrack", values_from = c("n", "prop")) %>%
    rename(category = edumocat) %>% ungroup() %>%
-   mutate(factor = "edumocat",
+   mutate(factor = "maternal education",
           category = ifelse(category == 0, "no education", category),
           category = ifelse(category == 1, "any primary", category),
           category = ifelse(category == 2, "any secondary", category),
           category = ifelse(category == 3, "higher secondary", category)
           )%>% 
-     select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+     select(factor, category, n_1, prop_1,n_0, prop_0)%>%#, n_NA, prop_NA) %>% 
+  filter(!is.na(category))
 
 sex_des <- 
  gcdg_d_cov %>% select(male,ontrack)  %>%
@@ -134,7 +139,8 @@ sex_des <-
           category = ifelse(category == 0, "female", category),
           category = ifelse(category == 1, "male", category)
           )%>% 
-     select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+     select(factor, category, n_1, prop_1,n_0, prop_0)%>%#, n_NA, prop_NA) %>% 
+  filter(!is.na(category))
 
 res_des <- 
  gcdg_d_cov %>% select(residence,ontrack)  %>%
@@ -150,20 +156,41 @@ res_des <-
           category = ifelse(category == 2, "urban", category),
           category = ifelse(category == 3, "metropolitan", category)
           )%>% 
-     select(factor, category, n_1, prop_1,n_0, prop_0, n_NA, prop_NA) %>% filter(!is.na(category))
+     select(factor, category, n_1, prop_1,n_0, prop_0)%>%#, n_NA, prop_NA) %>% 
+  filter(!is.na(category))
 
-  desc_table <- bind_rows(cohort_des, country_des, edu_des, sex_des, res_des)
+##birthweight < 2500 gram (= low)
+bw_des <- 
+  gcdg_d_cov %>% select(birthweight, ontrack) %>%
+  mutate(birthweight_d = ifelse(birthweight < 2500, "low", "normal")) %>%
+    group_by(birthweight_d) %>%
+  count(ontrack) %>%
+  group_by(birthweight_d) %>%             # now required with changes to dplyr::count()
+  mutate(prop = prop.table(n)) %>%
+   pivot_wider(id_cols = c("birthweight_d"), names_from = "ontrack", values_from = c("n", "prop")) %>%
+   rename(category = birthweight_d) %>% ungroup() %>%
+   mutate(factor = "birth weight",
+          category = ifelse(category == "low", "<2500gr", category),
+          category = ifelse(category == "normal", ">2500gr", category)
+          )%>% 
+     select(factor, category, n_1, prop_1,n_0, prop_0)%>%#, n_NA, prop_NA) %>% 
+  filter(!is.na(category))
+
+
+  desc_table <- bind_rows(cohort_des, country_des, edu_des, sex_des, res_des, bw_des)
 
 kable(desc_table[,c(1:6)], col.names = c("", "", "n","%", "n","%"), caption = "Descriptive table for on-track versus off-track development") %>%
   kable_styling("striped", full_width = F) %>%
   add_header_above(c(" " = 2, "On-track" = 2, "Off-track" = 2)) %>%
     collapse_rows(columns = 1, valign = "top") %>%
-  add_footnote("n and % do not add to total size due to missings in D-score estimation", notation="symbol")
+  add_footnote("children with missing data in daz scores are excluded", notation="symbol")
  # pack_rows("country", 1, 11) %>%
 #  pack_rows("mother's eductation", 12, 16)%>%
 #  pack_rows("sex", 17, 19)%>%
 #  pack_rows("residence", 20, 24)%>%
 #  pack_rows("study", 25, 40)
+
+##birthweight < 2500 gram (= low)
 
 ```
 &nbsp;
@@ -210,7 +237,7 @@ desc_plot <- desc_table  %>%
 <!---- 
 relative importance for daz?
 --->
-The explanatory variables described in the previous section \@ref(sec:factors) differ in their importance to explain early child development. When we look at a combination of possible explanatory factors that were measured in this study (i.e. country, sex, birthweight, mother's education, height for age and residential area) explain about 6.5% of the variance in the standardized $D$-score for age. In Figure \@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the $D$-score. Birthweigth is the second important factor.
+The explanatory variables described in the previous section \@ref(sec:factors) differ in their importance to explain early child development. The explanatory factors that were measured in this study (i.e. country, sex, birth weight, maternal education, height for age and residential area) combined, explain about 6.5% of the variance in the standardized $D$-score for age. In Figure \@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the $D$-score. Birth weight is the second important factor.
 
 ```{r imppie, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
 
@@ -318,5 +345,5 @@ pie(rsq, border = "white", col = brewer.pal(6, "Set3"), radius = 1)
 
 <!---- 
 in words conclusions based on previous paragraphs. What can we say (now) about where to intervene--->
-From the analyses performed in the previous sections, we cannot formulate a clear advise on opportunities for intervention. The data that we have available is too limited and includes only a small set of explanatory variables and possible preditors for early child development. We can see, however, that there are country differences in early child development, and that supports that interventions should be costumized at country level. 
+From the analyses performed in the previous sections, we cannot yet formulate a clear advise on opportunities for intervention. The data that we have available is too limited and includes only a small set of explanatory variables and possible preditors for early child development. We can see, however, that there are country differences in early child development, and that supports that interventions should be costumized at country level. 
 
