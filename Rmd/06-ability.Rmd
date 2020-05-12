@@ -27,10 +27,10 @@ distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
 
 ```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:semforn)'}
-knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/", 
+knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
   height = "800px")
 ```
-(ref:dscoredist) $D$-score distributions by study.
+(ref:dscoredist) $D$-score distributions by study. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display. 
 
 
 ## Impact of measurement error {#sec:sem}
@@ -149,10 +149,10 @@ precise $D$-score estimates.
 #summary(model_lean$dscore$p[which(model_lean$dscore$cohort == "GCDG-COL-LT45M")])
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
 #  height = "700px")
-knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/",
+knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=",
                    height = "800px")
 ```
-(ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized $D$-scores (DAZ) per cohort
+(ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized $D$-scores (DAZ) per cohort. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display.
 
 The $sem$ for an entire cohort or sample can be obtained by pooling the
 individual $sem_i$ using general rule for pooling variances. Accordingly, the
