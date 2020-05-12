@@ -120,12 +120,12 @@ cognitive (COG), receptive (REC) and expressive (EXP). Figure
 \@ref(fig:mappingshiny) displays the connections between the instruments via the
 item groups in each domain. With the `Prev` and `Next` buttons you can click
 through the five domains. The items are displayed as the leafs and are colored
-by instrument. The blue lines display the links between the items (and
-instruments).
+by instrument. The lines display the links between the items (and
+instruments). Hovering over the items highlights the item and its connections to others.
 
 ```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=10}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
-  height = "600px")
+  height = "700px")
 ```
 (ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
