@@ -69,7 +69,7 @@ several steps. By clicking 'Next', the following step will show in the plot.
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
 #  height = "700px")
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
-                   height = "450px")
+                   height = "800px")
 ```
 (ref:dscorerefs) Illustration of the method to define on-track development
 
