@@ -165,13 +165,14 @@
             <section class="normal" id="section-">
 <div id="section-sec:concurrent" class="section level2">
 <h2><span class="header-section-number">4.2</span> Concurrent calibration</h2>
-<p>Patterns as in Figure <a href="section-sec-eqdef.html#fig:equateex">4.1</a> occur if we have multiple forms of the same instrument. Although in theory there might be sequence effects, the usual working assumption is that we may ignore them. Equate groups with truly shared items that work in the same way across samples are of high quality. We may collect the responses on identical items into the same column of the data matrix. As a consequence, usual estimation methods will automatically produce one difficulty estimate for that column.</p>
+<p>Patterns as in Figure <a href="section-sec-eqdef.html#fig:equateex">4.1</a> occur if we have multiple forms of the same instrument. Although in theory there might be sequence effects, the usual working assumption is that we may ignore them. Equate groups with truly shared items that work in the same way across samples are of high quality. We may collect the responses on identical items into the same column of the data matrix. As a consequence, usual estimation methods will automatically produce one difficulty estimate for that column (i.e. common item).</p>
 <p>The procedure described above is known as <em>concurrent calibration</em>. See <span class="citation">Kim and Cohen (<a href="section-references.html#section-ref-kim1998">1998</a>)</span> for background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:</p>
 <ul>
 <li>It yields a common latent scale across all instruments;</li>
 <li>It is efficient because it calibrates all items in a single run;</li>
 <li>It produces more stable estimates for shared items for small samples.</li>
 </ul>
+<!--revise to "..esimates for common items in small samples" (?) -->
 <p>However, concurrent calibration depends on a strict distinction between items that are indeed the same across instruments and items that differ.</p>
 <p>In practice, strict black-white distinctions may not be possible. Items that measure the same skill may have been adapted to suit the format of the instrument (e.g. number of response options, question formulation, and so on). Also, investigators may have altered the item to suit the local language and cultural context. Such changes may or may not affect the measurement properties. The challenge is to find out whether items measure the underlying construct in the same way.</p>
 <p>In practice, we may need to perform concurrent calibration to multiple - perhaps slightly dissimilar - milestones. When confronted with similar - but not identical - items, our strategy is first to form provisional equate groups. We then explore, test and rearrange these equate groups, in the hope of finding enough high-quality equate groups that will bridge instruments.</p>

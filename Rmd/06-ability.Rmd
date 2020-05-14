@@ -26,11 +26,13 @@ obtained using the developed global model. In Figure \@ref(fig:dscoredist), the 
 distributions are displayed for each cohort separately. The blue lines in the
 graphs are the (temporary) references, as explained in \@ref(sec:references).
 
+
 ```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:semforn)'}
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
   height = "800px")
 ```
 (ref:dscoredist) $D$-score distributions by study. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
+
 
 
 ## Impact of measurement error {#sec:sem}
@@ -422,7 +424,9 @@ overlayed line at 5 items, indicates the bare minimum for a $D$-score. The grey 
 $D$-score (38.55$D$) with the $sem$ (0.53) around as the dashed lines. The colored points are the domain $D$-scores with the $sem$ around in error bars. This plot shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively low as compared to the motor and cognitive domains. 
 
 
+
 ```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', results='hide', fig.width=11, fig.heiht = 4}
+
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
 

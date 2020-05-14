@@ -169,35 +169,36 @@
 estimate can be determined. This precision can be expressed as the standard
 error of measurement (<span class="math inline">\(sem\)</span>). The standard error of measurement is inversely
 related to the number of items. Thus, when more items are administered for a
-person, the measurement error for the <span class="math inline">\(D\)</span>-score of this person will be smaller.
-As is shown in Figure <a href="section-sec-sem.html#fig:semforn">6.1</a>, the sem drops fast when the number of
+person, the measurement error for the <span class="math inline">\(D\)</span>-score of this person is smaller.
+As is shown in Figure <a href="section-sec-sem.html#fig:semforn">6.2</a>, the <span class="math inline">\(sem\)</span> drops fast when the number of
 items is increased to 15, and still some more until the number of items is 30.
-More than 30 items has little effect on the sem.</p>
+More than 30 items has little effect on the <span class="math inline">\(sem\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:semforn"></span>
 <img src="dbook2_files/figure-html/semforn-1.png" alt="Standard error of measurement (\(sem\)) when the number of items increase." width="672" />
 <p class="caption">
-Figure 6.1: Standard error of measurement (<span class="math inline">\(sem\)</span>) when the number of items increase.
+Figure 6.2: Standard error of measurement (<span class="math inline">\(sem\)</span>) when the number of items increase.
 </p>
 </div>
 
-<p>The precision of the <span class="math inline">\(D\)</span>-score estimate is also affected by the information in
-the items that are administered. This is partly the number of items, as depicted
-in <a href="section-sec-sem.html#fig:semforn">6.1</a>, but also if the items are informative for the <span class="math inline">\(D\)</span>-score.
-For example, if the items are too easy and the probability to pass the item
-given the <span class="math inline">\(D\)</span>-score is <span class="math inline">\(P\)</span> &gt; 0.90, the <span class="math inline">\(sem\)</span> is larger than when the difficulty
-of the administered items is closer to the <span class="math inline">\(D\)</span>-score (i.e. <span class="math inline">\(P\)</span> = 0.50). The
-<span class="math inline">\(sem\)</span> for age in GCDG data (see Figure <a href="section-sec-sem.html#fig:semfora">6.2</a>) shows that for some
-ages, the <span class="math inline">\(sem\)</span> is larger than for others. This is on the one hand due to the
-number of items available in that age range, but also to the design of the
-cohorts where sometimes relatively easy items are administered.</p>
+<p>The precision of the <span class="math inline">\(D\)</span>-score estimate is also affected by the information that
+the items that are administered contribute to the <span class="math inline">\(D\)</span>-score. The information
+that in item contributes is larger when the item discrimminates well between
+different reponders. Therefore, the information is a function of the probability
+to endore the item. For example, if the items are too easy and the probability
+to pass the item given the <span class="math inline">\(D\)</span>-score is <span class="math inline">\(P\)</span> &gt; 0.90, the <span class="math inline">\(sem\)</span> is larger than
+when the difficulty of the administered items is closer to the <span class="math inline">\(D\)</span>-score (i.e.
+<span class="math inline">\(P\)</span> = 0.50). The <span class="math inline">\(sem\)</span> for age in GCDG data (see Figure <a href="section-sec-sem.html#fig:semfora">6.3</a>)
+shows that for some ages, the <span class="math inline">\(sem\)</span> is larger than for others. This is on the
+one hand due to the number of items available in that age range, but also to the
+design of the cohorts where sometimes relatively easy items are administered.</p>
 <div class="figure" style="text-align: center"><span id="fig:semfora"></span>
 <img src="dbook2_files/figure-html/semfora-1.png" alt="Standard error of measurement (\(sem\)) in each age group." width="672" />
 <p class="caption">
-Figure 6.2: Standard error of measurement (<span class="math inline">\(sem\)</span>) in each age group.
+Figure 6.3: Standard error of measurement (<span class="math inline">\(sem\)</span>) in each age group.
 </p>
 </div>
 
-<p>In Figure <a href="section-sec-sem.html#fig:dscoresems">6.3</a>, the <span class="math inline">\(sem\)</span> per age group is shown for each
+<p>In Figure <a href="section-sec-sem.html#fig:dscoresems">6.4</a>, the <span class="math inline">\(sem\)</span> per age group is shown for each
 cohort separately. This illustrates the differences in design between the
 cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the <code>ddi</code> was
 used as a screener and items had the probability to pass of approximately
@@ -209,10 +210,10 @@ range 38 to 57 items) and the probability to pass was approximately <span class=
 (quartile range between 0.53 &lt; <span class="math inline">\(P\)</span> &gt; 0.79). The latter study has therefore more
 precise <span class="math inline">\(D\)</span>-score estimates.</p>
 <div class="figure" style="text-align: center"><span id="fig:dscoresems"></span>
-<iframe src="https://iriseekhout.github.io/dbook2tools/gcdgsem/" width="960" height="600px">
+<iframe src="https://iriseekhout.github.io/dbook2tools/gcdgsem/" width="760px" height="450px">
 </iframe>
 <p class="caption">
-Figure 6.3: The standard error of measurement (<span class="math inline">\(sem\)</span>) around the age-standardized <span class="math inline">\(D\)</span>-scores (DAZ) per cohort
+Figure 6.4: The standard error of measurement (<span class="math inline">\(sem\)</span>) around the age-standardized <span class="math inline">\(D\)</span>-scores (DAZ) per cohort
 </p>
 </div>
 
@@ -224,22 +225,22 @@ individual <span class="math inline">\(sem_i\)</span> using general rule for poo
 <p><span class="math display" id="eq:poolsem">\[\begin{equation}
 sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} \tag{6.1}
 \end{equation}\]</span></p>
-<p>In Figure <a href="section-sec-sem.html#fig:cohortsem">6.4</a> the sample <span class="math inline">\(sem\)</span> per cohort is displayed. The
+<p>In Figure <a href="section-sec-sem.html#fig:cohortsem">6.5</a> the sample <span class="math inline">\(sem\)</span> per cohort is displayed. The
 lowest sample <span class="math inline">\(sem\)</span> is found in the Ethiopia study (GCDG-ETH) and the highest in
 the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
 number of items per child, and on the other hand the difficulty of the
-administered items.</p>
+administered items (i.e. the item information).</p>
 <div class="figure" style="text-align: center"><span id="fig:cohortsem"></span>
 <img src="dbook2_files/figure-html/cohortsem-1.png" alt="Standard Error of Measurement (\(sem\)) per cohort." width="672" />
 <p class="caption">
-Figure 6.4: Standard Error of Measurement (<span class="math inline">\(sem\)</span>) per cohort.
+Figure 6.5: Standard Error of Measurement (<span class="math inline">\(sem\)</span>) per cohort.
 </p>
 </div>
 
 <p>Table <a href="section-sec-sem.html#tab:npsem">6.1</a> shows the median
-number of items per child (test length) and the probability to pass the items (p). In The
-Ethiopia cohort 39 items were administered with a median
-probability of 0.66 and in the South Africa study just 12 items with a median
+number of items per child (test length) and the probability to pass the items. In the
+Ethiopia cohort (<code>GCDG-ETH</code>) 39 items were administered with a median
+probability of 0.66 and in the South Africa study (<code>GCDG-ZAF</code>) just 12 items with a median
 probability of 1. Accordingly, in the Ethiopia study more items were
 administered per child that also have a high level of information for the
 <span class="math inline">\(D\)</span>-scores. In the South Africa study only few items were administered per child
