@@ -30,7 +30,7 @@ graphs are the (temporary) references, as explained in \@ref(sec:references).
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
   height = "800px")
 ```
-(ref:dscoredist) $D$-score distributions by study. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display. 
+(ref:dscoredist) $D$-score distributions by study. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
 
 
 ## Impact of measurement error {#sec:sem}
@@ -45,7 +45,7 @@ items is increased to 15, and still some more until the number of items is 30.
 More than 30 items has little effect on the $sem$.
 
 
-```{r semforn, results = 'hide', fig.keep = 'all', fig.cap = '(ref:semforn)', echo = FALSE}
+```{r semforn, results = 'hide', fig.keep = 'all', fig.cap = '(ref:semforn)', fig.align='center', echo = FALSE, fig.width=6}
 ggplot(data = dmetric::model_lean$dscore )+
   geom_smooth(aes(x=n, y=sem), se = FALSE, color = "red")+
   xlab("number of items")
@@ -66,7 +66,7 @@ one hand due to the number of items available in that age range, but also to the
 design of the cohorts where sometimes relatively easy items are administered.
 
 
-```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', results='hide'}
+```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', results='hide', fig.height=6, fig.width=6, fig.align='center'}
 # voor individuele metingen
 sem_daz <- dmetric::model_lean$dscore %>%
   mutate(agemos = a *12,
@@ -131,7 +131,7 @@ range 38 to 57 items) and the probability to pass was approximately $P$ = 0.64
 (quartile range between 0.53 < $P$ > 0.79). The latter study has therefore more
 precise $D$-score estimates.
 
-```{r dscoresems, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoresems)'}
+```{r dscoresems, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoresems)', fig.align='center'}
 #n items per child Netherlands 1 cohort = 8.5
 #ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-NLD-SMOCC")]
 #itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]
@@ -170,7 +170,7 @@ the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
 number of items per child, and on the other hand the difficulty of the
 administered items (i.e. the item information). 
 
-```{r cohortsem, results = 'hide', fig.keep = 'all',  fig.cap = '(ref:cohortsem)', echo = FALSE}
+```{r cohortsem, results = 'hide', fig.keep = 'all',  fig.cap = '(ref:cohortsem)', fig.align = 'center', echo = FALSE}
 sem_daz_c <- sem_daz %>% 
   mutate(agecat = cut(agemos, breaks = 0:max(agemos, na.rm=TRUE)), 
          agenum = as.numeric(agecat))%>%
@@ -317,14 +317,15 @@ Note that for some items the domain allocation is missing.
 It is possible to calculate a $D$-score that is more representative for a
 specific domain using the current $D$-score model. We can use only the items
 that load to the domain in question to calculate the $D$-score for that specific
-domain. Since items may relate to multiple domains, an item can contribute to
+domain. Since items may relate to multiple domain, an item can contribute to
 multiple domain specific $D$-scores. As the $D$-score methodology is developed
 to measure a single construct for development, the domain $D$-scores correlate
 highly ($r > 0.95$). However, these scores can potentially inform on the cohort
 level (Figure \@ref(fig:domaind)) or the individual level (see Figure
 \@ref(fig:domaindex)).
 
-In Figure \@ref(fig:domaind), the domain scores are presented for the cohorts in DAZ units to enable comparison between and within studies. The $sem$ intervals are displayed in the error bars around the scores. The mean domain DAZ scores differ within some cohorts, however, the $sem$ ranges always overlap. 
+In Figure \@ref(fig:domaind), the standardized domain $D$-score (i.e. DAZ) are displayed for each cohort. The DAZ unit was used to enable comparibility. The error bars around the scores depict the $sem$ interval. The mean domain specific DAZ scores differ within cohorts, however the $sem$ intervals always overlap.
+
 <!--- the correlations between the daz scores are much lower. How should we interpet that? I think it may also be due to differences in precision of the maesurement. The correlations to the daz based on all items may also be informative on that. Gross motor has low correlations to all scales, but that may also be due to nr of items. --->
 
 ```{r domaind, echo=FALSE, fig.cap='(ref:domaind)', fig.keep='all', cache=TRUE, results='hide', fig.width=11}
@@ -334,46 +335,85 @@ data_w <- dmetric::gcdg_lean[["itm"]] %>% spread(key = "item", value = "value") 
 
 d_dom <- ddomain::d_domain(data = data_w, domain = c("Fine.Motor", "Gross.Motor", "Expressive", "Receptive", "Cognitive", "Adaptive"), items = gseddata::gcdg_items,domaintable = ddomain::get_domaintable(key = "gcdg"), vote_weight = 0)
 d_all <- dscore(data = data_w, items = gseddata::gcdg_items, itembank = dscore::builtin_itembank, key = "gcdg")
-d_dom1 <- cbind(d_all, d_dom)
+d_dom1<- cbind(d_all, d_dom)
 
 cor(d_dom1[,c("daz" ,"daz_Fine.Motor", "daz_Gross.Motor", "daz_Cognitive", "daz_Receptive", "daz_Expressive")], use = "complete.obs")
 
-d_dom_d <- d_dom %>% 
-  cbind(data_w[,c("cohort", "subjid", "agedays"),]) %>%
-  pivot_longer(cols = c("d_Fine.Motor", "d_Gross.Motor", "d_Cognitive", "d_Receptive", "d_Expressive",
-                        "sem_Fine.Motor", "sem_Gross.Motor", "sem_Cognitive", "sem_Receptive", "sem_Expressive"), values_to = "score", names_to = c("stat", "domain"), names_sep = "_" ) %>% 
-  select(c("subjid", "cohort","agedays", "domain", "stat", "score")) %>%
-  pivot_wider(id_cols = c("subjid", "agedays","cohort", "domain"), names_from = "stat", values_from = "score", values_fn = list(score = first))%>%
-  group_by(cohort, domain)%>%
-  summarize (mean_a = mean((agedays/365.25), na.rm=TRUE), #voor omzetting naar daz
-             mean_d = mean(d, na.rm = TRUE),
-             var_betw = var(d, na.rm = TRUE),
-             var_with = sum(sem^2, na.rm = TRUE),
-             n =  sum(!is.na(sem))
-             ) %>% ungroup() %>%
-  mutate(sem_pool = sqrt((var_with + var_betw)/ (n-1)), 
-         low_d = mean_d - sem_pool,
-         high_d = mean_d + sem_pool,
-         mean_daz = dscore::daz(mean_d, x = mean_a),
-         low_daz = dscore::daz(low_d, x = mean_a),
-         high_daz = dscore::daz(high_d, x = mean_a))
+d_dom_d <- d_dom %>%
+  cbind(data_w[, c("cohort", "subjid", "agedays"), ]) %>%
+  pivot_longer(
+    cols = c(
+      "d_Fine.Motor",
+      "d_Gross.Motor",
+      "d_Cognitive",
+      "d_Receptive",
+      "d_Expressive",
+      "sem_Fine.Motor",
+      "sem_Gross.Motor",
+      "sem_Cognitive",
+      "sem_Receptive",
+      "sem_Expressive"
+    ),
+    values_to = "score",
+    names_to = c("stat", "domain"),
+    names_sep = "_"
+  ) %>%
+  select(c("subjid", "cohort", "agedays", "domain", "stat", "score")) %>%
+  pivot_wider(
+    id_cols = c("subjid", "agedays", "cohort", "domain"),
+    names_from = "stat",
+    values_from = "score",
+    values_fn = list(score = first)
+  ) %>%
+  group_by(cohort, domain) %>%
+  summarize (
+    mean_a = mean((agedays / 365.25), na.rm = TRUE),
+    #voor omzetting naar daz
+    mean_d = mean(d, na.rm = TRUE),
+    var_betw = var(d, na.rm = TRUE),
+    var_with = sum(sem ^ 2, na.rm = TRUE),
+    n =  sum(!is.na(sem))
+  ) %>% ungroup() %>%
+  mutate(
+    sem_pool = sqrt((var_with + var_betw) / (n - 1)),
+    low_d = mean_d - sem_pool,
+    high_d = mean_d + sem_pool,
+    mean_daz = dscore::daz(mean_d, x = mean_a),
+    low_daz = dscore::daz(low_d, x = mean_a),
+    high_daz = dscore::daz(high_d, x = mean_a)
+  )
 
 
 
-ggplot(d_dom_d, aes( x= reorder(cohort, desc(cohort)), y = mean_daz, color = domain))+
-  geom_point(size = 1, position = position_dodge(width = 0.5))+
-  geom_errorbar(aes(x = cohort, ymin = (low_daz), ymax = (high_daz), group = domain), width = .1,position = position_dodge(width = 0.5))+
- # coord_flip()+
+
+ggplot(d_dom_d, aes(
+  x = reorder(cohort, desc(cohort)),
+  y = mean_daz,
+  color = domain
+)) +
+  geom_point(size = 1, position = position_dodge(width = 0.5)) +
+  geom_errorbar(
+    aes(
+      x = cohort,
+      ymin = (low_daz),
+      ymax = (high_daz),
+      group = domain
+    ),
+    width = .1,
+    position = position_dodge(width = 0.5)
+  ) +
+  # coord_flip()+
   ylab("Average domain specific DAZ") +
   ylim(-4,4)+
-  xlab("")+
-  theme( legend.position = "top", legend.title = element_blank(),
-         axis.text.x = element_text(angle = 90))
-
-##consider adding the sem intervals >> cohort sems!
+  xlab("") +
+  theme(
+    legend.position = "top",
+    legend.title = element_blank(),
+    axis.text.x = element_text(angle = 90)
+  )
 
 ```
-(ref:domaind) Domain $D$-scores per cohort. 
+(ref:domaind) Domain DAZ per cohort. 
 
 In Figure \@ref(fig:domaindex) example scores are displayed for a 3 year old boy
 from the Chili 2 (`GCDG-CHL-2`) cohort. The filled bars display the available items per domain. Note
@@ -382,7 +422,7 @@ overlayed line at 5 items, indicates the bare minimum for a $D$-score. The grey 
 $D$-score (38.55$D$) with the $sem$ (0.53) around as the dashed lines. The colored points are the domain $D$-scores with the $sem$ around in error bars. This plot shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively low as compared to the motor and cognitive domains. 
 
 
-```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', results='hide', fig.width=11,fig.height=4}
+```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', results='hide', fig.width=11, fig.heiht = 4}
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
 
@@ -416,7 +456,7 @@ ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
   geom_abline(intercept = 5, slope = 0, col = "white")+
 
  ylim(0,80) +
-  ylab("number of items                                                                                                    D-score") +
+  ylab("number of items                                                                                                      D-score") +
   xlab("")+
   theme(legend.position = "none")+
   coord_flip()
