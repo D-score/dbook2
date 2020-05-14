@@ -5,6 +5,7 @@ library(ggthemes)
 library(dplyr)
 library(dmetric)
 library(tidyr)
+library(gseddata)
 ```
 
 # Data {#ch:data}
@@ -101,14 +102,17 @@ The cohorts have different designs, age ranges and assessment instruments. In Fi
 
 
 ```{r design, fig.width=10, fig.keep='all', results='hide', fig.cap = '(ref:design)' }
-design1 <- dmetric::gcdg_lean$visit %>% 
-  left_join(dmetric::gcdg_lean$itm, by = c("subjid", "agedays"))%>%
+lean <- gseddata::get_data(cohorts = 40:56)
+lean <- clean_data(lean)
+
+design1 <- lean$visit %>% 
+  left_join(lean$itm, by = c("subjid", "agedays"))%>%
   mutate(agemos = round(agedays/365.25*12),
          instrument = substr(item, 1, 3)) %>%
   group_by(cohort,agemos,instrument) %>%
   summarise(n = n())
 
-ggplot(design1, aes(x = agemos, y = cohort, group = instrument, color = instrument))+
+ggplot(design1, aes(x = agemos, y = reorder(cohort, desc(cohort)), group = instrument, color = instrument))+
   geom_point(position = position_dodge(width = 0.5), aes(group = instrument))+
   scale_colour_manual(values = dmetric::get_palette("instrument", "gsed_palettes"), na.value = "grey")+
   xlab("Age (months)") + ylab("")
