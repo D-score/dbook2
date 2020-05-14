@@ -39,7 +39,7 @@ The $D$-score booklet series consists of the following titles:
 3. [$D$-score: Tailoring tests to fit the occasion](https://stefvanbuuren.github.io/dbook3/)
 
 [Booklet I](https://stefvanbuuren.github.io/dbook1/) is currently
-available as complete draft. Booklets 2 and 3 are planned for 2019 and
+available as complete draft. Booklets 2 and 3 are planned for 
 2020.
 
 This work is kindly supported by the *knowledge integration (ki)*
