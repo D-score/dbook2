@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.2 Concurrent calibration | D-score: Tuning instruments to unitiy</title>
+  <title>5.7 Other modeling actions | D-score: Tuning instruments to unitiy</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.2 Concurrent calibration | D-score: Tuning instruments to unitiy" />
+  <meta property="og:title" content="5.7 Other modeling actions | D-score: Tuning instruments to unitiy" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.github.io/dbook2/" />
   <meta property="og:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.2 Concurrent calibration | D-score: Tuning instruments to unitiy" />
+  <meta name="twitter:title" content="5.7 Other modeling actions | D-score: Tuning instruments to unitiy" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.github.io/dbook2/fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-eqdef.html"/>
-<link rel="next" href="section-sec-equaterules.html"/>
+<link rel="prev" href="section-milestone-selection.html"/>
+<link rel="next" href="section-item-information.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -164,27 +164,357 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:concurrent" class="section level2">
-<h2><span class="header-section-number">4.2</span> Concurrent calibration</h2>
-<p>Patterns as in Figure <a href="section-sec-eqdef.html#fig:equateex">4.1</a> occur if we have multiple forms of the same instrument. Although in theory there might be sequence effects, the usual working assumption is that we may ignore them. Equate groups with truly shared items that work in the same way across samples are of high quality. We may collect the responses on identical items into the same column of the data matrix. As a consequence, usual estimation methods will automatically produce one difficulty estimate for that column (i.e. common item).</p>
-<p>The procedure described above is known as <em>concurrent calibration</em>. See <span class="citation">Kim and Cohen (<a href="section-references.html#section-ref-kim1998">1998</a>)</span> for background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:</p>
-<ul>
-<li>It yields a common latent scale across all instruments;</li>
-<li>It is efficient because it calibrates all items in a single run;</li>
-<li>It produces more stable estimates for shared items for small samples.</li>
-</ul>
-<!--revise to "..esimates for common items in small samples" (?) -->
-<p>However, concurrent calibration depends on a strict distinction between items that are indeed the same across instruments and items that differ.</p>
-<p>In practice, strict black-white distinctions may not be possible. Items that measure the same skill may have been adapted to suit the format of the instrument (e.g. number of response options, question formulation, and so on). Also, investigators may have altered the item to suit the local language and cultural context. Such changes may or may not affect the measurement properties. The challenge is to find out whether items measure the underlying construct in the same way.</p>
-<p>In practice, we may need to perform concurrent calibration to multiple - perhaps slightly dissimilar - milestones. When confronted with similar - but not identical - items, our strategy is first to form provisional equate groups. We then explore, test and rearrange these equate groups, in the hope of finding enough high-quality equate groups that will bridge instruments.</p>
+<div id="section-other-modeling-actions" class="section level2">
+<h2><span class="header-section-number">5.7</span> Other modeling actions</h2>
+<div id="section-instrument-fit" class="section level3">
+<h3><span class="header-section-number">5.7.1</span> Instrument fit</h3>
+<div class="figure" style="text-align: center"><span id="fig:itembox"></span>
+<img src="dbook2_files/figure-html/itembox-1.png" alt="Box plot of the distribution of item outfit per instrument in model 1339_11." width="672" />
+<p class="caption">
+Figure 5.5: Box plot of the distribution of item outfit per instrument in model <code>1339_11</code>.
+</p>
+</div>
+
+<p>Some instruments fit better than others. <a href="section-other-modeling-actions.html#fig:itembox">5.5</a> shows the box plots of outfit per instrument. Instruments <code>bar</code>, <code>by1</code>, <code>ddi</code> and <code>vin</code> generally fit well, whereas discrepancies between model and data are larger for <code>bat</code>, <code>by2</code> and <code>sbi</code>. Through additional modelling we found that it was extremely difficult to get enough high-quality bridge items that could link <code>bat</code> (Battelle Development Inventory) to the instruments. We also found that models without the Battelle were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove <code>bat</code> from the model, even though this meant that one cohort (<code>GCDG-BRA-2</code>) had to be dropped from the analysis.</p>
+<p>It is not clear why <code>bat</code> does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behavior that is different from PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in ASQ-3, which also uses three response categories.</p>
+</div>
+<div id="section-splitting-combining-and-selecting-equate-groups" class="section level3">
+<h3><span class="header-section-number">5.7.2</span> Splitting, combining and selecting equate groups</h3>
+<p>Most of the modelling effort went into finding a set of high-quality equate groups that bind the instruments. For example, we tried to bridge the South-African study placing <code>vinxxc016</code> (uses a short sentence) into <code>EXP26</code> (two-word sentences) and <code>EXP36</code> (sentences of 3 or more words), but neither option led to a reasonable model. On the surface, milestone <code>by3gmd060</code> (balances on right foot, 2 seconds) appears to fit within <code>GM60</code> (balances on foot), but the analysis showed large discrepancies with the other items in the groups, so it had to be taken out.</p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table>
+<caption>
+<span id="tab:crosscultural">Table 5.1: </span>Milestones not used for equating because of limited cross-cultural validity
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Item
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Label
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+aqislc023
+</td>
+<td style="text-align:left;">
+When you dress your baby does she lift her foot for her shoe, sock, or pant leg?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+aqislc041
+</td>
+<td style="text-align:left;">
+Using these exact words, ask your child, “Are you a girl or a boy?” Does your child answer correctly?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by1mdd050
+</td>
+<td style="text-align:left;">
+Washes and dries hands
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by1pdd053
+</td>
+<td style="text-align:left;">
+Bowel and bladder control
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by1pdd054
+</td>
+<td style="text-align:left;">
+manipulates table edge actively
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by2pdd069
+</td>
+<td style="text-align:left;">
+Walsk up stairs with help
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3cgd043
+</td>
+<td style="text-align:left;">
+Walks down stairs with help
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3cgd052
+</td>
+<td style="text-align:left;">
+Walks down stairs with help
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd047
+</td>
+<td style="text-align:left;">
+Clear Box: Front
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd049
+</td>
+<td style="text-align:left;">
+Clear Box: Sides
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd057
+</td>
+<td style="text-align:left;">
+Uses pronouns
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd058
+</td>
+<td style="text-align:left;">
+Walks Up Stairs Series: Both feet on each step, with support.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3red030
+</td>
+<td style="text-align:left;">
+Walks Down Stairs Series: Both feet on each step, with support
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3exd030
+</td>
+<td style="text-align:left;">
+Walks Up Stairs Series: Both feet on each step, alone.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+barxxx016
+</td>
+<td style="text-align:left;">
+Walks Down Stairs Series: Both feet on each step, alone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+barxxx020
+</td>
+<td style="text-align:left;">
+Understands pronouns (him, me, my, you, your)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+dengmd020
+</td>
+<td style="text-align:left;">
+Eats with spoon without help (M; can ask parents)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+densld012
+</td>
+<td style="text-align:left;">
+Takes off shoes and socks (M; can ask parents)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+densld013
+</td>
+<td style="text-align:left;">
+Can dress (one piece) (M; can ask parents)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+grigmd219
+</td>
+<td style="text-align:left;">
+Walk Up Stairs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+grigmd222
+</td>
+<td style="text-align:left;">
+Drink from a cup
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd002
+</td>
+<td style="text-align:left;">
+help in house
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd003
+</td>
+<td style="text-align:left;">
+(Locomotor) Walks up and down stairs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd004
+</td>
+<td style="text-align:left;">
+(Locomotor) Goes alone on the stairs (any method)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd005
+</td>
+<td style="text-align:left;">
+Hands-and-knees crawling
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd006
+</td>
+<td style="text-align:left;">
+Standing with assistance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+ddifmm019
+</td>
+<td style="text-align:left;">
+Walking with assistance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+ddifmd154
+</td>
+<td style="text-align:left;">
+Standing alone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc002
+</td>
+<td style="text-align:left;">
+Walking alone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc003
+</td>
+<td style="text-align:left;">
+chew solid foods
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc009
+</td>
+<td style="text-align:left;">
+take off socks / shoes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc012
+</td>
+<td style="text-align:left;">
+get on with other children
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc014
+</td>
+<td style="text-align:left;">
+know what’s edible
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc022
+</td>
+<td style="text-align:left;">
+walk upstairs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc028
+</td>
+<td style="text-align:left;">
+avoid simple danger - knife / hot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc031
+</td>
+<td style="text-align:left;">
+help around the house / clear table
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc040
+</td>
+<td style="text-align:left;">
+Play or do things with other children of same age eg sing song
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+ddifmm025
+</td>
+<td style="text-align:left;">
+Help with little things around the house eg pick up things
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Subject-matter experts identified 38 items that were thought to be cross-culturally incompatible. Table <a href="section-other-modeling-actions.html#tab:crosscultural">5.1</a> provides an overview. Many of such milestones involve a specific language concept (such as a pronoun), refer to stairs (less common in rural settings), help in house or clothing behavior. These items have different meanings in different context, so they were not used to bridge instruments.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-eqdef.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-sec-equaterules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-milestone-selection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-item-information.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

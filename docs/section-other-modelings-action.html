@@ -113,7 +113,7 @@
 <li class="chapter" data-level="5.6" data-path="section-milestone-selection.html"><a href="section-milestone-selection.html"><i class="fa fa-check"></i><b>5.6</b> Milestone selection</a></li>
 <li class="chapter" data-level="5.7" data-path="section-other-modelings-action.html"><a href="section-other-modelings-action.html"><i class="fa fa-check"></i><b>5.7</b> Other modelings action</a><ul>
 <li class="chapter" data-level="5.7.1" data-path="section-other-modelings-action.html"><a href="section-other-modelings-action.html#section-instrument-fit"><i class="fa fa-check"></i><b>5.7.1</b> Instrument fit</a></li>
-<li class="chapter" data-level="5.7.2" data-path="section-other-modelings-action.html"><a href="section-other-modelings-action.html#section-splitting-and-combining-equate-groups"><i class="fa fa-check"></i><b>5.7.2</b> Splitting and combining equate groups</a></li>
+<li class="chapter" data-level="5.7.2" data-path="section-other-modelings-action.html"><a href="section-other-modelings-action.html#section-splitting-combining-and-selecting-equate-groups"><i class="fa fa-check"></i><b>5.7.2</b> Splitting, combining and selecting equate groups</a></li>
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="section-item-information.html"><a href="section-item-information.html"><i class="fa fa-check"></i><b>5.8</b> Item information</a></li>
 </ul></li>
@@ -174,11 +174,336 @@ Figure 5.5: Box plot of the distribution of item outfit per instrument in model 
 </p>
 </div>
 
-<p>Some instruments fit better than others. <a href="section-other-modelings-action.html#fig:itembox">5.5</a> shows the box plots of outfit per instrument. Instruments <code>bar</code>, <code>by1</code>, <code>ddi</code> and <code>vin</code> generally fit well, whereas discrepancies between model and data are larger for <code>bat</code>, <code>by2</code> and <code>sbi</code>. After systematic exploration, we found that models without <code>bat</code> (Battelle Development Inventory) were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove <code>bat</code> from the model, even though this meant that one cohort (<code>GCDG-BRA-2</code>) had to be dropped from the analysis.</p>
-<p>It is not clear why <code>bat</code> does not fit. Some additional modelling experiments showed that is was extremely difficult to get enough high-quality equate groups that link <code>bat</code> to other instruments. Perhaps the scoring system of the Battelle in three categories invokes scoring behavior that is different from PASS/FAIL scoring used by most other instruments.</p>
+<p>Some instruments fit better than others. <a href="section-other-modelings-action.html#fig:itembox">5.5</a> shows the box plots of outfit per instrument. Instruments <code>bar</code>, <code>by1</code>, <code>ddi</code> and <code>vin</code> generally fit well, whereas discrepancies between model and data are larger for <code>bat</code>, <code>by2</code> and <code>sbi</code>. Through additional modelling we found that it was extremely difficult to get enough high-quality bridge items that could link <code>bat</code> (Battelle Development Inventory) to the instruments. We also found that models without the Battelle were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove <code>bat</code> from the model, even though this meant that one cohort (<code>GCDG-BRA-2</code>) had to be dropped from the analysis.</p>
+<p>It is not clear why <code>bat</code> does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behavior that is different from PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in ASQ-3, which also uses three response categories.</p>
 </div>
-<div id="section-splitting-and-combining-equate-groups" class="section level3">
-<h3><span class="header-section-number">5.7.2</span> Splitting and combining equate groups</h3>
+<div id="section-splitting-combining-and-selecting-equate-groups" class="section level3">
+<h3><span class="header-section-number">5.7.2</span> Splitting, combining and selecting equate groups</h3>
+<p>Most of the modelling effort went into finding a set of high-quality equate groups that bind the instruments. For example, we tried to bridge the South-African study placing <code>vinxxc016</code> (uses a short sentence) into <code>EXP26</code> (two-word sentences) and <code>EXP36</code> (sentences of 3 or more words), but neither option led to a reasonable model. On the surface, milestone <code>by3gmd060</code> (balances on right foot, 2 seconds) appears to fit within <code>GM60</code> (balances on foot), but the analysis showed large discrepancies with the other items in the groups, so it had to be taken out.</p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table>
+<caption>
+<span id="tab:crosscultural">Table 5.1: </span>Milestones not used for equating because of limited cross-cultural validity
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Item
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Label
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+aqislc023
+</td>
+<td style="text-align:left;">
+When you dress your baby does she lift her foot for her shoe, sock, or pant leg?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+aqislc041
+</td>
+<td style="text-align:left;">
+Using these exact words, ask your child, “Are you a girl or a boy?” Does your child answer correctly?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by1mdd050
+</td>
+<td style="text-align:left;">
+Washes and dries hands
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by1pdd053
+</td>
+<td style="text-align:left;">
+Bowel and bladder control
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by1pdd054
+</td>
+<td style="text-align:left;">
+manipulates table edge actively
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by2pdd069
+</td>
+<td style="text-align:left;">
+Walsk up stairs with help
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3cgd043
+</td>
+<td style="text-align:left;">
+Walks down stairs with help
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3cgd052
+</td>
+<td style="text-align:left;">
+Walks down stairs with help
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd047
+</td>
+<td style="text-align:left;">
+Clear Box: Front
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd049
+</td>
+<td style="text-align:left;">
+Clear Box: Sides
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd057
+</td>
+<td style="text-align:left;">
+Uses pronouns
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3gmd058
+</td>
+<td style="text-align:left;">
+Walks Up Stairs Series: Both feet on each step, with support.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3red030
+</td>
+<td style="text-align:left;">
+Walks Down Stairs Series: Both feet on each step, with support
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+by3exd030
+</td>
+<td style="text-align:left;">
+Walks Up Stairs Series: Both feet on each step, alone.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+barxxx016
+</td>
+<td style="text-align:left;">
+Walks Down Stairs Series: Both feet on each step, alone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+barxxx020
+</td>
+<td style="text-align:left;">
+Understands pronouns (him, me, my, you, your)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+dengmd020
+</td>
+<td style="text-align:left;">
+Eats with spoon without help (M; can ask parents)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+densld012
+</td>
+<td style="text-align:left;">
+Takes off shoes and socks (M; can ask parents)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+densld013
+</td>
+<td style="text-align:left;">
+Can dress (one piece) (M; can ask parents)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+grigmd219
+</td>
+<td style="text-align:left;">
+Walk Up Stairs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+grigmd222
+</td>
+<td style="text-align:left;">
+Drink from a cup
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd002
+</td>
+<td style="text-align:left;">
+help in house
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd003
+</td>
+<td style="text-align:left;">
+(Locomotor) Walks up and down stairs.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd004
+</td>
+<td style="text-align:left;">
+(Locomotor) Goes alone on the stairs (any method)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd005
+</td>
+<td style="text-align:left;">
+Hands-and-knees crawling
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+mdsgmd006
+</td>
+<td style="text-align:left;">
+Standing with assistance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+ddifmm019
+</td>
+<td style="text-align:left;">
+Walking with assistance
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+ddifmd154
+</td>
+<td style="text-align:left;">
+Standing alone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc002
+</td>
+<td style="text-align:left;">
+Walking alone
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc003
+</td>
+<td style="text-align:left;">
+chew solid foods
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc009
+</td>
+<td style="text-align:left;">
+take off socks / shoes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc012
+</td>
+<td style="text-align:left;">
+get on with other children
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc014
+</td>
+<td style="text-align:left;">
+know what’s edible
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc022
+</td>
+<td style="text-align:left;">
+walk upstairs
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc028
+</td>
+<td style="text-align:left;">
+avoid simple danger - knife / hot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc031
+</td>
+<td style="text-align:left;">
+help around the house / clear table
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+vinxxc040
+</td>
+<td style="text-align:left;">
+Play or do things with other children of same age eg sing song
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-family: monospace;">
+ddifmm025
+</td>
+<td style="text-align:left;">
+Help with little things around the house eg pick up things
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Subject-matter experts identified 38 items that were thought to be cross-culturally incompatible. Table <a href="section-other-modelings-action.html#tab:crosscultural">5.1</a> provides an overview. Many of such milestones involve a specific language concept (such as a pronoun), refer to stairs (less common in rural settings), help in house or clothing behavior. These items have different meanings in different context, so they were not used to bridge instruments.</p>
 
 <p>There is no single index of model-data fit that will detect all of the possible disturbances.</p>
 </div>
