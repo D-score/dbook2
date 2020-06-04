@@ -87,9 +87,9 @@ knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/
 
 Figure \@ref(fig:p-a-equate-1339) displays the percentage of children that pass milestones at various ages. Subject matter experts clustered similar items stemming from different instruments into equate groups. There are 184 equate groups that contain two or more milestones.
 
-Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or ). Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://stefvanbuuren.name/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`jabber expressively`) shows more heterogeneity across cohorts, and is therefore less likely to be useful for equating. Equate group is `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profiles across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
+Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or ). Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://stefvanbuuren.name/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore less likely to be useful for equating. Equate group is `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profiles across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
 
-We could follow different strategies in selecting which eqeate group to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as pososble between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
+We could follow different strategies in selecting which equate group to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as pososble between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
 
 
 ## Quality of equate groups
@@ -165,7 +165,7 @@ knitr::kable(df,
 
 <!-- The next step is to select those items that best fit the Rasch model. -->
 
-## Other modelings action
+## Other modeling actions
 
 ### Instrument fit
 
@@ -182,13 +182,39 @@ ggplot(data = ib, aes(x = instrument, y = outfit)) +
 ```
 (ref:itembox) Box plot of the distribution of item outfit per instrument in model `1339_11`.
 
-Some instruments fit better than others. \@ref(fig:itembox) shows the box plots of outfit per instrument. Instruments `bar`, `by1`, `ddi` and `vin` generally fit well, whereas discrepancies between model and data are larger for `bat`, `by2` and `sbi`. After systematic exploration, we found that models without `bat` (Battelle Development Inventory) were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove `bat` from the model, even though this meant that one cohort (`GCDG-BRA-2`) had to be dropped from the analysis.
+Some instruments fit better than others. \@ref(fig:itembox) shows the box plots of outfit per instrument. Instruments `bar`, `by1`, `ddi` and `vin` generally fit well, whereas discrepancies between model and data are larger for `bat`, `by2` and `sbi`. Through additional modelling we found that it was extremely difficult to get enough high-quality bridge items that could link `bat` (Battelle Development Inventory) to the instruments. We also found that models without the Battelle were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove `bat` from the model, even though this meant that one cohort (`GCDG-BRA-2`) had to be dropped from the analysis.
 
-It is not clear why `bat` does not fit. Some additional modelling experiments showed that is was extremely difficult to get enough high-quality equate groups that link `bat` to other instruments. Perhaps the scoring system of the Battelle in three categories invokes scoring behavior that is different from PASS/FAIL scoring used by most other instruments. 
+It is not clear why `bat` does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behavior that is different from PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in ASQ-3, which also uses three response categories.
 
-### Splitting and combining equate groups
+### Splitting, combining and selecting equate groups
 
+Most of the modelling effort went into finding a set of high-quality equate groups that bind the instruments. For example, we tried to bridge the South-African study placing `vinxxc016` (uses a short sentence) into `EXP26` (two-word sentences) and `EXP36` (sentences of 3 or more words), but neither option led to a reasonable model. On the surface, milestone `by3gmd060` (balances on right foot, 2 seconds) appears to fit within `GM60` (balances on foot), but the analysis showed large discrepancies with the other items in the groups, so it had to be taken out. 
 
+```{r crosscultural, echo=FALSE}
+# taken from 571_17.R
+out <- c("aps23", "aps41", "b1m50", "b1p53", "b1p54",
+          "b2p69",
+          "b3c43", "b3c52", "b3g47", "b3g49", "b3g57",
+          "b3g58", "b3r30", "b3e30",
+          "bm16", "bm20",
+          "dg20", "dp12", "dp13",
+          "gg2_19", "gg2_22",
+          "mil2", "mil3", "mil4", "mil5", "mil6",
+          "n53", "n54",
+          "sa2v2", "sa2v3", "sa2v9", "sa2v12", "sa2v14",
+          "sa2v22", "sa2v28",
+          "savibe4playswith", "savine4helpshouse",
+          "v25")
+items <- rename_gcdg_gsed(out)
+tab <- data.frame(Item = items, Label = get_labels(items), row.names = NULL)
+knitr::kable(tab, 
+  caption = "Milestones not used for equating because of limited cross-cultural validity",
+  booktabs = TRUE) %>%
+  kableExtra::column_spec(1, monospace = TRUE) %>% 
+  kableExtra::scroll_box(height = "400px", width = "100%")
+```
+
+Subject-matter experts identified 38 items that were thought to be cross-culturally incompatible. Table \@ref(tab:crosscultural) provides an overview. Many of such milestones involve a specific language concept (such as a pronoun), refer to stairs (less common in rural settings), help in house or clothing behavior. These items have different meanings in different context, so they were not used to bridge instruments.
 
 
 ```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
@@ -197,10 +223,6 @@ pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::mo
 
 ```
 (ref:plotequates) Active and non-active equate groups.
-
-
-
-There is no single index of model-data fit that will detect all of the possible disturbances. 
 
 
 ## Item information
@@ -263,3 +285,8 @@ knitr::kable(gcdg_equateinfo,
   kableExtra::scroll_box(width = "100%", height = "500px")
 
 ```
+
+
+## Final model
+
+There is no single index of model fit that will detect all possible disturbances. The quantitive analyses involved trial and error, saving the parts that worked and . We fitted a total number of 140 models on the data, carefully additio
