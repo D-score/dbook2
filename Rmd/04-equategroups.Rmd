@@ -212,7 +212,7 @@ In Figure \@ref(fig:plotnoeqdif), two active equate groups are displayed with em
 ```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:plotnoeqdif)'}
 equatenames <- c("FM31", "EXP26", "GM44", "EXP23")
 equatelist <- dmetric::get_equates(model = dmetric::model_lean, 
-                            passive = TRUE)[equatenames]
+                            background_equate = TRUE)[equatenames]
 pdif <- dmetric::plot_p_d_equate(data =  dmetric::gcdg_lean, 
                                  model = dmetric::model_lean, 
                                  equates = equatelist,
