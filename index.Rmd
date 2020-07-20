@@ -22,6 +22,13 @@ opts_chunk$set(comment = NA, background = "#FBFBFB",
                message = FALSE, warning = FALSE,
                echo = FALSE)
 options(knitr.kable.NA = '')
+
+# see https://stackoverflow.com/questions/62578811/error-input-files-not-all-in-same-directory-please-supply-explicit-wd
+options(bookdown.render.file_scope = FALSE)
+# unfortunate, in my system (MacOS) this fix doesn't work
+# as a solution, I installed an older version of bookdown: install_github("rstudio/bookdown@v0.19")
+
+# ggplot2 theme
 theme_set(theme_light())
 ```
 
