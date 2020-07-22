@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 Domain coverage and scores | D-score booklet II</title>
+  <title>Preface | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 Domain coverage and scores | D-score booklet II" />
+  <meta property="og:title" content="Preface | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 Domain coverage and scores | D-score booklet II" />
+  <meta name="twitter:title" content="Preface | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-sem.html"/>
-<link rel="next" href="section-ch-SDGindicator.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="section-ch-introduction2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -166,76 +166,38 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:domains" class="section level2">
-<h2><span class="header-section-number">6.3</span> Domain coverage and scores</h2>
-<p>The <span class="math inline">\(D\)</span>-score is a one number score that measures early child development. To
-evaluate the content validity of the <span class="math inline">\(D\)</span>-score we can make sure that all
-developmental domains are fairly represented. We distinguish five domains for
-child development: Fine Motor, Gross Motor, Expressive, Receptive, Cognitive.</p>
-<div id="section-domain-coverage-of-the-scale" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> Domain coverage of the scale</h3>
-<p>The items in the <span class="math inline">\(D\)</span>-score model can be linked to one or more domains and the
-cumulative item information to the <span class="math inline">\(D\)</span>-score for each domain can be evaluated.
-In Figure <a href="section-sec-domains.html#fig:domaincov">6.6</a>, the coverage of the domains for the <span class="math inline">\(D\)</span>-score is
-displayed. This shows that at lower levels of the <span class="math inline">\(D\)</span>-score, gross motor development
-is more dominant and that at higher levels of the <span class="math inline">\(D\)</span>-score the cognitive and
-language domains increase in importance.</p>
-<pre><code>Joining, by = &quot;item&quot;</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:domaincov"></span>
-<img src="dbook2_files/figure-html/domaincov-1.png" alt="Domain coverage of the \(D\)-score scale." width="1056" />
-<p class="caption">
-Figure 6.6: Domain coverage of the <span class="math inline">\(D\)</span>-score scale.
-</p>
-</div>
-
-<p>Note that for some items the domain allocation is missing.</p>
-</div>
-<div id="section-domain-d-scores" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Domain <span class="math inline">\(D\)</span>-scores</h3>
-<p>It is possible to calculate a <span class="math inline">\(D\)</span>-score that is more representative for a
-specific domain using the current <span class="math inline">\(D\)</span>-score model. We can use only the items
-that load to the domain in question to calculate the <span class="math inline">\(D\)</span>-score for that specific
-domain. Since items may relate to multiple domain, an item can contribute to
-multiple domain specific <span class="math inline">\(D\)</span>-scores. As the <span class="math inline">\(D\)</span>-score methodology is developed
-to measure a single construct for development, the domain <span class="math inline">\(D\)</span>-scores correlate
-highly (<span class="math inline">\(r &gt; 0.95\)</span>). However, these scores can potentially inform on the cohort
-level (Figure <a href="section-sec-domains.html#fig:domaind">6.7</a>) or the individual level (see Figure
-<a href="section-sec-domains.html#fig:domaindex">6.8</a>).</p>
-<p>In Figure <a href="section-sec-domains.html#fig:domaind">6.7</a>, the standardized domain <span class="math inline">\(D\)</span>-score (i.e. DAZ) are displayed for each cohort. The DAZ unit was used to enable comparibility. The error bars around the scores depict the <span class="math inline">\(sem\)</span> interval. The mean domain specific DAZ scores differ within cohorts, however the <span class="math inline">\(sem\)</span> intervals always overlap.</p>
-<!--- the correlations between the daz scores are much lower. How should we interpet that? I think it may also be due to differences in precision of the maesurement. The correlations to the daz based on all items may also be informative on that. Gross motor has low correlations to all scales, but that may also be due to nr of items. --->
-<pre><code>Joining, by = c(&quot;subjid&quot;, &quot;agedays&quot;)</code></pre>
-<pre><code>Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:domaind"></span>
-<img src="dbook2_files/figure-html/domaind-1.png" alt="Domain DAZ per cohort." width="1056" />
-<p class="caption">
-Figure 6.7: Domain DAZ per cohort.
-</p>
-</div>
-
-<p>In Figure <a href="section-sec-domains.html#fig:domaindex">6.8</a> example scores are displayed for a 3 year old boy
-from the Chili 2 (<code>GCDG-CHL-2</code>) cohort. The filled bars display the available items per domain. Note
-that the number of items for Gross Motor is very low (only 3 items). The white
-overlayed line at 5 items, indicates the bare minimum for a <span class="math inline">\(D\)</span>-score. The grey vertical line displays the overall
-<span class="math inline">\(D\)</span>-score (38.55<span class="math inline">\(D\)</span>) with the <span class="math inline">\(sem\)</span> (0.53) around as the dashed lines. The colored points are the domain <span class="math inline">\(D\)</span>-scores with the <span class="math inline">\(sem\)</span> around in error bars. This plot shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively low as compared to the motor and cognitive domains.</p>
-<pre><code>Joining, by = c(&quot;subjid&quot;, &quot;agedays&quot;)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:domaindex"></span>
-<img src="dbook2_files/figure-html/domaindex-1.png" alt="Domain \(D\)-scores for a 3 year old boy from the Chile 2 cohort." width="1056" />
-<p class="caption">
-Figure 6.8: Domain <span class="math inline">\(D\)</span>-scores for a 3 year old boy from the Chile 2 cohort.
-</p>
-</div>
-
+<div id="section-preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<!-- NOTE: We need to include a clear statement of the scope of this
+booklet. What is the major problem? What would be progress? What data
+would help us to advance? -->
+<p>D-score booklet I <a href="https://stefvanbuuren.name/dbook1">Turning milestones into measurement</a> highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones. Booklet II <a href="https://stefvanbuuren.name/dbook2">Tuning instruments to unity</a> (this volume) studies the problem how to aplpy the technology to multiple, overlapping, measurement instruments.</p>
+<p>In booklet I we learned that, once we have a D-score, we may</p>
+<ul>
+<li>Compare development within the same child over time;</li>
+<li>Compare development of two children of the same age;</li>
+<li>Compare development of two children at different ages;</li>
+<li>Compare development of groups of children at different ages;</li>
+<li>And so on…</li>
+</ul>
+<p>In practice, there is an extra complication. There are about 150 different instruments to measure child development <span class="citation">(Fernald et al. <a href="section-references.html#section-ref-fernald2017toolkit" role="doc-biblioref">2017</a>)</span>, and it is not be obvious to obtain comparable scores from these.</p>
+<p>One approach would be to simply apply the methodology of booklet I to each instrument separately. Every instrument would thus define its own quantitative scale. While practical and feasible, the problem is that we cannot compare the scores obtained on distinct scales. Such scores would be specific to the milestones administered, to the study samples, and to the domain representation of the instrument. In sum, we wouldn’t be able to compare development across instruments, a major impediment.</p>
+<p>Now consider two solutions:</p>
+<ol style="list-style-type: decimal">
+<li>Everybody uses the same instrument;</li>
+<li>We extract comparable scores from different instruments.</li>
+</ol>
+<p>The first option seems easy and attractive, but most likely we will never see the day where everybody elects the same, presumably perfect instrument. Chances are much larger that future scientific advances will foster new instruments, thus exacerbating incomparability. In practice, option 2 is the more viable and realistic approach.</p>
+<p>In this booklet we explain techniques that systematically exploit the overlap between instruments to create comparable scores. For example, many instruments have a variation on milestones like <em>Can stack two blocks</em>, <em>Is able to stand</em> or <em>Says baba</em>. By carefully mapping out the similarities between instruments we are able constrain the measurement model in a sensible way. As a result, we can map different instruments onto the same scale.</p>
 
 </div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-sem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-SDGindicator.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-ch-introduction2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
