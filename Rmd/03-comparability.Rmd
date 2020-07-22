@@ -8,11 +8,9 @@ library(knitr)
 ```
 
 
-
-<!-- NOTE: We may need to reorganise a little. Move "Challenge of comparability" and "Bridging instruments" to before chapter 2. Then this chapter can concentrate on the identification and assessment of similar items 
-Jan2SvB: Now rewritten 3.1 to connectedness -->
-
 # Comparability {#ch:comparability}
+
+> Author: Iris Eekhout, Stef van Buuren
 
 This chapter describes challenges and methodologies to harmonize child development measurements obtained by different instruments:
 
@@ -82,7 +80,7 @@ knitr::kable(df,
 
 An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3` and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
-Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The linked [instrument linkage table](https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/) shows the counts of the number of registered scores per age group. What appears in Table \@ref(tab:linkage) as one test may actually comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
+Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The linked [instrument linkage table](https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/) shows the counts of the number of registered scores per age group. What appears in Table \@ref(tab:linkage) as one test may comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
 
 Connectedness is a necessary - though not sufficient - requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:
 
@@ -96,8 +94,7 @@ The next section suggests a way out of the dilemma.
 ## Bridging instruments by mapping items {#sec:mapping}
 
 Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak and think. 
-
-We will exploit the overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
+We will exploit this overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
 ```{r example2words, echo = FALSE}
 items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
@@ -110,18 +107,9 @@ kableExtra::column_spec(t, 1, monospace = TRUE)
 ```
 &nbsp;
 
-
-The idea is to check whether these milestones measure development in the same way. If this is found to be accurate, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
+The idea is to check whether these milestones measure development in the same way. If this is found to be true, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
 
 A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items.
-
-We order item mappings into five domains: fine motor (FM), gross motor (GM),
-cognitive (COG), receptive (REC) and expressive (EXP). Figure
-\@ref(fig:mappingshiny) displays the connections between the instruments via the
-item groups in each domain. With the `Prev` and `Next` buttons you can click
-through the five domains. The items are displayed as the leafs and are colored
-by instrument. The lines display the links between the items (and
-instruments). Hovering over the items highlights the item and its connections to others.
 
 ```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=10}
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
@@ -129,6 +117,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/"
 ```
 (ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
+Figure \@ref(fig:mappingshiny) connects similar items and hence visualises connections between instruments. Items are displayed in the wheel, colored by instrument. Hovering over the items highlights the item description and its connections to similar items. We organised item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). The `Prev` and `Next` buttons allow us to visit other domains.
 
 ## Age profile of item mappings {#sec:viewmapping}
 
@@ -139,9 +128,7 @@ lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE, show_fit = FALSE)
 ```
 
-
-
-One way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items that assess the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. These milestones have similar age patterns as well.
+Another way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items for assessing the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. These milestones have similar age patterns as well.
 
 ```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 ##promising equates
