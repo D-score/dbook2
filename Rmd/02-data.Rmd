@@ -10,7 +10,7 @@ library(gseddata)
 
 # Data {#ch:data}
 
-In this booklet we explain the methodology that we used to obtain one score for Development ($D$-score) that is globally interprettable. This chapter introduces the data that we use to illustrate our methodology. The data originates from a study by the Global Child Development Group (GCDG) gathering child development data from 16 cohorts.
+In this booklet we explain the methodology that we used to obtain one score for Development (D-score) that is globally interprettable. This chapter introduces the data that we use to illustrate our methodology. The data originates from a study by the Global Child Development Group (GCDG) gathering child development data from 16 cohorts.
 
 * Overview of cohorts and instrument (\@ref(sec:gcdgoverview))
 * Cohort descriptions (\@ref(sec:cohorts))

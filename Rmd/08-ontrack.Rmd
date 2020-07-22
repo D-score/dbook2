@@ -31,7 +31,7 @@ There are several methodologies available to define on-track development. It is 
 
 Another option is to define on-track development based on (representative) population data. The methodological process to develop such a reference is visualized in Figure \@ref(fig:dscorerefs) in section \@ref(sec:references). Ideally, the data used to define a reference is representative for the norm population. 
 
-In this study we do define on-track development as having $D$-scores within 2 standard deviations from the median, more specifically, $D$-scores not more than two standard deviation *below* the median. The $D$-scores in the green-shaded area in Figure \@ref(fig:ontrackref) are considered as on-track. However, the references used are based on the data from the included cohorts in this study and may not be representative for the global population. 
+In this study we do define on-track development as having D-scores within 2 standard deviations from the median, more specifically, D-scores not more than two standard deviation *below* the median. The D-scores in the green-shaded area in Figure \@ref(fig:ontrackref) are considered as on-track. However, the references used are based on the data from the included cohorts in this study and may not be representative for the global population. 
 
 ````{r ontrackref, echo=FALSE, message = FALSE, warning = FALSE, fig.width = 10, fig.cap = '(ref:ontrackref)'}
 references <- dscore::get_reference("gcdg") %>%
@@ -54,7 +54,7 @@ ggplot()+
 
 
 ```
-(ref:ontrackref) $D$-score observatations that are on-track according the current references. 
+(ref:ontrackref) D-score observatations that are on-track according the current references. 
 
 ## Types of explanatory factors {#sec:factors}
 
@@ -237,7 +237,7 @@ desc_plot <- desc_table  %>%
 <!---- 
 relative importance for daz?
 --->
-The explanatory variables described in the previous section \@ref(sec:factors) differ in their importance to explain early child development. The explanatory factors that were measured in this study (i.e. country, sex, birth weight, maternal education, height for age and residential area) combined, explain about 6.5% of the variance in the standardized $D$-score for age. In Figure \@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the $D$-score. Birth weight is the second important factor.
+The explanatory variables described in the previous section \@ref(sec:factors) differ in their importance to explain early child development. The explanatory factors that were measured in this study (i.e. country, sex, birth weight, maternal education, height for age and residential area) combined, explain about 6.5% of the variance in the standardized D-score for age. In Figure \@ref(fig:imppie) is shown that country differences explain about half of these 6.5% in the D-score. Birth weight is the second important factor.
 
 ```{r imppie, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
 

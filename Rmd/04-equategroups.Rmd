@@ -76,7 +76,7 @@ If the cohort abilities are relatively uniform (for example as a result of exper
 
 ## Parameter estimation with equate groups {#sec:statisticalframe}
 
-The Rasch model is the preferred measurement model for child development data. [Booklet I: Chapter 4](https://stefvanbuuren.name/dbook1/ch-newmodel.html) provides an introduction of the Rasch model geared towards the $D$-score. 
+The Rasch model is the preferred measurement model for child development data. [Booklet I: Chapter 4](https://stefvanbuuren.name/dbook1/ch-newmodel.html) provides an introduction of the Rasch model geared towards the D-score. 
 
 The Rasch model expresses the probability of passing an item as a logistic function of the difference between the person ability $\beta_n$ and the item difficulty $\delta_i$. Table \@ref(tab:symbols) explains the symbols used in equation \@ref(eq:rasch). Formula \@ref(eq:rasch) defines the model as
 
@@ -114,9 +114,9 @@ $w_i$         |               | The number of respondents with an observed score
 
 ## Common latent scale {#sec:commonscale}
 
-The end goal for using the equate group method to model development items is to measure development on one common latent scale, the $D$-score. That way, the measure (i.e. $D$-score) can be obtained, irrespective of which instrument is used in which population.
+The end goal for using the equate group method to model development items is to measure development on one common latent scale, the D-score. That way, the measure (i.e. D-score) can be obtained, irrespective of which instrument is used in which population.
 
-In Figure \@ref(fig:commonscale) the $D$-scores are displayed for three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M). As described in section \@ref(sec:cohorts), the Netherlands 1 study contains the ddi; Ethiopia the by3; and Colombia the by3, den, asq and bdi. Accordingly there is some natural overlap in items between Ethiopia and Colombia via the by3 items. However, the Netherlands 1 cohorts is not linked via the items. In the upper plot, no equate groups were used and in the lower plot, equate groups link the cohorts.
+In Figure \@ref(fig:commonscale) the D-scores are displayed for three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M). As described in section \@ref(sec:cohorts), the Netherlands 1 study contains the ddi; Ethiopia the by3; and Colombia the by3, den, asq and bdi. Accordingly there is some natural overlap in items between Ethiopia and Colombia via the by3 items. However, the Netherlands 1 cohorts is not linked via the items. In the upper plot, no equate groups were used and in the lower plot, equate groups link the cohorts.
 
 ```{r commonscale, echo=FALSE, fig.width = 8, fig.height = 4, fig.cap='(ref:commonscale)', cache = TRUE}
 
@@ -224,7 +224,7 @@ gridExtra::grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
 
 ### Poor equate groups with DIF for study
 
-In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that show differential item functioning between cohorts. The empirical curves are displayed for each cohort separately in different colors. The difference between these curves shows the differential item functioning. For example, the item *Throws ball*, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the $D$-score (i.e. item difficulty) differs between the cohorts. The same goes for the item *Says more than 5 words*, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).
+In Figure \@ref(fig:ploteqdif), two passive equate groups are displayed, that show differential item functioning between cohorts. The empirical curves are displayed for each cohort separately in different colors. The difference between these curves shows the differential item functioning. For example, the item *Throws ball*, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item *Says more than 5 words*, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).
 
 ```{r ploteqdif, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqdif)'}
 

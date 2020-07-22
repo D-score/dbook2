@@ -1,16 +1,16 @@
 
 <!--
-  ### Domain coverage of a single $D$-score
+  ### Domain coverage of a single D-score
 
-  The domain information for an individual $D$-score can also be calculated. To do
+  The domain information for an individual D-score can also be calculated. To do
 that we need the following information:
 
-  * what items were administered to measure the $D$-score
+  * what items were administered to measure the D-score
 * to which domains are the items linked
-* what part of the information provides each item to the calculated $D$-score.
+* what part of the information provides each item to the calculated D-score.
 
 
-In Table \@ref(tab:example_part1) the item scores for a 1,5 year old child from the China cohort is displayed. This child has a $D$-score of 57.12. For each item, experts have indicated to what domain(s) the item is linked. Items can link to multiple domains and based on expert voting, we have a proportional loading for each item to a domain.
+In Table \@ref(tab:example_part1) the item scores for a 1,5 year old child from the China cohort is displayed. This child has a D-score of 57.12. For each item, experts have indicated to what domain(s) the item is linked. Items can link to multiple domains and based on expert voting, we have a proportional loading for each item to a domain.
 
 
 ```{r example_part1, echo = FALSE}
@@ -40,12 +40,12 @@ kable(ex1_resp,
 ```
 &nbsp;
 
-For each item we can calculate the relative information that it contributes to the $D$-score of 57.12. In the paragraph [Item information in dbook I](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
-how to calculate the item information for a $D$-score We can combine the
+For each item we can calculate the relative information that it contributes to the D-score of 57.12. In the paragraph [Item information in dbook I](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
+how to calculate the item information for a D-score We can combine the
 proportional domain loading to the relative information that the item provides
-to the $D$-score of the child. In Figure \@ref(fig:example_part2) this is
+to the D-score of the child. In Figure \@ref(fig:example_part2) this is
 displayed. For example the item *Attends to story* contributes to 13% of the
-$D$-score and the item is rates as partly Receptive, partly Cognitive and partly
+D-score and the item is rates as partly Receptive, partly Cognitive and partly
 Adaptive.
 
 
@@ -107,12 +107,12 @@ ggplot(data = plot_data, aes(x = label, y = contribution, color = domain, fill =
   coord_flip()
 
 ```
-(ref:example_part2) Relative domain contribution per item for a $D$-score.
+(ref:example_part2) Relative domain contribution per item for a D-score.
 
 
 The relative information that each item holds per domain can be summed. That way
-we get what domain information is composed in the $D$-score for this child.
-Figure \@ref(fig:example_part3) displays the domain information for the $D$-score
+we get what domain information is composed in the D-score for this child.
+Figure \@ref(fig:example_part3) displays the domain information for the D-score
 of the example. About 50% of the information was Cognitive, about 40% was Fine
 motor and additionally partly adaptive and partly receptive information was
 used.
@@ -140,7 +140,7 @@ ggplot(d_domain_contribution, aes(fill=domain, ymin = ymin, ymax = ymax, xmin = 
 
 
 ```
-(ref:example_part3) Relative domain contribution for a $D$-score.
+(ref:example_part3) Relative domain contribution for a D-score.
 
 
 

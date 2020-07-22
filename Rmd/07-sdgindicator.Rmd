@@ -9,7 +9,7 @@ library(ggplot2)
 
 # SDG 4.2.1 Indicator {#ch:SDGindicator}
 
-This chapter explains how the $D$-score can be used to indicate on-track
+This chapter explains how the D-score can be used to indicate on-track
 development. The methodology to define on-track development is described and
 country-level estimates are displayed. Additionally, the indicator is compared
 to other estimates.
@@ -36,15 +36,15 @@ knitr::include_url("https://sustainabledevelopment.un.org/sdg4")
 ```
 (ref:sdg4) Sustainable Development Goal 4.
 
-The $D$-score can be obtained from any instrument that is included in the
-calibrations for the score. This makes the $D$-score suited as a global score
-for development. Accordingly, the $D$-score can be used for the SDG 4.2.1
+The D-score can be obtained from any instrument that is included in the
+calibrations for the score. This makes the D-score suited as a global score
+for development. Accordingly, the D-score can be used for the SDG 4.2.1
 indicator and interpreted as the global measure for development.
 
 In the cohorts that are currently included in the GCDG study, a wide range of
 countries are represented (see Section \@ref(sec:gcdgoverview)). Combining existing data from
-such a wide range of countries to create the $D$-score, broadens the
-interpretation of the $D$-score. Nevertheless, for obtaining accurate references
+such a wide range of countries to create the D-score, broadens the
+interpretation of the D-score. Nevertheless, for obtaining accurate references
 that represent world-wide population, more representative (existing) data needs
 to be added.
 
@@ -74,15 +74,15 @@ knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
 (ref:dscorerefs) Illustration of the method to define on-track development
 
 
-1. In the first step the $D$-score is plotted by age. 
+1. In the first step the D-score is plotted by age. 
 2. In the second step, this relation is modeled in an LMS model. The goal of an LMS model is to describe the
-relation of the $D$-score by age with age-conditional z-scores. This is done by
+relation of the D-score by age with age-conditional z-scores. This is done by
 three smoothed curves representing the median, coefficient of variation
 and the skewness. 
 3. In step 3 the centile lines for this model are presented. 
 4. The resulting age-standardized scores for development (DAZ), are plotted in step 4.
 5. In step 5 the standar deviation lines are drawn to indicate an 1 and 2 standard deviation from the mean.
-6. The DAZ is used to define on-track development. So $D$-scores within 2
+6. The DAZ is used to define on-track development. So D-scores within 2
 standard deviations from the median can be defined as on-track. Scores that are
 more than two standard deviation *below* the median, can be defined as off-track
 (red dots).
@@ -95,7 +95,7 @@ therefore temporary and should be improved when more data are available.*
 
 ## Country-level estimates {#sec:countrytrack}
 
-For each age-$D$-score combination, a standardized score (DAZ) can be calculated. That way we can
+For each age-D-score combination, a standardized score (DAZ) can be calculated. That way we can
 calculate the DAZ in each country that is included in the current GCDG study. By
 using the -2SD rule, we can obtain the percentage on-track development for each
 country.
@@ -116,7 +116,7 @@ kable(tabtrack,
 
 ## Relation to other estimates {#sec:otherestimates}
 
-In the publication on the global $D$-score from the GCDG project [@Weber2019], the concurrent, discriminant and predictive validity of the $D$-score is thoroughly presented and discussed. In this paragraph we mainly focus on stunting, which is commonly used to express impaired growth in children due to nutrition problems. 
+In the publication on the global D-score from the GCDG project [@Weber2019], the concurrent, discriminant and predictive validity of the D-score is thoroughly presented and discussed. In this paragraph we mainly focus on stunting, which is commonly used to express impaired growth in children due to nutrition problems. 
 
 ### Stunting
 
@@ -170,7 +170,7 @@ ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
 (ref:stunt) Percentage off-track development and stunted per country
 
 
-However, we can see a relation between stunting and development ($D$-score). When we compare the Standardized $D$-score (DAZ) in each country for the stunted versus not-stunted children (Figure \@ref(fig:stuntdaz)). The DAZ for the stunted children is always lower in comparison with the not-stunted children.
+However, we can see a relation between stunting and development (D-score). When we compare the Standardized D-score (DAZ) in each country for the stunted versus not-stunted children (Figure \@ref(fig:stuntdaz)). The DAZ for the stunted children is always lower in comparison with the not-stunted children.
 
 ```{r stuntdaz, echo=FALSE, fig.width=11, fig.cap= '(ref:stuntdaz)'}
 ##DAZ in stunted vs non-stunted (as done in Weber paper)
@@ -188,7 +188,7 @@ ggplot(sdg_stuntdaz, aes(x = ctrycd, y = DAZ, fill = stunting))+
 (ref:stuntdaz) DAZ for stunted versus not-stunted per country
 
 
-<!--# To validate the off-track development measured by the $D$-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
+<!--# To validate the off-track development measured by the D-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
 -->
 
 
