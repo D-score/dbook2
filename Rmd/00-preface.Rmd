@@ -1,0 +1,28 @@
+# Preface {-}
+
+<!-- NOTE: We need to include a clear statement of the scope of this
+booklet. What is the major problem? What would be progress? What data
+would help us to advance? -->
+
+D-score booklet I [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones. Booklet II [Tuning instruments to unity](https://stefvanbuuren.name/dbook2) (this volume) studies the problem how to aplpy the technology to multiple, overlapping, measurement instruments. 
+
+In booklet I we learned that, once we have a D-score, we may
+
+- Compare development within the same child over time;
+- Compare development of two children of the same age;
+- Compare development of two children at different ages;
+- Compare development of groups of children at different ages;
+- And so on...
+
+In practice, there is an extra complication. There are about 150 different instruments to measure child development [@fernald2017toolkit], and it is not be obvious to obtain comparable scores from these.
+
+One approach would be to simply apply the methodology of booklet I to each instrument separately. Every instrument would thus define its own quantitative scale. While practical and feasible, the problem is that we cannot compare the scores obtained on distinct scales. Such scores would be specific to the milestones administered, to the study samples, and to the domain representation of the instrument. In sum, we wouldn't be able to compare development across instruments, a major impediment. 
+
+Now consider two solutions:
+
+1. Everybody uses the same instrument;
+2. We extract comparable scores from different instruments.
+
+The first option seems easy and attractive, but most likely we will never see the day where everybody elects the same, presumably perfect instrument. Chances are much larger that future scientific advances will foster new instruments, thus exacerbating incomparability. In practice, option 2 is the more viable and realistic approach.
+
+In this booklet we explain techniques that systematically exploit the overlap between instruments to create comparable scores. For example, many instruments have a variation on milestones like *Can stack two blocks*, *Is able to stand* or *Says baba*. By carefully mapping out the similarities between instruments we are able constrain the measurement model in a sensible way. As a result, we can map different instruments onto the same scale.

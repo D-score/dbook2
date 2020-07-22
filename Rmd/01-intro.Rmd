@@ -1,29 +1,6 @@
 # Introduction {#ch:introduction2}
 
-<!-- NOTE: We need to include a clear statement of the scope of this
-booklet. What is the major problem? What would be progress? What data
-would help us to advance? -->
-
-Booklet I [*D*-score: Turning milestones into measurement](https://stefvanbuuren.name/dbook1/) highlights the concepts and tools needed to obtain a quantitative score from milestones from an instrument. Once we have such a score, we may
-
-- Compare development within the same child over time;
-- Compare development of two children of the same age;
-- Compare development of two children at different ages;
-- Compare development of groups of children at different ages;
-- And so on...
-
-In practice, the problem is more complicated. There are about 150 different instruments to measure child development. [@fernald2017toolkit]
-
-In principle, one could apply the methodology of booklet I to each instrument separately. Every instrument would thus define its own quantitative scale. The problem with this approach is that measurements made on those scales cannot be compared to each other. More in particular, scores will be specific to the milestones, study samples, and the domain coverage of the particular instrument. In sum, we wouldn't be able to compare development across instruments, a major impediment. 
-
-What is needed instead is either
-
-1. Everybody uses the same instrument;
-2. We extract comparable scores from different instruments.
-
-Option 1 seems easy, but may effectively halt the science of measuring child development. Until we have the *perfect instrument* option 2 is the only realistic choice.
-
-In this booklet we aim to exploit the overlap between instruments to create comparable scores. For example, most instruments have milestones like *Can stack two blocks*, *Is able to stand* or *Says baba*. By carefully mapping out the similarities between instruments we are able constrain the statistical model in a sensible way. As a result, we can map different instruments onto the same scale. 
+> Author: Maureen Black
 
 ## SDG 4.2.1 indicator
 
