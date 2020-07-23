@@ -1,5 +1,7 @@
 # Discussion {#ch:discussion2}
 
+> Author: Iris Eekhout
+
 ## Potential and limitations of existing data for SDG 4.2.1
 
 The D-score is a measure that fits perfectly to the current need of comparable global figures for child development status. A measure for early child development that can be interpreted everywhere can either be achieved by having one instrument that is used globally, or by enabling the calculation of a score on a scale that can be obtained from many different instruments. The D-score is the latter, and since the first option would be desirable but at this moment unfeasible, the D-score can in relatively short time give insight in global differences in early child development. As such, the D-score can be used for SDG 4.2.1. However, there are still some limitations, that in time, can be diminished. First, not all instruments that measure early child development are currently included in the D-score key. We are working on expanding the key and additional instruments are added (refer to GSED).

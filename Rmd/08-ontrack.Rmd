@@ -17,6 +17,8 @@ library(RColorBrewer)
 
 # Who is on-track? {#ch:ontrack}
 
+> Author: Iris Eekhout
+
 In the previous chapter \@ref(ch:SDGindicator) we described how to determine off-track development to be used as SDG indicator for early child development. In the current chapter we describe the group that is on-track and what explanatory factors relate to early child develoment. We will order these explanatory factors to relative importance and relate them to opportunities for interventions. 
 
 * Application II: What determines who is developmentally on-track (\@ref(sec:application2))

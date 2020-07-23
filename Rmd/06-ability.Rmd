@@ -10,6 +10,8 @@ library(dscore)
 ```
 # Comparing ability {#ch:ability}
 
+> Author: Iris Eekhout
+
 In this chapter the D-score distributions per GCDG cohort are displayed and
 the impact of measurement error is compared between the cohorts. Additionally
 the coverage of the developmental domains is displayed for D-score scale and

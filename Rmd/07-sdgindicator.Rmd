@@ -9,6 +9,8 @@ library(ggplot2)
 
 # SDG 4.2.1 Indicator {#ch:SDGindicator}
 
+> Author: Iris Eekhout
+
 This chapter explains how the D-score can be used to indicate on-track
 development. The methodology to define on-track development is described and
 country-level estimates are displayed. Additionally, the indicator is compared
