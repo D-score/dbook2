@@ -1,28 +1,11 @@
 # Preface {-}
 
-<!-- NOTE: We need to include a clear statement of the scope of this
-booklet. What is the major problem? What would be progress? What data
-would help us to advance? -->
+The foundations of adult health and wellbeing have their origins early in life, often measured by children’s early growth and development [@clark2020]. Growth standards established by the World Health Organization (WHO) have been adopted globally, and are used as indices and targets for improvement. For example, in 2018, 219 million children under 5 years of age (21.9%) were stunted (height for age < -2 standard deviations of the WHO growth standards) [@unicef2019]. Stunting early in life has been associated with negative childhood development, academic achievement, and adult productivity. In the absence of direct population-based metrics for childhood development, stunting and poverty have been used as proxy indicators to estimate the number of children not reaching their developmental potential [@lu2016].
 
-D-score booklet I [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones. Booklet II [Tuning instruments to unity](https://stefvanbuuren.name/dbook2) (this volume) studies the problem how to aplpy the technology to multiple, overlapping, measurement instruments. 
+Although stunting and poverty have been effective indicators and have contributed to advances in global childhood development policies and programs [@black2017], they lack the sensitivity to measure changes associated with programmatic interventions. Early childhood development is a latent construct comprised of an ordinal sequence of developmental domains (motor, language, cognitive, personal-social). A valid and easily interpretable metric is needed to interpret the underlying latent construct of early childhood development that can represent change and is comparable across cultures and contexts. The D-score booklet I [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) in this series showed that the D-score (Developmental score) meets those criteria.
 
-In booklet I we learned that, once we have a D-score, we may
+The present volume [Tuning instruments to unity](https://stefvanbuuren.name/dbook2) deals with the problem how to define and calculate the D-score from data obtained from multiple studies and multiple instruments. After harmonizing longitudinal measures of childhood development among over 36,000 children from 11 countries [@Weber2019], the statistical analysis produced a D-score scale with interval qualities that can reflect change over time and enable within and across country comparisons. In addition, the D-score is responsive to environmental conditions that may impact children’s development, ranging from community programs and policies to macro-level conditions from migration, inequities, or climate. Applied to populations, direct metrics of children’s early growth and development assess the current status of the population’s health and well-being, establish predictions of future health and well-being, and provide opportunities to measure changes. Thus, applying the D-score to the early development of children extends to populations and society as a whole.
 
-- Compare development within the same child over time;
-- Compare development of two children of the same age;
-- Compare development of two children at different ages;
-- Compare development of groups of children at different ages;
-- And so on...
+> Maureen Black
 
-In practice, there is an extra complication. There are about 150 different instruments to measure child development [@fernald2017toolkit], and it is not be obvious to obtain comparable scores from these.
-
-One approach would be to simply apply the methodology of booklet I to each instrument separately. Every instrument would thus define its own quantitative scale. While practical and feasible, the problem is that we cannot compare the scores obtained on distinct scales. Such scores would be specific to the milestones administered, to the study samples, and to the domain representation of the instrument. In sum, we wouldn't be able to compare development across instruments, a major impediment. 
-
-Now consider two solutions:
-
-1. Everybody uses the same instrument;
-2. We extract comparable scores from different instruments.
-
-The first option seems easy and attractive, but most likely we will never see the day where everybody elects the same, presumably perfect instrument. Chances are much larger that future scientific advances will foster new instruments, thus exacerbating incomparability. In practice, option 2 is the more viable and realistic approach.
-
-In this booklet we explain techniques that systematically exploit the overlap between instruments to create comparable scores. For example, many instruments have a variation on milestones like *Can stack two blocks*, *Is able to stand* or *Says baba*. By carefully mapping out the similarities between instruments we are able constrain the measurement model in a sensible way. As a result, we can map different instruments onto the same scale.
+July, 2020
