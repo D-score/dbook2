@@ -19,7 +19,7 @@ runtime: shiny
 ```{r initbook, include = FALSE}
 opts_chunk$set(comment = NA, background = "#FBFBFB",
                fig.align = 'center', cache = TRUE, 
-               echo = FALSE)
+               echo = FALSE, warning=FALSE, message=FALSE)
 options(knitr.kable.NA = '')
 
 # see https://stackoverflow.com/questions/62578811/error-input-files-not-all-in-same-directory-please-supply-explicit-wd
