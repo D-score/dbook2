@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 Differential item functioning | D-score booklet II</title>
+  <title>5.3 Impact of number of active equate groups | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta property="og:title" content="5.3 Impact of number of active equate groups | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta name="twitter:title" content="5.3 Impact of number of active equate groups | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-equatefit.html"/>
-<link rel="next" href="section-ch-modellingequates.html"/>
+<link rel="prev" href="section-sec-modellingstrategies.html"/>
+<link rel="next" href="section-sec-ageprofiles.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,42 +169,40 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:equatedif" class="section level2">
-<h2><span class="header-section-number">4.7</span> Differential item functioning</h2>
-<p>Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.</p>
-<div id="section-good-equate-groups-without-dif" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Good equate groups without DIF</h3>
-<p><a href="https://stefvanbuuren.name/dbook1/sec-dif.html">Booklet I</a> discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.</p>
-<div class="figure" style="text-align: center"><span id="fig:plotnoeqdif"></span>
-<img src="dbook2_files/figure-html/plotnoeqdif-1.png" alt="Two equate groups that present no differential item functioning between cohorts." width="960" />
+<div id="section-sec:impactequate" class="section level2">
+<h2><span class="header-section-number">5.3</span> Impact of number of active equate groups</h2>
+<div class="figure" style="text-align: center"><span id="fig:model1339"></span>
+<iframe src="https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=7&amp;labels=cohort,model&amp;sort=cohort;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=" width="760px" height="600px">
+</iframe>
 <p class="caption">
-Figure 4.5: Two equate groups that present no differential item functioning between cohorts.
+Figure 5.1: D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click <a href="https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=7&amp;labels=cohort,model&amp;sort=cohort;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=">ZOOM</a> to enlarge the display.
 </p>
 </div>
 
-<p>Figure <a href="section-sec-equatedif.html#fig:plotnoeqdif">4.5</a> shows the empirical curves of two equate groups, <code>FM31</code> (two cubes) and <code>EXP26</code> (two-word sentence). All curves are close to each other, so there is no different item functioning here.</p>
+<p>Figure <a href="section-sec-impactequate.html#fig:model1339">5.1</a> is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculate from the <a href="https://stefvanbuuren.name/dbook1/sec-smoccstudy.html">SMOCC study</a>. In order to speed up calculation, the figure shows a random subsample of 25% of all points. Manipulate the plot controls to switch cohorts.</p>
+<p>All models contain 1339 items, but differ in the number of active equate groups. The most salient features per model are:</p>
+<ul>
+<li><code>1339_0</code>: No equate groups, so different instruments in different cohorts are fitted independently;</li>
+<li><code>1339_11</code>: Connects all cohorts through one or more equated items using 11 equate groups in total;</li>
+<li><code>1339_33</code>: There are 33 equate groups that bridge cohort and instruments;</li>
+<li><code>1339_184</code>: Maximally connects instruments and cohort by all equate groups.</li>
+</ul>
+<p>Comparison of the D-score distibution by age across these models yields various insights:</p>
+<ul>
+<li><p>The locations of cohorts on the vertical scale depends on the number of active equate groups. For example, for Madagascar (MDG) the points are located around 52 when no equate groups are actived, whereas if all are activated it about 68.</p></li>
+<li><p>The age trend depends on the number of active equate groups. For example, for Colombia (COL) or Ethiopia (ETH), the model without equate groups has a shallow age trend, whereas it is steep for the <code>1339_184</code> model.</p></li>
+<li><p>The vertical spread depends on the number of equate groups. For example, the spread in the Chile-2 (CHL-2) cohort substantially increases with the number of active equates.</p></li>
+<li><p>Model <code>1339_0</code> for the Dutch NLD-SMOCC cohort is equivalent to the model fitted to the <a href="https://stefvanbuuren.name/dbook1/sec-smoccstudy.html">SMOCC study</a> alone. Introducing equate groups compresses the range of scores, especially at the higher end.</p></li>
+</ul>
+<p>We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.</p>
 </div>
-<div id="section-poor-equate-groups-with-dif-for-study" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Poor equate groups with DIF for study</h3>
-<div class="figure" style="text-align: center"><span id="fig:ploteqdif"></span>
-<img src="dbook2_files/figure-html/ploteqdif-1.png" alt="Two equate groups that present differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.6: Two equate groups that present differential item functioning between cohorts.
-</p>
-</div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:ploteqdif">4.6</a> plots the empirical curves for equate groups <code>GM44</code> (throws ball) and <code>EXP23</code> (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, the item <em>Throws ball</em>, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item <em>Says more than 5 words</em>, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-equatefit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-modellingequates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-modellingstrategies.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-ageprofiles.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

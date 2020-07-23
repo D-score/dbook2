@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 Differential item functioning | D-score booklet II</title>
+  <title>5.6 Milestone selection | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta property="og:title" content="5.6 Milestone selection | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta name="twitter:title" content="5.6 Milestone selection | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-equatefit.html"/>
-<link rel="next" href="section-ch-modellingequates.html"/>
+<link rel="prev" href="section-sec-equatequality.html"/>
+<link rel="next" href="section-sec-othermodelling.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,42 +169,33 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:equatedif" class="section level2">
-<h2><span class="header-section-number">4.7</span> Differential item functioning</h2>
-<p>Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.</p>
-<div id="section-good-equate-groups-without-dif" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Good equate groups without DIF</h3>
-<p><a href="https://stefvanbuuren.name/dbook1/sec-dif.html">Booklet I</a> discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.</p>
-<div class="figure" style="text-align: center"><span id="fig:plotnoeqdif"></span>
-<img src="dbook2_files/figure-html/plotnoeqdif-1.png" alt="Two equate groups that present no differential item functioning between cohorts." width="960" />
+<div id="section-sec:milestoneselection" class="section level2">
+<h2><span class="header-section-number">5.6</span> Milestone selection</h2>
+<div class="figure" style="text-align: center"><span id="fig:itemfit"></span>
+<img src="dbook2_files/figure-html/itemfit-1.png" alt="Infit and outfit of 1339 items in model 1339_11. About 8 percent of the points falls outside the plot." width="672" />
 <p class="caption">
-Figure 4.5: Two equate groups that present no differential item functioning between cohorts.
+Figure 5.4: Infit and outfit of 1339 items in model <code>1339_11</code>. About 8 percent of the points falls outside the plot.
 </p>
 </div>
 
-<p>Figure <a href="section-sec-equatedif.html#fig:plotnoeqdif">4.5</a> shows the empirical curves of two equate groups, <code>FM31</code> (two cubes) and <code>EXP26</code> (two-word sentence). All curves are close to each other, so there is no different item functioning here.</p>
+<p>Item infit and outfit are convenient statistics for selecting the milestones that fit the model better. Figure <a href="section-sec-milestoneselection.html#fig:itemfit">5.4</a> displays the infit and outfit statistics of model <code>1339_11</code>. The correlation between infit and outfit is high (<span class="math inline">\(r = 0.84\)</span>). The expected value of the infit and outfit statistics when the model fits is 1.0. The center of infit and outfit in Figure <a href="section-sec-milestoneselection.html#fig:itemfit">5.4</a> is approximately 1.0, so on average one could say the items fit the model. Note however that fit values above and below the values of 1.0 are qualitively different. Item with fit statistics exceeding 1.0 fit the model less well than expected (<strong>underfit</strong>), whereas items with fit statistics lower than 1.0 fit the model better than expected (<strong>overfit</strong>). See <a href="https://stefvanbuuren.name/dbook1/sec-itemfit.html">Booklet 1: Section 6.1</a> for more details.</p>
+<p>Some practitioners remove both underfitting and overfitting items. However, we like to preserve overfitting items and be more strict in removing items that underfit. The idea is that preservation of the best fitting items may increase scale length, and hence reliability and measurement precision. Figure <a href="section-sec-milestoneselection.html#fig:itemfit">5.4</a> draws two cut-off lines at 1.0. Taking items with infit &lt; 1.0 and outfit &lt; 1.0 will select <strong>631 out of 1339</strong> items for further modelling.</p>
+<p>A practical problem of item removal is that it also affects equate group composition. By default, a removed item will also be removed from the equate group, so item removal may reduce the size of an equate group below two items. For passive equates this is no problem, since passive equates have no effect on the estimates. However, removal of an underfitting item from an active equate group will break the bridge between the instrument it pertains to and the rest of the item set. Potentially this can result in substantial effects on the D-score distribution of the cohort, as demonstrated in Figure <a href="section-sec-impactequate.html#fig:model1339">5.1</a>. As a solution, we force any items that are members of active equate groups to remain in the analyis. If that leads to substantially worse equate fit in the next model, we must search for alternative equate groups that bridge the same instruments and that are less sensitive to misfit.</p>
+<p> </p>
+<!-- Table \@ref(tab:equateconfig) lists six possible combinations of items and equate group. An item can be either in or out of the model. The equate group of a given item can be unspecied, passive or active. We create no plots for items that conform to one of the first four combinations. Item D is not permitted, since it is not sensible that an item is part of an active equate group, but not in the model. We routinely change combination D to F by including the item into the model. As an alternative the user may remove the item by hand from the equate group, thereby converting it to type A. -->
+<!-- Since model `1339_0` produces no joint scale across cohort, we will not study it further. At the other extreme, model `1339_184` uses a large number of bridge items, many of which are quite weak, so this model is also not a viable option. The choice is essentially between `1339_11` and `1339_33`. We lean towards pt to continue with `1339_11` for a number of reasons: -->
+<!-- - It is better to use a few really good equate groups than a larger number of equate groups of lower quality (INCLUDE REF); -->
+<!-- - Model `1339_11` allows for assessment of comparability of more inactive equates; -->
+<!-- - Model `1339_11` is closer to model `1339_0`, which increases the likelihood that the D-score scale as developed for the Dutch data will generalise to the other 15 cohorts. -->
+<!-- The next step is to select those items that best fit the Rasch model. -->
 </div>
-<div id="section-poor-equate-groups-with-dif-for-study" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Poor equate groups with DIF for study</h3>
-<div class="figure" style="text-align: center"><span id="fig:ploteqdif"></span>
-<img src="dbook2_files/figure-html/ploteqdif-1.png" alt="Two equate groups that present differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.6: Two equate groups that present differential item functioning between cohorts.
-</p>
-</div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:ploteqdif">4.6</a> plots the empirical curves for equate groups <code>GM44</code> (throws ball) and <code>EXP23</code> (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, the item <em>Throws ball</em>, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item <em>Says more than 5 words</em>, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-equatefit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-modellingequates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-equatequality.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-othermodelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

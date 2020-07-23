@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 Differential item functioning | D-score booklet II</title>
+  <title>Chapter 5 Modelling equates | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta property="og:title" content="Chapter 5 Modelling equates | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta name="twitter:title" content="Chapter 5 Modelling equates | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-equatefit.html"/>
-<link rel="next" href="section-ch-modellingequates.html"/>
+<link rel="prev" href="section-sec-equatedif.html"/>
+<link rel="next" href="section-sec-gcdgdata.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,42 +169,31 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:equatedif" class="section level2">
-<h2><span class="header-section-number">4.7</span> Differential item functioning</h2>
-<p>Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.</p>
-<div id="section-good-equate-groups-without-dif" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Good equate groups without DIF</h3>
-<p><a href="https://stefvanbuuren.name/dbook1/sec-dif.html">Booklet I</a> discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.</p>
-<div class="figure" style="text-align: center"><span id="fig:plotnoeqdif"></span>
-<img src="dbook2_files/figure-html/plotnoeqdif-1.png" alt="Two equate groups that present no differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.5: Two equate groups that present no differential item functioning between cohorts.
-</p>
+<div id="section-ch:modellingequates" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Modelling equates</h1>
+<blockquote>
+<p>Author: Stef van Buuren, Iris Eekhout</p>
+</blockquote>
+<p>This chapter deal with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter <a href="section-ch-data.html#section-ch:data">2</a>. The chapter</p>
+<ul>
+<li>provides a high-level description of the GCDG data (<a href="section-sec-gcdgdata.html#section-sec:gcdgdata">5.1</a>)</li>
+<li>discusses various modelling strategies (<a href="section-sec-modellingstrategies.html#section-sec:modellingstrategies">5.2</a>)</li>
+<li>shows the impact of equate groups on the model in extreme cases (<a href="section-sec-impactequate.html#section-sec:impactequate">5.3</a>)</li>
+<li>demonstrates visualisation of age profiles to select promising equate groups (<a href="section-sec-ageprofiles.html#section-sec:ageprofiles">5.4</a>)</li>
+<li>introduces a helpful visualisation of the quality of the equate group (<a href="section-sec-equatequality.html#section-sec:equatequality">5.5</a>)</li>
+<li>highlights infit and outfit for removing misfitting milestones (<a href="section-sec-milestoneselection.html#section-sec:milestoneselection">5.6</a>)</li>
+<li>discusses instrument fit and equate group editing (<a href="section-sec-othermodelling.html#section-sec:othermodelling">5.7</a>)</li>
+<li>introduces a grading system for equate groups (<a href="section-sec-iteminformation.html#section-sec:iteminformation">5.8</a>)</li>
+<li>provides pointers to the final model (<a href="section-sec-finalmodel.html#section-sec:finalmodel">5.9</a>)</li>
+</ul>
 </div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:plotnoeqdif">4.5</a> shows the empirical curves of two equate groups, <code>FM31</code> (two cubes) and <code>EXP26</code> (two-word sentence). All curves are close to each other, so there is no different item functioning here.</p>
-</div>
-<div id="section-poor-equate-groups-with-dif-for-study" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Poor equate groups with DIF for study</h3>
-<div class="figure" style="text-align: center"><span id="fig:ploteqdif"></span>
-<img src="dbook2_files/figure-html/ploteqdif-1.png" alt="Two equate groups that present differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.6: Two equate groups that present differential item functioning between cohorts.
-</p>
-</div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:ploteqdif">4.6</a> plots the empirical curves for equate groups <code>GM44</code> (throws ball) and <code>EXP23</code> (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, the item <em>Throws ball</em>, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item <em>Says more than 5 words</em>, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-equatefit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-modellingequates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-equatedif.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-gcdgdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

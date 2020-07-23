@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 Differential item functioning | D-score booklet II</title>
+  <title>5.2 Modelling strategies | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta property="og:title" content="5.2 Modelling strategies | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta name="twitter:title" content="5.2 Modelling strategies | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-equatefit.html"/>
-<link rel="next" href="section-ch-modellingequates.html"/>
+<link rel="prev" href="section-sec-gcdgdata.html"/>
+<link rel="next" href="section-sec-impactequate.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,42 +169,48 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:equatedif" class="section level2">
-<h2><span class="header-section-number">4.7</span> Differential item functioning</h2>
-<p>Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.</p>
-<div id="section-good-equate-groups-without-dif" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Good equate groups without DIF</h3>
-<p><a href="https://stefvanbuuren.name/dbook1/sec-dif.html">Booklet I</a> discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.</p>
-<div class="figure" style="text-align: center"><span id="fig:plotnoeqdif"></span>
-<img src="dbook2_files/figure-html/plotnoeqdif-1.png" alt="Two equate groups that present no differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.5: Two equate groups that present no differential item functioning between cohorts.
-</p>
+<div id="section-sec:modellingstrategies" class="section level2">
+<h2><span class="header-section-number">5.2</span> Modelling strategies</h2>
+<p>The analytic challenge is twofold:</p>
+<ul>
+<li>to find a subset of items that form a scale;</li>
+<li>to find a subset of equate groups with items similar enough to bridge instruments.</li>
+</ul>
+<p>Note that both subsets are related, i.e., changing one affects the other. Thus, we cannot first identify items and then equate groups, or first identify equate groups followed by the items. Rather we need to find the two subsets in an iterative fashion, primarily by hand. This chapter described some of the modelling issues the analyst need to confront.</p>
+<p>In general, we look for a final model that</p>
+<ul>
+<li>preserves the items that best fit the Rasch model;</li>
+<li>uses active equate groups with items that behave the same across many cohorts and instruments;</li>
+<li>displays reasonable age-conditional distributions of the D-scores under the model;</li>
+<li>has difficulty estimates that are similar to previous estimates.</li>
+</ul>
+<p>The modelling strategy is a delicate balancing act to achieve all of the above objective. Particular actions that we could take to improve a given model are:</p>
+<ul>
+<li>remove bad items;</li>
+<li>inactivate bad equate groups;</li>
+<li>break up bad equate groups;</li>
+<li>move items from one equate group to another;</li>
+<li>create new equate groups;</li>
+<li>remove entire instruments;</li>
+<li>remove persons;</li>
+<li>remove studies.</li>
+</ul>
+<p>In order to steer our actions, we look at the following diagnostics (in order of importance):</p>
+<ul>
+<li>quality of equate group (both visually and through infit);</li>
+<li>plausibility of the distribution of the D-score by age per study;</li>
+<li>correspondence of difficulty estimates from published (single study) Dutch data and the new model;</li>
+<li>infit of the items remaining in the model.</li>
+</ul>
+<p>Various routes are possible, and may result different final models. The strategy adopted here is to thicken active equate groups by covering as many studies as possible, in the hope of minimizing the number of active equates needed.</p>
 </div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:plotnoeqdif">4.5</a> shows the empirical curves of two equate groups, <code>FM31</code> (two cubes) and <code>EXP26</code> (two-word sentence). All curves are close to each other, so there is no different item functioning here.</p>
-</div>
-<div id="section-poor-equate-groups-with-dif-for-study" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Poor equate groups with DIF for study</h3>
-<div class="figure" style="text-align: center"><span id="fig:ploteqdif"></span>
-<img src="dbook2_files/figure-html/ploteqdif-1.png" alt="Two equate groups that present differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.6: Two equate groups that present differential item functioning between cohorts.
-</p>
-</div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:ploteqdif">4.6</a> plots the empirical curves for equate groups <code>GM44</code> (throws ball) and <code>EXP23</code> (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, the item <em>Throws ball</em>, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item <em>Says more than 5 words</em>, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-equatefit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-modellingequates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-gcdgdata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-impactequate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

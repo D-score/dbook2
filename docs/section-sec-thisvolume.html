@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 Differential item functioning | D-score booklet II</title>
+  <title>1.2 What this volume is about | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta property="og:title" content="1.2 What this volume is about | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta name="twitter:title" content="1.2 What this volume is about | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-equatefit.html"/>
-<link rel="next" href="section-ch-modellingequates.html"/>
+<link rel="prev" href="section-sec-previous.html"/>
+<link rel="next" href="section-sec-relevance.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,42 +169,26 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:equatedif" class="section level2">
-<h2><span class="header-section-number">4.7</span> Differential item functioning</h2>
-<p>Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.</p>
-<div id="section-good-equate-groups-without-dif" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Good equate groups without DIF</h3>
-<p><a href="https://stefvanbuuren.name/dbook1/sec-dif.html">Booklet I</a> discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.</p>
-<div class="figure" style="text-align: center"><span id="fig:plotnoeqdif"></span>
-<img src="dbook2_files/figure-html/plotnoeqdif-1.png" alt="Two equate groups that present no differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.5: Two equate groups that present no differential item functioning between cohorts.
-</p>
+<div id="section-sec:thisvolume" class="section level2">
+<h2><span class="header-section-number">1.2</span> What this volume is about</h2>
+<p>Booklet II <a href="https://stefvanbuuren.name/dbook2">Tuning instruments to unity</a> (this volume) studies the problem how to aplpy the technology to multiple, overlapping, measurement instruments.</p>
+<p>In practice, there is an extra complication. There are about 150 different instruments to measure child development <span class="citation">(Fernald et al. <a href="section-references.html#section-ref-fernald2017toolkit" role="doc-biblioref">2017</a>)</span>, and it is not be obvious to obtain comparable scores from these.</p>
+<p>One approach would be to simply apply the methodology of booklet I to each instrument separately. Every instrument would thus define its own quantitative scale. While practical and feasible, the problem is that we cannot compare the scores obtained on distinct scales. Such scores would be specific to the milestones administered, to the study samples, and to the domain representation of the instrument. In sum, we wouldn’t be able to compare development across instruments, a major impediment.</p>
+<p>Now consider two solutions:</p>
+<ol style="list-style-type: decimal">
+<li>Everybody uses the same instrument;</li>
+<li>We extract comparable scores from different instruments.</li>
+</ol>
+<p>The first option seems easy and attractive, but most likely we will never see the day where everybody elects the same, presumably perfect instrument. Chances are much larger that future scientific advances will foster new instruments, thus exacerbating incomparability. In practice, option 2 is the more viable and realistic approach.</p>
+<p>In this booklet we explain techniques that systematically exploit the overlap between instruments to create comparable scores. For example, many instruments have a variation on milestones like <em>Can stack two blocks</em>, <em>Is able to stand</em> or <em>Says baba</em>. By carefully mapping out the similarities between instruments we are able constrain the measurement model in a sensible way. As a result, we can map different instruments onto the same scale.</p>
 </div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:plotnoeqdif">4.5</a> shows the empirical curves of two equate groups, <code>FM31</code> (two cubes) and <code>EXP26</code> (two-word sentence). All curves are close to each other, so there is no different item functioning here.</p>
-</div>
-<div id="section-poor-equate-groups-with-dif-for-study" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Poor equate groups with DIF for study</h3>
-<div class="figure" style="text-align: center"><span id="fig:ploteqdif"></span>
-<img src="dbook2_files/figure-html/ploteqdif-1.png" alt="Two equate groups that present differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.6: Two equate groups that present differential item functioning between cohorts.
-</p>
-</div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:ploteqdif">4.6</a> plots the empirical curves for equate groups <code>GM44</code> (throws ball) and <code>EXP23</code> (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, the item <em>Throws ball</em>, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item <em>Says more than 5 words</em>, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-equatefit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-modellingequates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-previous.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-relevance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

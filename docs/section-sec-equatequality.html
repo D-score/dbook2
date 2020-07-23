@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.7 Differential item functioning | D-score booklet II</title>
+  <title>5.5 Quality of equate groups | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta property="og:title" content="5.5 Quality of equate groups | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.7 Differential item functioning | D-score booklet II" />
+  <meta name="twitter:title" content="5.5 Quality of equate groups | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="fig/D.png" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="section-sec-equatefit.html"/>
-<link rel="next" href="section-ch-modellingequates.html"/>
+<link rel="prev" href="section-sec-ageprofiles.html"/>
+<link rel="next" href="section-sec-milestoneselection.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -169,42 +169,28 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="section-sec:equatedif" class="section level2">
-<h2><span class="header-section-number">4.7</span> Differential item functioning</h2>
-<p>Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.</p>
-<div id="section-good-equate-groups-without-dif" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Good equate groups without DIF</h3>
-<p><a href="https://stefvanbuuren.name/dbook1/sec-dif.html">Booklet I</a> discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.</p>
-<div class="figure" style="text-align: center"><span id="fig:plotnoeqdif"></span>
-<img src="dbook2_files/figure-html/plotnoeqdif-1.png" alt="Two equate groups that present no differential item functioning between cohorts." width="960" />
+<div id="section-sec:equatequality" class="section level2">
+<h2><span class="header-section-number">5.5</span> Quality of equate groups</h2>
+<div class="figure" style="text-align: center"><span id="fig:p-d-equate-1339"></span>
+<iframe src="https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=65&amp;labels=equate,model&amp;sort=equate_index;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=" width="760px" height="450px">
+</iframe>
 <p class="caption">
-Figure 4.5: Two equate groups that present no differential item functioning between cohorts.
+Figure 5.3: Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively. <a href="https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=65&amp;labels=equate,model&amp;sort=equate_index;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=">ZOOM</a>
 </p>
 </div>
 
-<p>Figure <a href="section-sec-equatedif.html#fig:plotnoeqdif">4.5</a> shows the empirical curves of two equate groups, <code>FM31</code> (two cubes) and <code>EXP26</code> (two-word sentence). All curves are close to each other, so there is no different item functioning here.</p>
+<p>Figure <a href="section-sec-equatequality.html#fig:p-d-equate-1339">5.3</a> shows how the passing percentage depends on the child’s D-score as calculated under four models. All models include the same 1339 milestones, but differ in the number of active equates. The grey curve corresponds to the estimate made under assumption of that milestones are equally difficult. Good milestones for bridging instruments will have a tight bundle of curves. For example, equate <code>EXP26</code> has tight bundles especially in models <code>1339_11</code> and <code>1339_33</code>. By comparison, the curves of the two extreme models vary considerably: the model without any bridge (<code>1339_0</code>) or the model with all bridges (<code>1339_184</code>) are thus less than ideal. The shallow grey curve of model <code>1339_184</code> indicates a poorer overall fit.</p>
+<p>Outfit and infit statistics measure the residual deviation of the items to the grey curve. High values (e.g. above 1.4) are undesirable, and indicate lack of fit to the model. For example, the values for model <code>1339_184</code> (1.70 and 1.25) indicate a mediocre fit, whereas models <code>1339_33</code> and <code>1339_11</code> fit well. Sometimes the individual item curves are steeper than the grey curve. This indicates that these milestones are more discriminative than the combined item. Model <code>1339_0</code> lacks a grey curve and has no fit statistics because that model does not form the combined item.</p>
+<p>The probability curves provide a quick visual method for spotting promising and problematic equate groups. Examples of promising equate groups include <code>COG36</code>, <code>FM31</code>, <code>GM26</code> and <code>GM42</code>. A little more weaker are <code>FM26</code> (has more variability), <code>FM52</code> (looks promising, but has a problem with the item <code>grigcd402</code> from the <code>GCDG_JAM_STUNTED</code> cohort), and <code>GM35</code> (does not align cohort <code>GCDG-ZAF</code>). In such cases, one may wish to move an item out of an equate group, combine equate groups, or inactivate troublesome links.</p>
+<p>Until now we only looked at models that include all 1339 items. In practice, we may improve upon the model by selecting that subset of milestones that fit the Rasch model. The next section looks in this modelling step in more detail.</p>
 </div>
-<div id="section-poor-equate-groups-with-dif-for-study" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Poor equate groups with DIF for study</h3>
-<div class="figure" style="text-align: center"><span id="fig:ploteqdif"></span>
-<img src="dbook2_files/figure-html/ploteqdif-1.png" alt="Two equate groups that present differential item functioning between cohorts." width="960" />
-<p class="caption">
-Figure 4.6: Two equate groups that present differential item functioning between cohorts.
-</p>
-</div>
-
-<p>Figure <a href="section-sec-equatedif.html#fig:ploteqdif">4.6</a> plots the empirical curves for equate groups <code>GM44</code> (throws ball) and <code>EXP23</code> (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, the item <em>Throws ball</em>, is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF), and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability to pass the item given the D-score (i.e. item difficulty) differs between the cohorts. The same goes for the item <em>Says more than 5 words</em>, which is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-SUNTED) and more difficult for children in Ecuador (green; GCDG-ECU).</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="section-sec-equatefit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="section-ch-modellingequates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-sec-ageprofiles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-sec-milestoneselection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
