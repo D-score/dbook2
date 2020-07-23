@@ -1,18 +1,34 @@
 # Introduction {#ch:introduction2}
 
-> Author: Iris Eekhout, Stef van Buuren
+> Author: Stef van Buuren
 
-## What this volume is about?
+This introductory chapter
 
-The D-score booklet I [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones. Booklet II [Tuning instruments to unity](https://stefvanbuuren.name/dbook2) (this volume) studies the problem how to aplpy the technology to multiple, overlapping, measurement instruments. 
+- briefly summarises our previous work on the D-score (\@ref(sec:previous))
+- introduces the main topic of the booklet (\@ref(sec:thisvolume))
+- highlights the relevance of work (\@ref(sec:relevance))
+- explains why we have written this booklet (\@ref(sec:why))
+- delineates the intended audience (\@ref(sec:audience))
+- provides a road map for the rest of the text (\@ref(sec:roadmap))
 
-In booklet I we learned that, once we have a D-score, we may
+## Previous work on the D-score {#sec:previous}
+
+The D-score booklet I [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones.
+
+In practice we typically want to make the following types of comparisons:
 
 - Compare development within the same child over time;
 - Compare development of two children of the same age;
 - Compare development of two children at different ages;
-- Compare development of groups of children at different ages;
-- And so on...
+- Compare development of groups of children at different ages.
+
+In order to do this well, we need an *interval scale with a fixed unit of development*. We argued that the simple Rasch model is a very suitable candidate to provide us with such a unit. The Rasch model is simple, fast, and we found that it fitted child developmental data very well [@jacobusse2006][@vanbuuren2014]. The Rasch model has a long history, but -unfortunately- it is almost unknown outside the field of psychometrics. We highlighted the concepts of the model that are of direct relevance to child development. Using data collected by the Dutch Development Instrument, we demonstrated that the model and its estimates behave as intended for children in the open population, for prematurely born-children, and for children living in a low- and middle-income country.
+
+As our approach breaks with the traditional paradigm that emphasises different domains of child development, we expected a slow uphill battle for acceptance. We have now gained the interest from various prominent authors in the field, and from organisations who recognise the value of a one-number-summary for child development. In analogy to traditional growth charts, it is perfectly possible to track children, or groups of children, on a developmental charts over time. Those and other applications of the technology may eventually win over some more souls.
+
+## What this volume is about {#sec:thisvolume}
+
+Booklet II [Tuning instruments to unity](https://stefvanbuuren.name/dbook2) (this volume) studies the problem how to aplpy the technology to multiple, overlapping, measurement instruments. 
 
 In practice, there is an extra complication. There are about 150 different instruments to measure child development [@fernald2017toolkit], and it is not be obvious to obtain comparable scores from these.
 
@@ -28,5 +44,25 @@ The first option seems easy and attractive, but most likely we will never see th
 In this booklet we explain techniques that systematically exploit the overlap between instruments to create comparable scores. For example, many instruments have a variation on milestones like *Can stack two blocks*, *Is able to stand* or *Says baba*. By carefully mapping out the similarities between instruments we are able constrain the measurement model in a sensible way. As a result, we can map different instruments onto the same scale.
 
 
-## Intended audience
+## Relevance of the work {#sec:relevance}
+
+## Why this booklet? {#sec:why}
+
+
+
+## Intended audience {#sec:audience}
+
+We aim for three broad audiences:
+
+- Professionals in the field of child growth and development;
+- Policymakers in international settings;
+- Statisticians, methodologists, and data scientists.
+
+Professionals in child development are constantly faced with the problem that different instruments for measuring child development yield incomparable scores. This booklet introduces and illustrates sound psychometric techniques *for extracting comparable scores from existing instruments*. We hope this our approach will ease communication between professionals.
+
+Policymakers in international settings are looking for simple, versatile and cheap instruments to gain insight into the effect of interventions. The ability to measure child development by a single number *enhances priority setting and leads to a more accurate understanding of policy effects*.
+
+The text may appeal to statisticians and data scientists for *the simplicity of the concepts, for the (somewhat unusual) application of statistical models to discard data, for the ease of interpretation of the result, and for the availability of software*.
+
+## Road map {#sec:roadmap}
 
