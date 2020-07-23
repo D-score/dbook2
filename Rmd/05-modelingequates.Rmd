@@ -2,9 +2,23 @@
 library(dmetric, warn.conflicts = FALSE)
 ```
 
-# Modeling equates {#ch:modelingequates}
+# Modelling equates {#ch:modellingequates}
 
-## GCDG data: design and description
+> Author: Stef van Buuren, Iris Eekhout
+
+This chapter deal with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter \@ref(ch:data). The chapter 
+
+- provides a high-level description of the GCDG data (\@ref(sec:gcdgdata))
+- discusses various modelling strategies (\@ref(sec:modellingstrategies))
+- shows the impact of equate groups on the model in extreme cases (\@ref(sec:impactequate))
+- demonstrates visualisation of age profiles to select promising equate groups (\@ref(sec:ageprofiles))
+- introduces a helpful visualisation of the quality of the equate group (\@ref(sec:equatequality))
+- highlights infit and outfit for removing misfitting milestones (\@ref(sec:milestoneselection))
+- discusses instrument fit and equate group editing (\@ref(sec:othermodelling))
+- introduces a grading system for equate groups (\@ref(sec:iteminformation))
+- provides pointers to the final model (\@ref(sec:finalmodel))
+
+## GCDG data: design and description {#sec:gcdgdata}
 
 Chapter \@ref(sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts. 
 
@@ -14,7 +28,7 @@ We concatenated the datasets from these cohort. The resulting data matrix has 71
 
 Subject matter experts classified items into groups of similar appearing items, thus forming 184 equate groups. Each equate group contains at least two items. 
 
-## Modeling strategies
+## Modelling strategies {#sec:modellingstrategies}
 
 The analytic challenge is twofold:
 
@@ -30,7 +44,7 @@ In general, we look for a final model that
 - displays reasonable age-conditional distributions of the D-scores under the model;
 - has difficulty estimates that are similar to previous estimates.
 
-The modeling strategy is a delicate balancing act to achieve all of the above objective. Particular actions that we could take to improve a given model are:
+The modelling strategy is a delicate balancing act to achieve all of the above objective. Particular actions that we could take to improve a given model are:
 
 - remove bad items;
 - inactivate bad equate groups;
@@ -50,7 +64,7 @@ In order to steer our actions, we look at the following diagnostics (in order of
 
 Various routes are possible, and may result different final models. The strategy adopted here is to thicken active equate groups by covering as many studies as possible, in the hope of minimizing the number of active equates needed.
 
-## Impact of number of active equate groups
+## Impact of number of active equate groups {#sec:impactequate}
 
 ```{r model1339, fig.cap = '(ref:model1339)', out.width="760px"}
 knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=", height = "600px")
@@ -78,7 +92,7 @@ Comparison of the D-score distibution by age across these models yields various 
 
 We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.
 
-## Age profiles of similar milestones
+## Age profiles of similar milestones {#sec:ageprofiles}
 
 ```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', out.width="760px"}
 knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=", height = "450px")
@@ -92,7 +106,7 @@ Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` o
 We could follow different strategies in selecting which equate group to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as pososble between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
 
 
-## Quality of equate groups
+## Quality of equate groups {#sec:equatequality}
 
 ```{r p-d-equate-1339, fig.cap = '(ref:p-d-equate-1339)', out.width="760px"}
 knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=", height = "450px")
@@ -107,7 +121,7 @@ The probability curves provide a quick visual method for spotting promising and 
 
 Until now we only looked at models that include all 1339 items. In practice, we may improve upon the model by selecting that subset of milestones that fit the Rasch model. The next section looks in this modelling step in more detail.
 
-## Milestone selection
+## Milestone selection {#sec:milestoneselection}
 
 ```{r itemfit, echo=FALSE, fig.cap='(ref:itemfit)', fig.height=5, warning=FALSE}
 m_011 <- load_model("1339_11",  model_dir = "models_2020", project = "Jamaica")
@@ -165,7 +179,7 @@ knitr::kable(df,
 
 <!-- The next step is to select those items that best fit the Rasch model. -->
 
-## Other modeling actions
+## Other modelling actions {#sec:othermodelling}
 
 ### Instrument fit
 
@@ -225,7 +239,7 @@ pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::mo
 (ref:plotequates) Active and non-active equate groups.
 
 
-## Item information
+## Item information {#sec:iteminformation}
 
 Item information is a psychometric measure the quantifies the utility of the item, given the ability level. So, depending on the person that fills in the item (i.e. the persons ability level), the item provides a certain amount of information to that persons final D-score. The item information can be calculated as the conditional probability to endorse an item ($P(\hat\delta_i)$) times the conditional probability to fail an item ($1-P(\hat\delta_i)$). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when $P(\hat\delta_i) = 0.5$.
 
@@ -274,7 +288,7 @@ ggplot()+
 <!-- Weet even niet zeker of het stukje hieronder erbij moeten doen. Het geeft net wat meer "informatie" over de equate groups, maar het belangrijkste staat eigenlijk al in de plot hierboven.
 -->
 
-In our model, equate groups are very important and the selection of the best performing item groups was one of the main modelling steps and an important modeling focus. Hence, the information grade for the equate groups in our model is very high (17 equate groups were graded an A and 1 a B). In Table \@ref(tab:equateinfo) the information for each item is displayed with in the "n" column the number of times the items in the equate groups were administered in the data.    
+In our model, equate groups are very important and the selection of the best performing item groups was one of the main modelling steps and an important modelling focus. Hence, the information grade for the equate groups in our model is very high (17 equate groups were graded an A and 1 a B). In Table \@ref(tab:equateinfo) the information for each item is displayed with in the "n" column the number of times the items in the equate groups were administered in the data.    
 
 
 ```{r equateinfo, echo = FALSE}
@@ -287,9 +301,9 @@ knitr::kable(gcdg_equateinfo,
 ```
 
 
-## Final model
+## Final model {#sec:finalmodel}
 
-There is no single index of model fit that will detect all possible disturbances. Modelling equates is more like a balancing act among multiple competing objectives, such as
+There is no single index of model fit that will detect all possible disturbances. modelling equates is more like a balancing act among multiple competing objectives, such as
 
 - preserving as many items as possible that fit the model;
 - finding high-quality active equate groups that span many cohorts and instruments;
