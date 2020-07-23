@@ -9,3 +9,5 @@ bookdown::gitbook:
       before: |
         <li><a href="https://stefvanbuuren.name/dbook2">D-score booklet II</a></li>
     download: no
+bookdown::pdf_document2:
+  number_sections: TRUE

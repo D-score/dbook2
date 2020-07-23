@@ -37,7 +37,7 @@ describes each cohort. Section \@ref(sec:instruments) reviews the measurement
 instruments.
 
 
-```{r worldmap, fig.cap='(ref:worldmap)', fig.keep='all', results='hide', fig.align='center', fig.height=4, fig.width=8}
+```{r worldmap, fig.cap='(ref:worldmap)', fig.keep='all', results='hide', fig.height=4, fig.width=8}
 
 map.world = map_data(map='world')
 map.world$value <- NA
@@ -95,9 +95,9 @@ South Africa | x |  | x |  | x |  |  |  |  |
 
 ## Cohort descriptions {#sec:cohorts}
 
-The cohorts have different designs, age ranges and assessment instruments. In Figure \@ref(fig:design) displays the age range of developmental assessments per cohort, colored according to the instruments.
+The cohorts have different designs, age ranges and assessment instruments. Figure \@ref(fig:design) displays the age range of developmental assessments per cohort, colored according to the instruments.
 
-```{r design, fig.width=10, fig.keep='all', results='hide', fig.cap = '(ref:design)' }
+```{r design, fig.width=10, fig.keep='all', results='hide', fig.cap = '(ref:design)', warning=FALSE}
 lean <- gseddata::get_data(cohorts = 40:56)
 lean <- clean_data(lean)
 
