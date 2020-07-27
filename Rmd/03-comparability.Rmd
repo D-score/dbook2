@@ -78,7 +78,7 @@ knitr::kable(df,
 ```
 &nbsp;
 
-An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3` and `den` are directly connected. Note that no indirect connections exist to this instrument group.
+An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia, and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3`, and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
 Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The linked [instrument linkage table](https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/) shows the counts of the number of registered scores per age group. What appears in Table \@ref(tab:linkage) as one test may comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
 
@@ -93,7 +93,7 @@ The next section suggests a way out of the dilemma.
 
 ## Bridging instruments by mapping items {#sec:mapping}
 
-Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak and think. 
+Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. 
 We will exploit this overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
 ```{r example2words, echo = FALSE}
@@ -117,7 +117,7 @@ knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/"
 ```
 (ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
-Figure \@ref(fig:mappingshiny) connects similar items and hence visualises connections between instruments. Items are displayed in the wheel, colored by instrument. Hovering over the items highlights the item description and its connections to similar items. We organised item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC) and expressive (EXP). The `Prev` and `Next` buttons allow us to visit other domains.
+Figure \@ref(fig:mappingshiny) connects similar items and hence visualises connections between instruments. Items are displayed in the wheel, colored by instrument. Hovering over the items highlights the item description and its connections to similar items. We organised item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC), and expressive (EXP). The `Prev` and `Next` buttons allow us to visit other domains.
 
 ## Age profile of item mappings {#sec:viewmapping}
 
@@ -128,7 +128,7 @@ lean <- dmetric::gcdg_lean
 eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "COG24"), passive = TRUE, show_fit = FALSE)
 ```
 
-Another way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples.The first graph presents the age curves of a group of four cognitive items for assessing the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. These milestones have similar age patterns as well.
+Another way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples. The first graph presents the age curves of a group of four cognitive items for assessing the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. These milestones have similar age patterns as well.
 
 ```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 ##promising equates
