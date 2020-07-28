@@ -6,7 +6,7 @@ library(dmetric, warn.conflicts = FALSE)
 
 > Author: Stef van Buuren, Iris Eekhout
 
-This chapter deal with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter \@ref(ch:data). The chapter 
+This chapter deals with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter \@ref(ch:data). The chapter 
 
 - provides a high-level description of the GCDG data (\@ref(sec:gcdgdata))
 - discusses various modelling strategies (\@ref(sec:modellingstrategies))
@@ -20,13 +20,14 @@ This chapter deal with the nitty-gritty of the modelling strategy used for the G
 
 ## GCDG data: design and description {#sec:gcdgdata}
 
-Chapter \@ref(sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts. 
+Section \@ref(sec:gcdgoverview) provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obtained on 12 instruments for measuring child development across 16 cohorts. 
 
-We coded every items as 0 (fail), 1 (pass) or missing. The Battelle Developmental Inventory scores items as 0 (fail), 1 or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 of these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1. 
+We coded every item as 0 (FAIL), 1 (PASS) or missing. For some instrument we did some additional recoding to restrict to these two response categories. The Battelle Developmental Inventory scores items as 0 (FAIL), 1, or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 for these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1. 
 
-We concatenated the datasets from these cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.
+We concatenated the datasets from the GCDG cohorts cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.
+<!---total number of observed scores is excluding the missings, right? Then the sentence "While this... " does not fit, maybe change to: "While the total matrix with child-visits and items has over 95 million cells, about 97 percent of these entries in the matrix is missing."--->
 
-Subject matter experts classified items into groups of similar appearing items, thus forming 184 equate groups. Each equate group contains at least two items. 
+Subject matter experts classified items in groups of similar appearing items, thus forming 184 equate groups. Each equate group contains at least two items. 
 
 ## Modelling strategies {#sec:modellingstrategies}
 
@@ -35,7 +36,7 @@ The analytic challenge is twofold:
 - to find a subset of items that form a scale;
 - to find a subset of equate groups with items similar enough to bridge instruments.
 
-Note that both subsets are related, i.e., changing one affects the other. Thus, we cannot first identify items and then equate groups, or first identify equate groups followed by the items. Rather we need to find the two subsets in an iterative fashion, primarily by hand. This chapter described some of the modelling issues the analyst need to confront.
+Note that both subsets are related, i.e., changing one affects the other. Thus, we cannot first identify items and then equate groups, or first identify equate groups followed by the items. Rather we need to find the two subsets in an iterative fashion, primarily by hand. This chapter describes some of the modelling issues the analyst needs to confront.
 
 In general, we look for a final model that
 
@@ -44,7 +45,7 @@ In general, we look for a final model that
 - displays reasonable age-conditional distributions of the D-scores under the model;
 - has difficulty estimates that are similar to previous estimates.
 
-The modelling strategy is a delicate balancing act to achieve all of the above objective. Particular actions that we could take to improve a given model are:
+The modelling strategy is a delicate balancing act to achieve all of the above objectives. Particular actions that we could take to improve a given model are:
 
 - remove bad items;
 - inactivate bad equate groups;
@@ -62,7 +63,7 @@ In order to steer our actions, we look at the following diagnostics (in order of
 - correspondence of difficulty estimates from published (single study) Dutch data and the new model;
 - infit of the items remaining in the model.
 
-Various routes are possible, and may result different final models. The strategy adopted here is to thicken active equate groups by covering as many studies as possible, in the hope of minimizing the number of active equates needed.
+Various routes are possible and may result in different final models. The strategy adopted here is to thicken active equate groups by covering as many studies as possible, in the hope of minimizing the number of active equates needed.
 
 ## Impact of number of active equate groups {#sec:impactequate}
 
@@ -71,7 +72,7 @@ knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/models1339/#disp
 ```
 (ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click [ZOOM](https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=) to enlarge the display.
 
-Figure \@ref(fig:model1339) is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculate from the [SMOCC study](https://stefvanbuuren.name/dbook1/sec-smoccstudy.html). In order to speed up calculation, the figure shows a random subsample of 25\% of all points. Manipulate the plot controls to switch cohorts.
+Figure \@ref(fig:model1339) is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculated from the [SMOCC study](https://stefvanbuuren.name/dbook1/sec-smoccstudy.html). In order to speed up the calculations, the figure shows a random subsample of 25\% of all points. Manipulate the plot controls to switch cohorts.
 
 All models contain 1339 items, but differ in the number of active equate groups. The most salient features per model are:
 
@@ -80,9 +81,9 @@ All models contain 1339 items, but differ in the number of active equate groups.
 - `1339_33`: There are 33 equate groups that bridge cohort and instruments;
 - `1339_184`: Maximally connects instruments and cohort by all equate groups.
 
-Comparison of the D-score distibution by age across these models yields various insights:
+Comparison of the D-score distribution by age across these models yields various insights:
 
-- The locations of cohorts on the vertical scale depends on the number of active equate groups. For example, for Madagascar (MDG) the points are located around 52 when no equate groups are actived, whereas if all are activated it about 68.
+- The location of cohorts on the vertical scale depends on the number of active equate groups. For example, for Madagascar (MDG) the points are located around 52 when no equate groups are activated, whereas if all are activated it is about 68.
 
 - The age trend depends on the number of active equate groups. For example, for Colombia (COL) or Ethiopia (ETH), the model without equate groups has a shallow age trend, whereas it is steep for the `1339_184` model.
 
@@ -90,7 +91,7 @@ Comparison of the D-score distibution by age across these models yields various 
 
 - Model `1339_0` for the Dutch NLD-SMOCC cohort is equivalent to the model fitted to the [SMOCC study](https://stefvanbuuren.name/dbook1/sec-smoccstudy.html) alone. Introducing equate groups compresses the range of scores, especially at the higher end.
 
-We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.
+We have now seen that the number of active equate groups has a large effect on the model. The next sections look into the equate groups in more detail.
 
 ## Age profiles of similar milestones {#sec:ageprofiles}
 
@@ -101,9 +102,9 @@ knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/
 
 Figure \@ref(fig:p-a-equate-1339) displays the percentage of children that pass milestones at various ages. Subject matter experts clustered similar items stemming from different instruments into equate groups. There are 184 equate groups that contain two or more milestones.
 
-Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or ). Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://stefvanbuuren.name/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore less likely to be useful for equating. Equate group is `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profiles across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
+Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or `EXP11`) have one item showing a negative relation with age. Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://stefvanbuuren.name/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore, less likely to be useful for equating. Equate group is `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profile across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
 
-We could follow different strategies in selecting which equate group to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as pososble between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
+We could follow different strategies in selecting which equate groups to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as possible between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
 
 
 ## Quality of equate groups {#sec:equatequality}
@@ -113,13 +114,13 @@ knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/
 ```
 (ref:p-d-equate-1339) Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=)
 
-Figure \@ref(fig:p-d-equate-1339) shows how the passing percentage depends on the child's D-score as calculated under four models. All models include the same 1339 milestones, but differ in the number of active equates. The grey curve corresponds to the estimate made under assumption of that milestones are equally difficult. Good milestones for bridging instruments will have a tight bundle of curves. For example, equate `EXP26` has tight bundles especially in models `1339_11` and `1339_33`. By comparison, the curves of the two extreme models vary considerably: the model without any bridge (`1339_0`) or the model with all bridges (`1339_184`) are thus less than ideal. The shallow grey curve of model `1339_184` indicates a poorer overall fit.
+Figure \@ref(fig:p-d-equate-1339) shows how the passing percentage depends on the child's D-score as calculated under four models. All models include the same 1339 milestones, but differ in the number of active equates. The grey curve corresponds to the estimate made under the assumption that milestones are equally difficult. Good milestones for bridging instruments will have a tight bundle of curves. For example, equate `EXP26` has tight bundles especially in models `1339_11` and `1339_33`. By comparison, the curves of the two extreme models vary considerably: the model without any bridges (`1339_0`) or the model with all bridges (`1339_184`) are thus less than ideal. The shallow grey curve of model `1339_184` indicates a poorer overall fit.
 
-Outfit and infit statistics measure the residual deviation of the items to the grey curve. High values (e.g. above 1.4) are undesirable, and  indicate lack of fit to the model. For example, the values for model `1339_184` (1.70 and 1.25) indicate a mediocre fit, whereas models `1339_33` and `1339_11` fit well. Sometimes the individual item curves are steeper than the grey curve. This indicates that these milestones are more discriminative than the combined item. Model `1339_0` lacks a grey curve and has no fit statistics because that model does not form the combined item.
+Outfit and infit statistics measure the residual deviation of the items to the grey curve. High values (e.g. above 1.4) are undesirable and indicate lack of fit to the model. For example, the fit statistics for `EXP26` in model `1339_184` (1.70 and 1.25) indicate a mediocre fit, whereas `EXP26` in models `1339_33` and `1339_11` fits well. Sometimes the individual item curves are steeper than the grey curve. This indicates that these milestones are more discriminative than the combined item. Model `1339_0` lacks a grey curve and has no fit statistics for equate groups, because that model does not fit the combined item.
 
-The probability curves provide a quick visual method for spotting promising and problematic equate groups. Examples of promising equate groups include `COG36`, `FM31`, `GM26` and `GM42`. A little more weaker are `FM26` (has more variability), `FM52` (looks promising, but has a problem with the item `grigcd402` from the `GCDG_JAM_STUNTED` cohort), and `GM35` (does not align cohort `GCDG-ZAF`). In such cases, one may wish to move an item out of an equate group, combine equate groups, or inactivate troublesome links.  
+The probability curves provide a quick visual method for spotting promising and problematic equate groups. Examples of promising equate groups include `COG36`, `FM31`, `GM26` and `GM42`. A little more weak are `FM26` (has more variability), `FM52` (looks promising, but has a problem with the item `grigcd402` from the `GCDG_JAM_STUNTED` cohort), and `GM35` (does not align cohort `GCDG-ZAF`). In such cases, one may wish to move an item out of an equate group, combine equate groups, or inactivate troublesome links.  
 
-Until now we only looked at models that include all 1339 items. In practice, we may improve upon the model by selecting that subset of milestones that fit the Rasch model. The next section looks in this modelling step in more detail.
+Until now we only looked at models that include all 1339 items. In practice, we may improve upon the model by selecting the subset of milestones that fit the Rasch model. The next section looks in this modelling step in more detail.
 
 ## Milestone selection {#sec:milestoneselection}
 
@@ -140,11 +141,11 @@ ggplot(data = m_011$item_fit, aes(x = infit, y = outfit)) +
 ```
 (ref:itemfit) Infit and outfit of 1339 items in model `1339_11`. About 8 percent of the points falls outside the plot.
 
-Item infit and outfit are convenient statistics for selecting the milestones that fit the model better. Figure \@ref(fig:itemfit) displays the infit and outfit statistics of model `1339_11`. The correlation between infit and outfit is high ($r = 0.84$). The expected value of the infit and outfit statistics when the model fits is 1.0. The center of infit and outfit in Figure \@ref(fig:itemfit) is approximately 1.0, so on average one could say the items fit the model. Note however that fit values above and below the values of 1.0 are qualitively different. Item with fit statistics exceeding 1.0 fit the model less well than expected (**underfit**), whereas items with fit statistics lower than 1.0 fit the model better than expected (**overfit**). See [Booklet 1: Section 6.1](https://stefvanbuuren.name/dbook1/sec-itemfit.html) for more details. 
+Item infit and outfit are convenient statistics for selecting the milestones that fit the model. Figure \@ref(fig:itemfit) displays the infit and outfit statistics of model `1339_11`. The correlation between infit and outfit is high ($r = 0.84$). The expected value of the infit and outfit statistics for a perfect fit is 1.0. The centre of infit and outfit in Figure \@ref(fig:itemfit) is approximately 1.0, so on average one could say the items fit the model. Note however that fit values above and below the values of 1.0 are qualitatively different. Item with fit statistics exceeding 1.0 fit the model less well than expected (**underfit**), whereas items with fit statistics lower than 1.0 fit the model better than expected (**overfit**). See [Booklet 1: Section 6.1](https://stefvanbuuren.name/dbook1/sec-itemfit.html) for more details. 
 
 Some practitioners remove both underfitting and overfitting items. However, we like to preserve overfitting items and be more strict in removing items that underfit. The idea is that preservation of the best fitting items may increase scale length, and hence reliability and measurement precision. Figure \@ref(fig:itemfit) draws two cut-off lines at 1.0. Taking items with infit < 1.0 and outfit < 1.0 will select **631 out of 1339** items for further modelling.
 
-A practical problem of item removal is that it also affects equate group composition. By default, a removed item will also be removed from the equate group, so item removal may reduce the size of an equate group below two items. For passive equates this is no problem, since passive equates have no effect on the estimates. However, removal of an underfitting item from an active equate group will break the bridge between the instrument it pertains to and the rest of the item set. Potentially this can result in substantial effects on the D-score distribution of the cohort, as demonstrated in Figure \@ref(fig:model1339). As a solution, we force any items that are members of active equate groups to remain in the analyis. If that leads to substantially worse equate fit in the next model, we must search for alternative equate groups that bridge the same instruments and that are less sensitive to misfit.
+A practical problem of item removal is that it also affects equate group composition. By default, a removed item will also be removed from the equate group, so item removal may reduce the size of an equate group below two items. For passive equates this is no problem, since passive equates do no affect the estimates. However, removal of an underfitting item from an active equate group will break the bridge between the instrument it pertains to and the rest of the item set. Potentially this can result in substantial effects on the D-score distribution of the cohort, as demonstrated in Figure \@ref(fig:model1339). As a solution, we force any items that are members of active equate groups to remain in the analysis. If that leads to substantially worse equate fit in the next model, we must search for alternative equate groups that bridge the same instruments and that are less sensitive to misfit.
 
 
 ```{r equateconfig, results = "asis", include = FALSE, eval=FALSE}
@@ -196,13 +197,15 @@ ggplot(data = ib, aes(x = instrument, y = outfit)) +
 ```
 (ref:itembox) Box plot of the distribution of item outfit per instrument in model `1339_11`.
 
-Some instruments fit better than others. \@ref(fig:itembox) shows the box plots of outfit per instrument. Instruments `bar`, `by1`, `ddi` and `vin` generally fit well, whereas discrepancies between model and data are larger for `bat`, `by2` and `sbi`. Through additional modelling we found that it was extremely difficult to get enough high-quality bridge items that could link `bat` (Battelle Development Inventory) to the instruments. We also found that models without the Battelle were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove `bat` from the model, even though this meant that one cohort (`GCDG-BRA-2`) had to be dropped from the analysis.
+Some instruments fit better than others. Figure \@ref(fig:itembox) shows the box plots of outfit per instrument. Instruments `bar`, `by1`, `ddi` and `vin` generally fit well, whereas discrepancies between model and data are larger for `bat`, `by2` and `sbi`. Through additional modelling, we found that it was extremely difficult to get enough high-quality bridge items that could link `bat` (Battelle Development Inventory) to the other instruments. We also found that models without the Battelle were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove `bat` from the model, even though this meant that one cohort (`GCDG-BRA-2`) had to be dropped from the analysis.
 
-It is not clear why `bat` does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behavior that is different from PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in ASQ-3, which also uses three response categories.
+It is not clear why `bat` does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behaviour that is different from the PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in ASQ-3, which also uses three response categories.
 
 ### Splitting, combining and selecting equate groups
 
-Most of the modelling effort went into finding a set of high-quality equate groups that bind the instruments. For example, we tried to bridge the South-African study placing `vinxxc016` (uses a short sentence) into `EXP26` (two-word sentences) and `EXP36` (sentences of 3 or more words), but neither option led to a reasonable model. On the surface, milestone `by3gmd060` (balances on right foot, 2 seconds) appears to fit within `GM60` (balances on foot), but the analysis showed large discrepancies with the other items in the groups, so it had to be taken out. 
+Most of the modelling effort went into finding a set of high-quality equate groups that link the instruments. For example, we tried to bridge the South-African study placing `vinxxc016` (uses a short sentence) into `EXP26` (two-word sentences) and `EXP36` (sentences of 3 or more words), but neither option led to a reasonable model. On the surface, milestone `by3gmd060` (balances on right foot, 2 seconds) appears to fit within `GM60` (balances on foot), but the analysis showed large discrepancies with the other items in the groups, so it had to be taken out. 
+
+Subject-matter experts identified 38 items that were thought to be cross-culturally incompatible. Table \@ref(tab:crosscultural) provides an overview. Many of such milestones involve a specific language concept (such as a pronoun), refer to stairs (less common in rural settings), help in house or clothing behaviour. These items have different meanings in different contexts, so they were not used to bridge instruments.
 
 ```{r crosscultural, echo=FALSE}
 # taken from 571_17.R
@@ -228,7 +231,7 @@ knitr::kable(tab,
   kableExtra::scroll_box(height = "400px", width = "100%")
 ```
 
-Subject-matter experts identified 38 items that were thought to be cross-culturally incompatible. Table \@ref(tab:crosscultural) provides an overview. Many of such milestones involve a specific language concept (such as a pronoun), refer to stairs (less common in rural settings), help in house or clothing behavior. These items have different meanings in different context, so they were not used to bridge instruments.
+
 
 
 ```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
@@ -241,9 +244,9 @@ pdif <- dmetric::plot_p_d_equate(data = dmetric::gcdg_lean , model = dmetric::mo
 
 ## Item information {#sec:iteminformation}
 
-Item information is a psychometric measure the quantifies the utility of the item, given the ability level. So, depending on the person that fills in the item (i.e. the persons ability level), the item provides a certain amount of information to that persons final D-score. The item information can be calculated as the conditional probability to endorse an item ($P(\hat\delta_i)$) times the conditional probability to fail an item ($1-P(\hat\delta_i)$). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when $P(\hat\delta_i) = 0.5$.
+Item information is a psychometric measure that quantifies the utility of the item, given the ability level (i.e. $D$-score). So, depending on the person that fills in the item, the item provides a certain amount of information to that person's final $D$-score. The item information can be calculated as the conditional probability to endorse the item ($P(\hat\delta_i)$) times the conditional probability to fail the item ($1-P(\hat\delta_i)$). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when $P(\hat\delta_i) = 0.5$.
 
-The information is inversely related to the error of measurement, thus more information amouts to less error of measurement. For each item score in the data, we can compute the amount of information it contributed to the model D-score. By summing this information for each item in the model, we can obtain a measure of certainty about the difficulty estimate of the item. This sum of information holds the number of times the item was administered, and the probability of endorsing the item for each assessment. We can grade the items by the information into categories A (best) to D (worst) and visualize how certain we are about the difficulty estimates of the items. In Figure \@ref(fig:iteminfo), the grades are displayed for each item by their difficulty (tau). Most items are graded higher than C, 30 items have an information grade of D and may benefit from more data from future studies. The equate groups are displayed as black asterisk and mostly have grade A.    
+The information is inversely related to the error of measurement, thus more information amounts to less error of measurement. For each item score in the data, we can compute the amount of information it contributed to the model D-score. By summing this information for each item in the model, we can obtain a measure of certainty about the difficulty estimate of the item. This sum of information holds the number of times the item was administered, and the probability of endorsing the item for each assessment. We can grade the items by the information into categories A (best) to D (worst) and visualize how certain we are about the difficulty estimates of the items. In Figure \@ref(fig:iteminfo), the grades are displayed for each item by their difficulty (tau). Most items are graded higher than C, 30 items have an information grade of D and may benefit from more data from future studies. The equate groups are displayed as black asterisk and mostly have grade A.    
 
 ```{r iteminfo, echo = FALSE, warning = FALSE, message = FALSE,fig.cap='(ref:iteminfo)', fig.keep='all',}
 library(dmetric)
@@ -312,6 +315,6 @@ There is no single index of model fit that will detect all possible disturbances
 - preserving well-fitting historical models as new data become available;
 - maintaining a reasonable calculation time.
 
-We fitted a total number of 140 models on the data, and made many choices that weigh the above objectives. The final model for the GCDG data consists of 565 items (originating from 14 instruments) that fit the Rasch model and that connect to each other through 18 equate groups. Due to the sparseness of data at the very young ages, the quality of the model is best for ages between 4-36 months. 
+We fitted a total number of 140 models on the data, and made many choices that weigh the above objectives. The final model for the GCDG data consists of 565 items (originating from 14 instruments) that fit the Rasch model and that are connected through 18 equate groups. Due to the sparseness of data at the very young ages, the quality of the model is best for ages between 4-36 months. 
 
 Model `565_18` formed the basis of the publication by @Weber2019. Additional detail on model `565_18` is available through the [`dmodel` shiny app](https://tnochildhealthstatistics.shinyapps.io/dmodel/). 

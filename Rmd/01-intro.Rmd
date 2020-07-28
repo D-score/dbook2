@@ -44,22 +44,23 @@ This booklet addresses the problem *how to define and calculate the D-score base
 Many of the techniques are well known within psychometrics and educational research. This booklet translates the concepts to the field of child development.
 
 ## Relevance of the work {#sec:relevance}
+<!--- Also add some remarks or links to the SDG 4.2.1; its part of the relevance for this work --->
 
 We all like our children to grow and prosper. The *first 1000 days* refers to the time needed for a child to grow from conception to its second birthday. During this period, the architecture of the developing brain is very open to the influence of relationships and experiences. It is a time of rapid change that lays the groundwork for later health and happiness. 
 
 Professionals and parents consider it necessary to monitor children’s development. While we can track the child’s physical growth by growth charts to identify children with signs of potential delay, there are no charts for monitoring child development. To create such charts, we need to have a unit of development, similar to units like centimetres or kilograms. 
 
-The D-score is a way to define a unit of child development. With the D-score, we see that progress is much faster during infancy, and that different children develop at different rates. The D-score also allow us to define a “normal” range that we can use to filter out those who are following a more pathological course. There is good evidence that early identification and early intervention improve the outcomes of children [@britto2017]. Early intervention is crucial for children with developmental disabilities because barriers to healthy development early in life impede progress at each subsequent stage.
+The D-score is a way to define a unit of child development. With the D-score, we see that progress is much faster during infancy, and that different children develop at different rates. The D-score also allows us to define a “normal” range that we can use to filter out those who are following a more pathological course. There is good evidence that early identification and early intervention improve the outcomes of children [@britto2017]. Early intervention is crucial for children with developmental disabilities because barriers to healthy development early in life impede progress at each subsequent stage.
 
 Monitoring child development provides caregivers and parents with reliable information about the child and an opportunity to intervene at an early age. Understanding the developmental health of populations of children allows organisations and policymakers to make informed decisions about programmes that support children’s greatest needs [@bellman2013].
 
 ## Why this booklet? {#sec:why}
 
-We believe that *there cannot be one instrument* for measuring child development that is suitable for all situations. In general, the tool needs tailoring to the setting. We also believe that *there can be one scale* for measuring child development and that this scale is useful for many applications. 
+We believe that *there can be one scale* for measuring child development and that this scale is useful for many applications. We also believe that *there cannot be one instrument* for measuring child development that is suitable for all situations. In general, the tool needs tailoring to the setting.
 
-We see that practitioners often view instruments and scales as exchangeable. In daily practice the practitioner would pick a particular tool to measure a specific faculty, which then effectively produces a "scale score". Each tool produces its own score, which then feeds into the diagnostic and monitoring process.
+We see that practitioners often view instruments and scales as exchangeable. In daily practice, the practitioner would pick a particular tool to measure a specific faculty, which then effectively produces a "scale score". Each tool produces its own score, which then feeds into the diagnostic and monitoring process.
 
-We have always found it difficult to explain to scales and instruments are different things. For us, a scale is a continuous concept, like "distance", "temperature" or "child development", and the instrument is the way to assign values to the particular object being measured. For measuring distance, we use devices like rods, tapes, sonar, radar, geo-location, or red-shift detection, and we can express the results as the location under the underlying scale (e.g., as number of meters). It would undoubtedly be an advance if we could establish a *unit of child development*, and express the measurement as the number of units. If we succeed, we can compare child development measured through different devices. This booklet explores the theory and practice for making that happen.
+We have always found it difficult to explain that scales and instruments are different things. For us, a scale is a continuous concept, like "distance", "temperature" or "child development", and the instrument is the way to assign values to the particular object being measured. For measuring distance, we use devices like rods, tapes, sonar, radar, geo-location, or red-shift detection, and we can express the results as the location under the underlying scale (e.g., number of meters). It would undoubtedly be an advance if we could establish a *unit of child development*, and express the measurement as the number of units. If we succeed, we can compare child development scores, that are measured through different devices. This booklet explores the theory and practice for making that happen.
 
 ## Intended audience {#sec:audience}
 
@@ -69,8 +70,8 @@ We aim for three broad audiences:
 - Policymakers in international settings;
 - Statisticians, methodologists, and data scientists.
 
-Professionals in child development are constantly faced with the problem that different instruments for measuring child development yield incomparable scores. This booklet introduces and illustrates sound psychometric techniques *for extracting comparable scores from existing instruments*. We hope this our approach will ease communication between professionals.
+Professionals in child development are constantly faced with the problem that different instruments for measuring child development yield incomparable scores. This booklet introduces and illustrates sound psychometric techniques *for extracting comparable scores from existing instruments*. We hope that our approach will ease communication between professionals.
 
-Policymakers in international settings are looking for simple, versatile and cheap instruments to gain insight into the effect of interventions. The ability to measure child development by a single number *enhances priority setting and leads to a more accurate understanding of policy effects*.
+Policymakers in international settings are looking for simple, versatile, and cheap instruments to gain insight into the effectiveness of interventions. The ability to measure child development by a single number *enhances priority setting and leads to a more accurate understanding of policy effects*.
 
 The text may appeal to statisticians and data scientists for *the simplicity of the concepts, for the (somewhat unusual) application of statistical models to discard data, for the ease of interpretation of the result, and for the availability of software*.

@@ -280,18 +280,19 @@ items measure language skills and 12 items tap into motor skills
 <!-- Haeussler IM, Marchant T. Tepsi: test de desarrollo psicomotor
 2-5 años. Eds. Universidad Católica de Chile, 1999 -->
 
-The **Ages and Stages Questionnaire (`asq`)** measures developmental
-progress in children aged 2 mo – 5.5 yrs. The instrument
-distinguishes development in five areas: personal-social, gross motor, fine
-motor, problem solving and communication. The caregiver completes 30 items per age intervals and [@squires2009].
-<!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third
-Edition (ASQ- 3™). A parent-completed child-monitoring system Paul H.
-Brookes Publishing Co., Baltimore (2009) -->
+The **Ages and Stages Questionnaire (`asq`)** measures developmental progress in
+children aged 2 mo – 5.5 yrs. The instrument distinguishes development in five
+areas: personal-social, gross motor, fine motor, problem solving, and
+communication. The caregiver completes 30 items per age intervals and
+[@squires2009].
+<!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ-
+3™). A parent-completed child-monitoring system Paul H. Brookes Publishing Co.,
+Baltimore (2009) -->
 
 The **Stanford Binet Intelligence Scales (`sbi`)** is a cognitive
 ability and intelligence test to diagnose developmental deficiencies
 in young children. The items divide into five subtests: fluid
-reasoning, knowledge, quantitative reasoning, visual-spatial processing
+reasoning, knowledge, quantitative reasoning, visual-spatial processing,
 and working memory [@roid2003][@hagen1986].
 <!-- Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS
 Psychological Tests, 2003. -->
