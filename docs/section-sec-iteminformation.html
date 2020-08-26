@@ -109,7 +109,10 @@
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-ch-modellingequates.html"><a href="section-ch-modellingequates.html"><i class="fa fa-check"></i><b>5</b> Modelling equates</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
+<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-data-combination"><i class="fa fa-check"></i><b>5.1.1</b> Data combination</a></li>
+<li class="chapter" data-level="5.1.2" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-equate-group-formation"><i class="fa fa-check"></i><b>5.1.2</b> Equate group formation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="section-sec-modellingstrategies.html"><a href="section-sec-modellingstrategies.html"><i class="fa fa-check"></i><b>5.2</b> Modelling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-sec-impactequate.html"><a href="section-sec-impactequate.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
 <li class="chapter" data-level="5.4" data-path="section-sec-ageprofiles.html"><a href="section-sec-ageprofiles.html"><i class="fa fa-check"></i><b>5.4</b> Age profiles of similar milestones</a></li>
@@ -170,18 +173,17 @@
             <section class="normal" id="section-">
 <div id="section-sec:iteminformation" class="section level2">
 <h2><span class="header-section-number">5.8</span> Item information</h2>
-<p>Item information is a psychometric measure the quantifies the utility of the item, given the ability level. So, depending on the person that fills in the item (i.e. the persons ability level), the item provides a certain amount of information to that persons final D-score. The item information can be calculated as the conditional probability to endorse an item (<span class="math inline">\(P(\hat\delta_i)\)</span>) times the conditional probability to fail an item (<span class="math inline">\(1-P(\hat\delta_i)\)</span>). Accordingly, the maximum information an item can provide is when the probability to endorse an item is equal to the probability to fail, i.e. when <span class="math inline">\(P(\hat\delta_i) = 0.5\)</span>.</p>
-<p>The information is inversely related to the error of measurement, thus more information amouts to less error of measurement. For each item score in the data, we can compute the amount of information it contributed to the model D-score. By summing this information for each item in the model, we can obtain a measure of certainty about the difficulty estimate of the item. This sum of information holds the number of times the item was administered, and the probability of endorsing the item for each assessment. We can grade the items by the information into categories A (best) to D (worst) and visualize how certain we are about the difficulty estimates of the items. In Figure <a href="section-sec-iteminformation.html#fig:iteminfo">5.6</a>, the grades are displayed for each item by their difficulty (tau). Most items are graded higher than C, 30 items have an information grade of D and may benefit from more data from future studies. The equate groups are displayed as black asterisk and mostly have grade A.</p>
+<p>Item information is a psychometric measure that quantifies the sensitivity of the item to changes in the person’s ability. An item is most sensitive around the D-score value where the PASS probability equals the FAIL probability, which corresponds to the item difficulty (<span class="math inline">\(\delta_i\)</span>). One unit change around <span class="math inline">\(\delta_i\)</span> has a large effect on the probability of endorsing, while one unit change far away from <span class="math inline">\(\delta_i\)</span> has negligible impact. Suppose person A had passing probability <span class="math inline">\(0.7\)</span> for some item. The information delivered by that item for person A is the product <span class="math inline">\(0.7 \times (1.0 - 0.7) = 0.21\)</span>. Suppose person B has a D-score that coincides with the difficulty level of the item. In that case, the information for B equals <span class="math inline">\(0.5 \times (1 - 0.5) = 0.25\)</span>, the maximum. Likewise, for a person C with high ability, the information could be <span class="math inline">\(0.98 * 0.02 = 0.02\)</span>, so that item carries almost no information for person C.</p>
+<p>The information is inversely related to the error of measurement. More information amounts to less measurement error. For each response in the data, we can compute the amount of information it contributed to the model D-score. By summing the information over persons, we obtain a measure of certainty about the difficulty estimate of the item. This sum of information incorporates both the number of administrations and the quality of the match between person abilities and item difficulty.</p>
 <div class="figure" style="text-align: center"><span id="fig:iteminfo"></span>
-<img src="dbook2_files/figure-html/iteminfo-1.png" alt="Item information grade by item difficulty (tau) for the final model" width="672" />
+<img src="dbook2_files/figure-html/iteminfo-1.png" alt="Item information grade by item difficulty for the final model" width="672" />
 <p class="caption">
-Figure 5.6: Item information grade by item difficulty (tau) for the final model
+Figure 5.7: Item information grade by item difficulty for the final model
 </p>
 </div>
 
-<!-- Weet even niet zeker of het stukje hieronder erbij moeten doen. Het geeft net wat meer "informatie" over de equate groups, maar het belangrijkste staat eigenlijk al in de plot hierboven.
--->
-<p>In our model, equate groups are very important and the selection of the best performing item groups was one of the main modelling steps and an important modelling focus. Hence, the information grade for the equate groups in our model is very high (17 equate groups were graded an A and 1 a B). In Table <a href="section-sec-iteminformation.html#tab:equateinfo">5.2</a> the information for each item is displayed with in the “n” column the number of times the items in the equate groups were administered in the data.</p>
+<p>Figure <a href="section-sec-iteminformation.html#fig:iteminfo">5.7</a> displays the summed information for each item, divided into four grades: A(best) to D (worst). The information grade measures the stability of the difficulty estimate. Most items receive grades higher than C. In total, 30 milestones have grade D. Adding these items to future studies may yield important additional information.</p>
+<p>The red circles indicate active equate groups. Most have grade A, so we have a lot of information about the items that form the active equate groups. Table <a href="section-sec-iteminformation.html#tab:equateinfo">5.2</a> displays more detailed information for the active equate groups. The sample sizes are reasonably large. Many information statistics are well is above 100; the criterion for Grade A. The interpretation of this criterion is as follows. Suppose that we obtain a sample of 400 persons who are all perfectly calibrated to the item of interest. In that case, the information for that item will be equal to 100.</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
@@ -190,19 +192,19 @@ Figure 5.6: Item information grade by item difficulty (tau) for the final model
 <thead>
 <tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-equate
+Equate group
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-tau
+Difficulty
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-n
+Sample Size
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-info
+Information
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-grade
+Grade
 </th>
 </tr>
 </thead>

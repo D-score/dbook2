@@ -109,7 +109,10 @@
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-ch-modellingequates.html"><a href="section-ch-modellingequates.html"><i class="fa fa-check"></i><b>5</b> Modelling equates</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
+<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-data-combination"><i class="fa fa-check"></i><b>5.1.1</b> Data combination</a></li>
+<li class="chapter" data-level="5.1.2" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-equate-group-formation"><i class="fa fa-check"></i><b>5.1.2</b> Equate group formation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="section-sec-modellingstrategies.html"><a href="section-sec-modellingstrategies.html"><i class="fa fa-check"></i><b>5.2</b> Modelling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-sec-impactequate.html"><a href="section-sec-impactequate.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
 <li class="chapter" data-level="5.4" data-path="section-sec-ageprofiles.html"><a href="section-sec-ageprofiles.html"><i class="fa fa-check"></i><b>5.4</b> Age profiles of similar milestones</a></li>
@@ -174,11 +177,11 @@
 <iframe src="https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=7&amp;labels=cohort,model&amp;sort=cohort;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=" width="760px" height="600px">
 </iframe>
 <p class="caption">
-Figure 5.1: D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click <a href="https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=7&amp;labels=cohort,model&amp;sort=cohort;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=">ZOOM</a> to enlarge the display.
+Figure 5.2: D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click <a href="https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&amp;nrow=2&amp;ncol=2&amp;arr=row&amp;pg=7&amp;labels=cohort,model&amp;sort=cohort;asc,model;asc&amp;filter=&amp;sidebar=&amp;fv=">ZOOM</a> to enlarge the display.
 </p>
 </div>
 
-<p>Figure <a href="section-sec-impactequate.html#fig:model1339">5.1</a> is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculate from the <a href="https://stefvanbuuren.name/dbook1/sec-smoccstudy.html">SMOCC study</a>. In order to speed up calculation, the figure shows a random subsample of 25% of all points. Manipulate the plot controls to switch cohorts.</p>
+<p>Figure <a href="section-sec-impactequate.html#fig:model1339">5.2</a> is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculated from the <a href="https://stefvanbuuren.name/dbook1/sec-smoccstudy.html">SMOCC study</a>. In order to speed up the calculations, the figure shows a random subsample of 25% of all points. Manipulate the plot controls to switch cohorts.</p>
 <p>All models contain 1339 items, but differ in the number of active equate groups. The most salient features per model are:</p>
 <ul>
 <li><code>1339_0</code>: No equate groups, so different instruments in different cohorts are fitted independently;</li>
@@ -186,14 +189,14 @@ Figure 5.1: D-score by age of four models with all 1339 items using 0, 11, 33 an
 <li><code>1339_33</code>: There are 33 equate groups that bridge cohort and instruments;</li>
 <li><code>1339_184</code>: Maximally connects instruments and cohort by all equate groups.</li>
 </ul>
-<p>Comparison of the D-score distibution by age across these models yields various insights:</p>
+<p>Comparison of the D-score distribution by age across these models yields various insights:</p>
 <ul>
-<li><p>The locations of cohorts on the vertical scale depends on the number of active equate groups. For example, for Madagascar (MDG) the points are located around 52 when no equate groups are actived, whereas if all are activated it about 68.</p></li>
+<li><p>The location of cohorts on the vertical scale depends on the number of active equate groups. For example, for Madagascar (MDG) the points are located around 52 when no equate groups are activated, whereas if all are activated it is about 68.</p></li>
 <li><p>The age trend depends on the number of active equate groups. For example, for Colombia (COL) or Ethiopia (ETH), the model without equate groups has a shallow age trend, whereas it is steep for the <code>1339_184</code> model.</p></li>
 <li><p>The vertical spread depends on the number of equate groups. For example, the spread in the Chile-2 (CHL-2) cohort substantially increases with the number of active equates.</p></li>
 <li><p>Model <code>1339_0</code> for the Dutch NLD-SMOCC cohort is equivalent to the model fitted to the <a href="https://stefvanbuuren.name/dbook1/sec-smoccstudy.html">SMOCC study</a> alone. Introducing equate groups compresses the range of scores, especially at the higher end.</p></li>
 </ul>
-<p>We have no seen that the number of active equate groups has a large effect on the model. The next sections looks into the equate groups in more detail.</p>
+<p>We have now seen that the number of active equate groups has a large effect on the model. The next sections look into the equate groups in more detail.</p>
 </div>
             </section>
 

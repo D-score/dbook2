@@ -109,7 +109,10 @@
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-ch-modellingequates.html"><a href="section-ch-modellingequates.html"><i class="fa fa-check"></i><b>5</b> Modelling equates</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
+<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-data-combination"><i class="fa fa-check"></i><b>5.1.1</b> Data combination</a></li>
+<li class="chapter" data-level="5.1.2" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-equate-group-formation"><i class="fa fa-check"></i><b>5.1.2</b> Equate group formation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="section-sec-modellingstrategies.html"><a href="section-sec-modellingstrategies.html"><i class="fa fa-check"></i><b>5.2</b> Modelling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-sec-impactequate.html"><a href="section-sec-impactequate.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
 <li class="chapter" data-level="5.4" data-path="section-sec-ageprofiles.html"><a href="section-sec-ageprofiles.html"><i class="fa fa-check"></i><b>5.4</b> Age profiles of similar milestones</a></li>
@@ -180,8 +183,8 @@
 <p><span class="math display">\[\mathrm{Equate\ infit} = \frac{\sum_{i\in g}\sum_{n}^N (x_{ni}-P_{ni})^2}{\sum_{i\in g}\sum_n^N W_{ni}}.\]</span></p>
 <p>Likewise, we calculate <em>Equate outfit</em> of group <span class="math inline">\(g\)</span> as</p>
 <p><span class="math display">\[\mathrm{Equate\ outfit} = \frac{\sum_{i\in g}\sum_{n}^{N_i} z_{ni}^2}{\sum_{i\in g} N_i},\]</span></p>
-<p>where <span class="math inline">\(N_i\)</span> is the total number of responses observed on item <span class="math inline">\(i\)</span>. The interpretation of these diagnostic is the same as for item infit and item outfit.</p>
-<p>Note that these definitions implicitly assume that the expected response <span class="math inline">\(P_{ni}\)</span> is calculated under a model in which all items in equate group <span class="math inline">\(g\)</span> have the same difficulty. This is not true for passive equate groups. Of course, no one can stop us for calculating the above equate fit statistics for passive groups, but such estimates would ignore the between-item variation in difficulties, and hence gives a too optimistic estimate of quality. The bottom line is: <em>The interpretation of the equate fit statistics should be restricted to active equate groups only</em>.</p>
+<p>where <span class="math inline">\(N_i\)</span> is the total number of responses observed on item <span class="math inline">\(i\)</span>. The interpretation of these diagnostics is the same as for item infit and item outfit.</p>
+<p>Note that these definitions implicitly assume that the expected response <span class="math inline">\(P_{ni}\)</span> is calculated under a model in which all items in equate group <span class="math inline">\(g\)</span> have the same difficulty. This is not true for passive equate groups. Of course, no one can stop us from calculating the above equate fit statistics for passive groups, but such estimates would ignore the between-item variation in difficulties, and hence gives a too optimistic estimate of quality. The bottom line is: <em>The interpretation of the equate fit statistics should be restricted to active equate groups only</em>.</p>
 </div>
 <div id="section-examples-of-well-fitting-equate-groups" class="section level3">
 <h3><span class="header-section-number">4.6.2</span> Examples of well fitting equate groups</h3>
@@ -189,11 +192,11 @@
 <div class="figure" style="text-align: center"><span id="fig:ploteqfit"></span>
 <img src="dbook2_files/figure-html/ploteqfit-1.png" alt="Two equate groups that present a good equate fit." width="960" />
 <p class="caption">
-Figure 4.3: Two equate groups that present a good equate fit.
+Figure 4.4: Two equate groups that present a good equate fit.
 </p>
 </div>
 
-<p>Figure <a href="section-sec-equatefit.html#fig:ploteqfit">4.3</a> shows a diagnostic plot for equate groups <code>REC6</code> (Turns head to sound of bell) and <code>GM42</code> (Walks alone). The items within <code>REC6</code> have slightly different formats in the Bayley I (<code>by1</code>), Dutch Development Instrument (<code>ddi</code>) and the Denver (<code>den</code>). The empirical curves in the upper figure show good overlap, but note that hardly any negative responses were recorded for four of the five studies, so the shared estimate depends primarily on the Dutch sample. Items from equate group <code>GM42</code> appear in six instruments: <code>bar</code>, <code>by1</code>, <code>by2</code>, <code>by3</code>, <code>ddi</code> and <code>gri</code>. Also, here the empirical data are close together, and even a little steeper than the fitted dashed line, which indicates a good equate fit. The infit and outfit indices, shown in the upper left corners, confirm the good fit (fit &lt; 1).</p>
+<p>Figure <a href="section-sec-equatefit.html#fig:ploteqfit">4.4</a> shows a diagnostic plot for equate groups <code>REC6</code> (Turns head to sound of bell) and <code>GM42</code> (Walks alone). The items within <code>REC6</code> have slightly different formats in the Bayley I (<code>by1</code>), Dutch Development Instrument (<code>ddi</code>), and the Denver (<code>den</code>). The empirical curves in the upper figure show good overlap, but note that hardly any negative responses were recorded for four of the five studies, so the shared estimate depends primarily on the Dutch sample. Items from equate group <code>GM42</code> appear in six instruments: <code>bar</code>, <code>by1</code>, <code>by2</code>, <code>by3</code>, <code>ddi</code> and <code>gri</code>. Also, here the empirical data are close together, and even a little steeper than the fitted dashed line, which indicates a good equate fit. The infit and outfit indices, shown in the upper left corners, confirm the good fit (fit &lt; 1).</p>
 </div>
 <div id="section-examples-of-equate-groups-with-poor-equate-fit" class="section level3">
 <h3><span class="header-section-number">4.6.3</span> Examples of equate groups with poor equate fit</h3>
@@ -201,11 +204,11 @@ Figure 4.3: Two equate groups that present a good equate fit.
 <div class="figure" style="text-align: center"><span id="fig:ploteqpoor"></span>
 <img src="dbook2_files/figure-html/ploteqpoor-1.png" alt="Two equate groups that present a poor equate fit." width="960" />
 <p class="caption">
-Figure 4.4: Two equate groups that present a poor equate fit.
+Figure 4.5: Two equate groups that present a poor equate fit.
 </p>
 </div>
 
-<p>Figure <a href="section-sec-equatefit.html#fig:ploteqpoor">4.4</a> shows examples for groups <code>COG24</code> (Bangs in play / Bangs 2 blocks) and <code>EXP12</code> (Babbles). In both cases there is substantial variation in location between the empirical curves. For <code>COG24</code> we find that the fitted curve is closer to the <code>den</code> item, which suggests that the equate difficulty is mostly based on the <code>den</code> item. Items from equate group <code>EXP12</code> have different format in instruments <code>by1</code>, <code>ddi</code>, and <code>gri</code>. The empirical curves, with different colors for each instrument, are not close to each other, nor close to the fitted curve. Note that all infit and outfit statistics are fairly high, indicating poor fit. Both equates are candidates for deactivation in a next modeling step.</p>
+<p>Figure <a href="section-sec-equatefit.html#fig:ploteqpoor">4.5</a> shows examples for groups <code>COG24</code> (Bangs in play / Bangs 2 blocks) and <code>EXP12</code> (Babbles). In both cases there is substantial variation in location between the empirical curves. For <code>COG24</code> we find that the fitted curve is closer to the <code>den</code> item, which suggests that the equate difficulty is mostly based on the <code>den</code> item. Items from equate group <code>EXP12</code> have different format in instruments <code>by1</code>, <code>ddi</code>, and <code>gri</code>. The empirical curves, with different colours for each instrument, are not close to each other, nor close to the fitted curve. Note that all infit and outfit statistics are fairly high, indicating poor fit. Both equates are candidates for deactivation in a next modelling step.</p>
 </div>
 </div>
             </section>

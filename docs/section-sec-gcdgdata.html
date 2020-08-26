@@ -109,7 +109,10 @@
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="section-ch-modellingequates.html"><a href="section-ch-modellingequates.html"><i class="fa fa-check"></i><b>5</b> Modelling equates</a><ul>
-<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a></li>
+<li class="chapter" data-level="5.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html"><i class="fa fa-check"></i><b>5.1</b> GCDG data: design and description</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-data-combination"><i class="fa fa-check"></i><b>5.1.1</b> Data combination</a></li>
+<li class="chapter" data-level="5.1.2" data-path="section-sec-gcdgdata.html"><a href="section-sec-gcdgdata.html#section-equate-group-formation"><i class="fa fa-check"></i><b>5.1.2</b> Equate group formation</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="section-sec-modellingstrategies.html"><a href="section-sec-modellingstrategies.html"><i class="fa fa-check"></i><b>5.2</b> Modelling strategies</a></li>
 <li class="chapter" data-level="5.3" data-path="section-sec-impactequate.html"><a href="section-sec-impactequate.html"><i class="fa fa-check"></i><b>5.3</b> Impact of number of active equate groups</a></li>
 <li class="chapter" data-level="5.4" data-path="section-sec-ageprofiles.html"><a href="section-sec-ageprofiles.html"><i class="fa fa-check"></i><b>5.4</b> Age profiles of similar milestones</a></li>
@@ -170,10 +173,31 @@
             <section class="normal" id="section-">
 <div id="section-sec:gcdgdata" class="section level2">
 <h2><span class="header-section-number">5.1</span> GCDG data: design and description</h2>
-<p>Chapter <a href="section-sec-gcdgoverview.html#section-sec:gcdgoverview">2.1</a> provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obatined on 12 instruments for measuring child development across 16 cohorts.</p>
-<p>We coded every items as 0 (fail), 1 (pass) or missing. The Battelle Developmental Inventory scores items as 0 (fail), 1 or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 of these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1.</p>
-<p>We concatenated the datasets from these cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.</p>
-<p>Subject matter experts classified items into groups of similar appearing items, thus forming 184 equate groups. Each equate group contains at least two items.</p>
+<div id="section-data-combination" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Data combination</h3>
+<p>Section <a href="section-sec-gcdgoverview.html#section-sec:gcdgoverview">2.1</a> provides an overview of the data collected by Global Child Development Group. The group collected item level measurements obtained on 12 instruments for measuring child development across 16 cohorts.</p>
+<p>We coded every item as 0 (FAIL), 1 (PASS) or missing. For some instrument we did some additional recoding to restrict to these two response categories. The Battelle Developmental Inventory scores items as 0 (FAIL), 1, or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 for these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1.</p>
+<p>We concatenated the datasets from the GCDG cohorts cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.</p>
+</div>
+<div id="section-equate-group-formation" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Equate group formation</h3>
+<p>A group of 13 subject-matter experts from the Global Child Development Group cross-walked the available instruments for similar milestones. This group</p>
+<ul>
+<li>developed an item coding schema;</li>
+<li>matched similarly appearing items stemming from different instruments;</li>
+<li>formed an opinion about the quality of each match;</li>
+<li>noted peculiarities of the matches;</li>
+<li>reported the results as a series of detailed Excel spreadsheets.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:equatesheetpic"></span>
+<img src="fig/equate_excel.png" alt="A snapshot of information generated by subject-matter experts." width="760px" />
+<p class="caption">
+Figure 5.1: A snapshot of information generated by subject-matter experts.
+</p>
+</div>
+
+<p>The group evaluated around 1500 milestones. After several days, this highly-skilled, intensive labour resulted in a series of spreadsheets. Figure <a href="section-sec-gcdgdata.html#fig:equatesheetpic">5.1</a> shows an example. These sheets formed the basis of an initial list of 184 equate groups, each consisting of at least two items.</p>
+</div>
 </div>
             </section>
 
