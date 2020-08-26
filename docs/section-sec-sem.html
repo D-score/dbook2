@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Impact of measurement error | D-score booklet II</title>
+  <title>6.2 Precision of the D-score | D-score booklet II</title>
   <meta name="description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Impact of measurement error | D-score booklet II" />
+  <meta property="og:title" content="6.2 Precision of the D-score | D-score booklet II" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://stefvanbuuren.name/dbook2" />
   <meta property="og:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="stefvanbuuren/dbook2" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Impact of measurement error | D-score booklet II" />
+  <meta name="twitter:title" content="6.2 Precision of the D-score | D-score booklet II" />
   
   <meta name="twitter:description" content="The D-score is a one-number summary that quantifies generic development of children, closely modelled after body measurements like height and weight. This booklet describes application of the D-score where different groups are measured by different instruments." />
   <meta name="twitter:image" content="https://stefvanbuuren.name/dbook2fig/shirleypd-1.png" />
@@ -126,9 +126,9 @@
 <li class="chapter" data-level="5.9" data-path="section-sec-finalmodel.html"><a href="section-sec-finalmodel.html"><i class="fa fa-check"></i><b>5.9</b> Final model</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="section-ch-ability.html"><a href="section-ch-ability.html"><i class="fa fa-check"></i><b>6</b> Comparing ability</a><ul>
-<li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> D-score distribution by study</a></li>
-<li class="chapter" data-level="6.2" data-path="section-sec-sem.html"><a href="section-sec-sem.html"><i class="fa fa-check"></i><b>6.2</b> Impact of measurement error</a></li>
-<li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage and scores</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-sec-dscores.html"><a href="section-sec-dscores.html"><i class="fa fa-check"></i><b>6.1</b> Comparing child development across studies</a></li>
+<li class="chapter" data-level="6.2" data-path="section-sec-sem.html"><a href="section-sec-sem.html"><i class="fa fa-check"></i><b>6.2</b> Precision of the D-score</a></li>
+<li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-coverage-of-the-scale"><i class="fa fa-check"></i><b>6.3.1</b> Domain coverage of the scale</a></li>
 <li class="chapter" data-level="6.3.2" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-d-scores"><i class="fa fa-check"></i><b>6.3.2</b> Domain D-scores</a></li>
 </ul></li>
@@ -172,51 +172,25 @@
 
             <section class="normal" id="section-">
 <div id="section-sec:sem" class="section level2">
-<h2><span class="header-section-number">6.2</span> Impact of measurement error</h2>
-<p>For each estimated D-score from the calibrated model, the precision of the
-estimate can be determined. This precision can be expressed as the standard
-error of measurement (<span class="math inline">\(sem\)</span>). The standard error of measurement is inversely
-related to the number of items. Thus, when more items are administered for a
-person, the measurement error for the D-score of this person is smaller.
-As is shown in Figure <a href="section-sec-sem.html#fig:semforn">6.2</a>, the <span class="math inline">\(sem\)</span> drops fast when the number of
-items is increased to 15, and still some more until the number of items is 30.
-More than 30 items has little effect on the <span class="math inline">\(sem\)</span>.</p>
+<h2><span class="header-section-number">6.2</span> Precision of the D-score</h2>
+<p>The <a href="https://stefvanbuuren.name/dbook1/sec-dscoreestimation.html#eap-algorithm-numerical-example">EAP algorithm</a> estimates the D-score from a set of PASS/FAIL scores. The standard deviation of the posterior distribution (or <em>sem</em>: standard error of measurement) quantifies the imprecision of the D-score estimate. The <em>sem</em> is inversely related to the number of items. Thus, when we administer more milestones, the sem of the D-score drops.</p>
 <div class="figure" style="text-align: center"><span id="fig:semforn"></span>
-<img src="dbook2_files/figure-html/semforn-1.png" alt="Standard error of measurement (\(sem\)) when the number of items increase." width="576" />
+<img src="dbook2_files/figure-html/semforn-1.png" alt="Standard error of measurement (sem) as a function of the number of items." width="576" />
 <p class="caption">
-Figure 6.2: Standard error of measurement (<span class="math inline">\(sem\)</span>) when the number of items increase.
+Figure 6.2: Standard error of measurement (<em>sem</em>) as a function of the number of items.
 </p>
 </div>
 
-<p>The precision of the D-score estimate is also affected by the information that
-the items that are administered contribute to the D-score. The information
-that in item contributes is larger when the item discrimminates well between
-different reponders. Therefore, the information is a function of the probability
-to endore the item. For example, if the items are too easy and the probability
-to pass the item given the D-score is <span class="math inline">\(P\)</span> &gt; 0.90, the <span class="math inline">\(sem\)</span> is larger than
-when the difficulty of the administered items is closer to the D-score (i.e.
-<span class="math inline">\(P\)</span> = 0.50). The <span class="math inline">\(sem\)</span> for age in GCDG data (see Figure <a href="section-sec-sem.html#fig:semfora">6.3</a>)
-shows that for some ages, the <span class="math inline">\(sem\)</span> is larger than for others. This is on the
-one hand due to the number of items available in that age range, but also to the
-design of the cohorts where sometimes relatively easy items are administered.</p>
+<p>Figure <a href="section-sec-sem.html#fig:semforn">6.2</a> shows that the <em>sem</em> drops off rapidly when the number of
+items is low and stabilises after about 35 items. Apart from test length, the precision of the D-score also depends on item information (c.f. section <a href="section-sec-iteminformation.html#section-sec:iteminformation">5.8</a>). Administering items that are too easy, or too difficult, does not improve precision. The figure suggests that - in practice - a single D-score cannot be more precise than 0.5 D-score units.</p>
 <div class="figure" style="text-align: center"><span id="fig:semfora"></span>
-<img src="dbook2_files/figure-html/semfora-1.png" alt="Standard error of measurement (\(sem\)) in each age group." width="576" />
+<img src="dbook2_files/figure-html/semfora-1.png" alt="Mean DAZ \(\pm\) sem as a function of age." width="672" />
 <p class="caption">
-Figure 6.3: Standard error of measurement (<span class="math inline">\(sem\)</span>) in each age group.
+Figure 6.3: Mean DAZ <span class="math inline">\(\pm\)</span> <em>sem</em> as a function of age.
 </p>
 </div>
 
-<p>In Figure <a href="section-sec-sem.html#fig:dscoresems">6.4</a>, the <span class="math inline">\(sem\)</span> per age group is shown for each
-cohort separately. This illustrates the differences in design between the
-cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the <code>ddi</code> was
-used as a screener and items had the probability to pass of approximately
-<span class="math inline">\(P\)</span>=0.80 (quartile range between 0.62 &lt; <span class="math inline">\(P\)</span> &gt; 1.00), and the number of items
-administered per measurement is about 10 items (quartile range 6 to 12 items).
-The Colombia 1 cohort (GCDG-COL-LT45M) was an impact evaluation and has
-administered the <code>by3</code> where each child answered on average 45 items (quartile
-range 38 to 57 items) and the probability to pass was approximately <span class="math inline">\(P\)</span> = 0.64
-(quartile range between 0.53 &lt; <span class="math inline">\(P\)</span> &gt; 0.79). The latter study has therefore more
-precise D-score estimates.</p>
+<p>One may wonder whether the <em>sem</em> depends on age. Figure <a href="section-sec-sem.html#fig:semfora">6.3</a> suggests that this is not the case. The average DAZ is close to zero everywhere, as expected. The interval DAZ <span class="math inline">\(\pm\)</span> <em>sem</em> will cover the true, but unknown, DAZ in about 68% of the cases. While the interval varies somewhat across ages, there is no systematic age trend.</p>
 <div class="figure" style="text-align: center"><span id="fig:dscoresems"></span>
 <iframe src="https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=by_cohort&amp;nrow=1&amp;ncol=1&amp;arr=row&amp;pg=6&amp;labels=cohort&amp;sort=cohort;asc&amp;filter=&amp;sidebar=&amp;fv=" width="760px" height="800px">
 </iframe>
@@ -225,35 +199,23 @@ Figure 6.4: The standard error of measurement (<span class="math inline">\(sem\)
 </p>
 </div>
 
-<p>The <span class="math inline">\(sem\)</span> for an entire cohort or sample can be obtained by pooling the
-individual <span class="math inline">\(sem_i\)</span> using general rule for pooling variances. Accordingly, the
-<span class="math inline">\(sem\)</span> for a sample is obtained by combining the within variance
-<span class="math inline">\(\sum{sem_{i}^2}\)</span> and the between variance <span class="math inline">\(\sigma_d\)</span> as in equation
-<a href="section-sec-sem.html#eq:poolsem">(6.1)</a></p>
-<p><span class="math display" id="eq:poolsem">\[\begin{equation}
-sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} \tag{6.1}
-\end{equation}\]</span></p>
-<p>In Figure <a href="section-sec-sem.html#fig:cohortsem">6.5</a> the sample <span class="math inline">\(sem\)</span> per cohort is displayed. The
-lowest sample <span class="math inline">\(sem\)</span> is found in the Ethiopia study (GCDG-ETH) and the highest in
-the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
-number of items per child, and on the other hand the difficulty of the
-administered items (i.e. the item information).</p>
+<p>Does precision vary with studies? The answer is yes. Figure <a href="section-sec-sem.html#fig:dscoresems">6.4</a> plots the same information as before but now broken down according to cohort. Individual data points are added to give a feel for the design. The Colombia cohort <code>GCDG-COL-LT45M</code> administered the Bayley-III, where each child answered on average 45 items, so the <em>sem</em> is small. In contrast, the Dutch cohort GCDG-NLD-SMOCC collected data on a screener consisting of about ten relatively easy milestones, so the <em>sem</em> is relatively large. As a result, the Colombian D-scores are much more precise than the Dutch.</p>
+<!-- The $sem$ for an entire cohort or sample can be obtained by pooling the -->
+<!-- individual $sem_i$ using general rule for pooling variances. Accordingly, the -->
+<!-- $sem$ for a sample is obtained by combining the within variance -->
+<!-- $\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in equation -->
+<!-- \@ref(eq:poolsem) -->
+<!-- \begin{equation} -->
+<!-- sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} (\#eq:poolsem) -->
+<!-- \end{equation} -->
 <div class="figure" style="text-align: center"><span id="fig:cohortsem"></span>
-<img src="dbook2_files/figure-html/cohortsem-1.png" alt="Standard Error of Measurement (\(sem\)) per cohort." width="672" />
+<img src="dbook2_files/figure-html/cohortsem-1.png" alt="Cohort Standard Error of Measurement (sem)." width="672" />
 <p class="caption">
-Figure 6.5: Standard Error of Measurement (<span class="math inline">\(sem\)</span>) per cohort.
+Figure 6.5: Cohort Standard Error of Measurement (<em>sem</em>).
 </p>
 </div>
 
-<p>Table <a href="section-sec-sem.html#tab:npsem">6.1</a> shows the median
-number of items per child (test length) and the probability to pass the items. In the
-Ethiopia cohort (<code>GCDG-ETH</code>) 39 items were administered with a median
-probability of 0.66 and in the South Africa study (<code>GCDG-ZAF</code>) just 12 items with a median
-probability of 1. Accordingly, in the Ethiopia study more items were
-administered per child that also have a high level of information for the
-D-scores. In the South Africa study only few items were administered per child
-that were also relatively easy and therefore contained less information for the
-D-scores.</p>
+<p>Figure <a href="section-sec-sem.html#fig:cohortsem">6.5</a> summarises the <span class="math inline">\(sem\)</span> over the members of each cohort. The Ethiopia study GCDG-ETH is the most precise. In contrast, the D-score values in studies from South Africa, Ecuador and The Netherlands have sizeable measurement error.</p>
 <table>
 <caption>
 <span id="tab:npsem">Table 6.1: </span>Test length and probability to pass the items per cohort
@@ -261,13 +223,13 @@ D-scores.</p>
 <thead>
 <tr>
 <th style="text-align:left;">
-cohort
+Cohort
 </th>
 <th style="text-align:right;">
-test length (median)
+Test length
 </th>
 <th style="text-align:right;">
-pass probability (median)
+Pass probability
 </th>
 </tr>
 </thead>
@@ -440,6 +402,8 @@ GCDG-ZAF
 </tbody>
 </table>
 <p> </p>
+<p>The ordering of studies depends on test length and item information. Table <a href="section-sec-sem.html#tab:npsem">6.1</a> shows the median number of items per child (test length) and the probability to pass the item. The Ethiopian cohort <code>GCDG-ETH</code> administered 39 milestones with a median probability of 0.66. In contrast, the South Africa study <code>GCDG-ZAF</code> measures 12 items which were all very easy for the sample at hand (median probability of 1.0). One may thus well explain the extremes by test length and item information.</p>
+<p>In general, the design of the study has a significant impact on the precision of the measurement. <a href="https://stefvanbuuren.name/dbook3/">Booklet III</a> addresses the question how one may construct a measurement instrument that will be optimally precise given the goals of the research.</p>
 </div>
             </section>
 
