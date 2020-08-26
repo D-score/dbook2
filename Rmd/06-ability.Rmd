@@ -12,65 +12,46 @@ library(dscore)
 
 > Author: Iris Eekhout
 
-In this chapter the D-score distributions per GCDG cohort are displayed and
-the impact of measurement error is compared between the cohorts. Additionally
-the coverage of the developmental domains is displayed for D-score scale and
-for a single D-score.
+Once we identified a satisfactory D-score model, we may calculate the D-score for children from different cohorts and compare their values. This chapter highlights various techniques and issues for comparing D-score distributions between studies. We will address the following topics:
 
-* D-score distribution by study (\@ref(sec:dscores))
-* Impact of measurement error (\@ref(sec:sem))
-* Domain coverage and scores (\@ref(sec:domains))
+* Comparing child development across studies (\@ref(sec:dscores))
+* Precision of the D-score (\@ref(sec:sem))
+* Domain coverage (\@ref(sec:domains))
 
-## D-score distribution by study {#sec:dscores}
+## Comparing child development across studies {#sec:dscores}
 
-For each study that is included in the GCDG assembly, the D-score can be
-obtained using the developed global model. In Figure \@ref(fig:dscoredist), the D-score
-distributions are displayed for each cohort separately. The blue lines in the
-graphs are the (temporary) references, as explained in \@ref(sec:references).
-
-
-```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:semforn)'}
+```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoredist)'}
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
   height = "800px")
 ```
 (ref:dscoredist) D-score distributions by study. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
 
+Figure \@ref(fig:dscoredist) shows the scatterplot of the D-score by age separately for each cohort. Remember from section \@ref(sec:gcdgoverview) that each study selected its own set of instruments to collect the data. The scatterplots demonstrate a significant advance made possible by the D-score: We can plot the developmental scores of children from __different__ cohorts, with __different__ ages, using __different__ instruments, on the __same__ vertical axis. 
 
+The five blue lines guide the eye. These lines indicate the locations of the -2SD, -1SD, 0SD, +1SD and +2SD quantiles at each age in the combined data.  [Section I:5.4](https://stefvanbuuren.name/dbook1/sec-reference.html) motivates the idea and provides some technical details. We'll come back to these lines in section \@ref(sec:references).
 
-## Impact of measurement error {#sec:sem}
+By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the `GCDG-JAM-STUNTED` cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a weak calibration of the instrument. 
 
-For each estimated D-score from the calibrated model, the precision of the
-estimate can be determined. This precision can be expressed as the standard
-error of measurement ($sem$). The standard error of measurement is inversely
-related to the number of items. Thus, when more items are administered for a
-person, the measurement error for the D-score of this person is smaller.
-As is shown in Figure \@ref(fig:semforn), the $sem$ drops fast when the number of
-items is increased to 15, and still some more until the number of items is 30.
-More than 30 items has little effect on the $sem$.
+Replacing the D-score by the DAZ emphasises any differences both within and between studies.
 
+[Include DAZ plot here]
+
+## Precision of the D-score {#sec:sem}
+
+The [EAP algorithm](https://stefvanbuuren.name/dbook1/sec-dscoreestimation.html#eap-algorithm-numerical-example) estimates the D-score from a set of PASS/FAIL scores. The standard deviation of the posterior distribution (or *sem*: standard error of measurement) quantifies the imprecision of the D-score estimate. The *sem* is inversely related to the number of items. Thus, when we administer more milestones, the sem of the D-score drops.
 
 ```{r semforn, results = 'hide', fig.keep = 'all', fig.cap = '(ref:semforn)', fig.align='center', echo = FALSE, fig.width=6}
 ggplot(data = dmetric::model_lean$dscore )+
-  geom_smooth(aes(x=n, y=sem), se = FALSE, color = "red")+
-  xlab("number of items")
+  geom_smooth(aes(x=n, y=sem), formula = y ~ splines::bs(x, 4), se = FALSE, color = mice::mdc(2))+
+  xlab("Number of items administered") +
+  ylab("Standard error of measurement")
 ```
-(ref:semforn) Standard error of measurement ($sem$) when the number of items increase.
+(ref:semforn) Standard error of measurement (*sem*) as a function of the number of items.
 
+Figure \@ref(fig:semforn) shows that the *sem* drops off rapidly when the number of
+items is low and stabilises after about 35 items. Apart from test length, the precision of the D-score also depends on item information (c.f. section \@ref(sec:iteminformation)). Administering items that are too easy, or too difficult, does not improve precision. The figure suggests that - in practice - a single D-score cannot be more precise than 0.5 D-score units.
 
-The precision of the D-score estimate is also affected by the information that
-the items that are administered contribute to the D-score. The information
-that in item contributes is larger when the item discrimminates well between
-different reponders. Therefore, the information is a function of the probability
-to endore the item. For example, if the items are too easy and the probability
-to pass the item given the D-score is $P$ > 0.90, the $sem$ is larger than
-when the difficulty of the administered items is closer to the D-score (i.e.
-$P$ = 0.50). The $sem$ for age in GCDG data (see Figure \@ref(fig:semfora))
-shows that for some ages, the $sem$ is larger than for others. This is on the
-one hand due to the number of items available in that age range, but also to the
-design of the cohorts where sometimes relatively easy items are administered.
-
-
-```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', results='hide', fig.height=6, fig.width=6, fig.align='center'}
+```{r semfora, echo=FALSE, fig.cap='(ref:semfora)', fig.keep='all', results='hide', fig.height=7, fig.width=7, fig.align='center'}
 # voor individuele metingen
 sem_daz <- dmetric::model_lean$dscore %>%
   mutate(agemos = a *12,
@@ -111,7 +92,7 @@ sem_daz_a <- sem_daz %>%
 ggplot(data = sem_daz_a )+
   geom_point(aes(x=agenum, y=mean_daz)) +
   geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
-  xlab("age(months)")+ ylab("DAZ")+
+  xlab("Age (months)") + ylab("DAZ") +
   ylim(c(-2,2))
 
 #ggplot(data = sem_daz_a )+
@@ -121,19 +102,9 @@ ggplot(data = sem_daz_a )+
 
 
 ```
-(ref:semfora) Standard error of measurement ($sem$) in each age group.
+(ref:semfora) Mean DAZ $\pm$ *sem* as a function of age.
 
-In Figure \@ref(fig:dscoresems), the $sem$ per age group is shown for each
-cohort separately. This illustrates the differences in design between the
-cohorts. For example, the Netherlands 1 cohort (GCDG-NLD-SMOCC), the `ddi` was
-used as a screener and items had the probability to pass of approximately
-$P$=0.80 (quartile range between 0.62 < $P$ > 1.00), and the number of items
-administered per measurement is about 10 items (quartile range 6 to 12 items).
-The Colombia 1 cohort (GCDG-COL-LT45M) was an impact evaluation and has
-administered the `by3` where each child answered on average 45 items (quartile
-range 38 to 57 items) and the probability to pass was approximately $P$ = 0.64
-(quartile range between 0.53 < $P$ > 0.79). The latter study has therefore more
-precise D-score estimates.
+One may wonder whether the *sem* depends on age. Figure \@ref(fig:semfora) suggests that this is not the case. The average DAZ is close to zero everywhere, as expected. The interval DAZ $\pm$ *sem* will cover the true, but unknown, DAZ in about 68% of the cases. While the interval varies somewhat across ages, there is no systematic age trend. 
 
 ```{r dscoresems, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoresems)', fig.align='center'}
 #n items per child Netherlands 1 cohort = 8.5
@@ -158,21 +129,17 @@ knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=b
 ```
 (ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized D-scores (DAZ) per cohort. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display.
 
-The $sem$ for an entire cohort or sample can be obtained by pooling the
-individual $sem_i$ using general rule for pooling variances. Accordingly, the
-$sem$ for a sample is obtained by combining the within variance
-$\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in equation
-\@ref(eq:poolsem)
+Does precision vary with studies? The answer is yes. Figure \@ref(fig:dscoresems) plots the same information as before but now broken down according to cohort. Individual data points are added to give a feel for the design. The Colombia cohort `GCDG-COL-LT45M` administered the Bayley-III, where each child answered on average 45 items, so the *sem* is small. In contrast, the Dutch cohort GCDG-NLD-SMOCC collected data on a screener consisting of about ten relatively easy milestones, so the *sem* is relatively large. As a result, the Colombian D-scores are much more precise than the Dutch.
 
-\begin{equation}
-sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} (\#eq:poolsem)
-\end{equation}
+<!-- The $sem$ for an entire cohort or sample can be obtained by pooling the -->
+<!-- individual $sem_i$ using general rule for pooling variances. Accordingly, the -->
+<!-- $sem$ for a sample is obtained by combining the within variance -->
+<!-- $\sum{sem_{i}^2}$ and the between variance $\sigma_d$ as in equation -->
+<!-- \@ref(eq:poolsem) -->
 
-In Figure \@ref(fig:cohortsem) the sample $sem$ per cohort is displayed. The
-lowest sample $sem$ is found in the Ethiopia study (GCDG-ETH) and the highest in
-the South Africa cohort (GCDG-ZAF). This can be explained on the one hand by the
-number of items per child, and on the other hand the difficulty of the
-administered items (i.e. the item information). 
+<!-- \begin{equation} -->
+<!-- sem = \sqrt{\frac{\sum{sem_{i}^2} + \sigma_d }{N-1}} (\#eq:poolsem) -->
+<!-- \end{equation} -->
 
 ```{r cohortsem, results = 'hide', fig.keep = 'all',  fig.cap = '(ref:cohortsem)', fig.align = 'center', echo = FALSE}
 sem_daz_c <- sem_daz %>% 
@@ -201,34 +168,29 @@ sem_daz_c <- sem_daz %>%
 
   ggplot(data = sem_daz_c, aes(reorder(cohort, sem_pool), sem_pool)) +
   geom_col() + theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-    xlab("")+ ylab("cohort sem")
+    xlab("")+ ylab("Cohort sem")
   
   ## attach main instrument to cohort and see if that relates to sem? Or study kind? Something like that?
  
 ```
-(ref:cohortsem) Standard Error of Measurement ($sem$) per cohort.
+(ref:cohortsem) Cohort Standard Error of Measurement (*sem*).
 
-
-Table \@ref(tab:npsem) shows the median
-number of items per child (test length) and the probability to pass the items. In the
-Ethiopia cohort (`GCDG-ETH`) 39 items were administered with a median
-probability of 0.66 and in the South Africa study (`GCDG-ZAF`) just 12 items with a median
-probability of 1. Accordingly, in the Ethiopia study more items were
-administered per child that also have a high level of information for the
-D-scores. In the South Africa study only few items were administered per child
-that were also relatively easy and therefore contained less information for the
-D-scores.
-
+Figure \@ref(fig:cohortsem) summarises the $sem$ over the members of each cohort. The Ethiopia study GCDG-ETH is the most precise. In contrast, the D-score values in studies from South Africa, Ecuador and The Netherlands have sizeable measurement error. 
 
 ```{r npsem, echo = FALSE}
 kable(sem_daz_c[,c(1,3,6)], 
+      col.names = c("Cohort", "Test length", "Pass probability"),
       caption = "Test length and probability to pass the items per cohort",
       bootabs = TRUE)
 
 ```
 &nbsp;
 
-## Domain coverage and scores {#sec:domains}
+The ordering of studies depends on test length and item information. Table \@ref(tab:npsem) shows the median number of items per child (test length) and the probability to pass the item. The Ethiopian cohort `GCDG-ETH` administered 39 milestones with a median probability of 0.66. In contrast, the South Africa study `GCDG-ZAF` measures 12 items which were all very easy for the sample at hand (median probability of 1.0). One may thus well explain the extremes by test length and item information.
+
+In general, the design of the study has a significant impact on the precision of the measurement. [Booklet III](https://stefvanbuuren.name/dbook3/) addresses the question how one may construct a measurement instrument that will be optimally precise given the goals of the research. 
+
+## Domain coverage {#sec:domains}
  
 The D-score is a one number score that measures early child development. To
 evaluate the content validity of the D-score we can make sure that all
