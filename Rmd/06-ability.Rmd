@@ -10,7 +10,7 @@ library(dscore)
 ```
 # Comparing ability {#ch:ability}
 
-> Author: Iris Eekhout
+> Author: Iris Eekhout, Stef van Buuren
 
 Once we identified a satisfactory D-score model, we may calculate the D-score for children from different cohorts and compare their values. This chapter highlights various techniques and issues for comparing D-score distributions between studies. We will address the following topics:
 
