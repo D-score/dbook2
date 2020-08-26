@@ -130,7 +130,7 @@
 <li class="chapter" data-level="6.2" data-path="section-sec-sem.html"><a href="section-sec-sem.html"><i class="fa fa-check"></i><b>6.2</b> Precision of the D-score</a></li>
 <li class="chapter" data-level="6.3" data-path="section-sec-domains.html"><a href="section-sec-domains.html"><i class="fa fa-check"></i><b>6.3</b> Domain coverage</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-coverage-of-the-scale"><i class="fa fa-check"></i><b>6.3.1</b> Domain coverage of the scale</a></li>
-<li class="chapter" data-level="6.3.2" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-d-scores"><i class="fa fa-check"></i><b>6.3.2</b> Domain D-scores</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-sec-domains.html"><a href="section-sec-domains.html#section-domain-specific-d-scores"><i class="fa fa-check"></i><b>6.3.2</b> Domain-specific D-scores</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="section-ch-SDGindicator.html"><a href="section-ch-SDGindicator.html"><i class="fa fa-check"></i><b>7</b> SDG 4.2.1 Indicator</a><ul>
@@ -173,18 +173,15 @@
             <section class="normal" id="section-">
 <div id="section-sec:domains" class="section level2">
 <h2><span class="header-section-number">6.3</span> Domain coverage</h2>
-<p>The D-score is a one number score that measures early child development. To
-evaluate the content validity of the D-score we can make sure that all
-developmental domains are fairly represented. We distinguish five domains for
-child development: Fine Motor, Gross Motor, Expressive, Receptive, Cognitive.</p>
+<p>The D-score is a one-number summary of early child development. Traditional instruments distinguish domains (like motor, communication, language and cognitive development) and some provide ways to calculate a total score. The D-score, on the other hand, is based on the notion that child development is a unidimensional latent construct and hence does not provide domain scores. And thus, the question is how the D-score represents domains.</p>
+<p>This section explores the following two questions:</p>
+<ul>
+<li>Can we break down the D-score by domain contribution, and if so, can we evaluate whether the D-score fairly represents all domains?</li>
+<li>Can we calculate domain-specific D-scores?</li>
+</ul>
 <div id="section-domain-coverage-of-the-scale" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Domain coverage of the scale</h3>
-<p>The items in the D-score model can be linked to one or more domains and the
-cumulative item information to the D-score for each domain can be evaluated.
-In Figure <a href="section-sec-domains.html#fig:domaincov">6.6</a>, the coverage of the domains for the D-score is
-displayed. This shows that at lower levels of the D-score, gross motor development
-is more dominant and that at higher levels of the D-score the cognitive and
-language domains increase in importance.</p>
+<p>For many items in the D-score model, we had expert information available as to which domain the item belongs. For each item, we calculated the proportion of times the experts assigned it to one of five domains: Fine Motor, Gross Motor, Expressive, Receptive, Cognitive. We then calculated the distribution of domain by age.</p>
 <div class="figure" style="text-align: center"><span id="fig:domaincov"></span>
 <img src="dbook2_files/figure-html/domaincov-1.png" alt="Domain coverage of the D-score scale." width="1056" />
 <p class="caption">
@@ -192,40 +189,199 @@ Figure 6.6: Domain coverage of the D-score scale.
 </p>
 </div>
 
-<p>Note that for some items the domain allocation is missing.</p>
+<p>Figure <a href="section-sec-domains.html#fig:domaincov">6.6</a> shows the domain composition of the D-score across different levels of ability. Note that we miss domain information for a few items. The share of gross-motor is large in early development (e.g., between 15 and 30), and gradually tapers off at higher levels. Reversely, the percentage of cognition and language is relatively small before 30 but rapidly rises as the child matures. These transitions in domain composition look both reasonable and valid.</p>
 </div>
-<div id="section-domain-d-scores" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Domain D-scores</h3>
-<p>It is possible to calculate a D-score that is more representative for a
-specific domain using the current D-score model. We can use only the items
-that load to the domain in question to calculate the D-score for that specific
-domain. Since items may relate to multiple domain, an item can contribute to
-multiple domain specific D-scores. As the D-score methodology is developed
-to measure a single construct for development, the domain D-scores correlate
-highly (<span class="math inline">\(r &gt; 0.95\)</span>). However, these scores can potentially inform on the cohort
-level (Figure <a href="section-sec-domains.html#fig:domaind">6.7</a>) or the individual level (see Figure
-<a href="section-sec-domains.html#fig:domaindex">6.8</a>).</p>
-<p>In Figure <a href="section-sec-domains.html#fig:domaind">6.7</a>, the standardized domain D-score (i.e. DAZ) are displayed for each cohort. The DAZ unit was used to enable comparibility. The error bars around the scores depict the <span class="math inline">\(sem\)</span> interval. The mean domain specific DAZ scores differ within cohorts, however the <span class="math inline">\(sem\)</span> intervals always overlap.</p>
-<!--- the correlations between the daz scores are much lower. How should we interpet that? I think it may also be due to differences in precision of the maesurement. The correlations to the daz based on all items may also be informative on that. Gross motor has low correlations to all scales, but that may also be due to nr of items. --->
+<div id="section-domain-specific-d-scores" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Domain-specific D-scores</h3>
+<p>Suppose we select a domain of interest and calculate the D-score only from items that substantially load onto that domain. We then get a domain-specific D-score. Items that relate to multiple domain contribute to multiple domain-specific D-scores.</p>
 <div class="figure" style="text-align: center"><span id="fig:domaind"></span>
-<img src="dbook2_files/figure-html/domaind-1.png" alt="Domain DAZ per cohort." width="1056" />
+<img src="dbook2_files/figure-html/domaind-1.png" alt="Average domain-specific DAZ \(\pm\) sem by cohort." width="1056" />
 <p class="caption">
-Figure 6.7: Domain DAZ per cohort.
+Figure 6.7: Average domain-specific DAZ <span class="math inline">\(\pm\)</span> <em>sem</em> by cohort.
 </p>
 </div>
 
-<p>In Figure <a href="section-sec-domains.html#fig:domaindex">6.8</a> example scores are displayed for a 3 year old boy
-from the Chili 2 (<code>GCDG-CHL-2</code>) cohort. The filled bars display the available items per domain. Note
-that the number of items for Gross Motor is very low (only 3 items). The white
-overlayed line at 5 items, indicates the bare minimum for a D-score. The grey vertical line displays the overall
-D-score (38.55<span class="math inline">\(D\)</span>) with the <span class="math inline">\(sem\)</span> (0.53) around as the dashed lines. The colored points are the domain D-scores with the <span class="math inline">\(sem\)</span> around in error bars. This plot shows that for the language domains (i.e. Expressive and Receptive), this boy scores relatively low as compared to the motor and cognitive domains.</p>
+<p>Figure <a href="section-sec-domains.html#fig:domaind">6.7</a> displays the standardized domain-specific D-score (i.e. DAZ) per cohort. The DAZ strips out irrelevant age variation, and thus enhances comparability between cohorts. The error bars around the scores depict the <em>sem</em> interval. We observe some variation in domain-specific DAZ scores within cohorts. Still, these differences are relatively small and well within the margins of error. This analysis suggests that the D-score is an excellent overall summary of the domain-specific D-scores.</p>
+<p>The D-score methodology assumes that child development is a unidimensional scale. As a consequence, the correlations between different domain-specific D-scores are extremely high (<span class="math inline">\(r &gt; 0.95\)</span>). It is more interesting to study the correlation between the DAZ equivalent of the domain-specific scores.</p>
+<table>
+<caption>
+<span id="tab:domaincor">Table 6.2: </span>Pearson correlation of the DAZ and five domain-specific DAZ scores
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+DAZ
+</th>
+<th style="text-align:right;">
+Fine motor
+</th>
+<th style="text-align:right;">
+Gross Motor
+</th>
+<th style="text-align:right;">
+Cognitive
+</th>
+<th style="text-align:right;">
+Receptive
+</th>
+<th style="text-align:right;">
+Expressive
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+DAZ
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fine motor
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gross Motor
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cognitive
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Receptive
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Expressive
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Table <a href="section-sec-domains.html#tab:domaincor">6.2</a> lists the Pearson correlation matrix of the DAZ and the five domain-specific DAZ scores. All correlations between the DAZ and the domain-specific scores are high, thus confirming the generic character of the D-score and DAZ. We find high inter-domain correlations for the cognitive-receptive, cognitive-fine motor and expressive-receptive pairs. The gross motor domain appears as somewhat distinct from the four other domains. Its position may be genuine, but could also be related to the smaller number of responses on gross motor milestones in the GCDG data.</p>
 <div class="figure" style="text-align: center"><span id="fig:domaindex"></span>
-<img src="dbook2_files/figure-html/domaindex-1.png" alt="Domain D-scores for a 3 year old boy from the Chile 2 cohort." width="1056" />
+<img src="dbook2_files/figure-html/domaindex-1.png" alt="Domain-specific D-scores for a 3 year old boy." width="1056" />
 <p class="caption">
-Figure 6.8: Domain D-scores for a 3 year old boy from the Chile 2 cohort.
+Figure 6.8: Domain-specific D-scores for a 3 year old boy.
 </p>
 </div>
 
+<p>Figure <a href="section-sec-domains.html#fig:domaindex">6.8</a> displays individual scores for a boy aged three years. The filled bars indicate the number of available items per domain. Note that the number of items for Gross Motor is meagre (only three items). The vertical white line that crosses the horizontal axis at value 5 indicates a minimum number of items needed to calculate a D-score. The grey vertical line indicates the value of the overall D-score (68.55<span class="math inline">\(D\)</span>). The nearby dashed lines are located at one <em>sem</em> (0.53<span class="math inline">\(D\)</span>) distance. The coloured points are the domain-specific D-scores with the <em>sem</em> around in error bars. The plot visualises that the boys’ scores on language domains (i.e. Expressive and Receptive) are low as compared to the motor and cognitive domains. A systematic discrepancy between various domain-specific scores might be an early warning sign for developmental delay.</p>
 
 </div>
 </div>
