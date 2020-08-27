@@ -90,20 +90,16 @@ knitr::kable(tabtrack,
 ```
 &nbsp;
 
-Using the definition from the previous section, we can calculate the percentage of children that are developmentally on track. Table \@ref(tab:ontrack) summarises this statistic by country. At a cut-off value of -2 SD, we expect that about 97.5% of the children will be on track. The actual country estimates fall into the range 93.9 - 99.9 and are thus near the theoretical value. This close correspondence shows that the definition and estimation procedure work as expected.
+Using the definition from the previous section, we can calculate the percentage of children that are developmentally on track. Table \@ref(tab:ontrack) summarises this statistic by country. At a cut-off value of -2 SD, we expect that about 97.7% of the children will be on track. The actual country estimates fall into the range 93.9 - 99.9 and are thus near the theoretical value. This close correspondence shows that the definition and estimation procedure work as expected.
 
 Bear in mind that the measurements leading up to these estimates come from different instruments. It is gratifying to see how well we can do with historical data, thanks to the robust underlying measurement model. Of course, comparability only gets better if all countries would use the same instrument. However, using the same tool everywhere is not a requirement.
 
 
-## Relation to other estimates {#sec:otherestimates}
+## Off-track development and stunted growth {#sec:otherestimates}
 
-@Weber2019 thoroughly discuss the concurrent, discriminant and predictive validity of the D-score in the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired growth in children due to nutrition problems. 
+@Weber2019 thoroughly discuss concurrent, discriminant and predictive validity of the D-score using the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired length growth in children due to nutrition problems. The WHO defines [stunted growth](https://www.who.int/nutrition/healthygrowthproj/en/index1.html) as a height-for-age Z-score below the -2 SD line of the WHO Child Growth Standards (HAZ < -2.0). 
 
-The WHO defines stunted as [when the height-for-age is more than two standard deviations below
-the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html). In Figure \@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
-development in each country. The percentages of stunting differ a lot from the off-track developmental percentages. This indicates that "growth" and "development" are very different constructs. 
-
-```{r stunt, echo=FALSE, fig.cap='(ref:stunt)'}
+```{r stunt, echo=FALSE, fig.width=7, fig.height=7, fig.cap='(ref:stunt)'}
 
 ##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
 #or just load gcdg_lean form dmetric when data in package is updated
@@ -113,17 +109,16 @@ sdg_stunt <-
   mutate(track = ifelse(.data$daz < -2, 0, 1),
          stunting = ifelse(.data$haz < -2, 1, 0)) %>%
   group_by(ctrycd) %>%
-  summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
+  summarize("Off-track" = (1-sum(track, na.rm=TRUE)/sum(!is.na(track))) * 100,
             "n_d" = sum(!is.na(track)),
-            "stunted" = sum(stunting, na.rm=TRUE)/sum(!is.na(stunting)), 
-            "n_stunt" = sum(!is.na(stunting))) %>%
-  pivot_longer(cols = c("off-track", "stunted"), names_to = "Measure", values_to = "Percentage")
+            "Stunted" = (sum(stunting, na.rm=TRUE)/sum(!is.na(stunting))) * 100, 
+            "n_stunt" = sum(!is.na(stunting))) 
+# %>%
+#   pivot_longer(cols = c("Off-track", "Stunted"), names_to = "Measure", values_to = "Percentage")
 
-
-ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
-  geom_bar(stat = "identity", position = position_dodge()) +
-  xlab("Country")
-
+ggplot(data = sdg_stunt, aes(y = `Off-track`, x = Stunted, label = ctrycd)) +
+  geom_text(size = 5) +
+  xlab("Stunting (%)") + ylab("Off-track development (%)")
 
 # hazdaz <- dmetric::gcdg_lean$visit %>% 
 #   left_join(dmetric::model_lean$dscore) %>%
@@ -146,25 +141,33 @@ ggplot(data = sdg_stunt, aes(x = ctrycd, y = Percentage, fill = Measure)) +
 
 
 ```
-(ref:stunt) Percentage off-track development and stunted per country
+(ref:stunt) Off-track development (%) versus stunting (%) per country
 
+Figure \@ref(fig:stunt) plots the percentage off-track and percentage stunting per country. This plot reveals two exciting features:
 
-However, we can see a relation between stunting and development (D-score). When we compare the Standardized D-score (DAZ) in each country for the stunted versus not-stunted children (Figure \@ref(fig:stuntdaz)). The DAZ for the stunted children is always lower in comparison with the not-stunted children.
+* *The variation in stunting in much larger than the variation off-track development*. One might speculate that height is more dependent on the environment than off-track development, and hence more variable.
+* *Stunted growth and off-track development are unrelated*. Ranking countries by stunting or by off-track development yields substantially different orders. This finding provides clear counter-evidence to the argument that stunted growth is as a proxy for delayed development. It may even be the case the child development and physical growth are different maturation processes that develop largely independently. 
 
-```{r stuntdaz, echo=FALSE, fig.width=11, fig.cap= '(ref:stuntdaz)'}
+```{r stuntdaz, echo=FALSE, fig.width=7, fig.cap= '(ref:stuntdaz)'}
 ##DAZ in stunted vs non-stunted (as done in Weber paper)
 sdg_stuntdaz <- 
   dmetric::gcdg_lean$visit %>% 
   left_join(dmetric::model_lean$dscore) %>%
-  mutate(stunting = ifelse(.data$haz < -2, "stunted", "not-stunted")) %>%
+  mutate(stunting = ifelse(.data$haz < -2, "Stunted", "Not stunted")) %>%
   group_by(ctrycd, stunting) %>%
   summarize("DAZ" =  mean(daz, na.rm = TRUE)) %>%
   drop_na()
 
-ggplot(sdg_stuntdaz, aes(x = ctrycd, y = DAZ, fill = stunting))+
-  geom_bar(stat = "identity", position = "dodge")
+ggplot(sdg_stuntdaz, aes(x = stunting, y = DAZ, group = ctrycd))+
+  geom_line(stat = "identity", position = "dodge") + 
+  geom_point() +
+  xlab("Stunting status")
 ```
-(ref:stuntdaz) DAZ for stunted versus not-stunted per country
+(ref:stuntdaz) Difference in mean DAZ  per country between stunted and not stunted children.
+
+However, this is not the whole story. Figure \@ref(fig:stuntdaz) reveals a consistent difference in DAZ between stunted and non-stunted children of about 0.2 - 0.3 SD. There could be factors at the person level that affect both development and height growth. For example, low-income families may lack the resources for adequate nutrition, which may impact both child development and physical growth. 
+
+The exact nature of the relation between stunting and development is still obscure. The D-score provides a means to study the intriguing interplay between both measures in more detail.
 
 
 <!--# To validate the off-track development measured by the D-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
