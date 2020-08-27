@@ -159,7 +159,7 @@ sdg_stuntdaz <-
   drop_na()
 
 ggplot(sdg_stuntdaz, aes(x = stunting, y = DAZ, group = ctrycd))+
-  geom_line(stat = "identity", position = "dodge") + 
+  geom_line() + 
   geom_point() +
   xlab("Stunting status")
 ```
