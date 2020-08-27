@@ -44,20 +44,13 @@ The cohorts included in the GCDG study represent a wide range of countries and i
 
 ## Definition *developmentally on track* {#sec:references}
 
-For child growth, (global) standards are published by the World Health
-Organization (WHO) that are used to monitor growth in children and to define
-whether children are *on track*. Growth standards are defined for
-weight-for-age, length/height-for age, weight-for-length/height, etc. In 2006,
-the methods for constructing a growth reference were reviewed by statisticians
-and growth experts that resulted in an advised strategy for constructing growth
-standard [@borghi2006]. A similar strategy can be used to construct a reference
-standard child development-for-age. This reference standard can then be used to
-determine whether children are *developmentally on track*.
+In 2006, the World Health Organisation (WHO) published the [WHO Child Growth Standards](https://www.who.int/childgrowth/publications/technical_report_pub/en/). These standards specify "how children should grow" and form the basis for widely used anthropometric indicators such as stunting and wasting. We advocate a similar approach for child development. More in particular, the would consist of the following steps:
 
-In Figure \@ref(fig:dscorerefs), the strategy for constructing standards for
-development and to use them to define on track development is visualized in
-several steps. By clicking 'Next', the following step will show in the plot. 
+1. Measure child development on an interval scale;
+2. Estimate the age-conditional reference distribution for normal child development;
+3. Define the indicator *developmentally on track* as the proportion above a chosen cut-off. 
 
+Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical methodology for constructing growth standard [@borghi2006]. Step 3 can be done in different ways, but a applying a simple cut-off fits easily with regular practice in reporting international comparisons.
 
 ```{r dscorerefs, echo=FALSE, out.width="760px", fig.cap='(ref:dscorerefs)' }
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
@@ -67,25 +60,17 @@ knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
 ```
 (ref:dscorerefs) Illustration of the method to define on-track development
 
+Figure \@ref(fig:dscorerefs) demonstrates steps 2 and 3 in more detail. Click 'Next' to advance a series of six steps:
 
-1. In the first step the D-score is plotted by age. 
-2. In the second step, this relation is modeled in an LMS model. The goal of an LMS model is to describe the
-relation of the D-score by age with age-conditional z-scores. This is done by
-three smoothed curves representing the median, coefficient of variation
+1. Plot the D-score by age;
+2. Model the relation between age and D-score by an LMS model. In practice, this amounts to smoothing three curves representing the median, coefficient of variation
 and the skewness. 
-3. In step 3 the centile lines for this model are presented. 
-4. The resulting age-standardized scores for development (DAZ), are plotted in step 4.
-5. In step 5 the standar deviation lines are drawn to indicate an 1 and 2 standard deviation from the mean.
-6. The DAZ is used to define on-track development. So D-scores within 2
-standard deviations from the median can be defined as on-track. Scores that are
-more than two standard deviation *below* the median, can be defined as off-track
-(red dots).
+3. Present the centile lines for the model; 
+4. Plot the age-standardized scores for development (DAZ);
+5. Draw standard deviation lines to indicate the location at $\pm$ 1 and $\pm$ 2 standard deviation from the mean;
+6. Count observations above the -2 SD line as on-track. Count observation below the -2 SD lines as off-track (red dots).
 
-*Note that the current reference is based on the GCDG study. The cohorts that are
-currently included are representing a wide range of countries. However, they are
-not representative for a global population. The current reference standards are
-therefore temporary and should be improved when more data are available.*
-
+*Note: These SD lines build upon on a convenience sample. The GCDG cohorts are not representative samples, and the countries are not representative of the world. While we should not over-interpret these references, they play a central role in a stepwise, principled approach to define "developmentally on track".*
 
 ## Country-level estimates {#sec:countrytrack}
 
