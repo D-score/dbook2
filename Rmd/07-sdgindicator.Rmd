@@ -165,7 +165,7 @@ ggplot(sdg_stuntdaz, aes(x = stunting, y = DAZ, group = ctrycd))+
 ```
 (ref:stuntdaz) Difference in mean DAZ  per country between stunted and not stunted children.
 
-However, this is not the whole story. Figure \@ref(fig:stuntdaz) reveals a consistent difference in DAZ between stunted and non-stunted children of about 0.2 - 0.3 SD. There could be factors at the person level that affect both development and height growth. For example, low-income families may lack the resources for adequate nutrition, which may impact both child development and physical growth. 
+However, this is not the whole story. Figure \@ref(fig:stuntdaz) reveals a consistent difference in DAZ between stunted and non-stunted children of about 0.2 - 0.3 SD. There could be factors at the child level that affect both development and height growth. For example, low-income families may lack the resources for adequate nutrition, which may impact both child development and physical growth. 
 
 The exact nature of the relation between stunting and development is still obscure. The D-score provides a means to study the intriguing interplay between both measures in more detail.
 
