@@ -74,30 +74,30 @@ and the skewness.
 
 ## Country-level estimates {#sec:countrytrack}
 
-For each age-D-score combination, a standardized score (DAZ) can be calculated. That way we can
-calculate the DAZ in each country that is included in the current GCDG study. By
-using the -2SD rule, we can obtain the percentage on-track development for each
-country.
-
-```{r, echo = FALSE}
+```{r ontrack, echo = FALSE}
 tabtrack <- model_lean$dscore %>%
   mutate(track = ifelse(daz < -2, 0, 1),
          country =  substr(cohort, 6, 8) ) %>%
   group_by(country) %>%
   summarize("on-track"= sum(track, na.rm=TRUE)/sum(!is.na(track)))
 
-kable(tabtrack,
-      caption = "Percentage of on-track children per country",
-      digits = 2)
-
+tabtrack$`on-track` <- tabtrack$`on-track` * 100
+knitr::kable(tabtrack,
+             col.names = c("Country", "Percentage on-track"),
+             caption = "Percentage of on-track children per country",
+             digits = 1) %>% 
+  kable_styling(full_width = F)
 ```
 &nbsp;
 
+Using the definition from the previous section, we can calculate the percentage of children that are developmentally on track. Table \@ref(tab:ontrack) summarises this statistic by country. At a cut-off value of -2 SD, we expect that about 97.5% of the children will be on track. The actual country estimates fall into the range 93.9 - 99.9 and are thus near the theoretical value. This close correspondence shows that the definition and estimation procedure work as expected.
+
+Bear in mind that the measurements leading up to these estimates come from different instruments. It is gratifying to see how well we can do with historical data, thanks to the robust underlying measurement model. Of course, comparability only gets better if all countries would use the same instrument. However, using the same tool everywhere is not a requirement.
+
+
 ## Relation to other estimates {#sec:otherestimates}
 
-In the publication on the global D-score from the GCDG project [@Weber2019], the concurrent, discriminant and predictive validity of the D-score is thoroughly presented and discussed. In this paragraph we mainly focus on stunting, which is commonly used to express impaired growth in children due to nutrition problems. 
-
-### Stunting
+@Weber2019 thoroughly discuss the concurrent, discriminant and predictive validity of the D-score in the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired growth in children due to nutrition problems. 
 
 The WHO defines stunted as [when the height-for-age is more than two standard deviations below
 the WHO Child Growth Standard median](https://www.who.int/nutrition/healthygrowthproj/en/index1.html). In Figure \@ref(fig:stunt) we compare the percentage stunted to the percentage off-track
@@ -108,7 +108,7 @@ development in each country. The percentages of stunting differ a lot from the o
 ##change to mean D-score in stunted vs non-stunted children (ref to paper Weber et.al.) But then this plot after that?
 #or just load gcdg_lean form dmetric when data in package is updated
 sdg_stunt <- 
-dmetric::gcdg_lean$visit %>% 
+  dmetric::gcdg_lean$visit %>% 
   left_join(dmetric::model_lean$dscore) %>%
   mutate(track = ifelse(.data$daz < -2, 0, 1),
          stunting = ifelse(.data$haz < -2, 1, 0)) %>%
@@ -154,7 +154,7 @@ However, we can see a relation between stunting and development (D-score). When 
 ```{r stuntdaz, echo=FALSE, fig.width=11, fig.cap= '(ref:stuntdaz)'}
 ##DAZ in stunted vs non-stunted (as done in Weber paper)
 sdg_stuntdaz <- 
-dmetric::gcdg_lean$visit %>% 
+  dmetric::gcdg_lean$visit %>% 
   left_join(dmetric::model_lean$dscore) %>%
   mutate(stunting = ifelse(.data$haz < -2, "stunted", "not-stunted")) %>%
   group_by(ctrycd, stunting) %>%
@@ -195,24 +195,24 @@ cohort_study <- data.frame(gsed_cohort = gsed_cohort, gcdg_study = gcdg_study[c(
                                                                                 2,14,15,11,12)])
 
 
- gcdg_d_aux <- gcdg_aux %>%
-            mutate(subjido = as.character(id), 
-                   cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"], 
-                   b_total = rowSums(select(.,b_tot_cog, b_tot_lr, b_tot_le, b_tot_mf, b_tot_mg), na.rm =TRUE)) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
- 
- gcdg_d_aux %>% group_by(cohort) %>%
-   summarize(cog = mean(b_pc_cog, na.rm=TRUE),
-             lang = mean(b_pc_lang, na.rm=TRUE),
-             mot = mean(b_pc_mot, na.rm=TRUE),
-             fm = mean(b_tot_mf, na.rm=TRUE),
-             gm = mean(b_tot_mg, na.rm=TRUE),
-             asq_cog = mean(asq_cog, na.rm =TRUE),
-             den_mf = mean(den_mf, na.rm = TRUE))
- 
- by_track <- gcdg_d_aux %>%
-   mutate(track = ifelse(.data$daz < -2, 0, 1), 
-          by_d = ifelse(.data$b_total < 70, 1, 0)) %>%
- group_by(country) %>%
+gcdg_d_aux <- gcdg_aux %>%
+  mutate(subjido = as.character(id), 
+         cohort = cohort_study[match(gcdg_aux$study, cohort_study[,"gcdg_study"]), "gsed_cohort"], 
+         b_total = rowSums(select(.,b_tot_cog, b_tot_lr, b_tot_le, b_tot_mf, b_tot_mg), na.rm =TRUE)) %>% left_join(dmetric::model_lean$dscore, by = c("subjido", "cohort"))
+
+gcdg_d_aux %>% group_by(cohort) %>%
+  summarize(cog = mean(b_pc_cog, na.rm=TRUE),
+            lang = mean(b_pc_lang, na.rm=TRUE),
+            mot = mean(b_pc_mot, na.rm=TRUE),
+            fm = mean(b_tot_mf, na.rm=TRUE),
+            gm = mean(b_tot_mg, na.rm=TRUE),
+            asq_cog = mean(asq_cog, na.rm =TRUE),
+            den_mf = mean(den_mf, na.rm = TRUE))
+
+by_track <- gcdg_d_aux %>%
+  mutate(track = ifelse(.data$daz < -2, 0, 1), 
+         by_d = ifelse(.data$b_total < 70, 1, 0)) %>%
+  group_by(country) %>%
   summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
             "n_d" = sum(!is.na(track)),
             "b_delay" = sum(by_d, na.rm=TRUE)/sum(!is.na(by_d)), 
@@ -224,12 +224,12 @@ ggplot(data = by_track, aes(x = country, y = Percentage, fill = Measure)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   xlab("Country")
 
- 
 
- ##vanaf hier verder gaan bij vergeliking met totaal scores op andere measures. 
- 
- ##verder deze data gebruiken voor CH8.
- 
+
+##vanaf hier verder gaan bij vergeliking met totaal scores op andere measures. 
+
+##verder deze data gebruiken voor CH8.
+
 #select by3 cohorts
 by3_COH <- c("GCDG-CHN", "GCDG-COL-LT42M", "GCDG-COL-LT45M", "GCDG-ETH")
 #calculate mean of "b_tot_cog"     "b_tot_lr"      "b_tot_le"      "b_tot_mf"      "b_tot_mg"  for bayley total score. 
@@ -244,11 +244,11 @@ b_scores <- gcdg_lean$aux %>% filter(variable %in% b_vars) %>%
 
 
 sdg_by <- 
-gcdg_lean$visit %>% filter(cohort %in% by3_COH) %>%
+  gcdg_lean$visit %>% filter(cohort %in% by3_COH) %>%
   left_join(b_scores) %>%
   left_join(model_lean$dscore) %>%
   mutate(track = ifelse(.data$daz < -2, 0, 1),
-                  stunting = ifelse(.data$haz < -2, 1, 0),
+         stunting = ifelse(.data$haz < -2, 1, 0),
          by_d = ifelse(.data$b_score < 70, 1, 0)) %>%
   group_by(ctrycd) %>%
   summarize("off-track" = 1-sum(track, na.rm=TRUE)/sum(!is.na(track)),
