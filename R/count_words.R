@@ -1,11 +1,5 @@
-book_filename: "dbook2.Rmd"
-delete_merged_file: true
-output_dir: "docs"
-language:
-  ui:
-    chapter_name: "Chapter "
-rmd_files: ["index.Rmd",
-            "Rmd/00-preface.Rmd",
+# count words
+sources <- c("Rmd/00-preface.Rmd",
             "Rmd/01-intro.Rmd",
             "Rmd/02-data.Rmd",
             "Rmd/03-comparability.Rmd",
@@ -15,6 +9,10 @@ rmd_files: ["index.Rmd",
             "Rmd/07-sdgindicator.Rmd",
             "Rmd/08-ontrack.Rmd",
             "Rmd/09-discussion.Rmd",
-            "Rmd/Appendix-references.Rmd"]
-before_chapter_script: "R/before_chapter_script.R"
-after_chapter_script: "R/after_chapter_script.R"
+            "Rmd/Appendix-references.Rmd")
+
+words <- sapply(sources, FUN = wordcountaddin::word_count)
+data.frame(words)
+
+# excludes references
+sum(words)
