@@ -14,28 +14,20 @@ library(gseddata)
 
 This booklet explains the methodology for obtaining a comparable developmental score (D-score) from different instruments. This chapter introduces the data that will illustrate our approach. The data originates from a study by the Global Child Development Group (GCDG), that brought together longitudinal measurement on child development data from 16 cohorts worldwide.
 
-* Overview of cohorts and instrument (\@ref(sec:gcdgoverview))
-* Cohort descriptions (\@ref(sec:cohorts))
-* Instruments (\@ref(sec:instruments))
+-   Overview of cohorts and instrument (\@ref(sec:gcdgoverview))
+-   Cohort descriptions (\@ref(sec:cohorts))
+-   Instruments (\@ref(sec:instruments))
 
 ## Overview of cohorts and instruments {#sec:gcdgoverview}
 
-The Global Child Development Group (GCDG) collected longitudinal data from 16
-cohorts. The objective of the study was to develop a population-based
-measure to monitor early child development across ages and countries.
-The requirements for inclusion were
+The Global Child Development Group (GCDG) collected longitudinal data from 16 cohorts. The objective of the study was to develop a population-based measure to monitor early child development across ages and countries. The requirements for inclusion were
 
-1. direct assessment of child development;
-2. availability of individual milestone scores;
-3. spanning ages between 0-5 years; 
-4. availability of follow-up measures, at ages 5-10 years.
+1.  direct assessment of child development;
+2.  availability of individual milestone scores;
+3.  spanning ages between 0-5 years;
+4.  availability of follow-up measures, at ages 5-10 years.
 
-The effort resulted in a database containing individual data from over 16,000
-children from 11 countries. The world map below (Figure: \@ref(fig:worldmap))
-colors the countries included in the study. Section \@ref(sec:cohorts) briefly
-describes each cohort. Section \@ref(sec:instruments) reviews the measurement
-instruments.
-
+The effort resulted in a database containing individual data from over 16,000 children from 11 countries. The world map below (Figure: \@ref(fig:worldmap)) colors the countries included in the study. Section \@ref(sec:cohorts) briefly describes each cohort. Section \@ref(sec:instruments) reviews the measurement instruments.
 
 ```{r worldmap, fig.cap='(ref:worldmap)', fig.keep='all', results='hide', fig.height=4, fig.width=8}
 
@@ -64,34 +56,31 @@ ggplot() +
   theme(legend.position = "none")
 
 ```
+
 (ref:worldmap) Coverage of countries included in the study.
 
-The GCDG data comprises of birth cohorts, impact evaluation studies
-and instrument evaluation studies. Table \@ref(tab:cohorts) displays a
-brief overview of the instruments used in each sub-study.
+The GCDG data comprises of birth cohorts, impact evaluation studies and instrument evaluation studies. Table \@ref(tab:cohorts) displays a brief overview of the instruments used in each sub-study.
 
-Cohort | `by` | `den` | `gri` | `bat` | `vin` | `ddi` |  `bar` | `tep` | `asq` | `sbi`
---------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | ---------
-Bangladesh | x |  |  |  |  |  |  |  |  |
-Brazil 1 |  | x |  |  |  |  |  |  |  |
-Brazil 2 |  |  |  | x |  |  |  |  |  |
-Chile 1 | x |  |  |  |  |  |  |  |  |
-Chile 2 |  |  |  |  x |  |  |  | x  |  |
-China | x |  |  |  |  |  |  |  |  |
-Colombia 1 | x |  |  |  |  |  |  |  |  |
-Colombia 2 | x | x |  |x  |  |  |  |  | x |
-Ecuador |  |  |  |  |  |  | x |  |  |
-Ethiopia | x |  |  |  |  |  |  |  |  |
-Jamaica 1 |  |  | x |  |  |  |  |  |  |
-Jamaica 2 |  |  | x |  |  |  |  |  |  |
-Madagascar |  |  |  |  |  |  |  |  |  | x
-Netherlands1 |  |  |  |  |  | x |  |  |  |
-Netherlands2 |  |  |  |  |  | x |  |  |  |
-South Africa | x |  | x |  | x |  |  |  |  |
+| Cohort       | `by` | `den` | `gri` | `bat` | `vin` | `ddi` | `bar` | `tep` | `asq` | `sbi` |
+|--------------|------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Bangladesh   | x    |       |       |       |       |       |       |       |       |       |
+| Brazil 1     |      | x     |       |       |       |       |       |       |       |       |
+| Brazil 2     |      |       |       | x     |       |       |       |       |       |       |
+| Chile 1      | x    |       |       |       |       |       |       |       |       |       |
+| Chile 2      |      |       |       | x     |       |       |       | x     |       |       |
+| China        | x    |       |       |       |       |       |       |       |       |       |
+| Colombia 1   | x    |       |       |       |       |       |       |       |       |       |
+| Colombia 2   | x    | x     |       | x     |       |       |       |       | x     |       |
+| Ecuador      |      |       |       |       |       |       | x     |       |       |       |
+| Ethiopia     | x    |       |       |       |       |       |       |       |       |       |
+| Jamaica 1    |      |       | x     |       |       |       |       |       |       |       |
+| Jamaica 2    |      |       | x     |       |       |       |       |       |       |       |
+| Madagascar   |      |       |       |       |       |       |       |       |       | x     |
+| Netherlands1 |      |       |       |       |       | x     |       |       |       |       |
+| Netherlands2 |      |       |       |       |       | x     |       |       |       |       |
+| South Africa | x    |       | x     |       | x     |       |       |       |       |       |
 
 : (\#tab:cohorts) Overview of instruments administered in the cohorts.
-
-
 
 ## Cohort descriptions {#sec:cohorts}
 
@@ -113,189 +102,85 @@ ggplot(design1, aes(x = agemos, y = reorder(cohort, desc(cohort)), group = instr
   scale_colour_manual(values = dmetric::get_palette("instrument", "gsed_palettes"), na.value = "grey")+
   xlab("Age (months)") + ylab("")
 ```
+
 (ref:design) Age range and assessment instrument of included data for each GCDG cohort
 
 A brief description of each cohort follows:
 
-The **Bangladesh** study (GCDG-BGD-7MO) was an impact evaluation study
-including 1862 children around the age of 18 months. The Bayley Scale
-for Infant and Toddler Development-II (`by2`) was administered and
-long-term follow-up data were available for the Wechsler Preschool and
-Primary Scale of Intelligence (WPPSI) at 5 years [@Tofail2008].
+The **Bangladesh** study (GCDG-BGD-7MO) was an impact evaluation study including 1862 children around the age of 18 months. The Bayley Scale for Infant and Toddler Development-II (`by2`) was administered and long-term follow-up data were available for the Wechsler Preschool and Primary Scale of Intelligence (WPPSI) at 5 years [@Tofail2008].
 
-The **Brazil 1** study (GCDG-BRA-1) was a birth-cohort with 3
-measurement moments: 644 children at 3 months, 1412 children at 6
-months and 1362 children at 12 months. The investigators administered the Denver
-Developmental Screening Test-II (`den`) in each round. Long-term
-follow-up data were available for the Wechsler Adult Intelligence
-Scale (WAIS) at 18 years [@Victora2006].
+The **Brazil 1** study (GCDG-BRA-1) was a birth-cohort with 3 measurement moments: 644 children at 3 months, 1412 children at 6 months and 1362 children at 12 months. The investigators administered the Denver Developmental Screening Test-II (`den`) in each round. Long-term follow-up data were available for the Wechsler Adult Intelligence Scale (WAIS) at 18 years [@Victora2006].
 
-The **Brazil 2** study (GCDG-BRA-2) was a birth-cohort with
-measurements of 3907 children at 12 months and 3869 children at 24
-months. Both occasions collected data on the Battelle Development Inventory (`bat`) [@Moura2010].
+The **Brazil 2** study (GCDG-BRA-2) was a birth-cohort with measurements of 3907 children at 12 months and 3869 children at 24 months. Both occasions collected data on the Battelle Development Inventory (`bat`) [@Moura2010].
 
-The **Chile 1** study (GCDG-CHL-1) was an impact evaluation study of
-128 children assessed at 6 months, 1732 children at 12 months and 279
-at 18 months. The `by1` was administered at each of the three waves. Long-term
-follow-up data were available for the WPPSI at 5-6 years
-[@Lozoff2003].
+The **Chile 1** study (GCDG-CHL-1) was an impact evaluation study of 128 children assessed at 6 months, 1732 children at 12 months and 279 at 18 months. The `by1` was administered at each of the three waves. Long-term follow-up data were available for the WPPSI at 5-6 years [@Lozoff2003].
 
-The **Chile 2** study (GCDG-CHL-2) consists of a birth-cohort of 4869 children. The investigators measured child development by the Battelle Developmental Inventory (`bat`) at 7-23 months. A total of 9201 children aged 24-58 responded to the Test de
-Desarrollo Psicomotor (`tep`) at 24-58 months. For the latter group,
-follow-up data were available for the Peabody Picture Vocabulary Test
-(PPVT) at 5-6 years [@conteras2015].
+The **Chile 2** study (GCDG-CHL-2) consists of a birth-cohort of 4869 children. The investigators measured child development by the Battelle Developmental Inventory (`bat`) at 7-23 months. A total of 9201 children aged 24-58 responded to the Test de Desarrollo Psicomotor (`tep`) at 24-58 months. For the latter group, follow-up data were available for the Peabody Picture Vocabulary Test (PPVT) at 5-6 years [@conteras2015].
 
-The **China** study (GCDG-CHN) was an impact evaluation study that
-contained 990 children assessed with the by3 at 18 months
-[@Lozoff2016].
+The **China** study (GCDG-CHN) was an impact evaluation study that contained 990 children assessed with the by3 at 18 months [@Lozoff2016].
 
-The **Colombia 1** study (GCDG-COL-LT45M) was an impact evaluation
-study that comprised two waves. Wave 1 contained 704 children at 12-24
-months and wave 2 631 children at 24-41 months. The `by3` was
-administered at each wave. Long-term follow-up data were available for
-PPVT at 4-6 years [@Attanasio2014].
+The **Colombia 1** study (GCDG-COL-LT45M) was an impact evaluation study that comprised two waves. Wave 1 contained 704 children at 12-24 months and wave 2 631 children at 24-41 months. The `by3` was administered at each wave. Long-term follow-up data were available for PPVT at 4-6 years [@Attanasio2014].
 
-The **Colombia 2** study (GCDG-COL-LT42M) was an instrument validation
-study where all 1311 children aged 6-42 months were measured the
-`by3`. Also, there are data for a subgroup of 658 children on `den,` the Ages and Stages Questionnaire (`asq`), and the `bat` screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT
-[@Rubio-Codina2016].
+The **Colombia 2** study (GCDG-COL-LT42M) was an instrument validation study where all 1311 children aged 6-42 months were measured the `by3`. Also, there are data for a subgroup of 658 children on `den,` the Ages and Stages Questionnaire (`asq`), and the `bat` screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT [@Rubio-Codina2016].
 
-An impact evaluation study in **Ecuador**  (GCDG-ECU) yielded data from 667 children between 0-35 months on the Barrera Moncada (`bar`). Long-term follow-up data were available for the PPVT at 5-8 and 9-12 years [@Paxson2010].
+An impact evaluation study in **Ecuador** (GCDG-ECU) yielded data from 667 children between 0-35 months on the Barrera Moncada (`bar`). Long-term follow-up data were available for the PPVT at 5-8 and 9-12 years [@Paxson2010].
 
-The **Ethiopia** study (GCDG-ETH) was a birth-cohort with 193 children
-of 12 months in the first wave, 440 children of 30 months at the
-second wave, and 456 children of 42 months at the third wave. The investigators used the same instrument (`by3`) for all waves. Long-term follow-up data were
-available for the PPVT at 10-11 years [@Hanlon2009].
+The **Ethiopia** study (GCDG-ETH) was a birth-cohort with 193 children of 12 months in the first wave, 440 children of 30 months at the second wave, and 456 children of 42 months at the third wave. The investigators used the same instrument (`by3`) for all waves. Long-term follow-up data were available for the PPVT at 10-11 years [@Hanlon2009].
 
 The **Jamaica 1** study (GCDG-JAM-LBW) was an impact evaluation study that collected data on the Griffiths Mental Development Scales (`gri`) for 225 children aged 15 months (first wave), and 218 children of aged 24 months (second wave). Long-term follow-up data were available for WPPSI and PPVT at 6 years [@Walker2004].
 
-The **Jamaica 2** study (GCDG-JAM-STUNTED) was an impact evaluation study with data on the `gri` for 159 children at 9-24 months, 21-36 months, and at 33-48 months. Long-term follow-up data were available for `sbi`, Raven’s Coloured Progressive Matrices (Ravens),
-and PPVT at 7-8 years and the WAIS at 17-18 years [@Grantham-McGregor1991].
+The **Jamaica 2** study (GCDG-JAM-STUNTED) was an impact evaluation study with data on the `gri` for 159 children at 9-24 months, 21-36 months, and at 33-48 months. Long-term follow-up data were available for `sbi`, Raven's Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years and the WAIS at 17-18 years [@Grantham-McGregor1991].
 
 The **Madagascar** study (GCDG-MDG) was an impact evaluation study that used the `sbi` for 205 children aged 34-42 months. Long-term follow-up data were available for `sbi` and PPVT at 7-11 years [@Fernald2011].
 
-The **Netherlands 1** study (GCDG-NLD-SMOCC) was an instrument
-validation study with a total of 9 waves. At each wave the Dutch
-Developmental instrument (`ddi`) (In the Netherlands known as Van
-Wiechenschema) was administered. The first wave included 1985 children
-at 1 month, wave 2 1807 children at 2 months, wave 3 1963 children at 3
-months, wave 4 1919 children at 6 months, wave 5 1881 children at 9
-months, wave 6 1802 children at 12 months, wave 7 1776 children at 15
-months, wave 8 1787 children at 18 months, and wave 9 1815 children at
-24 months [@herngreen1992].
+The **Netherlands 1** study (GCDG-NLD-SMOCC) was an instrument validation study with a total of 9 waves. At each wave the Dutch Developmental instrument (`ddi`) (In the Netherlands known as Van Wiechenschema) was administered. The first wave included 1985 children at 1 month, wave 2 1807 children at 2 months, wave 3 1963 children at 3 months, wave 4 1919 children at 6 months, wave 5 1881 children at 9 months, wave 6 1802 children at 12 months, wave 7 1776 children at 15 months, wave 8 1787 children at 18 months, and wave 9 1815 children at 24 months [@herngreen1992].
 
-The **Netherlands 2** study (GCDG-NLD-2) was an instrument validation
-study with a total of five waves. This study resembles GCDG-NLD-SMOCC but for older children. Wave 1 included 1016 children at 24 months, wave 2 995
-children at 30 months, wave 3 1592 children at 36 months, wave 4 1592
-children at 42 months, and wave 5 1024 children at 48 months
-[@doove2010].
+The **Netherlands 2** study (GCDG-NLD-2) was an instrument validation study with a total of five waves. This study resembles GCDG-NLD-SMOCC but for older children. Wave 1 included 1016 children at 24 months, wave 2 995 children at 30 months, wave 3 1592 children at 36 months, wave 4 1592 children at 42 months, and wave 5 1024 children at 48 months [@doove2010].
 
-The **South Africa** study (GCDG-ZAF) was a birth cohort with four
-waves. The first wave included 485 children and second wave 275
-children, who were assessed at 6 and 12 months, respectively, with the
-`by1` and the `gri`. The third wave included 1802 children and the fourth
-wave 1614 children, assessed at 24 and 48 months, respectively, with
-the Vineland Social Maturity Scale (`vin`) [@Richter2007].
-
-
-
+The **South Africa** study (GCDG-ZAF) was a birth cohort with four waves. The first wave included 485 children and second wave 275 children, who were assessed at 6 and 12 months, respectively, with the `by1` and the `gri`. The third wave included 1802 children and the fourth wave 1614 children, assessed at 24 and 48 months, respectively, with the Vineland Social Maturity Scale (`vin`) [@Richter2007].
 
 ## Instruments {#sec:instruments}
 
+```{=html}
 <!-- NOTE: Monotonous and repetitive reading. This information is
 probably better presented as a table. Perhaps cluster the instruments
 by types (e.g. individual vs screener, one scale vs multiple scales,
 binary vs polytomous vs mixed)? Perhaps a simple HOMALS analysis that
 displays the most salient features? -->
-
-The **Bayley Scales for Infant and Toddler Development (`by1`,`by2`,
-`by3`)** aim to assess infants and toddlers, aged 1-42 months. The
-current version is the `by3`, but some GCDG cohorts used earlier versions (i.e. `by1` and `by2`)
-[@bayley1969][@bayley1993][@bayley2006]. The 326 items of the `by3`
-measure three domains: Cognitive items, Motor items (with fine and
-gross motor items), and Language items (with expressive and receptive
-items). The `by2` contains 277 items and has two additional subscales:
-Social-Emotional and Adaptive Behavior. by1 contains 229 items.
-<!-- Bayley N. Bayley Scales of Infant Development. New York:
-Psychological Corp, 1969. -->
-<!-- Bayley, N. The Bayley Scales of Infant Development-II. San
-Antonio, TX: Psychological Corporation, 1993. -->
-<!-- Bayley N. Bayley Scales of Infant and Toddler Development–Third
+```
+The **Bayley Scales for Infant and Toddler Development (`by1`,`by2`, `by3`)** aim to assess infants and toddlers, aged 1-42 months. The current version is the `by3`, but some GCDG cohorts used earlier versions (i.e. `by1` and `by2`) [@bayley1969][@bayley1993][@bayley2006]. The 326 items of the `by3` measure three domains: Cognitive items, Motor items (with fine and gross motor items), and Language items (with expressive and receptive items). The `by2` contains 277 items and has two additional subscales: Social-Emotional and Adaptive Behavior. by1 contains 229 items. <!-- Bayley N. Bayley Scales of Infant Development. New York:
+Psychological Corp, 1969. --> <!-- Bayley, N. The Bayley Scales of Infant Development-II. San
+Antonio, TX: Psychological Corporation, 1993. --> <!-- Bayley N. Bayley Scales of Infant and Toddler Development–Third
 Edition: Technical manual. San Antonio, TX: Harcourt Assessment, 2006.
 -->
 
-The **Denver Developmental Screening Test (`den`)** is aimed to
-identify developmental problems in children up to age six. The 125
-dichotomous test items are distributed over the age range from birth
-to six years. The Denver covers four domains: personal-social, fine
-motor and adaptive, language, and gross motor. The test items are all
-directly observed by an examiner and are not dependent on parent
-report [@frankenburg1992] [@frankenburg1990].
-<!-- Frankenburg WK, Dodds J, Archer P, Shapiro H, Bresnick B. The
+The **Denver Developmental Screening Test (`den`)** is aimed to identify developmental problems in children up to age six. The 125 dichotomous test items are distributed over the age range from birth to six years. The Denver covers four domains: personal-social, fine motor and adaptive, language, and gross motor. The test items are all directly observed by an examiner and are not dependent on parent report [@frankenburg1992] [@frankenburg1990]. <!-- Frankenburg WK, Dodds J, Archer P, Shapiro H, Bresnick B. The
 Denver II: a major revision and standardisation of the Denver
-Developmental Screening Test. Paediatrics 1992; 89: 91–7. -->
-<!-- Frankenburg WK, Dodds J, Archer P, et al. The DENVER II Technical
+Developmental Screening Test. Paediatrics 1992; 89: 91–7. --> <!-- Frankenburg WK, Dodds J, Archer P, et al. The DENVER II Technical
 Manual. Denver, CO: Denver Developmental Materials, 1990 -->
 
-The **Griffiths Mental Development Scales (`gri`)** measure the rate
-of development in infants and young children in six developmental
-areas: locomotor, personal-social, hearing and language, eye and hand
-coordination, performance and practical reasoning [@griffiths1967].
-<!-- Griffiths R. The Abilities of Babies: A Study in Mental
+The **Griffiths Mental Development Scales (`gri`)** measure the rate of development in infants and young children in six developmental areas: locomotor, personal-social, hearing and language, eye and hand coordination, performance and practical reasoning [@griffiths1967]. <!-- Griffiths R. The Abilities of Babies: A Study in Mental
 Measurement. University of London Press, 1967. -->
 
-The **Battelle Developmental Inventory (`bat`)** measures key
-developmental skills in children from birth to 7 years, 11 months. The
-instrument contains 450 items distributed over five domains: adaptive,
-personal-social, communication, motor, and cognitive [@newborg2005].
-<!-- Newborn J. Battelle Developmental Inventory-2nd Edition. Rolling
+The **Battelle Developmental Inventory (`bat`)** measures key developmental skills in children from birth to 7 years, 11 months. The instrument contains 450 items distributed over five domains: adaptive, personal-social, communication, motor, and cognitive [@newborg2005]. <!-- Newborn J. Battelle Developmental Inventory-2nd Edition. Rolling
 Meadows, IL: Riverside Publishing, 2005. -->
 
-The **Vineland Social Maturity Scale (`vin`)** is a test to assess
-social competence. The instrument contains eight subscales that
-measure communication skills, general self-help ability, locomotion
-skills, occupation skills, self-direction, self-help eating, self-help
-dressing and socialisation skills [@doll1953].
-<!-- Doll EA. The measurement of social competence: A manual for the
+The **Vineland Social Maturity Scale (`vin`)** is a test to assess social competence. The instrument contains eight subscales that measure communication skills, general self-help ability, locomotion skills, occupation skills, self-direction, self-help eating, self-help dressing and socialisation skills [@doll1953]. <!-- Doll EA. The measurement of social competence: A manual for the
 Vineland Social Maturity Scale. 1953. -->
 
-The **Dutch Developmental Instrument (`ddi`)** measures early child
-development during the ages 0-4 years. The instrument consists of 75
-milestones spread over three domains: fine motor,
-adaptive, personal and social behaviour; communication; and gross motor
-[@schlesinger1981].
-<!-- Schlesinger-Was EA. Ontwikkelingsonderzoek van zuigelingen en
+The **Dutch Developmental Instrument (`ddi`)** measures early child development during the ages 0-4 years. The instrument consists of 75 milestones spread over three domains: fine motor, adaptive, personal and social behaviour; communication; and gross motor [@schlesinger1981]. <!-- Schlesinger-Was EA. Ontwikkelingsonderzoek van zuigelingen en
 kleuters op het consultatiebureau. 1981 -->
 
-The **Barrera Moncada (`bar`)** is a Spanish instrument that measures
-the growth and psychological development of children [@barrera1981].
-<!-- Barrera Moncada, G. 1981. Crecimiento y desarrollo psicológico
+The **Barrera Moncada (`bar`)** is a Spanish instrument that measures the growth and psychological development of children [@barrera1981]. <!-- Barrera Moncada, G. 1981. Crecimiento y desarrollo psicológico
 del niño venezolano. Ediciones psicopediátricas. Caracas. -->
 
-The **Test de Desarrollo Psicomotor (`tep`)** is an instrument to
-evaluate toddlers aged 2 to 5 years on their development. The items
-come from three sub-tests: 16 items assess coordination; 24
-items measure language skills and 12 items tap into motor skills
-[@haeussler1999].
-<!-- Haeussler IM, Marchant T. Tepsi: test de desarrollo psicomotor
+The **Test de Desarrollo Psicomotor (`tep`)** is an instrument to evaluate toddlers aged 2 to 5 years on their development. The items come from three sub-tests: 16 items assess coordination; 24 items measure language skills and 12 items tap into motor skills [@haeussler1999]. <!-- Haeussler IM, Marchant T. Tepsi: test de desarrollo psicomotor
 2-5 años. Eds. Universidad Católica de Chile, 1999 -->
 
-The **Ages and Stages Questionnaire (`asq`)** measures developmental progress in
-children aged 2 mo – 5.5 yrs. The instrument distinguishes development in five
-areas: personal-social, gross motor, fine motor, problem solving, and
-communication. The caregiver completes 30 items per age intervals and
-[@squires2009].
-<!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ-
+The **Ages and Stages Questionnaire (`asq`)** measures developmental progress in children aged 2 mo -- 5.5 yrs. The instrument distinguishes development in five areas: personal-social, gross motor, fine motor, problem solving, and communication. The caregiver completes 30 items per age intervals and [@squires2009]. <!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ-
 3™). A parent-completed child-monitoring system Paul H. Brookes Publishing Co.,
 Baltimore (2009) -->
 
-The **Stanford Binet Intelligence Scales (`sbi`)** is a cognitive
-ability and intelligence test to diagnose developmental deficiencies
-in young children. The items divide into five subtests: fluid
-reasoning, knowledge, quantitative reasoning, visual-spatial processing,
-and working memory [@roid2003][@hagen1986].
-<!-- Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS
-Psychological Tests, 2003. -->
-<!-- SB-4 Hagen E, Stattler J, Stanford–Binet Intelligence Scales,
+The **Stanford Binet Intelligence Scales (`sbi`)** is a cognitive ability and intelligence test to diagnose developmental deficiencies in young children. The items divide into five subtests: fluid reasoning, knowledge, quantitative reasoning, visual-spatial processing, and working memory [@roid2003][@hagen1986]. <!-- Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS
+Psychological Tests, 2003. --> <!-- SB-4 Hagen E, Stattler J, Stanford–Binet Intelligence Scales,
 Fourth Edition·Thorndike, 1986. -->
-

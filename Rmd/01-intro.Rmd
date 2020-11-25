@@ -4,11 +4,11 @@
 
 This introductory chapter
 
-- briefly summarises our previous work on the D-score (\@ref(sec:previous))
-- introduces the main topic of the booklet (\@ref(sec:thisvolume))
-- highlights the relevance of work (\@ref(sec:relevance))
-- explains why we have written this booklet (\@ref(sec:why))
-- delineates the intended audience (\@ref(sec:audience))
+-   briefly summarises our previous work on the D-score (\@ref(sec:previous))
+-   introduces the main topic of the booklet (\@ref(sec:thisvolume))
+-   highlights the relevance of work (\@ref(sec:relevance))
+-   explains why we have written this booklet (\@ref(sec:why))
+-   delineates the intended audience (\@ref(sec:audience))
 
 ## Previous work on the D-score {#sec:previous}
 
@@ -16,10 +16,10 @@ The D-score booklet I [Turning milestones into measurement](https://stefvanbuure
 
 In practice, we typically want to make the following types of comparisons:
 
-- Compare development within the same child over time;
-- Compare the development of two children of the same age;
-- Compare the development of two children of different ages;
-- Compare the development of groups of children of different ages.
+-   Compare development within the same child over time;
+-   Compare the development of two children of the same age;
+-   Compare the development of two children of different ages;
+-   Compare the development of groups of children of different ages.
 
 To do this well, we need an *interval scale with a fixed unit of development*. We argued that the simple Rasch model is a very suitable candidate to provide us with such a unit. The Rasch model is simple, fast, and we found that it fitted child developmental data very well [@jacobusse2006][@vanbuuren2014]. The Rasch model has a long history, but -unfortunately- it is almost unknown outside the field of psychometrics. We highlighted the concepts of the model that are of direct relevance to child development. Using data collected by the Dutch Development Instrument, we demonstrated that the model and its estimates behave as intended for children in the open population, for prematurely born-children, and children living in a low- and middle-income country.
 
@@ -29,11 +29,11 @@ As our approach breaks with the traditional paradigm that emphasises different d
 
 It is straightforward to apply the D-score methodology as explained in [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
 
-- different versions of the same instrument (e.g., Bayley I, II and III);
-- different language versions of the same tool;
-- different tools administered to the same sample;
-- different tools administered to different samples;
-- and so on.
+-   different versions of the same instrument (e.g., Bayley I, II and III);
+-   different language versions of the same tool;
+-   different tools administered to the same sample;
+-   different tools administered to different samples;
+-   and so on.
 
 Since there are over 150 different instruments to measure child development [@fernald2017toolkit], the chances are high that our data also hold data observed by multiple tools.
 
@@ -44,15 +44,16 @@ This booklet addresses the problem *how to define and calculate the D-score base
 Many of the techniques are well known within psychometrics and educational research. This booklet translates the concepts to the field of child development.
 
 ## Relevance of the work {#sec:relevance}
+
 <!--- Also add some remarks or links to the SDG 4.2.1; its part of the relevance for this work --->
 
-We all like our children to grow and prosper. The *first 1000 days* refers to the time needed for a child to grow from conception to its second birthday. During this period, the architecture of the developing brain is very open to the influence of relationships and experiences. It is a time of rapid change that lays the groundwork for later health and happiness. 
+We all like our children to grow and prosper. The *first 1000 days* refers to the time needed for a child to grow from conception to its second birthday. During this period, the architecture of the developing brain is very open to the influence of relationships and experiences. It is a time of rapid change that lays the groundwork for later health and happiness.
 
-Professionals and parents consider it necessary to monitor children’s development. While we can track the child’s physical growth by growth charts to identify children with signs of potential delay, there are no charts for monitoring child development. To create such charts, we need to have a unit of development, similar to units like centimetres or kilograms. 
+Professionals and parents consider it necessary to monitor children's development. While we can track the child's physical growth by growth charts to identify children with signs of potential delay, there are no charts for monitoring child development. To create such charts, we need to have a unit of development, similar to units like centimetres or kilograms.
 
-The D-score is a way to define a unit of child development. With the D-score, we see that progress is much faster during infancy, and that different children develop at different rates. The D-score also allows us to define a “normal” range that we can use to filter out those who are following a more pathological course. There is good evidence that early identification and early intervention improve the outcomes of children [@britto2017]. Early intervention is crucial for children with developmental disabilities because barriers to healthy development early in life impede progress at each subsequent stage.
+The D-score is a way to define a unit of child development. With the D-score, we see that progress is much faster during infancy, and that different children develop at different rates. The D-score also allows us to define a "normal" range that we can use to filter out those who are following a more pathological course. There is good evidence that early identification and early intervention improve the outcomes of children [@britto2017]. Early intervention is crucial for children with developmental disabilities because barriers to healthy development early in life impede progress at each subsequent stage.
 
-Monitoring child development provides caregivers and parents with reliable information about the child and an opportunity to intervene at an early age. Understanding the developmental health of populations of children allows organisations and policymakers to make informed decisions about programmes that support children’s greatest needs [@bellman2013].
+Monitoring child development provides caregivers and parents with reliable information about the child and an opportunity to intervene at an early age. Understanding the developmental health of populations of children allows organisations and policymakers to make informed decisions about programmes that support children's greatest needs [@bellman2013].
 
 ## Why this booklet? {#sec:why}
 
@@ -66,9 +67,9 @@ We have always found it difficult to explain that scales and instruments are dif
 
 We aim for three broad audiences:
 
-- Professionals in the field of child growth and development;
-- Policymakers in international settings;
-- Statisticians, methodologists, and data scientists.
+-   Professionals in the field of child growth and development;
+-   Policymakers in international settings;
+-   Statisticians, methodologists, and data scientists.
 
 Professionals in child development are constantly faced with the problem that different instruments for measuring child development yield incomparable scores. This booklet introduces and illustrates sound psychometric techniques *for extracting comparable scores from existing instruments*. We hope that our approach will ease communication between professionals.
 

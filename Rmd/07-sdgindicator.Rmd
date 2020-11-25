@@ -11,14 +11,14 @@ library(ggplot2)
 
 > Author: Iris Eekhout
 
-The Sustainable Development Goals (SDG) formulated by the United Nations (UN) set targets to promote prosperity while protecting the planet. One or more indicators quantify the progress towards each target. 
+The Sustainable Development Goals (SDG) formulated by the United Nations (UN) set targets to promote prosperity while protecting the planet. One or more indicators quantify the progress towards each target.
 
 This chapter explores the use of the D-score to monitor the progress of the indicator for healthy child development, SDG 4.2.1. We propose a method to define on-track development and show how the application of this method pans out for the GCDG data. More in detail, the chapter deals with the following topics:
 
-* Estimating SDG 4.2.1 indicator from existing data (\@ref(sec:application1))
-* Definition *developmentally on track* (\@ref(sec:references))
-* Country-level estimates (\@ref(sec:countrytrack))
-* Relation to other estimates (\@ref(sec:otherestimates))
+-   Estimating SDG 4.2.1 indicator from existing data (\@ref(sec:application1))
+-   Definition *developmentally on track* (\@ref(sec:references))
+-   Country-level estimates (\@ref(sec:countrytrack))
+-   Relation to other estimates (\@ref(sec:otherestimates))
 
 ## Estimating SDG 4.2.1 indicator from existing data {#sec:application1}
 
@@ -26,17 +26,17 @@ The [UN Sustainable Development Goals](https://www.un.org/sustainabledevelopment
 
 > By 2030, ensure that all girls and boys have access to quality early childhood development, care and preprimary education so that they are ready for primary education.
 
-To measure progress, the UN defined indicator 4.2.1 as follows: 
+To measure progress, the UN defined indicator 4.2.1 as follows:
 
 > Proportion of children under 5 years of age who are developmentally on track in health, learning and psychosocial well-being, by sex.
 
-On July 22, 2020, the indicator was [changed](https://unstats.un.org/sdgs/metadata/) into 
+On July 22, 2020, the indicator was [changed](https://unstats.un.org/sdgs/metadata/) into
 
 > Proportion of children aged 24-59 months who are developmentally on track in health, learning and psychosocial well-being, by sex.
 
 The exclusion of children 0-24 months is at variance with the importance of healthy growth and development during the first 1000 days of life. Indeed, the UN restricted the age range for practical concerns. @loizillon2017 report:
 
-> The initial recommendation was for the ECDI to measure child development from birth–5 years, but the range was restricted to 3–5 years due to time and resource constraints and limited availability of comparable measurement tools for children under age 3.
+> The initial recommendation was for the ECDI to measure child development from birth--5 years, but the range was restricted to 3--5 years due to time and resource constraints and limited availability of comparable measurement tools for children under age 3.
 
 The careful scientific approach underlying the D-score fills the gap for children aged 0-24 months. Also, the D-score methodology enables extensions to ages beyond 24 months, permits back-calculation of D-scores from existing data, and acts as a linking pin to compare child development from birth onwards.
 
@@ -46,9 +46,9 @@ The cohorts included in the GCDG study represent a wide range of countries and i
 
 In 2006, the World Health Organisation (WHO) published the [WHO Child Growth Standards](https://www.who.int/childgrowth/publications/technical_report_pub/en/). These standards specify "how children should grow" and form the basis for widely used anthropometric indicators such as stunting and wasting. We advocate a similar approach for child development. More in particular, the would consist of the following steps:
 
-1. Measure child development on an interval scale;
-2. Estimate the age-conditional reference distribution for normal child development;
-3. Define the indicator *developmentally on track* as the proportion above a chosen cut-off. 
+1.  Measure child development on an interval scale;
+2.  Estimate the age-conditional reference distribution for normal child development;
+3.  Define the indicator *developmentally on track* as the proportion above a chosen cut-off.
 
 Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical methodology for constructing growth standard [@borghi2006]. Step 3 can be done in different ways, but a applying a simple cut-off fits easily with regular practice in reporting international comparisons.
 
@@ -58,17 +58,17 @@ Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical met
 knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
                    height = "800px")
 ```
+
 (ref:dscorerefs) Illustration of the method to define on-track development
 
 Figure \@ref(fig:dscorerefs) demonstrates steps 2 and 3 in more detail. Click 'Next' to advance a series of six steps:
 
-1. Plot the D-score by age;
-2. Model the relation between age and D-score by an LMS model. In practice, this amounts to smoothing three curves representing the median, coefficient of variation
-and the skewness. 
-3. Present the centile lines for the model; 
-4. Plot the age-standardized scores for development (DAZ);
-5. Draw standard deviation lines to indicate the location at $\pm$ 1 and $\pm$ 2 standard deviation from the mean;
-6. Count observations above the -2 SD line as on-track. Count observation below the -2 SD lines as off-track (red dots).
+1.  Plot the D-score by age;
+2.  Model the relation between age and D-score by an LMS model. In practice, this amounts to smoothing three curves representing the median, coefficient of variation and the skewness.
+3.  Present the centile lines for the model;
+4.  Plot the age-standardized scores for development (DAZ);
+5.  Draw standard deviation lines to indicate the location at $\pm$ 1 and $\pm$ 2 standard deviation from the mean;
+6.  Count observations above the -2 SD line as on-track. Count observation below the -2 SD lines as off-track (red dots).
 
 *Note: These SD lines build upon on a convenience sample. The GCDG cohorts are not representative samples, and the countries are not representative of the world. While we should not over-interpret these references, they play a central role in a stepwise, principled approach to define "developmentally on track".*
 
@@ -88,16 +88,16 @@ knitr::kable(tabtrack,
              digits = 1) %>% 
   kable_styling(full_width = F)
 ```
-&nbsp;
+
+ 
 
 Using the definition from the previous section, we can calculate the percentage of children that are developmentally on track. Table \@ref(tab:ontrack) summarises this statistic by country. At a cut-off value of -2 SD, we expect that about 97.7% of the children will be on track. The actual country estimates fall into the range 93.9 - 99.9 and are thus near the theoretical value. This close correspondence shows that the definition and estimation procedure work as expected.
 
 Bear in mind that the measurements leading up to these estimates come from different instruments. It is gratifying to see how well we can do with historical data, thanks to the robust underlying measurement model. Of course, comparability only gets better if all countries would use the same instrument. However, using the same tool everywhere is not a requirement.
 
-
 ## Off-track development and stunted growth {#sec:otherestimates}
 
-@Weber2019 thoroughly discuss concurrent, discriminant and predictive validity of the D-score using the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired length growth in children due to nutrition problems. The WHO defines [stunted growth](https://www.who.int/nutrition/healthygrowthproj/en/index1.html) as a height-for-age Z-score below the -2 SD line of the WHO Child Growth Standards (HAZ < -2.0). 
+@Weber2019 thoroughly discuss concurrent, discriminant and predictive validity of the D-score using the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired length growth in children due to nutrition problems. The WHO defines [stunted growth](https://www.who.int/nutrition/healthygrowthproj/en/index1.html) as a height-for-age Z-score below the -2 SD line of the WHO Child Growth Standards (HAZ \< -2.0).
 
 ```{r stunt, echo=FALSE, fig.width=7, fig.height=7, fig.cap='(ref:stunt)'}
 
@@ -141,12 +141,13 @@ ggplot(data = sdg_stunt, aes(y = `Off-track`, x = Stunted, label = ctrycd)) +
 
 
 ```
+
 (ref:stunt) Off-track development (%) versus stunting (%) per country
 
 Figure \@ref(fig:stunt) plots the percentage off-track and percentage stunting per country. This plot reveals two exciting features:
 
-* *The variation in stunting in much larger than the variation off-track development*. One might speculate that height is more dependent on the environment than off-track development, and hence more variable.
-* *Stunted growth and off-track development are unrelated*. Ranking countries by stunting or by off-track development yields substantially different orders. This finding provides clear counter-evidence to the argument that stunted growth is as a proxy for delayed development. It may even be the case the child development and physical growth are different maturation processes that develop largely independently. 
+-   *The variation in stunting in much larger than the variation off-track development*. One might speculate that height is more dependent on the environment than off-track development, and hence more variable.
+-   *Stunted growth and off-track development are unrelated*. Ranking countries by stunting or by off-track development yields substantially different orders. This finding provides clear counter-evidence to the argument that stunted growth is as a proxy for delayed development. It may even be the case the child development and physical growth are different maturation processes that develop largely independently.
 
 ```{r stuntdaz, echo=FALSE, fig.width=7, fig.cap= '(ref:stuntdaz)'}
 ##DAZ in stunted vs non-stunted (as done in Weber paper)
@@ -163,17 +164,17 @@ ggplot(sdg_stuntdaz, aes(x = stunting, y = DAZ, group = ctrycd))+
   geom_point() +
   xlab("Stunting status")
 ```
-(ref:stuntdaz) Difference in mean DAZ  per country between stunted and not stunted children.
 
-However, this is not the whole story. Figure \@ref(fig:stuntdaz) reveals a consistent difference in DAZ between stunted and non-stunted children of about 0.2 - 0.3 SD. There could be factors at the child level that affect both development and height growth. For example, low-income families may lack the resources for adequate nutrition, which may impact both child development and physical growth. 
+(ref:stuntdaz) Difference in mean DAZ per country between stunted and not stunted children.
+
+However, this is not the whole story. Figure \@ref(fig:stuntdaz) reveals a consistent difference in DAZ between stunted and non-stunted children of about 0.2 - 0.3 SD. There could be factors at the child level that affect both development and height growth. For example, low-income families may lack the resources for adequate nutrition, which may impact both child development and physical growth.
 
 The exact nature of the relation between stunting and development is still obscure. The D-score provides a means to study the intriguing interplay between both measures in more detail.
 
-
+```{=html}
 <!--# To validate the off-track development measured by the D-score we can compare the percentage off-track in the studies that administered the `by2` or `by3` using the cut-off for developmental delay (i.e. <70 for `by2`and <78 for `by3` [@https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5940608/]). 
 -->
-
-
+```
 ```{r eval=FALSE, include=FALSE}
 ##cohorts with by3
 ##cohort with by2

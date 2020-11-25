@@ -1,67 +1,63 @@
-# (APPENDIX) Appendices {-}
-
+# (APPENDIX) Appendices {.unnumbered}
 
 # Abbreviations {#ap:abbreviations}
 
-
-Section | Abbreviation | Description
---------|:-------------|:------------------------------------------
-\@ref(sec:cohorts)   | GCDG-BGD-7MO    | The Bangladesh study of the GCDG [@Tofail2008]
-\@ref(sec:cohorts)   | GCDG-BRA-1    | The Brazil 1 study of the GCDG [@Victora2006]
-\@ref(sec:cohorts)   | GCDG-BRA-2    | The Brazil 2 study of the GCDG [@Moura2010]
-\@ref(sec:cohorts)   | GCDG-CHL-1    | The Chile 1 study of the GCDG [@Lozoff2003]
-\@ref(sec:cohorts)   | GCDG-CHL-2    | The Chile 2 study of the GCDG [@conteras2015]
-\@ref(sec:cohorts)   | GCDG-CHN    | The China study of the GCDG [@Lozoff2016]
-\@ref(sec:cohorts)   | GCDG-COL-LT45M    | The Colombia 1 study of the GCDG [@Attanasio2014]
-\@ref(sec:cohorts)   | GCDG-COL-LT42M    | The Colombia 2 study of the GCDG [@Rubio-Codina2016]
-\@ref(sec:cohorts)   | GCDG-ECU    | The Ecuador study of the GCDG [@Paxson2010]
-\@ref(sec:cohorts)   | GCDG-ETH    | The Ethiopia study of the GCDG [@Hanlon2009]
-\@ref(sec:cohorts)   | GCDG-JAM-LBW    | The Jamaica 1 study of the GCDG [@Walker2004]
-\@ref(sec:cohorts)   | GCDG-JAM-STUNTED    | The Jamaica 2 study of the GCDG [@Grantham-McGregor1991]
-\@ref(sec:cohorts)   | GCDG-MDG    | The Madagascar study of the GCDG [@Fernald2011]
-\@ref(sec:cohorts)   | GCDG-NLD-SMOCC    | The Netherlands 1 study of the GCDG [@herngreen1992]
-\@ref(sec:cohorts)   | GCDG-NLD-2    | The Netherlands 2 study of the GCDG [@doove2010]
-\@ref(sec:cohorts)   | GCDG-ZAF    | The South Africa study of the GCDG [@Richter2007]
-\@ref(sec:instruments)   | by1    | Bayley Scale for Infant and Todler Development version 1 [@bayley1969]
-\@ref(sec:instruments)   | by2    | Bayley Scale for Infant and Todler Development version 2 [@bayley1993]
-\@ref(sec:instruments)   | by3    | Bayley Scale for Infant and Todler Development version 3 [@bayley2006]
-\@ref(sec:instruments)   | den    | Denver Developmental Screening Test [@frankenburg1992]
-\@ref(sec:instruments)   | gri    | Griffiths Mental Development Scales [@griffiths1967]
-\@ref(sec:instruments)   | bat  | Battelle Developmental Inventory [@newborg2005]
-\@ref(sec:instruments)   | vin    | Vineland Social Maturity Scale [@doll1953]
-\@ref(sec:instruments)   | ddi    | Dutch Developmental Instrument [@schlesinger1981]
-\@ref(sec:instruments)   | bar    | Barrera Moncada [@barrera1981]
-\@ref(sec:instruments)   | tep    | Test de Desarrollo Psicomotor [@haeussler1999]
-\@ref(sec:instruments)   | asq  | Ages and Stages Questionnaire [@squires2009]
-\@ref(sec:instruments)   | sbi    | Stanford Binet Intelligence Scales [@roid2003]
-
-
+| Section                | Abbreviation     | Description                                                            |
+|------------------------|:-----------------|:-----------------------------------------------------------------------|
+| \@ref(sec:cohorts)     | GCDG-BGD-7MO     | The Bangladesh study of the GCDG [@Tofail2008]                         |
+| \@ref(sec:cohorts)     | GCDG-BRA-1       | The Brazil 1 study of the GCDG [@Victora2006]                          |
+| \@ref(sec:cohorts)     | GCDG-BRA-2       | The Brazil 2 study of the GCDG [@Moura2010]                            |
+| \@ref(sec:cohorts)     | GCDG-CHL-1       | The Chile 1 study of the GCDG [@Lozoff2003]                            |
+| \@ref(sec:cohorts)     | GCDG-CHL-2       | The Chile 2 study of the GCDG [@conteras2015]                          |
+| \@ref(sec:cohorts)     | GCDG-CHN         | The China study of the GCDG [@Lozoff2016]                              |
+| \@ref(sec:cohorts)     | GCDG-COL-LT45M   | The Colombia 1 study of the GCDG [@Attanasio2014]                      |
+| \@ref(sec:cohorts)     | GCDG-COL-LT42M   | The Colombia 2 study of the GCDG [@Rubio-Codina2016]                   |
+| \@ref(sec:cohorts)     | GCDG-ECU         | The Ecuador study of the GCDG [@Paxson2010]                            |
+| \@ref(sec:cohorts)     | GCDG-ETH         | The Ethiopia study of the GCDG [@Hanlon2009]                           |
+| \@ref(sec:cohorts)     | GCDG-JAM-LBW     | The Jamaica 1 study of the GCDG [@Walker2004]                          |
+| \@ref(sec:cohorts)     | GCDG-JAM-STUNTED | The Jamaica 2 study of the GCDG [@Grantham-McGregor1991]               |
+| \@ref(sec:cohorts)     | GCDG-MDG         | The Madagascar study of the GCDG [@Fernald2011]                        |
+| \@ref(sec:cohorts)     | GCDG-NLD-SMOCC   | The Netherlands 1 study of the GCDG [@herngreen1992]                   |
+| \@ref(sec:cohorts)     | GCDG-NLD-2       | The Netherlands 2 study of the GCDG [@doove2010]                       |
+| \@ref(sec:cohorts)     | GCDG-ZAF         | The South Africa study of the GCDG [@Richter2007]                      |
+| \@ref(sec:instruments) | by1              | Bayley Scale for Infant and Todler Development version 1 [@bayley1969] |
+| \@ref(sec:instruments) | by2              | Bayley Scale for Infant and Todler Development version 2 [@bayley1993] |
+| \@ref(sec:instruments) | by3              | Bayley Scale for Infant and Todler Development version 3 [@bayley2006] |
+| \@ref(sec:instruments) | den              | Denver Developmental Screening Test [@frankenburg1992]                 |
+| \@ref(sec:instruments) | gri              | Griffiths Mental Development Scales [@griffiths1967]                   |
+| \@ref(sec:instruments) | bat              | Battelle Developmental Inventory [@newborg2005]                        |
+| \@ref(sec:instruments) | vin              | Vineland Social Maturity Scale [@doll1953]                             |
+| \@ref(sec:instruments) | ddi              | Dutch Developmental Instrument [@schlesinger1981]                      |
+| \@ref(sec:instruments) | bar              | Barrera Moncada [@barrera1981]                                         |
+| \@ref(sec:instruments) | tep              | Test de Desarrollo Psicomotor [@haeussler1999]                         |
+| \@ref(sec:instruments) | asq              | Ages and Stages Questionnaire [@squires2009]                           |
+| \@ref(sec:instruments) | sbi              | Stanford Binet Intelligence Scales [@roid2003]                         |
 
 # Notation {#ap:notation}
 
 The notation in this booklet follows @wright1982.
 
-Section | Symbol   | Term          | Description
---------|:---------|:--------------|:-----------------------------------------------------------
-\@ref(sec:)   | $\beta_n$     | Ability       | True (but unknown) developmental score of child $n$
-\@ref(sec:)   | $\delta_i$    | Difficulty    | True (but unknown) difficulty of item $i$
-\@ref(sec:)   | $\pi_{ni}$    | Probability   | True (but unknown) probability that child $n$ passes item $i$
-\@ref(sec:)                 | $\hat\beta_n$ | Ability       | Estimated developmental score (D-score) of child $n$
-\@ref(sec:)                 | $\hat\delta_i$| Difficulty    | Estimated difficulty of item $i$
-\@ref(sec:)                 | $P_{ni}$      | Probability   | Estimated probability that child $n$ passes item $i$
-\@ref(sec:)                 | $x_{ni}$      | Data          | Observed response of child $n$ on item $i$, 0 or 1
-\@ref(sec:)                 | $W_{ni}$      | Variance      | Variance of $x_{ni}$
-\@ref(sec:)                 | $z_{ni}$      | Residual      | Standardized residual between $x_{ni}$ and $P_{ni}$
-\@ref(sec:)                 | $N$           | Count         | Number of measurements (children)
-\@ref(sec:)                 | $L$           | Count         | Number of items (milestones)
-\@ref(sec:)         | $P(\hat\delta_i)$ | Probability | Conditional probability of passing item $i$
-\@ref(sec:)         | $I(\hat\delta_i)$ | Information | Item information function of item $i$
-\@ref(sec:)             | $R$            | Reliability  | True test reliability
-\@ref(sec:)             | $\hat R$       | Reliability  | Estimated test reliability
-\@ref(sec:)             | $\sigma_e^2$   | Variance  | True error variance
-\@ref(sec:)             | $\hat\sigma_{\hat e}^2$ | Variance  | Estimated error variance
-\@ref(sec:)             | $\hat\sigma_{\hat e}$   | Variance  | Standard error of measurement (sem)
-\@ref(sec:)                    |$f$             | Factor       | Age-adjustment factor
+| Section     | Symbol                  | Term        | Description                                                   |
+|-------------|:------------------------|:------------|:--------------------------------------------------------------|
+| \@ref(sec:) | $\beta_n$               | Ability     | True (but unknown) developmental score of child $n$           |
+| \@ref(sec:) | $\delta_i$              | Difficulty  | True (but unknown) difficulty of item $i$                     |
+| \@ref(sec:) | $\pi_{ni}$              | Probability | True (but unknown) probability that child $n$ passes item $i$ |
+| \@ref(sec:) | $\hat\beta_n$           | Ability     | Estimated developmental score (D-score) of child $n$          |
+| \@ref(sec:) | $\hat\delta_i$          | Difficulty  | Estimated difficulty of item $i$                              |
+| \@ref(sec:) | $P_{ni}$                | Probability | Estimated probability that child $n$ passes item $i$          |
+| \@ref(sec:) | $x_{ni}$                | Data        | Observed response of child $n$ on item $i$, 0 or 1            |
+| \@ref(sec:) | $W_{ni}$                | Variance    | Variance of $x_{ni}$                                          |
+| \@ref(sec:) | $z_{ni}$                | Residual    | Standardized residual between $x_{ni}$ and $P_{ni}$           |
+| \@ref(sec:) | $N$                     | Count       | Number of measurements (children)                             |
+| \@ref(sec:) | $L$                     | Count       | Number of items (milestones)                                  |
+| \@ref(sec:) | $P(\hat\delta_i)$       | Probability | Conditional probability of passing item $i$                   |
+| \@ref(sec:) | $I(\hat\delta_i)$       | Information | Item information function of item $i$                         |
+| \@ref(sec:) | $R$                     | Reliability | True test reliability                                         |
+| \@ref(sec:) | $\hat R$                | Reliability | Estimated test reliability                                    |
+| \@ref(sec:) | $\sigma_e^2$            | Variance    | True error variance                                           |
+| \@ref(sec:) | $\hat\sigma_{\hat e}^2$ | Variance    | Estimated error variance                                      |
+| \@ref(sec:) | $\hat\sigma_{\hat e}$   | Variance    | Standard error of measurement (sem)                           |
+| \@ref(sec:) | $f$                     | Factor      | Age-adjustment factor                                         |
 
 ```{r warnings}
 warnings()

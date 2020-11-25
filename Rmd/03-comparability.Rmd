@@ -7,37 +7,35 @@ library(kableExtra)
 library(knitr)
 ```
 
-
 # Comparability {#ch:comparability}
 
 > Author: Iris Eekhout, Stef van Buuren
 
 This chapter describes challenges and methodologies to harmonize child development measurements obtained by different instruments:
 
-* Are instruments connected? (\@ref(sec:challenge))
-* Bridging instruments by mapping items (\@ref(sec:mapping))
-* Overview of promising item mappings (\@ref(sec:viewmapping))
+-   Are instruments connected? (\@ref(sec:challenge))
+-   Bridging instruments by mapping items (\@ref(sec:mapping))
+-   Overview of promising item mappings (\@ref(sec:viewmapping))
 
 ## Are instruments connected? {#sec:challenge}
 
 The ultimate goal is to compare child development across populations and cultures. A complication is that measurements are made by different instruments. To do deal with this issue, we harmonize the data included in the GCDG cohorts. In particular, we process the milestone responses such that the following requirements hold:
 
-* Every milestone in an instrument has a unique name and a descriptive label;
-* Every milestone occupies one column in the dataset;
-* Item scores are (re)coded as: 1 = PASS; 0 = FAIL;
-* Items not administered or not answered are a missing value;
-* Every row in the dataset corresponds to a unique cohort-child-age combination.
+-   Every milestone in an instrument has a unique name and a descriptive label;
+-   Every milestone occupies one column in the dataset;
+-   Item scores are (re)coded as: 1 = PASS; 0 = FAIL;
+-   Items not administered or not answered are a missing value;
+-   Every row in the dataset corresponds to a unique cohort-child-age combination.
 
 Cohorts and milestones need to be *connected*. There are several ways to connect cohorts:
 
-* Two cohorts are directly connected if they use the same instrument;
-* Two cohorts are indirectly connected if both connect to a third cohort that connects them.
+-   Two cohorts are directly connected if they use the same instrument;
+-   Two cohorts are indirectly connected if both connect to a third cohort that connects them.
 
 Likewise, instruments can be connected:
 
-* Two instruments are directly connected if the same cohort measures both;
-* Two instruments are indirectly connected if both connect to a third instrument that connects them.
-
+-   Two instruments are directly connected if the same cohort measures both;
+-   Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
 ```{r linkage, echo = FALSE}
 
@@ -76,7 +74,8 @@ knitr::kable(df,
   kableExtra::kable_styling() %>%
   kableExtra::scroll_box(width = "100%", height = "500px")
 ```
-&nbsp;
+
+ 
 
 An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia, and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3`, and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
@@ -84,17 +83,16 @@ Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern
 
 Connectedness is a necessary - though not sufficient - requirement for parameter identification. If two cohorts are not connected, we cannot distinguish between the following two alternative explanations:
 
-* Any differences between studies can be attributed to the ability of the children;
-* Any differences between studies can be attributed to the difficulties of the instruments.
+-   Any differences between studies can be attributed to the ability of the children;
+-   Any differences between studies can be attributed to the difficulties of the instruments.
 
-The data do not contain the necessary information to discriminate between these two explanations. Since many cohorts in Table \@ref(tab:linkage) are unconnected, it seems that we are stuck. 
+The data do not contain the necessary information to discriminate between these two explanations. Since many cohorts in Table \@ref(tab:linkage) are unconnected, it seems that we are stuck.
 
 The next section suggests a way out of the dilemma.
 
 ## Bridging instruments by mapping items {#sec:mapping}
 
-Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. 
-We will exploit this overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
+Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. We will exploit this overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
 ```{r example2words, echo = FALSE}
 items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
@@ -105,7 +103,8 @@ t <- knitr::kable(df, booktabs = TRUE,
              caption = "Example of similar items from different instruments.")
 kableExtra::column_spec(t, 1, monospace = TRUE)
 ```
-&nbsp;
+
+ 
 
 The idea is to check whether these milestones measure development in the same way. If this is found to be true, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
 
@@ -115,6 +114,7 @@ A first step in the bridging process is to group items from different instrument
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
   height = "700px")
 ```
+
 (ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
 
 Figure \@ref(fig:mappingshiny) connects similar items and hence visualises connections between instruments. Items are displayed in the wheel, colored by instrument. Hovering over the items highlights the item description and its connections to similar items. We organised item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC), and expressive (EXP). The `Prev` and `Next` buttons allow us to visit other domains.
@@ -138,8 +138,8 @@ gridExtra::grid.arrange(
 )
 
 ```
-(ref:poteq) The probability of passing by age in potential bridging items.
 
+(ref:poteq) The probability of passing by age in potential bridging items.
 
 Figure \@ref(fig:badeq) presents two examples of weak item mappings. Notable timing differences exist for the "babbles" and "bangs" milestones, which suggests that we should not take these as bridges.
 
@@ -151,20 +151,19 @@ gridExtra::grid.arrange(
   eq_plots[["COG24"]] ## BR1=den; CO2=den; CL1=BY1; ZA=BY1
 )
 ```
-(ref:badeq) Probability to pass items for age in poor bridges.
 
- 
+(ref:badeq) Probability to pass items for age in poor bridges.
 
 While these plots are suggestive, their interpretation is surprisingly complicated. We may find that age profiles of two milestones *A and B* administered in samples 1 and 2 respectively *are identical* if
 
-* A and B are equally difficult and samples 1 and 2 have the same maturation level;
-* A is more difficult than B and sample 1 is more advanced than 2.
+-   A and B are equally difficult and samples 1 and 2 have the same maturation level;
+-   A is more difficult than B and sample 1 is more advanced than 2.
 
 Similarly, we may find that the age profile for *A is earlier than B* if
 
-* A is easier than B and if samples 1 and 2 have the same level of maturation;
-* A and B are equally difficult and if sample 1 is more advanced than sample 2.
+-   A is easier than B and if samples 1 and 2 have the same level of maturation;
+-   A and B are equally difficult and if sample 1 is more advanced than sample 2.
 
-Note that the age curves confound difficulty and ability, and hence cannot be used to evaluate the quality of the item map. 
+Note that the age curves confound difficulty and ability, and hence cannot be used to evaluate the quality of the item map.
 
 What we need to do is separate difficulty and ability. For this, we need a formal statistical model. The next chapter introduces the concepts required in such a model.

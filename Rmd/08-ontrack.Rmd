@@ -20,14 +20,14 @@ library(RColorBrewer)
 
 Chapter \@ref(ch:SDGindicator) described a method to define and estimate off-track development. The current chapter highlights strategies to find factors that discriminate between children that are on-track and off-track. We order explanatory factors relative to their importance and discuss opportunities for interventions.
 
-* What determines who is developmentally on-track (\@ref(sec:application2))
-* Factors that impact child development (\@ref(sec:factors))
+-   What determines who is developmentally on-track (\@ref(sec:application2))
+-   Factors that impact child development (\@ref(sec:factors))
 
 ## What determines who is developmentally on-track? {#sec:application2}
 
-There are multiple ways to define on-track development. Here we will follow the method of section \@ref(sec:references). Ideally, we would like to fit the age-conditional reference distribution on a sample of children with normal, healthy development. As noted before, we calculated the references used in section \@ref(sec:references) from a convenience sample. They may not be representative of healthy development. 
+There are multiple ways to define on-track development. Here we will follow the method of section \@ref(sec:references). Ideally, we would like to fit the age-conditional reference distribution on a sample of children with normal, healthy development. As noted before, we calculated the references used in section \@ref(sec:references) from a convenience sample. They may not be representative of healthy development.
 
-````{r ontrackref, echo=FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 7, fig.cap = '(ref:ontrackref)'}
+```{r ontrackref, echo=FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 7, fig.cap = '(ref:ontrackref)'}
 LMS <- dscore::get_reference("gcdg") %>% 
   select(age, mu, sigma, nu) %>% 
   mutate(x = age, 
@@ -72,19 +72,20 @@ ggplot() +
                alpha = 0.1) +
   annotate("text", x = 50, y = 69, label = "-2SD")
 ```
-(ref:ontrackref) D-score observatations that are on-track according the current references. 
+
+(ref:ontrackref) D-score observatations that are on-track according the current references.
 
 Assuming we place the cut-off value at -2 SD, we may subdivide the observations into off-track and on-track. Figure \@ref(fig:ontrackref) colours the regions of the D-score for children considered on-track (green) and off-track (red). The regions indicate the expected locations of D-scores in practice. Although one could find D-score outside the coloured areas, such should be very rare. The occurrence of such cases may indicate an error in the calculation of the D-score, most likely caused by setting an incorrect age variable.
 
 Preventing observations in the red region requires us to form an idea about the factors that determine the off-track probability. The next section looks into this topic.
 
-
 ## Factors that impact child development {#sec:factors}
 
+```{=html}
 <!---- 
 analyze relation between background variables for on-track in logistic regression
 --->
-
+```
 We already know many of the factors that influence early child development. A higher level of education in the family promotes development. Infectious diseases like malaria slow down growth. Access to adequate nutrition, clean water and a stimulating, prosperous and safe environment is favourable for healthy development. And so on. Unfortunately, we do not have data on most factors, so we need to limit ourselves to a few background characteristics.
 
 ```{r ontracktab, echo = FALSE, message = FALSE, warning = FALSE}
@@ -216,12 +217,12 @@ kable(desc_table[,c(1:6)], col.names = c("", "", "n","%", "n","%"), caption = "C
 ##birthweight < 2500 gram (= low)
 
 ```
-&nbsp;
 
-Table \@ref(tab:ontracktab) compares the frequency distributions of various factors for children on-track versus off-track. There are only tiny differences between boys and girls. Children with low birth weight (< 2500 gr) are more at risk for off-track development. This estimate does not correct for gestational age. We discussed techniques for such corrections [elsewhere](https://stefvanbuuren.name/dbook1/sec-pops.html). 
+ 
+
+Table \@ref(tab:ontracktab) compares the frequency distributions of various factors for children on-track versus off-track. There are only tiny differences between boys and girls. Children with low birth weight (\< 2500 gr) are more at risk for off-track development. This estimate does not correct for gestational age. We discussed techniques for such corrections [elsewhere](https://stefvanbuuren.name/dbook1/sec-pops.html).
 
 The influence of maternal education on off-track development follows the expected trend. Interestingly, it seems that a rural environment could prevent off-track development. We note that original measures of maternal education and residence had to harmonise across studies. It would, therefore, also be interesting to study the impact per cohort using the actual factor coding.
-
 
 ```{r descplot, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 #join based on subjido & cohort/study. So translate study in ddata gcdg data to cohort in GSEDDATA.
@@ -259,10 +260,11 @@ for(f in unique(desc_plot$factor)){
 #  
 ```
 
-
+```{=html}
 <!---- 
 relative importance for daz?
 --->
+```
 ```{r imppie, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
 
 #step 2
@@ -363,16 +365,17 @@ pie(rsq, border = "white", col = brewer.pal(6, "Set3"), radius = 1)
 # fit2.res <- glm(ontrack ~ factor(residence), data = data, family = "binomial")
 # summary(fit2.res)
 ```
+
 (ref:imppie) Relative importance of the explanatory factors in this study
 
 We predicted DAZ by linear regressions with predictors country, sex, birth weight, maternal education, height for age and residential area. The percentage of explained variance was 11 per cent. Figure \@ref(fig:imppie) depicts the relative contributions of the individual factors to the prediction. Country differences explain over half the variances, followed by maternal education. Contributions of height-for-age (HAZ), low birth weight and residence are about equal in magnitude.
 
 These analyses only scratch the surface. It is nowadays common to analyse the impact of interventions on height and HAZ by multivariate techniques and machine learning methods. The D-score and DAZ are drop-in replacements that allow similar procedures to study which factors contribute to healthy child development worldwide.
 
-
 <!-- ## Opportunities for intervention {#sec:intervention} -->
 
 <!-- <!----  -->
-<!-- in words conclusions based on previous paragraphs. What can we say (now) about where to intervene--->
-<!-- From the analyses performed in the previous sections, we cannot yet formulate a clear advise on opportunities for intervention. The data that we have available is too limited and includes only a small set of explanatory variables and possible preditors for early child development. We can see, however, that there are country differences in early child development, and that supports that interventions should be costumized at country level.  -->
 
+<!-- in words conclusions based on previous paragraphs. What can we say (now) about where to intervene--->
+
+<!-- From the analyses performed in the previous sections, we cannot yet formulate a clear advise on opportunities for intervention. The data that we have available is too limited and includes only a small set of explanatory variables and possible preditors for early child development. We can see, however, that there are country differences in early child development, and that supports that interventions should be costumized at country level.  -->
