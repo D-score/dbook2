@@ -19,7 +19,7 @@ knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/#displ
 
 Figure \@ref(fig:dscoredist) shows the scatterplot of the D-score by age separately for each cohort. Remember from section \@ref(sec:gcdgoverview) that each study selected its own set of instruments to collect the data. The scatterplots demonstrate a significant advance made possible by the D-score: We can plot the developmental scores of children from **different** cohorts, with **different** ages, using **different** instruments, on the **same** vertical axis.
 
-The five blue lines guide the eye. These lines indicate the locations of the -2SD, -1SD, 0SD, +1SD and +2SD quantiles at each age in the combined data. [Section I:5.4](https://stefvanbuuren.name/dbook1/sec-reference.html) motivates the idea and provides some technical details. We'll come back to these lines in section \@ref(sec:references).
+The five blue lines guide the eye. These lines indicate the locations of the -2SD, -1SD, 0SD, +1SD and +2SD quantiles at each age in the combined data. [Section I:5.4](https://d-score.org/dbook1/sec-reference.html) motivates the idea and provides some technical details. We'll come back to these lines in section \@ref(sec:references).
 
 By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the `GCDG-JAM-STUNTED` cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a weak calibration of the instrument.
 
@@ -29,7 +29,7 @@ Replacing the D-score by the DAZ emphasises any differences both within and betw
 
 ## Precision of the D-score {#sec:sem}
 
-The [EAP algorithm](https://stefvanbuuren.name/dbook1/sec-dscoreestimation.html#eap-algorithm-numerical-example) estimates the D-score from a set of PASS/FAIL scores. The standard deviation of the posterior distribution (or *sem*: standard error of measurement) quantifies the imprecision of the D-score estimate. The *sem* is inversely related to the number of items. Thus, when we administer more milestones, the sem of the D-score drops.
+The [EAP algorithm](https://d-score.org/dbook1/sec-dscoreestimation.html#eap-algorithm-numerical-example) estimates the D-score from a set of PASS/FAIL scores. The standard deviation of the posterior distribution (or *sem*: standard error of measurement) quantifies the imprecision of the D-score estimate. The *sem* is inversely related to the number of items. Thus, when we administer more milestones, the sem of the D-score drops.
 
 ```{r semforn, results = 'hide', fig.keep = 'all', fig.cap = '(ref:semforn)', fig.align='center', echo = FALSE, fig.width=6}
 ggplot(data = dmetric::model_lean$dscore )+

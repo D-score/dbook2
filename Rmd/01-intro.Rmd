@@ -12,7 +12,7 @@ This introductory chapter
 
 ## Previous work on the D-score {#sec:previous}
 
-The D-score booklet I [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones.
+The D-score booklet I [Turning milestones into measurement](https://d-score.org/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones.
 
 In practice, we typically want to make the following types of comparisons:
 
@@ -27,7 +27,7 @@ As our approach breaks with the traditional paradigm that emphasises different d
 
 ## What this volume is about {#sec:thisvolume}
 
-It is straightforward to apply the D-score methodology as explained in [Turning milestones into measurement](https://stefvanbuuren.name/dbook1) for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
+It is straightforward to apply the D-score methodology as explained in [Turning milestones into measurement](https://d-score.org/dbook1) for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
 
 -   different versions of the same instrument (e.g., Bayley I, II and III);
 -   different language versions of the same tool;

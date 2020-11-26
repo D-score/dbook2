@@ -73,7 +73,7 @@ If the cohort abilities are relatively uniform (for example as a result of exper
 
 ## Parameter estimation with equate groups {#sec:statisticalframe}
 
-The Rasch model is the preferred measurement model for child development data. [Booklet I: Chapter 4](https://stefvanbuuren.name/dbook1/ch-newmodel.html) provides an introduction of the Rasch model geared towards the D-score.
+The Rasch model is the preferred measurement model for child development data. [Booklet I: Chapter 4](https://d-score.org/dbook1/ch-newmodel.html) provides an introduction of the Rasch model geared towards the D-score.
 
 The Rasch model expresses the probability of passing an item as a logistic function of the difference between the person ability $\beta_n$ and the item difficulty $\delta_i$. Table \@ref(tab:symbols) explains the symbols used in equation \@ref(eq:rasch). Formula \@ref(eq:rasch) defines the model as
 
@@ -82,7 +82,7 @@ The Rasch model expresses the probability of passing an item as a logistic funct
 \pi_{ni} = \frac{\exp(\beta_n - \delta_i)}{1+\exp(\beta_n -\delta_i)} (\#eq:rasch)
 \end{equation}
 ```
-One way to interpret the formula is as follows. The logarithm of the odds that a person with ability $\beta_n$ passes an item of difficulty $\delta_i$ is equal to the difference $\beta_n-\delta_i$ [@wright1982]. See the [booklet I: 4.6.1 logistic model](https://stefvanbuuren.name/dbook1/sec-itemresponsefunctions.html#logistic-model) for more detail.
+One way to interpret the formula is as follows. The logarithm of the odds that a person with ability $\beta_n$ passes an item of difficulty $\delta_i$ is equal to the difference $\beta_n-\delta_i$ [@wright1982]. See the [booklet I: 4.6.1 logistic model](https://d-score.org/dbook1/sec-itemresponsefunctions.html#logistic-model) for more detail.
 
 In model \@ref(eq:rasch) every milestone $i$ has one parameter $\delta_i$. We extend the Rasch model by restricting the $\delta_i$ of all items within the same equate group to the same value. We thereby effectively say that these items are interchangeable measures of child development.
 
@@ -163,7 +163,7 @@ It is essential to activate only those equate groups for which the assumption of
 
 ### Equate fit
 
-[Chapter 6 of booklet I](https://stefvanbuuren.name/dbook1/ch-evaluation.html) defines the observed response of person $n$ on item $i$ as $x_{ni}$. The accompanying standardized residual $z_{ni}$ is the difference between $x_{ni}$ and the expected response $P_{ni}$, divided by the expected binomial standard deviation,
+[Chapter 6 of booklet I](https://d-score.org/dbook1/ch-evaluation.html) defines the observed response of person $n$ on item $i$ as $x_{ni}$. The accompanying standardized residual $z_{ni}$ is the difference between $x_{ni}$ and the expected response $P_{ni}$, divided by the expected binomial standard deviation,
 
 $$z_{ni} = \frac{x_{ni}-P_{ni}}{\sqrt{W_{ni}}},$$
 
@@ -228,7 +228,7 @@ Items within an active equate group should work in the same way across the diffe
 
 ### Good equate groups without DIF
 
-[Booklet I](https://stefvanbuuren.name/dbook1/sec-dif.html) discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.
+[Booklet I](https://d-score.org/dbook1/sec-dif.html) discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.
 
 ```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:plotnoeqdif)'}
 equatenames <- c("FM31", "EXP26", "GM44", "EXP23")

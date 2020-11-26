@@ -204,7 +204,7 @@ kable(desc_table[,c(1:6)], col.names = c("", "", "n","%", "n","%"), caption = "C
 
  
 
-Table \@ref(tab:ontracktab) compares the frequency distributions of various factors for children on-track versus off-track. There are only tiny differences between boys and girls. Children with low birth weight (\< 2500 gr) are more at risk for off-track development. This estimate does not correct for gestational age. We discussed techniques for such corrections [elsewhere](https://stefvanbuuren.name/dbook1/sec-pops.html).
+Table \@ref(tab:ontracktab) compares the frequency distributions of various factors for children on-track versus off-track. There are only tiny differences between boys and girls. Children with low birth weight (\< 2500 gr) are more at risk for off-track development. This estimate does not correct for gestational age. We discussed techniques for such corrections [elsewhere](https://d-score.org/dbook1/sec-pops.html).
 
 The influence of maternal education on off-track development follows the expected trend. Interestingly, it seems that a rural environment could prevent off-track development. We note that original measures of maternal education and residence had to harmonise across studies. It would, therefore, also be interesting to study the impact per cohort using the actual factor coding.
 
