@@ -86,10 +86,10 @@ Various routes are possible and may result in different final models. The strate
 ## Impact of number of active equate groups {#sec:impactequate}
 
 ```{r model1339, fig.cap = '(ref:model1339)', out.width="760px"}
-knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=", height = "600px")
+knitr::include_url(url = "https://d-score.org/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=", height = "600px")
 ```
 
-(ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click [ZOOM](https://stefvanbuuren.name/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=) to enlarge the display.
+(ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click [ZOOM](https://d-score.org/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=) to enlarge the display.
 
 Figure \@ref(fig:model1339) is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculated from the [SMOCC study](https://d-score.org/dbook1/sec-smoccstudy.html). In order to speed up the calculations, the figure shows a random subsample of 25% of all points. Manipulate the plot controls to switch cohorts.
 
@@ -115,10 +115,10 @@ We have now seen that the number of active equate groups has a large effect on t
 ## Age profiles of similar milestones {#sec:ageprofiles}
 
 ```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', out.width="760px"}
-knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=", height = "450px")
+knitr::include_url(url = "https://d-score.org/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=", height = "450px")
 ```
 
-(ref:p-a-equate-1339) Percentage of children that pass similar milestones at a given age. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=)
+(ref:p-a-equate-1339) Percentage of children that pass similar milestones at a given age. [ZOOM](https://d-score.org/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=)
 
 Figure \@ref(fig:p-a-equate-1339) displays the percentage of children that pass milestones at various ages. Subject matter experts clustered similar items stemming from different instruments into equate groups. There are 184 equate groups that contain two or more milestones.
 
@@ -129,10 +129,10 @@ We could follow different strategies in selecting which equate groups to active.
 ## Quality of equate groups {#sec:equatequality}
 
 ```{r p-d-equate-1339, fig.cap = '(ref:p-d-equate-1339)', out.width="760px"}
-knitr::include_url(url = "https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=", height = "450px")
+knitr::include_url(url = "https://d-score.org/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=", height = "450px")
 ```
 
-(ref:p-d-equate-1339) Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively. [ZOOM](https://stefvanbuuren.name/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=)
+(ref:p-d-equate-1339) Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively. [ZOOM](https://d-score.org/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=)
 
 Figure \@ref(fig:p-d-equate-1339) shows how the passing percentage depends on the child's D-score as calculated under four models. All models include the same 1339 milestones, but differ in the number of active equates. The grey curve corresponds to the estimate made under the assumption that milestones are equally difficult. Good milestones for bridging instruments will have a tight bundle of curves. For example, equate `EXP26` has tight bundles especially in models `1339_11` and `1339_33`. By comparison, the curves of the two extreme models vary considerably: the model without any bridges (`1339_0`) or the model with all bridges (`1339_184`) are thus less than ideal. The shallow grey curve of model `1339_184` indicates a poorer overall fit.
 
