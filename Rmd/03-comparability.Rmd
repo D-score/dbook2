@@ -1,12 +1,3 @@
-```{r ch3libs, include=FALSE}
-library("dmodel")
-library("dmetric")
-library("gseddata")
-library(dplyr)
-library(kableExtra)
-library(knitr)
-```
-
 # Comparability {#ch:comparability}
 
 > Author: Iris Eekhout, Stef van Buuren

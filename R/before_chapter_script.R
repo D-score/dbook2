@@ -1,7 +1,10 @@
 # automatically run before each chapter
 
 # load standard packages
-pkg <- c("knitr", "kableExtra", "ggplot2", "tidyr", "dplyr")
+pkg <- c("knitr", "kableExtra", "ggplot2", "tidyr", "dplyr",
+         "maps", "ggthemes", "gridExtra", "RColorBrewer",
+          "dscore", "dmetric", "gseddata", "ddata",
+         "dmodel", "ddomain", "dinstrument")
 loaded <- sapply(pkg, require, character.only = TRUE,
                  warn.conflicts = FALSE, quietly = TRUE)
 
