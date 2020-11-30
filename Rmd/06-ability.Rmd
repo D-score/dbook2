@@ -116,11 +116,11 @@ One may wonder whether the *sem* depends on age. Figure \@ref(fig:semfora) sugge
 #summary(model_lean$dscore$p[which(model_lean$dscore$cohort == "GCDG-COL-LT45M")])
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_sem/", 
 #  height = "700px")
-knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=",
+knitr::include_url("https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=",
                    height = "800px")
 ```
 
-(ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized D-scores (DAZ) per cohort. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display.
+(ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized D-scores (DAZ) per cohort. Click [ZOOM](https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display.
 
 Does precision vary with studies? The answer is yes. Figure \@ref(fig:dscoresems) plots the same information as before but now broken down according to cohort. Individual data points are added to give a feel for the design. The Colombia cohort `GCDG-COL-LT45M` administered the Bayley-III, where each child answered on average 45 items, so the *sem* is small. In contrast, the Dutch cohort GCDG-NLD-SMOCC collected data on a screener consisting of about ten relatively easy milestones, so the *sem* is relatively large. As a result, the Colombian D-scores are much more precise than the Dutch.
 
