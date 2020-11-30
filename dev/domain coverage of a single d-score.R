@@ -40,7 +40,7 @@ kable(ex1_resp,
 ```
 &nbsp;
 
-For each item we can calculate the relative information that it contributes to the D-score of 57.12. In the paragraph [Item information in dbook I](https://stefvanbuuren.name/dbook1/sec-iteminformation.html) we described
+For each item we can calculate the relative information that it contributes to the D-score of 57.12. In the paragraph [Item information in dbook I](https://d-score.org/dbook1/sec-iteminformation.html) we described
 how to calculate the item information for a D-score We can combine the
 proportional domain loading to the relative information that the item provides
 to the D-score of the child. In Figure \@ref(fig:example_part2) this is
