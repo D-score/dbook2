@@ -46,7 +46,7 @@ Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical met
 ```{r dscorerefs, echo=FALSE, out.width="760px", fig.cap='(ref:dscorerefs)' }
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
 #  height = "700px")
-knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgreferences/",
+knitr::include_url("https://d-score.org/dbook-apps/gcdgreferences/",
                    height = "800px")
 ```
 

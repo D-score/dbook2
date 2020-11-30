@@ -11,11 +11,11 @@ Once we identified a satisfactory D-score model, we may calculate the D-score fo
 ## Comparing child development across studies {#sec:dscores}
 
 ```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoredist)'}
-knitr::include_url("https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
+knitr::include_url("https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
   height = "800px")
 ```
 
-(ref:dscoredist) D-score distributions by study. Click [ZOOM](https://iriseekhout.github.io/dbook2tools/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
+(ref:dscoredist) D-score distributions by study. Click [ZOOM](https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
 
 Figure \@ref(fig:dscoredist) shows the scatterplot of the D-score by age separately for each cohort. Remember from section \@ref(sec:gcdgoverview) that each study selected its own set of instruments to collect the data. The scatterplots demonstrate a significant advance made possible by the D-score: We can plot the developmental scores of children from **different** cohorts, with **different** ages, using **different** instruments, on the **same** vertical axis.
 
