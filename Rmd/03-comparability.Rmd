@@ -101,12 +101,11 @@ The idea is to check whether these milestones measure development in the same wa
 
 A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items.
 
-```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', fig.width=10}
-knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", 
-  height = "700px")
+```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', screenshot.alt="fig/ring.png", dev = "png"}
+knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", height = "600px")
 ```
 
-(ref:mappingshiny) Connections between the instruments via mapped item groups in each domain.
+(ref:mappingshiny) Connections between the instruments via mapped item groups by domain.
 
 Figure \@ref(fig:mappingshiny) connects similar items and hence visualises connections between instruments. Items are displayed in the wheel, colored by instrument. Hovering over the items highlights the item description and its connections to similar items. We organised item mappings into five domains: fine motor (FM), gross motor (GM), cognitive (COG), receptive (REC), and expressive (EXP). The `Prev` and `Next` buttons allow us to visit other domains.
 
