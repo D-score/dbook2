@@ -39,7 +39,7 @@ A group of 13 subject-matter experts from the Global Child Development Group cro
 -   noted peculiarities of the matches;
 -   reported the results as a series of detailed Excel spreadsheets.
 
-```{r equatesheetpic, echo=FALSE, fig.cap='(ref:equatesheetpic)', out.width='760px'}
+```{r equatesheetpic, echo=FALSE, fig.cap='(ref:equatesheetpic)'}
 knitr::include_graphics("fig/equate_excel.png")
 ```
 
@@ -85,7 +85,7 @@ Various routes are possible and may result in different final models. The strate
 
 ## Impact of number of active equate groups {#sec:impactequate}
 
-```{r model1339, fig.cap = '(ref:model1339)', out.width="760px"}
+```{r model1339, fig.cap = '(ref:model1339)', screenshot.alt="fig/fig_5.2.png"}
 knitr::include_url(url = "https://d-score.org/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=", height = "600px")
 ```
 
@@ -114,7 +114,7 @@ We have now seen that the number of active equate groups has a large effect on t
 
 ## Age profiles of similar milestones {#sec:ageprofiles}
 
-```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', out.width="760px"}
+```{r p-a-equate-1339, fig.cap = '(ref:p-a-equate-1339)', screenshot.alt="fig/fig_5.3.png"}
 knitr::include_url(url = "https://d-score.org/dbook-apps/p-a-equate-1339/#display=Percent_pass_by_age_for_all_equate_groups&nrow=1&ncol=1&arr=row&pg=65&labels=equate&sort=equate_index;asc&filter=&sidebar=&fv=", height = "450px")
 ```
 
@@ -128,7 +128,7 @@ We could follow different strategies in selecting which equate groups to active.
 
 ## Quality of equate groups {#sec:equatequality}
 
-```{r p-d-equate-1339, fig.cap = '(ref:p-d-equate-1339)', out.width="760px"}
+```{r p-d-equate-1339, fig.cap = '(ref:p-d-equate-1339)', screenshot.alt="fig/fig_5.4.png"}
 knitr::include_url(url = "https://d-score.org/dbook-apps/p-d-equate-1339/#display=Percent_pass_by_D_score__four_models&nrow=2&ncol=2&arr=row&pg=65&labels=equate,model&sort=equate_index;asc,model;asc&filter=&sidebar=&fv=", height = "450px")
 ```
 
@@ -144,7 +144,7 @@ Until now we only looked at models that include all 1339 items. In practice, we 
 
 ## Milestone selection {#sec:milestoneselection}
 
-```{r itemfit, echo=FALSE, fig.cap='(ref:itemfit)', fig.height=5, warning=FALSE}
+```{r itemfit, fig.cap='(ref:itemfit)', out.width = "75%"}
 m_011 <- load_model("1339_11",  model_dir = "models_2020", project = "Jamaica")
 ggplot(data = m_011$item_fit, aes(x = infit, y = outfit)) +
   geom_hline(yintercept = 1, color = "skyblue", lty = 2) +
@@ -172,7 +172,7 @@ A practical problem of item removal is that it also affects equate group composi
 
 ### Instrument fit
 
-```{r itembox, echo=FALSE, fig.cap='(ref:itembox)', fig.height=5., warning=FALSE}
+```{r itembox, fig.cap='(ref:itembox)'}
 ib <- data.frame(m_011$item_fit, decompose_itemnames(m_011$item_fit$item))
 ib <- ib[ib$instrument %in% c("aqi", "bar", "bat", "by1", "by2", "by3", "ddi", "den", "gri", "sbi", "tep", "vin"), ]
 ggplot(data = ib, aes(x = instrument, y = outfit)) +

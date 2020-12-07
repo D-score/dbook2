@@ -10,7 +10,7 @@ Once we identified a satisfactory D-score model, we may calculate the D-score fo
 
 ## Comparing child development across studies {#sec:dscores}
 
-```{r dscoredist, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoredist)'}
+```{r dscoredist, echo=FALSE, fig.cap = '(ref:dscoredist)', screenshot.alt="fig/fig_6.1.png"}
 knitr::include_url("https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
   height = "800px")
 ```
@@ -98,7 +98,7 @@ ggplot(data = sem_daz_a )+
 
 One may wonder whether the *sem* depends on age. Figure \@ref(fig:semfora) suggests that this is not the case. The average DAZ is close to zero everywhere, as expected. The interval DAZ $\pm$ *sem* will cover the true, but unknown, DAZ in about 68% of the cases. While the interval varies somewhat across ages, there is no systematic age trend.
 
-```{r dscoresems, echo=FALSE, out.width="760px", fig.cap = '(ref:dscoresems)', fig.align='center'}
+```{r dscoresems, fig.cap = '(ref:dscoresems)', screenshot.alt="fig/fig_6.4.png"}
 #n items per child Netherlands 1 cohort = 8.5
 #ids <- gcdg_lean$visit$subjid[which(gcdg_lean$visit$cohort=="GCDG-NLD-SMOCC")]
 #itm <- gcdg_lean$itm[which(gcdg_lean$itm$subjid %in% ids),]

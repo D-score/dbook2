@@ -43,7 +43,7 @@ In 2006, the World Health Organisation (WHO) published the [WHO Child Growth Sta
 
 Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical methodology for constructing growth standard [@borghi2006]. Step 3 can be done in different ways, but a applying a simple cut-off fits easily with regular practice in reporting international comparisons.
 
-```{r dscorerefs, echo=FALSE, out.width="760px", fig.cap='(ref:dscorerefs)' }
+```{r dscorerefs, fig.cap='(ref:dscorerefs)', screenshot.alt="fig/fig_7.1.png"}
 #knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_references/", 
 #  height = "700px")
 knitr::include_url("https://d-score.org/dbook-apps/gcdgreferences/",

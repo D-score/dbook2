@@ -18,7 +18,7 @@ An *equate group* is a set of two or more milestones that measure the same thing
 
 Equate groups vary in quality. We can use high-quality equate groups to link instruments by restricting the difficulty of all milestones in the equate group to be identical. Equate groups thus provide a method for bridging different tools.
 
-```{r equateex, echo=FALSE, fig.cap='(ref:equateex)', out.width='400px'}
+```{r equateex, echo=FALSE, fig.cap='(ref:equateex)', out.width='75%'}
 knitr::include_graphics("fig/equate_ex.png")
 ```
 
@@ -53,7 +53,7 @@ An equate group is a collection of items. Content matter experts may form equate
 
 Since active equate groups bridge different instruments, they have an essential role in the analysis. In general, we will set the status of an equate group to active *only* if we believe that the milestones in that group measure the underlying construct in the same way. Note that this does not necessarily imply that all items need to be identical. In Table \@ref(tab:example2words), for example, small differences exist in item formulation. We may nevertheless believe that these are irrelevant and ignore these in practice. Reversely, there is no guarantee that the same milestone will measure child development in the same way in different samples. For example, a milestone like "climb stairs" could be more difficult (and more dangerous) for children who have never seen a staircase.
 
-```{r stairpic, echo=FALSE, fig.cap='(ref:stairpic)', out.width='400px'}
+```{r stairpic, echo=FALSE, fig.cap='(ref:stairpic)', out.width='50%'}
 knitr::include_graphics("fig/otis-stairs.jpg")
 ```
 
