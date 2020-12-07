@@ -13,7 +13,7 @@ documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-runtime: shiny
+always_allow_html: yes
 ---
 
 ```{r initbook, include = FALSE}
