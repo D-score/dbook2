@@ -26,6 +26,7 @@ tab:crosscultural
 fig:iteminfo
 tab:equateinfo
 fig:dscoredist
+fig:dazdist
 fig:semforn
 fig:semfora
 fig:dscoresems
@@ -98,7 +99,7 @@ ch:ontrack
 sec:application2
 sec:factors
 ch:discussion2
-potential-and-limitations-of-existing-data-for-sdg-4.2.1
-options-for-improving-health-policy
-suitability-of-d-score-metric
-suggestions-for-better-measurement
+sec:multipleinstruments
+sec:variability
+sec:internationalcomparisons
+sec:bettermeasurement
