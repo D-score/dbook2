@@ -1,21 +1,61 @@
 # Discussion {#ch:discussion2}
 
-> Author: Iris Eekhout
+> Author: Stef van Buuren, Iris Eekhout
 
-## Potential and limitations of existing data for SDG 4.2.1
+This closing chapter briefly summarises the key lessons from this booklet. The chapter covers:
 
-The D-score is a measure that fits perfectly to the current need of comparable global figures for child development status. A measure for early child development that can be interpreted everywhere can either be achieved by having one instrument that is used globally, or by enabling the calculation of a score on a scale that can be obtained from many different instruments. The D-score is the latter, and since the first option would be desirable but at this moment unfeasible, the D-score can in relatively short time give insight in global differences in early child development. As such, the D-score can be used for SDG 4.2.1. However, there are still some limitations, that in time, can be diminished. First, not all instruments that measure early child development are currently included in the D-score key. We are working on expanding the key and additional instruments are added (refer to GSED). Second, the references that can currently be obtained from the D-score that may be used to calculate indices for early child development, are based on the data from different kinds of studies. Since these are not all population studies and some were targeted at specific groups of children, generalization of the scores is not always perfect. So, including more population representative data will improve generalization of the D-score as a global score.
+- D-score from multiple instruments (\@ref(sec:multipleinstruments))
+- Variability within and between cohorts (\@ref(sec:variability))
+- D-score for international comparisons (\@ref(sec:internationalcomparisons))
+- Better measurement (\@ref(sec:bettermeasurement))
 
-Will the addition of new data change the D-score model and metric? It may be possible that the key changes, but we expect that changes are minor. The model that is used now, fits the data well and is developed with great care.
 
-## Options for improving health policy
+## D-score from multiple instruments {#sec:multipleinstruments}
 
-## Suitability of D-score metric
+We developed the initial D-score methodology for just one instrument. In practice, however, we need to deal with data collected on multiple, partially overlapping tools. This booklet addressed the problem *how to define and calculate the D-score based on data coming from various sources, using multiple instruments administered at varying ages*.
 
-The D-score metric represents child development very well. Items from the most widely used instruments (such as Bayley, ASQ, Denver, etc) are included. Also, the child development domains are well represented over the entire scale. However, the D-score may not be well suited to screen for domain specific problems. For that purpose, other metrics may be used or developed that are specifically targeted to detect domain specific problems.
+We had longitudinal data available from 16 cohorts, collected with 15 tools to measure child development at various ages. Our analytic strategy to define a D-score from these data consists of the following steps:
 
-## Suggestions for better measurement
+1. Make an inventory of instruments and cohorts;
+2. Combine all measurements into one dataset;
+3. Find out which shared instruments connect cohorts;
+4. Place similar items from different instruments into equate groups;
+5. Find the best set of *active* equate groups;
+6. Estimate item difficulty using a restricted Rasch model that requires the  estimates of all items within an active equate group to be identical;
+7. Weed out items that do not fit the model.
 
-The D-score can be measured well by the instruments that are included in the current model, provided that the items that are included are corresponding to the targeted age group. In Table ... an overview of the items included for each instrument per age is presented.
+We need to perform steps 5, 6 and 7 in an iterative fashion. Depending on the result, we may also need to redefine, combine or break up equate groups (step 4).
 
-The D-score model enables the possibility to create new instruments that can be customized to the exact needs of the study. Population based studies may require a quick measure by less items and are targeted to a well measured population estimate for development. Whereas intervention studies need a precise estimate for the intervention and control group. At the personal level, studying one child's development, a more precise estimation may be required. Of each of these scenarios, different instruments can be created. In our third booklet, we will discuss all of these options, and more.
+These techniques are well-known within psychometrics and educational research. Our approach builds upon a well-grounded and robust theory of psychological measurement. We, therefore, expect that repeating our method on other data will lead to very similar results.
+
+A novel aspect in our methodology is the systematic formation of candidate equate groups by subject-matter experts based on similarity in concept and content. Our subsequent testing and tailoring of each equate group given the data provide empirical evidence of its quality for connecting instruments. While anchoring tests by itself is not novel, we are not aware of any work aimed at identifying the best set of active equate groups on this scale.
+
+## Variability within and between cohorts {#sec:variability}
+
+The final model retains 565 items and employs 18 equate groups. Given the difficulty estimates from that model, we can estimate the D-score and DAZ for each measurement. 
+
+Figure \@ref(fig:dscoredist) reveals that all cohorts show a rapidly rising age trend in the D-score, which matches the earlier finding that [child development is faster in younger children](https://d-score.org/dbook1/sec-probage.html). 
+
+Figure \@ref(fig:dazdist) shows large overlaps in the DAZ distributions between cohorts. This finding suggests that the level of child development is similar in different regions of the world. Some studies display more variability in DAZ than others, which is likely to be related to differences in measurement error, as the number of milestones differs widely. 
+
+Observe that we used all cohorts for modelling, which may have made them appear more similar than they are. It would be good if we could verify the apparent similarities in level and variability of child development in different regions by other data that were not part of the modelling.
+
+## D-score for international comparisons {#sec:internationalcomparisons}
+
+The D-score is a universal scale of early child development. The D-score does not depend on a particular instrument. Instead, we can calculate a D-score as long as appropriate difficulty estimates are available for the tool at hand. This feature makes the D-score methodology flexible and helpful for international comparisons.
+
+Of course, the ideal situation for international comparisons would be that all countries collect child development data in the same way. In practice, this ideal may be difficult to achieve. Also, we cannot change past data. In these less-than-ideal worlds, the D-score presents a convenient, conscientious and timely alternative.
+
+As an example, we outlined a generic strategy on how to advance on SDG 4.2.1. We use the D-score to operationalise the concept *developmentally on track*. We calculated age-conditional references of the D-score, analogous to the WHO Multicentre Growth Reference Study. We may then define cut-off values. Children above the cut-off then count as developmentally on track.
+
+While we highlighted the principles,  much work still needs to be done. First, there are over 150 instruments for child development, and our current key covers only a fraction of these. We are actively expanding the key using additional data, so as time passes the coverage of tools will go up. Second, we calculated the references on a mix of studies, some of which include special populations. Thus, we cannot interpret the current reference value as portraying normal development. We hope that the inclusion of healthy population data will improve the usefulness of the references as a standard for child development.
+
+## Better measurement {#sec:bettermeasurement}
+
+The D-score metric is a generic measure of child development. It summarises child development by *one number*. We found that D-score fairly represents development domains over the entire scale. Due to its generic nature, the D-score is less suitable for measuring a specific domain. It may then be better to use a specialised tool that accesses motor, cognitive or communication faculties. For example, think of sub-scales from the Bayley, ASQ, Griffiths, and so on. Note that also in those cases, one still has the option of calculating a D-score.
+
+The opposite scenario may also be of interest. Suppose we want to measure generic development AND identify any areas of slow growth. Extending the measurement by adding more items from domains with a higher failure rate will then increase precision in areas of suspected delay. 
+
+Since we based the D-score on a statistical model, we may create instruments customised to the exact needs of the study. Population-based studies may require a short measure consisting of a handful of items per child, and aggregate scores over many children to achieve precision. Intervention studies aim for a precise estimate for the intervention effect. If group sizes are small, we may administer a more extended test to achieve the same precision and vice versa. At the other end of the spectrum, for clinical purposes, we want a precise estimate for one particular person, so here we will administer a relatively long test. The good news is: As long as we pick items from the statistical model, the D-score in those three cases are all values on the same scale.
+
+The third booklet discusses all of these options. And more.
