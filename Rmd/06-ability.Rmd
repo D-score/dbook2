@@ -21,11 +21,16 @@ Figure \@ref(fig:dscoredist) shows the scatterplot of the D-score by age separat
 
 The five blue lines guide the eye. These lines indicate the locations of the -2SD, -1SD, 0SD, +1SD and +2SD quantiles at each age in the combined data. [Section I:5.4](https://d-score.org/dbook1/sec-reference.html) motivates the idea and provides some technical details. We'll come back to these lines in section \@ref(sec:references).
 
-By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the `GCDG-JAM-STUNTED` cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a weak calibration of the instrument.
+By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the `GCDG-JAM-STUNTED` cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a sub-optimal calibration of the instrument.
 
-Replacing the D-score by the DAZ emphasises any differences both within and between studies.
+```{r dazdist, fig.cap = '(ref:dazdist)', screenshot.alt="fig/fig_6.1a.png"}
+knitr::include_url("https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=", 
+  height = "800px")
+```
 
-[Include DAZ plot here]
+(ref:dazdist) DAZ distributions by study. Click [ZOOM](https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
+
+Figure \@ref(fig:dazdist) plots the same data with D-score transformed into DAZ scores. Replacing the D-score by the DAZ emphasises the differences both within and between studies. The majority of observations lies between the -2 SD and +2 SD lines in all cohorts. It is easier to spot deviating trends, e.g., for the Jamaican or Ethiopian data.
 
 ## Precision of the D-score {#sec:sem}
 
