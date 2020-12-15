@@ -174,7 +174,7 @@ A practical problem of item removal is that it also affects equate group composi
 
 ```{r itembox, fig.cap='(ref:itembox)'}
 ib <- data.frame(m_011$item_fit, decompose_itemnames(m_011$item_fit$item))
-ib <- ib[ib$instrument %in% c("asq", "bar", "bat", "by1", "by2", "by3", "ddi", "den", "gri", "sbi", "tep", "vin"), ]
+ib <- ib[ib$instrument %in% c("aqi", "bar", "bat", "by1", "by2", "by3", "ddi", "den", "gri", "sbi", "tep", "vin"), ]
 ggplot(data = ib, aes(x = instrument, y = outfit)) +
   scale_y_log10(breaks = c(seq(0.4, 1, 0.1), 1.1, 1.3, 1.5, seq(2:10)), 
                 limits = c(0.4, 9), minor_breaks = FALSE) +

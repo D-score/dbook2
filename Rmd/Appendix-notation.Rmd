@@ -30,7 +30,7 @@
 | \@ref(sec:instruments) | ddi              | Dutch Developmental Instrument [@schlesinger1981]                      |
 | \@ref(sec:instruments) | bar              | Barrera Moncada [@barrera1981]                                         |
 | \@ref(sec:instruments) | tep              | Test de Desarrollo Psicomotor [@haeussler1999]                         |
-| \@ref(sec:instruments) | asq              | Ages and Stages Questionnaire [@squires2009]                           |
+| \@ref(sec:instruments) | aqi              | Ages and Stages Questionnaire [@squires2009]                           |
 | \@ref(sec:instruments) | sbi              | Stanford Binet Intelligence Scales [@roid2003]                         |
 
 # Notation {#ap:notation}
