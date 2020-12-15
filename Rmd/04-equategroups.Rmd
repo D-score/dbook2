@@ -34,9 +34,8 @@ The procedure described above is known as *concurrent calibration*. See @kim1998
 
 -   It yields a common latent scale across all instruments;
 -   It is efficient because it calibrates all items in a single run;
--   It produces more stable estimates for shared items in small samples.
+-   It produces more stable estimates for common items in small samples.
 
-<!--revise to "..esimates for common items in small samples" (?) -->
 
 However, concurrent calibration depends on a strict distinction between items that are indeed the same across instruments and items that differ.
 
@@ -151,7 +150,7 @@ grid.arrange(p1, p2, ncol = 2)
 
 (ref:commonscale) Example of three cohorts with and without equate group linking.
 
-Figure \@ref(fig:commonscale) displays the D-score estimates by age in three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M) for two different analyses. As described in section \@ref(sec:cohorts), the Netherlands 1 study administered the `ddi`; Ethiopia measured children by the `by3`; and Colombia collected data on `by3`, `den`, `asq` and `bdi`. Accordingly, there is an overlap in items between Ethiopia and Colombia via the `by3`, but the Netherlands 1 cohort is not linked.
+Figure \@ref(fig:commonscale) displays the D-score estimates by age in three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M) for two different analyses. As described in section \@ref(sec:cohorts), the Netherlands 1 study administered the `ddi`; Ethiopia measured children by the `by3`; and Colombia collected data on `by3`, `den`, `aqi` and `bdi`. Accordingly, there is an overlap in items between Ethiopia and Colombia via the `by3`, but the Netherlands 1 cohort is not linked.
 
 We created the plot on the left-handed side without active equate groups. The large overlap between Ethiopian and Columbian children occurs because the scales for these studies are linked naturally via shared items from `by3`. Since the `ddi` instrument is not connected, the Dutch cohort follows a different track. While we can compare D-scores between Ethiopia and Colombia, it is nonsensical to compare Dutch to either Ethiopia or Colombia. The right-handed side plot is based on an analysis that used active equate groups to link the cohorts. Since the analysis connected the scales for all three cohorts, we can now compare D-scores obtained between all three cohorts.
 
@@ -183,7 +182,7 @@ Note that these definitions implicitly assume that the expected response $P_{ni}
 
 ### Examples of well fitting equate groups
 
-The evaluation of *equate fit* involves comparing the observed probabilities of endorsing the items in the equate group to the estimated probability of endorsing the items in the equate group. In an equate group there is an empirical curve for each item in the equate group and one shared estimated curve. The empirical curves should all be close together, and close to the estimated curve for a good equate fit.
+The evaluation of *equate fit* involves comparing the observed probabilities of endorsing the items in the equate group to the estimated probability of endorsing the items in the equate group. For an equate group there is an empirical curve for each item in the equate group and one shared estimated curve. The empirical curves should all be close together, and close to the estimated curve for a good equate fit.
 
 ```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqfit)'}
 ps <- plot_p_d_equate(data = dmetric::gcdg_lean, model = dmetric::model_lean,
@@ -193,11 +192,11 @@ gridExtra::grid.arrange(ps[["REC6"]], ps[["GM42"]])
 
 (ref:ploteqfit) Two equate groups that present a good equate fit.
 
-Figure \@ref(fig:ploteqfit) shows a diagnostic plot for equate groups `REC6` (Turns head to sound of bell) and `GM42` (Walks alone). The items within `REC6` have slightly different formats in the Bayley I (`by1`), Dutch Development Instrument (`ddi`), and the Denver (`den`). The empirical curves in the upper figure show good overlap, but note that hardly any negative responses were recorded for four of the five studies, so the shared estimate depends primarily on the Dutch sample. Items from equate group `GM42` appear in six instruments: `bar`, `by1`, `by2`, `by3`, `ddi` and `gri`. Also, here the empirical data are close together, and even a little steeper than the fitted dashed line, which indicates a good equate fit. The infit and outfit indices, shown in the upper left corners, confirm the good fit (fit \< 1).
+Figure \@ref(fig:ploteqfit) shows a diagnostic plot for equate groups `REC6` (Turns head to sound of bell) and `GM42` (Walks alone). The items within `REC6` have slightly different formats in the Bayley I (`by1`), Dutch Development Instrument (`ddi`), and the Denver (`den`). The empirical curves in the upper figure show good overlap, but note that hardly any negative responses were recorded for four of the five studies, so the shared estimate depends primarily on the Dutch sample. Items from equate group `GM42` appear in six instruments: `bar`, `by1`, `by2`, `by3`, `ddi`, and `gri`. Also, here the empirical data are close together, and even a little steeper than the fitted dashed line, which indicates a good equate fit. The infit and outfit indices, shown in the upper left corners, confirm the good fit (fit \< 1).
 
 ### Examples of equate groups with poor equate fit
 
-Poor fitting equate groups are best treated as passive equate groups, so that items in those groups are not restricted to the same difficulty. Empirical item curves with different locations and slopes indicate poor fitting. Additionally, the equate fit indices will indicate poor fit.
+Poor fitting equate groups are best treated as passive equate groups, so that items in those groups are not restricted to the same difficulty. Empirical item curves with different locations and slopes indicate a poor fit. Additionally, the equate fit indices will indicate a poor fit (fit \> 1).
 
 ```{r ploteqpoor, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqpoor)',cache = TRUE}
 
@@ -220,15 +219,15 @@ gridExtra::grid.arrange(psp[["COG24"]], psp[["EXP12"]])
 
 (ref:ploteqpoor) Two equate groups that present a poor equate fit.
 
-Figure \@ref(fig:ploteqpoor) shows examples for groups `COG24` (Bangs in play / Bangs 2 blocks) and `EXP12` (Babbles). In both cases there is substantial variation in location between the empirical curves. For `COG24` we find that the fitted curve is closer to the `den` item, which suggests that the equate difficulty is mostly based on the `den` item. Items from equate group `EXP12` have different format in instruments `by1`, `ddi`, and `gri`. The empirical curves, with different colours for each instrument, are not close to each other, nor close to the fitted curve. Note that all infit and outfit statistics are fairly high, indicating poor fit. Both equates are candidates for deactivation in a next modelling step.
+Figure \@ref(fig:ploteqpoor) shows examples for groups `COG24` (Bangs in play / Bangs 2 blocks) and `EXP12` (Babbles). In both cases there is substantial variation in location between the empirical curves. For `COG24` we find that the fitted curve is closer to the `den` item, which suggests that the equate difficulty is mostly based on the `den` item. Items from equate group `EXP12` have a different format in instruments `by1`, `ddi`, and `gri`. The empirical curves, with different colours for each instrument, are not close to each other, nor close to the fitted curve. Note that all infit and outfit statistics are fairly high, indicating poor fit. Both equates are candidates for deactivation in a next modelling step.
 
 ## Differential item functioning {#sec:equatedif}
 
-Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role DIF in equate groups.
+Items within an active equate group should work in the same way across the different cohorts, i.e., they have no differential item functioning (DIF). The assumption of no DIF is critical for active equate groups. If violated, restricting the difficulty parameters as equal across cohorts may introduce unwanted bias in comparisons between cohorts. This section illustrates the role of DIF in equate groups.
 
 ### Good equate groups without DIF
 
-[Booklet I](https://d-score.org/dbook1/sec-dif.html) discusses the role of DIF in the evaluation of fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.
+[Booklet I](https://d-score.org/dbook1/sec-dif.html) discusses the role of DIF in the evaluation of the fit of items to the Rasch model. This section illustrates similar issues in the context of equate groups.
 
 ```{r plotnoeqdif, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:plotnoeqdif)'}
 equatenames <- c("FM31", "EXP26", "GM44", "EXP23")

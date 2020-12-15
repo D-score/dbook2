@@ -48,7 +48,7 @@ Of course, the ideal situation for international comparisons would be that all c
 
 As an example, we outlined a generic strategy on how to advance on SDG 4.2.1. We use the D-score to operationalise the concept *developmentally on track*. We calculated age-conditional references of the D-score, analogous to the WHO Multicentre Growth Reference Study. We may then define cut-off values. Children above the cut-off then count as developmentally on track.
 
-While we highlighted the principles,  much work still needs to be done. First, there are over 150 instruments for child development, and our current key covers only a fraction of these. We are actively expanding the key using additional data, so as time passes the coverage of tools will go up. Second, we calculated the references on a mix of studies, some of which include special populations. Thus, we cannot interpret the current reference value as portraying normal development. We hope that the inclusion of healthy population data will improve the usefulness of the references as a standard for child development.
+While we highlighted the principles,  much work still needs to be done. First, there are over 150 instruments for child development, and our current key covers only a fraction of these. We are actively expanding the key using additional data, so as time passes the coverage of tools will go up. Second, we calculated the references on a mix of studies, some of which include special populations. Thus, we cannot interpret the current reference values as portraying normal development. We hope that the inclusion of healthy population data will improve the usefulness of the references as a standard for child development.
 
 ## Better measurement {#sec:bettermeasurement}
 
@@ -58,4 +58,4 @@ The opposite scenario may also be of interest. Suppose we want to measure generi
 
 Since we based the D-score on a statistical model, we may create instruments customised to the exact needs of the study. Population-based studies may require a short measure consisting of a handful of items per child, and aggregate scores over many children to achieve precision. Intervention studies aim for a precise estimate for the intervention effect. If group sizes are small, we may administer a more extended test to achieve the same precision and vice versa. At the other end of the spectrum, for clinical purposes, we want a precise estimate for one particular person, so here we will administer a relatively long test. The good news is: As long as we pick items from the statistical model, the D-score in those three cases are all values on the same scale.
 
-The third booklet discusses all of these options. And more.
+The third booklet targets tailoring instruments to a study design and discusses all of these options. And more.

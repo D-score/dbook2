@@ -21,13 +21,13 @@ In practice, we typically want to make the following types of comparisons:
 -   Compare the development of two children of different ages;
 -   Compare the development of groups of children of different ages.
 
-To do this well, we need an *interval scale with a fixed unit of development*. We argued that the simple Rasch model is a very suitable candidate to provide us with such a unit. The Rasch model is simple, fast, and we found that it fitted child developmental data very well [@jacobusse2006][@vanbuuren2014]. The Rasch model has a long history, but -unfortunately- it is almost unknown outside the field of psychometrics. We highlighted the concepts of the model that are of direct relevance to child development. Using data collected by the Dutch Development Instrument, we demonstrated that the model and its estimates behave as intended for children in the open population, for prematurely born-children, and children living in a low- and middle-income country.
+To do this well, we need an *interval scale with a fixed unit of development*. We argued that the simple Rasch model is a very suitable candidate to provide us with such a unit. The Rasch model is simple, fast, and we found that it fits child developmental data very well [@jacobusse2006][@vanbuuren2014]. The Rasch model has a long history, but -unfortunately- it is almost unknown outside the field of psychometrics. We highlighted the concepts of the model that are of direct relevance to child development. Using data collected by the Dutch Development Instrument, we demonstrated that the model and its estimates behave as intended for children in the open population, for prematurely born-children, and children living in a low- and middle-income country.
 
 As our approach breaks with the traditional paradigm that emphasises different domains of child development, we expected a slow uphill battle for acceptance. We have now gained the interest from various prominent authors in the field, and from organisations who recognise the value of a one-number-summary for child development. In analogy to traditional growth charts, it is entirely possible to track children, or groups of children, on a developmental chart over time. Those and other applications of the technology may eventually win over some more souls.
 
 ## What this volume is about {#sec:thisvolume}
 
-It is straightforward to apply the D-score methodology as explained in [Turning milestones into measurement](https://d-score.org/dbook1) for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
+It is straightforward to apply the D-score methodology, as explained in [Turning milestones into measurement](https://d-score.org/dbook1), for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
 
 -   different versions of the same instrument (e.g., Bayley I, II and III);
 -   different language versions of the same tool;

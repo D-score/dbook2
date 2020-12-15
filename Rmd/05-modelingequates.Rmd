@@ -7,7 +7,7 @@ options(dplyr.summarise.inform = FALSE)
 
 > Author: Stef van Buuren, Iris Eekhout
 
-This chapter deals with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter \@ref(ch:data). The chapter
+This chapter deals with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter \@ref(ch:data). This chapter
 
 -   provides a high-level description of the GCDG data (\@ref(sec:gcdgdata))
 -   discusses various modelling strategies (\@ref(sec:modellingstrategies))
@@ -27,7 +27,7 @@ Section \@ref(sec:gcdgoverview) provides an overview of the data collected by Gl
 
 We coded every item as 0 (FAIL), 1 (PASS) or missing. For some instrument we did some additional recoding to restrict to these two response categories. The Battelle Developmental Inventory scores items as 0 (FAIL), 1, or 2, depending on the level of skill demonstrated or time taken to complete the task. We joined categories 1 and 2 for these items. The ASQ items were originally scored as 0 (not yet), 5 (sometimes) and 10 (succeeds). We recoded both 5 and 10 to 1.
 
-We concatenated the datasets from the GCDG cohorts cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix is missing.
+We concatenated the datasets from the GCDG cohorts cohort. The resulting data matrix has 71403 rows (child-visit combinations) and 1572 columns (items) collected from 36345 unique children. We removed 233 items that had fewer than 10 observations in a category. The remaining 1339 items were candidates for analysis. The total number of observed scores was equal to about 2.8 million pass/fail responses. While this is a large number of measurements, about 97 percent of the entries in the matrix are missing.
 
 ### Equate group formation
 
@@ -60,7 +60,7 @@ In general, we look for a final model that
 
 -   preserves the items that best fit the Rasch model;
 -   uses active equate groups with items that behave the same across many cohorts and instruments;
--   displays reasonable age-conditional distributions of the D-scores under the model;
+-   displays reasonable age-conditional distributions of the D-scores;
 -   has difficulty estimates that are similar to previous estimates.
 
 The modelling strategy is a delicate balancing act to achieve all of the above objectives. Particular actions that we could take to improve a given model are:
@@ -76,7 +76,7 @@ The modelling strategy is a delicate balancing act to achieve all of the above o
 
 In order to steer our actions, we look at the following diagnostics (in order of importance):
 
--   quality of equate group (both visually and through infit);
+-   quality of equate groups (both visually and through infit);
 -   plausibility of the distribution of the D-score by age per study;
 -   correspondence of difficulty estimates from published (single study) Dutch data and the new model;
 -   infit of the items remaining in the model.
@@ -91,7 +91,7 @@ knitr::include_url(url = "https://d-score.org/dbook-apps/models1339/#display=by_
 
 (ref:model1339) D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts. Click [ZOOM](https://d-score.org/dbook-apps/models1339/#display=by_model_cohort&nrow=2&ncol=2&arr=row&pg=7&labels=cohort,model&sort=cohort;asc,model;asc&filter=&sidebar=&fv=) to enlarge the display.
 
-Figure \@ref(fig:model1339) is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the gray curves in the back represent the Dutch model as calculated from the [SMOCC study](https://d-score.org/dbook1/sec-smoccstudy.html). In order to speed up the calculations, the figure shows a random subsample of 25% of all points. Manipulate the plot controls to switch cohorts.
+Figure \@ref(fig:model1339) is a display of the D-score by age for all 16 cohorts under four models. As a rough reference to compare, the grey curves in the back represent the Dutch model as calculated from the [SMOCC study](https://d-score.org/dbook1/sec-smoccstudy.html). In order to speed up the calculations, the figure shows a random subsample of 25% of all points. Manipulate the plot controls to switch cohorts.
 
 All models contain 1339 items, but differ in the number of active equate groups. The most salient features per model are:
 
@@ -122,9 +122,9 @@ knitr::include_url(url = "https://d-score.org/dbook-apps/p-a-equate-1339/#displa
 
 Figure \@ref(fig:p-a-equate-1339) displays the percentage of children that pass milestones at various ages. Subject matter experts clustered similar items stemming from different instruments into equate groups. There are 184 equate groups that contain two or more milestones.
 
-Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or `EXP11`) have one item showing a negative relation with age. Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://d-score.org/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore, less likely to be useful for equating. Equate group is `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profile across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
+Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or `EXP11`) have one item showing a negative relation with age. Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://d-score.org/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore, less likely to be useful for equating. Equate group `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profile across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
 
-We could follow different strategies in selecting which equate groups to active. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as possible between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
+We could follow different strategies in selecting which equate groups to activate. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as possible between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
 
 ## Quality of equate groups {#sec:equatequality}
 
@@ -136,7 +136,7 @@ knitr::include_url(url = "https://d-score.org/dbook-apps/p-d-equate-1339/#displa
 
 Figure \@ref(fig:p-d-equate-1339) shows how the passing percentage depends on the child's D-score as calculated under four models. All models include the same 1339 milestones, but differ in the number of active equates. The grey curve corresponds to the estimate made under the assumption that milestones are equally difficult. Good milestones for bridging instruments will have a tight bundle of curves. For example, equate `EXP26` has tight bundles especially in models `1339_11` and `1339_33`. By comparison, the curves of the two extreme models vary considerably: the model without any bridges (`1339_0`) or the model with all bridges (`1339_184`) are thus less than ideal. The shallow grey curve of model `1339_184` indicates a poorer overall fit.
 
-Outfit and infit statistics measure the residual deviation of the items to the grey curve. High values (e.g. above 1.4) are undesirable and indicate lack of fit to the model. For example, the fit statistics for `EXP26` in model `1339_184` (1.70 and 1.25) indicate a mediocre fit, whereas `EXP26` in models `1339_33` and `1339_11` fits well. Sometimes the individual item curves are steeper than the grey curve. This indicates that these milestones are more discriminative than the combined item. Model `1339_0` lacks a grey curve and has no fit statistics for equate groups, because that model does not fit the combined item.
+Outfit and infit statistics measure the residual deviation of the items to the grey curve. High values (e.g. above 1.4) are undesirable and indicate lack of fit to the model. For example, the fit statistics for `EXP26` in model `1339_184` (1.70 and 1.25) indicate a mediocre fit, whereas `EXP26` in models `1339_33` and `1339_11` fits well. Sometimes the individual item curves are steeper than the grey curve. This indicates that these milestones are more discriminative than the combined item. Model `1339_0` lacks a grey curve and has no fit statistics for equate groups, because in that model, the combined item is not activated.
 
 The probability curves provide a quick visual method for spotting promising and problematic equate groups. Examples of promising equate groups include `COG36`, `FM31`, `GM26` and `GM42`. A little more weak are `FM26` (has more variability), `FM52` (looks promising, but has a problem with the item `grigcd402` from the `GCDG_JAM_STUNTED` cohort), and `GM35` (does not align cohort `GCDG-ZAF`). In such cases, one may wish to move an item out of an equate group, combine equate groups, or inactivate troublesome links.
 
@@ -174,7 +174,7 @@ A practical problem of item removal is that it also affects equate group composi
 
 ```{r itembox, fig.cap='(ref:itembox)'}
 ib <- data.frame(m_011$item_fit, decompose_itemnames(m_011$item_fit$item))
-ib <- ib[ib$instrument %in% c("aqi", "bar", "bat", "by1", "by2", "by3", "ddi", "den", "gri", "sbi", "tep", "vin"), ]
+ib <- ib[ib$instrument %in% c("asq", "bar", "bat", "by1", "by2", "by3", "ddi", "den", "gri", "sbi", "tep", "vin"), ]
 ggplot(data = ib, aes(x = instrument, y = outfit)) +
   scale_y_log10(breaks = c(seq(0.4, 1, 0.1), 1.1, 1.3, 1.5, seq(2:10)), 
                 limits = c(0.4, 9), minor_breaks = FALSE) +
@@ -188,7 +188,7 @@ ggplot(data = ib, aes(x = instrument, y = outfit)) +
 
 Some instruments fit better than others. Figure \@ref(fig:itembox) shows the box plots of outfit per instrument. Instruments `bar`, `by1`, `ddi` and `vin` generally fit well, whereas discrepancies between model and data are larger for `bat`, `by2` and `sbi`. Through additional modelling, we found that it was extremely difficult to get enough high-quality bridge items that could link `bat` (Battelle Development Inventory) to the other instruments. We also found that models without the Battelle were able to better discriminate children in the upper range of the D-score scale. We therefore opted to remove `bat` from the model, even though this meant that one cohort (`GCDG-BRA-2`) had to be dropped from the analysis.
 
-It is not clear why `bat` does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behaviour that is different from the PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in ASQ-3, which also uses three response categories.
+It is not clear why `bat` does not fit. Perhaps the scoring system of the Battelle in three categories invokes scoring behaviour that is different from the PASS/FAIL scoring used by most other instruments, even though this appears to be less of a troublesome aspect in `aqi`, which also uses three response categories.
 
 ### Splitting, combining and selecting equate groups
 

@@ -51,7 +51,7 @@ ggplot() +
 
 The GCDG data comprises of birth cohorts, impact evaluation studies and instrument evaluation studies. Table \@ref(tab:cohorts) displays a brief overview of the instruments used in each sub-study.
 
-| Cohort       | `by` | `den` | `gri` | `bat` | `vin` | `ddi` | `bar` | `tep` | `asq` | `sbi` |
+| Cohort       | `by` | `den` | `gri` | `bat` | `vin` | `ddi` | `bar` | `tep` | `aqi` | `sbi` |
 |--------------|------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
 | Bangladesh   | x    |       |       |       |       |       |       |       |       |       |
 | Brazil 1     |      | x     |       |       |       |       |       |       |       |       |
@@ -74,7 +74,7 @@ The GCDG data comprises of birth cohorts, impact evaluation studies and instrume
 
 ## Cohort descriptions {#sec:cohorts}
 
-The cohorts have different designs, age ranges and assessment instruments. Figure \@ref(fig:design) displays the age range of developmental assessments per cohort, colored according to the instruments.
+The cohorts have different designs, age ranges and assessment instruments. Figure \@ref(fig:design) displays the age range of developmental assessments per cohort, coloured according to the instruments.
 
 ```{r design, fig.width=10, fig.keep='all', results='hide', fig.cap = '(ref:design)', warning=FALSE}
 lean <- gseddata::get_data(cohorts = 40:56)
@@ -111,12 +111,9 @@ The **China** study (GCDG-CHN) was an impact evaluation study that contained 990
 
 The **Colombia 1** study (GCDG-COL-LT45M) was an impact evaluation study that comprised two waves. Wave 1 contained 704 children at 12-24 months and wave 2 631 children at 24-41 months. The `by3` was administered at each wave. Long-term follow-up data were available for PPVT at 4-6 years [@Attanasio2014].
 
-The **Colombia 2** study (GCDG-COL-LT42M) was an instrument validation study where all 1311 children aged 6-42 months were measured the `by3`. Also, there are data for a subgroup of 658 children on `den,` the Ages and Stages Questionnaire (`asq`), and the `bat` screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT [@Rubio-Codina2016].
+The **Colombia 2** study (GCDG-COL-LT42M) was an instrument validation study where all 1311 children aged 6-42 months were measured the `by3`. Also, there are data for a subgroup of 658 children on `den,` the Ages and Stages Questionnaire (`aqi`), and the `bat` screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT [@Rubio-Codina2016].
 
-An impact evaluation study in **Ecuador** (GCDG-ECU) yielded data from 667 children between 0-35 months on the Barrera Moncada (`bar`). Long-term follow-up data were available for the PPVT at 5-8 and 9-12 years [@Paxson2010].
-
-The **Ethiopia** study (GCDG-ETH) was a birth-cohort with 193 children of 12 months in the first wave, 440 children of 30 months at the second wave, and 456 children of 42 months at the third wave. The investigators used the same instrument (`by3`) for all waves. Long-term follow-up data were available for the PPVT at 10-11 years [@Hanlon2009].
-
+An impact evaluation study
 The **Jamaica 1** study (GCDG-JAM-LBW) was an impact evaluation study that collected data on the Griffiths Mental Development Scales (`gri`) for 225 children aged 15 months (first wave), and 218 children of aged 24 months (second wave). Long-term follow-up data were available for WPPSI and PPVT at 6 years [@Walker2004].
 
 The **Jamaica 2** study (GCDG-JAM-STUNTED) was an impact evaluation study with data on the `gri` for 159 children at 9-24 months, 21-36 months, and at 33-48 months. Long-term follow-up data were available for `sbi`, Raven's Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years and the WAIS at 17-18 years [@Grantham-McGregor1991].
@@ -167,7 +164,7 @@ del niño venezolano. Ediciones psicopediátricas. Caracas. -->
 The **Test de Desarrollo Psicomotor (`tep`)** is an instrument to evaluate toddlers aged 2 to 5 years on their development. The items come from three sub-tests: 16 items assess coordination; 24 items measure language skills and 12 items tap into motor skills [@haeussler1999]. <!-- Haeussler IM, Marchant T. Tepsi: test de desarrollo psicomotor
 2-5 años. Eds. Universidad Católica de Chile, 1999 -->
 
-The **Ages and Stages Questionnaire (`asq`)** measures developmental progress in children aged 2 mo -- 5.5 yrs. The instrument distinguishes development in five areas: personal-social, gross motor, fine motor, problem solving, and communication. The caregiver completes 30 items per age intervals and [@squires2009]. <!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ-
+The **Ages and Stages Questionnaire (`aqi`)** measures developmental progress in children aged 2 mo -- 5.5 yrs. The instrument distinguishes development in five areas: personal-social, gross motor, fine motor, problem solving, and communication. The caregiver completes 30 items per age intervals and [@squires2009]. <!-- J. Squires, D. Bricker. Ages & Stages Questionnaires®, Third Edition (ASQ-
 3™). A parent-completed child-monitoring system Paul H. Brookes Publishing Co.,
 Baltimore (2009) -->
 

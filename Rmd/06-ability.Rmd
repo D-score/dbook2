@@ -19,7 +19,7 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohor
 
 Figure \@ref(fig:dscoredist) shows the scatterplot of the D-score by age separately for each cohort. Remember from section \@ref(sec:gcdgoverview) that each study selected its own set of instruments to collect the data. The scatterplots demonstrate a significant advance made possible by the D-score: We can plot the developmental scores of children from **different** cohorts, with **different** ages, using **different** instruments, on the **same** vertical axis.
 
-The five blue lines guide the eye. These lines indicate the locations of the -2SD, -1SD, 0SD, +1SD and +2SD quantiles at each age in the combined data. [Section I:5.4](https://d-score.org/dbook1/sec-reference.html) motivates the idea and provides some technical details. We'll come back to these lines in section \@ref(sec:references).
+The five blue lines guide the eye. These lines indicate the locations of the -2SD, -1SD, 0SD, +1SD and +2SD quantiles at each age in the combined data. [Section 5.4, booklet I](https://d-score.org/dbook1/sec-reference.html) motivates the idea and provides some technical details. We'll come back to these lines in section \@ref(sec:references).
 
 By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the `GCDG-JAM-STUNTED` cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a sub-optimal calibration of the instrument.
 
@@ -30,11 +30,11 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nr
 
 (ref:dazdist) DAZ distributions by study. Click [ZOOM](https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
 
-Figure \@ref(fig:dazdist) plots the same data with D-score transformed into DAZ scores. Replacing the D-score by the DAZ emphasises the differences both within and between studies. The majority of observations lies between the -2 SD and +2 SD lines in all cohorts. It is easier to spot deviating trends, e.g., for the Jamaican or Ethiopian data.
+Figure \@ref(fig:dazdist) plots the same data with D-score transformed into age standardized scores (DAZ). Replacing the D-score by the DAZ emphasises the differences both within and between studies. The majority of observations lies between the -2 SD and +2 SD lines in all cohorts. Using DAZ makes is easier to spot deviating trends, e.g., for the Jamaican or Ethiopian data.
 
 ## Precision of the D-score {#sec:sem}
 
-The [EAP algorithm](https://d-score.org/dbook1/sec-dscoreestimation.html#eap-algorithm-numerical-example) estimates the D-score from a set of PASS/FAIL scores. The standard deviation of the posterior distribution (or *sem*: standard error of measurement) quantifies the imprecision of the D-score estimate. The *sem* is inversely related to the number of items. Thus, when we administer more milestones, the sem of the D-score drops.
+The [EAP algorithm](https://d-score.org/dbook1/sec-dscoreestimation.html#eap-algorithm-numerical-example) estimates the D-score from a set of PASS/FAIL scores. The standard deviation of the posterior distribution (or *sem*: standard error of measurement) quantifies the imprecision of the D-score estimate. The *sem* is inversely related to the number of items. Thus, when we administer more milestones, the *sem* of the D-score drops.
 
 ```{r semforn, results = 'hide', fig.keep = 'all', fig.cap = '(ref:semforn)', fig.align='center', echo = FALSE, fig.width=6}
 ggplot(data = dmetric::model_lean$dscore )+
@@ -262,11 +262,11 @@ info_data <-
 
 (ref:domaincov) Domain coverage of the D-score scale.
 
-Figure \@ref(fig:domaincov) shows the domain composition of the D-score across different levels of ability. Note that we miss domain information for a few items. The share of gross-motor is large in early development (e.g., between 15 and 30), and gradually tapers off at higher levels. Reversely, the percentage of cognition and language is relatively small before 30 but rapidly rises as the child matures. These transitions in domain composition look both reasonable and valid.
+Figure \@ref(fig:domaincov) shows the domain composition of the D-score across different levels of ability. Note that we miss domain information for a few items. The share of gross-motor is large in early development (e.g., between 15 and 30 months), and gradually tapers off at higher levels. Reversely, the percentage of cognition and language is relatively small before 30 months but rapidly rises as the child matures. These transitions in domain composition look both reasonable and valid.
 
 ### Domain-specific D-scores
 
-Suppose we select a domain of interest and calculate the D-score only from items that substantially load onto that domain. We then get a domain-specific D-score. Items that relate to multiple domain contribute to multiple domain-specific D-scores.
+Suppose we select a domain of interest and calculate the D-score only from items that substantially load onto that domain. We then get a domain-specific D-score. Items that relate to multiple domains contribute to multiple domain-specific D-scores.
 
 ```{r domaind, echo=FALSE, fig.cap='(ref:domaind)', fig.keep='all', cache=TRUE, results='hide', fig.width=11}
 data_w <- dmetric::gcdg_lean[["itm"]] %>% spread(key = "item", value = "value") %>%
@@ -412,4 +412,4 @@ ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
 
 (ref:domaindex) Domain-specific D-scores for a 3 year old boy.
 
-Figure \@ref(fig:domaindex) displays individual scores for a boy aged three years. The filled bars indicate the number of available items per domain. Note that the number of items for Gross Motor is meagre (only three items). The vertical white line that crosses the horizontal axis at value 5 indicates a minimum number of items needed to calculate a D-score. The grey vertical line indicates the value of the overall D-score (68.55$D$). The nearby dashed lines are located at one *sem* (0.53$D$) distance. The coloured points are the domain-specific D-scores with the *sem* around in error bars. The plot visualises that the boys' scores on language domains (i.e. Expressive and Receptive) are low as compared to the motor and cognitive domains. A systematic discrepancy between various domain-specific scores might be an early warning sign for developmental delay.
+Figure \@ref(fig:domaindex) displays individual scores for a 3 year old boy. The filled bars indicate the number of available items per domain. The vertical white line that crosses the horizontal axis at value 5 indicates a threshold for a minimum number of items needed for a D-score. Note that the number of items for Gross Motor in this example is meagre (only three items). The grey vertical line indicates the value of the overall D-score (68.55$D$). The nearby dashed lines are located at one *sem* (0.53$D$) distance. The coloured points are the domain-specific D-scores with the *sem* around in error bars. The plot visualises that the boys' scores on language domains (i.e. Expressive and Receptive) are low as compared to the motor and cognitive domains. A systematic discrepancy between various domain-specific scores might be an early warning sign for developmental delay.
