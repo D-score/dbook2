@@ -15,7 +15,7 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohor
   height = "800px")
 ```
 
-(ref:dscoredist) D-score distributions by study. Click [ZOOM](https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
+(ref:dscoredist) [D-score distributions by study](https://d-score.org/dbook-apps/gcdgdscores/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) (<https://d-score.org/dbook-apps/gcdgdscores/>).
 
 Figure \@ref(fig:dscoredist) shows the scatterplot of the D-score by age separately for each cohort. Remember from section \@ref(sec:gcdgoverview) that each study selected its own set of instruments to collect the data. The scatterplots demonstrate a significant advance made possible by the D-score: We can plot the developmental scores of children from **different** cohorts, with **different** ages, using **different** instruments, on the **same** vertical axis.
 
@@ -28,7 +28,7 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nr
   height = "800px")
 ```
 
-(ref:dazdist) DAZ distributions by study. Click [ZOOM](https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the image.
+(ref:dazdist) [DAZ distributions by study](https://d-score.org/dbook-apps/gcdgdaz/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) (<https://d-score.org/dbook-apps/gcdgdaz/>).
 
 Figure \@ref(fig:dazdist) plots the same data with D-score transformed into age standardized scores (DAZ). Replacing the D-score by the DAZ emphasises the differences both within and between studies. The majority of observations lies between the -2 SD and +2 SD lines in all cohorts. Using DAZ makes is easier to spot deviating trends, e.g., for the Jamaican or Ethiopian data.
 
@@ -125,7 +125,7 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nr
                    height = "800px")
 ```
 
-(ref:dscoresems) The standard error of measurement ($sem$) around the age-standardized D-scores (DAZ) per cohort. Click [ZOOM](https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) to enlarge the display.
+(ref:dscoresems) [The standard error of measurement ($sem$) around the age-standardized D-scores (DAZ) per cohort](https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) (<https://d-score.org/dbook-apps/gcdgsem>).
 
 Does precision vary with studies? The answer is yes. Figure \@ref(fig:dscoresems) plots the same information as before but now broken down according to cohort. Individual data points are added to give a feel for the design. The Colombia cohort `GCDG-COL-LT45M` administered the Bayley-III, where each child answered on average 45 items, so the *sem* is small. In contrast, the Dutch cohort GCDG-NLD-SMOCC collected data on a screener consisting of about ten relatively easy milestones, so the *sem* is relatively large. As a result, the Colombian D-scores are much more precise than the Dutch.
 

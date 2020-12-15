@@ -50,7 +50,7 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgreferences/",
                    height = "800px")
 ```
 
-(ref:dscorerefs) Illustration of the method to define on-track development
+(ref:dscorerefs) [Illustration of the method to define on-track development](https://d-score.org/dbook-apps/gcdgreferences/) (<https://d-score.org/dbook-apps/gcdgreferences/>).
 
 Figure \@ref(fig:dscorerefs) demonstrates steps 2 and 3 in more detail. Click 'Next' to advance a series of six steps:
 
