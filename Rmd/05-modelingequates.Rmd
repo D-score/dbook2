@@ -5,9 +5,11 @@ options(dplyr.summarise.inform = FALSE)
 
 # Modelling equates {#ch:modellingequates}
 
-> Author: Stef van Buuren, Iris Eekhout
+```{=html}
+<!-- > Author: Stef van Buuren, Iris Eekhout -->
+```
 
-This chapter deals with the nitty-gritty of the modelling strategy used for the GCDG data introduced in chapter \@ref(ch:data). This chapter
+This section deals with the nitty-gritty of the modelling strategy used for the GCDG data introduced in Section \@ref(ch:data). This section
 
 -   provides a high-level description of the GCDG data (\@ref(sec:gcdgdata))
 -   discusses various modelling strategies (\@ref(sec:modellingstrategies))
@@ -54,7 +56,7 @@ The analytic challenge is twofold:
 -   to find a subset of items that form a scale;
 -   to find a subset of equate groups with items similar enough to bridge instruments.
 
-Note that both subsets are related, i.e., changing one affects the other. Thus, we cannot first identify items and then equate groups, or first identify equate groups followed by the items. Rather we need to find the two subsets in an iterative fashion, primarily by hand. This chapter describes some of the modelling issues the analyst needs to confront.
+Note that both subsets are related, i.e., changing one affects the other. Thus, we cannot first identify items and then equate groups, or first identify equate groups followed by the items. Rather we need to find the two subsets in an iterative fashion, primarily by hand. This section describes some of the modelling issues the analyst needs to confront.
 
 In general, we look for a final model that
 
@@ -122,7 +124,7 @@ knitr::include_url(url = "https://d-score.org/dbook-apps/p-a-equate-1339/#displa
 
 Figure \@ref(fig:p-a-equate-1339) displays the percentage of children that pass milestones at various ages. Subject matter experts clustered similar items stemming from different instruments into equate groups. There are 184 equate groups that contain two or more milestones.
 
-Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or `EXP11`) have one item showing a negative relation with age. Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, booklet I](https://d-score.org/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore, less likely to be useful for equating. Equate group `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profile across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
+Most age profiles show a rising pattern, as expected, though some (e.g. `FM17` or `EXP11`) have one item showing a negative relation with age. Equate `EXP26` combines `two-word sentences` items from seven instruments into one plot. The item difficulties expressed as age-equivalents (c.f. [Section 3.1.2, Chapter I](https://d-score.org/dbook1/sec-agebased.html#sec:ageequivalent)) for these cohorts vary between 20-25 months. By comparison, equate group `EXP18` (`says two words`) shows more heterogeneity across cohorts, and is therefore, less likely to be useful for equating. Equate group `FM31` (`stack two blocks`) is another example of a promising example. By comparison, `FM38` (`stack 6-8 blocks`) shows additional heterogeneity. As a last example, consider `GM42` (`walks alone`), which has a similar age profile across cohorts, whereas `GM44` (`throws ball`) or GM49 (`walk down stairs`) are more heterogeneous.
 
 We could follow different strategies in selecting which equate groups to activate. One strategy would be to include as many equate groups as possible (e.g. all 184 equates) so as to build as many bridges as possible between different instruments. A more selective strategy would be to activate a subset of promising equates and leave others inactive. The following section compares four different approaches.
 
@@ -162,7 +164,7 @@ ggplot(data = m_011$item_fit, aes(x = infit, y = outfit)) +
 
 (ref:itemfit) Infit and outfit of 1339 items in model `1339_11`. About 8 percent of the points falls outside the plot.
 
-Item infit and outfit are convenient statistics for selecting the milestones that fit the model. Figure \@ref(fig:itemfit) displays the infit and outfit statistics of model `1339_11`. The correlation between infit and outfit is high ($r = 0.84$). The expected value of the infit and outfit statistics for a perfect fit is 1.0. The centre of infit and outfit in Figure \@ref(fig:itemfit) is approximately 1.0, so on average one could say the items fit the model. Note however that fit values above and below the values of 1.0 are qualitatively different. Item with fit statistics exceeding 1.0 fit the model less well than expected (**underfit**), whereas items with fit statistics lower than 1.0 fit the model better than expected (**overfit**). See [Booklet 1: Section 6.1](https://d-score.org/dbook1/sec-itemfit.html) for more details.
+Item infit and outfit are convenient statistics for selecting the milestones that fit the model. Figure \@ref(fig:itemfit) displays the infit and outfit statistics of model `1339_11`. The correlation between infit and outfit is high ($r = 0.84$). The expected value of the infit and outfit statistics for a perfect fit is 1.0. The centre of infit and outfit in Figure \@ref(fig:itemfit) is approximately 1.0, so on average one could say the items fit the model. Note however that fit values above and below the values of 1.0 are qualitatively different. Item with fit statistics exceeding 1.0 fit the model less well than expected (**underfit**), whereas items with fit statistics lower than 1.0 fit the model better than expected (**overfit**). See [Chapter 1, Section 6.1](https://d-score.org/dbook1/sec-itemfit.html) for more details.
 
 Some practitioners remove both underfitting and overfitting items. However, we like to preserve overfitting items and be more strict in removing items that underfit. The idea is that preservation of the best fitting items may increase scale length, and hence reliability and measurement precision. Figure \@ref(fig:itemfit) draws two cut-off lines at 1.0. Taking items with infit \< 1.0 and outfit \< 1.0 will select **631 out of 1339** items for further modelling.
 
@@ -297,6 +299,6 @@ Unfortunately, there is no single index of model fit that we can optimise. Model
 -   preserving well-fitting historical models as new data become available;
 -   maintaining a reasonable calculation time.
 
-This chapter showed various modelling techniques and ways to assess the validity of the model. In real life, we fitted a total number of 140 models on the data and made many choices that weigh the above objectives. The final model for the GCDG data consists of 565 items (originating from 14 instruments) that fit the Rasch model and that connect through 18 equate groups. Due to the sparseness of data at the very young ages, the quality of the model is best for ages between 4-36 months.
+This section showed various modelling techniques and ways to assess the validity of the model. In real life, we fitted a total number of 140 models on the data and made many choices that weigh the above objectives. The final model for the GCDG data consists of 565 items (originating from 14 instruments) that fit the Rasch model and that connect through 18 equate groups. Due to the sparseness of data at the very young ages, the quality of the model is best for ages between 4-36 months.
 
 Model `565_18` formed the basis of the publication by @Weber2019. Additional detail on model `565_18` is available through the [`dmodel` shiny app](https://tnochildhealthstatistics.shinyapps.io/dmodel/).

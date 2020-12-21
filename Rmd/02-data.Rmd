@@ -1,8 +1,10 @@
 # Data {#ch:data}
 
-> Author: Iris Eekhout
+```{=html}
+<!-- > Author: Iris Eekhout -->
+```
 
-This booklet explains the methodology for obtaining a comparable developmental score (D-score) from different instruments. This chapter introduces the data that will illustrate our approach. The data originates from a study by the Global Child Development Group (GCDG), that brought together longitudinal measurement on child development data from 16 cohorts worldwide.
+This chapter explains the methodology for obtaining a comparable developmental score (D-score) from different instruments. This section introduces the data that will illustrate our approach. The data originates from a study by the Global Child Development Group (GCDG), that brought together longitudinal measurement on child development data from 16 cohorts worldwide.
 
 -   Overview of cohorts and instrument (\@ref(sec:gcdgoverview))
 -   Cohort descriptions (\@ref(sec:cohorts))

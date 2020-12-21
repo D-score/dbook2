@@ -1,18 +1,20 @@
 # Introduction {#ch:introduction2}
 
-> Author: Stef van Buuren
+```{=html}
+<!-- > Author: Stef van Buuren -->
+```
 
-This introductory chapter
+This introductory section
 
 -   briefly summarises our previous work on the D-score (\@ref(sec:previous))
--   introduces the main topic of the booklet (\@ref(sec:thisvolume))
+-   introduces the main topic of the chapter (\@ref(sec:thisvolume))
 -   highlights the relevance of work (\@ref(sec:relevance))
--   explains why we have written this booklet (\@ref(sec:why))
+-   explains why we have written this chapter (\@ref(sec:why))
 -   delineates the intended audience (\@ref(sec:audience))
 
 ## Previous work on the D-score {#sec:previous}
 
-The D-score booklet I [Turning milestones into measurement](https://d-score.org/dbook1) highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones.
+Chapter I - [Turning milestones into measurement](https://d-score.org/dbook1) - highlights the concepts and tools needed to obtain a quantitative score from a set of developmental milestones.
 
 In practice, we typically want to make the following types of comparisons:
 
@@ -27,7 +29,7 @@ As our approach breaks with the traditional paradigm that emphasises different d
 
 ## What this volume is about {#sec:thisvolume}
 
-It is straightforward to apply the D-score methodology, as explained in [Turning milestones into measurement](https://d-score.org/dbook1), for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
+It is straightforward to apply the D-score methodology, as explained in [Chapter I: Turning milestones into measurement](https://d-score.org/dbook1), for measurements observed by one instrument. In practice, however, there is a complication. We often need to deal with multiple, partially overlapping tools. For example, our data may contain
 
 -   different versions of the same instrument (e.g., Bayley I, II and III);
 -   different language versions of the same tool;
@@ -39,9 +41,9 @@ Since there are over 150 different instruments to measure child development [@fe
 
 It is not apparent how to obtain comparable scores from different instruments. Tools may have idiosyncratic instructions to calculate total scores, distinctive domain definitions, unique compositions of norm groups, different floors and ceilings, or combinations of these.
 
-This booklet addresses the problem *how to define and calculate the D-score based on data coming from multiple sources, using various instruments administered at varying ages*. We explain techniques that systematically exploit the overlap between tools to create comparable scores. For example, many instruments have variations on milestones like *Can stack two blocks*, *Can stand* or *Says baba*. By carefully mapping out the similarities between instruments, we can construct a constrained measurement model informed by subject matter knowledge. As a result, we can map different instruments onto the same scale.
+This chapter addresses the problem *how to define and calculate the D-score based on data coming from multiple sources, using various instruments administered at varying ages*. We explain techniques that systematically exploit the overlap between tools to create comparable scores. For example, many instruments have variations on milestones like *Can stack two blocks*, *Can stand* or *Says baba*. By carefully mapping out the similarities between instruments, we can construct a constrained measurement model informed by subject matter knowledge. As a result, we can map different instruments onto the same scale.
 
-Many of the techniques are well known within psychometrics and educational research. This booklet translates the concepts to the field of child development.
+Many of the techniques are well known within psychometrics and educational research. This chapter translates the concepts to the field of child development.
 
 ## Relevance of the work {#sec:relevance}
 
@@ -55,13 +57,13 @@ The D-score is a way to define a unit of child development. With the D-score, we
 
 Monitoring child development provides caregivers and parents with reliable information about the child and an opportunity to intervene at an early age. Understanding the developmental health of populations of children allows organisations and policymakers to make informed decisions about programmes that support children's greatest needs [@bellman2013].
 
-## Why this booklet? {#sec:why}
+## Why this chapter? {#sec:why}
 
 We believe that *there can be one scale* for measuring child development and that this scale is useful for many applications. We also believe that *there cannot be one instrument* for measuring child development that is suitable for all situations. In general, the tool needs tailoring to the setting.
 
 We see that practitioners often view instruments and scales as exchangeable. In daily practice, the practitioner would pick a particular tool to measure a specific faculty, which then effectively produces a "scale score". Each tool produces its own score, which then feeds into the diagnostic and monitoring process.
 
-We have always found it difficult to explain that scales and instruments are different things. For us, a scale is a continuous concept, like "distance", "temperature" or "child development", and the instrument is the way to assign values to the particular object being measured. For measuring distance, we use devices like rods, tapes, sonar, radar, geo-location, or red-shift detection, and we can express the results as the location under the underlying scale (e.g., number of meters). It would undoubtedly be an advance if we could establish a *unit of child development*, and express the measurement as the number of units. If we succeed, we can compare child development scores, that are measured through different devices. This booklet explores the theory and practice for making that happen.
+We have always found it difficult to explain that scales and instruments are different things. For us, a scale is a continuous concept, like "distance", "temperature" or "child development", and the instrument is the way to assign values to the particular object being measured. For measuring distance, we use devices like rods, tapes, sonar, radar, geo-location, or red-shift detection, and we can express the results as the location under the underlying scale (e.g., number of meters). It would undoubtedly be an advance if we could establish a *unit of child development*, and express the measurement as the number of units. If we succeed, we can compare child development scores, that are measured through different devices. This chapter explores the theory and practice for making that happen.
 
 ## Intended audience {#sec:audience}
 
@@ -71,7 +73,7 @@ We aim for three broad audiences:
 -   Policymakers in international settings;
 -   Statisticians, methodologists, and data scientists.
 
-Professionals in child development are constantly faced with the problem that different instruments for measuring child development yield incomparable scores. This booklet introduces and illustrates sound psychometric techniques *for extracting comparable scores from existing instruments*. We hope that our approach will ease communication between professionals.
+Professionals in child development are constantly faced with the problem that different instruments for measuring child development yield incomparable scores. This chapter introduces and illustrates sound psychometric techniques *for extracting comparable scores from existing instruments*. We hope that our approach will ease communication between professionals.
 
 Policymakers in international settings are looking for simple, versatile, and cheap instruments to gain insight into the effectiveness of interventions. The ability to measure child development by a single number *enhances priority setting and leads to a more accurate understanding of policy effects*.
 

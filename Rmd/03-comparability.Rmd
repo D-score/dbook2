@@ -1,8 +1,10 @@
 # Comparability {#ch:comparability}
 
-> Author: Iris Eekhout, Stef van Buuren
+```{=html}
+<!-- > Author: Iris Eekhout, Stef van Buuren -->
+```
 
-This chapter describes challenges and methodologies to harmonize child development measurements obtained by different instruments:
+This section describes challenges and methodologies to harmonize child development measurements obtained by different instruments:
 
 -   Are instruments connected? (\@ref(sec:challenge))
 -   Bridging instruments by mapping items (\@ref(sec:mapping))
@@ -156,4 +158,4 @@ Similarly, we may find that the age profile for *A is earlier than B* if
 
 Note that the age curves confound difficulty and ability, and hence cannot be used to evaluate the quality of the item map.
 
-What we need to do is separate difficulty and ability. For this, we need a formal statistical model. The next chapter introduces the concepts required in such a model.
+What we need to do is separate difficulty and ability. For this, we need a formal statistical model. The next section introduces the concepts required in such a model.

@@ -1,10 +1,12 @@
 # Application I: Tracking a Sustainable Development Goal {#ch:SDGindicator}
 
-> Author: Iris Eekhout
+```{=html}
+<!-- > Author: Iris Eekhout -->
+```
 
 The Sustainable Development Goals (SDG) formulated by the United Nations (UN) set targets to promote prosperity while protecting the planet. One or more indicators quantify the progress towards each target.
 
-This chapter explores the use of the D-score to monitor the progress of the indicator for healthy child development, SDG 4.2.1. We propose a method to define on-track development and show how the application of this method pans out for the GCDG data. More in detail, the chapter deals with the following topics:
+This section explores the use of the D-score to monitor the progress of the indicator for healthy child development, SDG 4.2.1. We propose a method to define on-track development and show how the application of this method pans out for the GCDG data. More in detail, the section deals with the following topics:
 
 -   Estimating SDG 4.2.1 indicator from existing data (\@ref(sec:application1))
 -   Defining *developmentally on track* (\@ref(sec:references))

@@ -1,8 +1,10 @@
 # Discussion {#ch:discussion2}
 
-> Author: Stef van Buuren, Iris Eekhout
+```{=html}
+<!-- > Author: Stef van Buuren, Iris Eekhout -->
+```
 
-This closing chapter briefly summarises the key lessons from this booklet. The chapter covers:
+This closing section briefly summarises the key lessons from this section. The section covers:
 
 - D-score from multiple instruments (\@ref(sec:multipleinstruments))
 - Variability within and between cohorts (\@ref(sec:variability))
@@ -12,7 +14,7 @@ This closing chapter briefly summarises the key lessons from this booklet. The c
 
 ## D-score from multiple instruments {#sec:multipleinstruments}
 
-We developed the initial D-score methodology for just one instrument. In practice, however, we need to deal with data collected on multiple, partially overlapping tools. This booklet addressed the problem *how to define and calculate the D-score based on data coming from various sources, using multiple instruments administered at varying ages*.
+We developed the initial D-score methodology for just one instrument. In practice, however, we need to deal with data collected on multiple, partially overlapping tools. This chapter addressed the problem *how to define and calculate the D-score based on data coming from various sources, using multiple instruments administered at varying ages*.
 
 We had longitudinal data available from 16 cohorts, collected with 15 tools to measure child development at various ages. Our analytic strategy to define a D-score from these data consists of the following steps:
 
@@ -58,4 +60,4 @@ The opposite scenario may also be of interest. Suppose we want to measure generi
 
 Since we based the D-score on a statistical model, we may create instruments customised to the exact needs of the study. Population-based studies may require a short measure consisting of a handful of items per child, and aggregate scores over many children to achieve precision. Intervention studies aim for a precise estimate for the intervention effect. If group sizes are small, we may administer a more extended test to achieve the same precision and vice versa. At the other end of the spectrum, for clinical purposes, we want a precise estimate for one particular person, so here we will administer a relatively long test. The good news is: As long as we pick items from the statistical model, the D-score in those three cases are all values on the same scale.
 
-The third booklet targets tailoring instruments to a study design and discusses all of these options. And more.
+Our ongoing work targets tailoring instruments to a study design and discusses all of these options. And more.

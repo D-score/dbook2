@@ -35,7 +35,7 @@
 
 # Notation {#ap:notation}
 
-The notation in this booklet follows @wright1982.
+The notation in this chapter follows @wright1982.
 
 | Section     | Symbol                  | Term        | Description                                                   |
 |-------------|:------------------------|:------------|:--------------------------------------------------------------|
@@ -65,4 +65,4 @@ warnings()
 
 # Acknowledgements
 
-This booklet was supported by the Bill & Melinda Gates Foundation. The contents are the sole responsibility of the authors and may not necessarily represent the official views of the Bill & Melinda Gates Foundation or other agencies that may have supported the primary data studies used in the present booklet. The authors wish to recognize the principal investigators and their study team members for their generous contribution of the data that were used to illustrate this booklet and the members of the Global Child Development Group who directly or indirectly contributed to the contents of this booklet: Maureen M. Black, Stef van Buuren, Gary L. Darmstadt, M. Caridad Araujo, Susan M. Changm, Bernice M. Doove, Iris Eekhout, Lia C.H. Fernald, Emanuela Galasso, Sally Grantham-McGregor, Pamela Jervis, Jena D. Hamadani, Charlotte Hanlon, Simone M. Karam, Betsy Lozoff, Orazio Attanasio, Girmay Medhin, Ana M. B. Menezes and the 1993 Pelotas cohort team, Helen Pitchik, Lisy Ratsifandrihamanana, Sarah Reynolds, Linda Richter, Marta Rubio-Codina, Norbert Schady, Susan P. Walker, Ann M. Weber.
+This book was supported by the Bill & Melinda Gates Foundation. The contents are the sole responsibility of the authors and may not necessarily represent the official views of the Bill & Melinda Gates Foundation or other agencies that may have supported the primary data studies used in the present booklet. The authors wish to recognize the principal investigators and their study team members for their generous contribution of the data that were used to illustrate this booklet and the members of the Global Child Development Group who directly or indirectly contributed to the contents of this booklet: Maureen M. Black, Stef van Buuren, Gary L. Darmstadt, M. Caridad Araujo, Susan M. Changm, Bernice M. Doove, Iris Eekhout, Lia C.H. Fernald, Emanuela Galasso, Sally Grantham-McGregor, Pamela Jervis, Jena D. Hamadani, Charlotte Hanlon, Simone M. Karam, Betsy Lozoff, Orazio Attanasio, Girmay Medhin, Ana M. B. Menezes and the 1993 Pelotas cohort team, Helen Pitchik, Lisy Ratsifandrihamanana, Sarah Reynolds, Linda Richter, Marta Rubio-Codina, Norbert Schady, Susan P. Walker, Ann M. Weber.

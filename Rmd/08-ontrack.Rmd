@@ -1,8 +1,10 @@
 # Application II: Who is on-track? {#ch:ontrack}
 
-> Author: Iris Eekhout
+```{=html}
+<!-- > Author: Iris Eekhout -->
+```
 
-Chapter \@ref(ch:SDGindicator) described a method to define and estimate off-track development. The current chapter highlights strategies to find factors that discriminate between children that are on-track and off-track. We order explanatory factors relative to their importance and discuss opportunities for interventions.
+Section \@ref(ch:SDGindicator) described a method to define and estimate off-track development. The current section highlights strategies to find factors that discriminate between children that are on-track and off-track. We order explanatory factors relative to their importance and discuss opportunities for interventions.
 
 -   What determines who is developmentally on-track (\@ref(sec:application2))
 -   Factors that impact child development (\@ref(sec:factors))
