@@ -5,12 +5,13 @@
 \documentclass[
 ]{book}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
+\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -42,6 +43,7 @@
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -50,7 +52,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -80,6 +82,30 @@
 \usepackage{threeparttablex}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
+\usepackage{xcolor}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Child Development with the D-score: Tuning instruments to Unity}
 \author{Authors: Iris Eekhout \& Stef van Buuren}
@@ -216,7 +242,7 @@ In practice, we typically want to make the following types of comparisons:
   Compare the development of groups of children of different ages.
 \end{itemize}
 
-To do this well, we need an \emph{interval scale with a fixed unit of development}. We argued that the simple Rasch model is a very suitable candidate to provide us with such a unit. The Rasch model is simple, fast, and we found that it fits child developmental data very well (Jacobusse, van Buuren, and Verkerk \protect\hyperlink{ref-jacobusse2006}{2006})(van Buuren \protect\hyperlink{ref-vanbuuren2014}{2014}). The Rasch model has a long history, but -unfortunately- it is almost unknown outside the field of psychometrics. We highlighted the concepts of the model that are of direct relevance to child development. Using data collected by the Dutch Development Instrument, we demonstrated that the model and its estimates behave as intended for children in the open population, for prematurely born-children, and children living in a low- and middle-income country.
+To do this well, we need an \emph{interval scale with a fixed unit of development}. We argued that the simple Rasch model is a very suitable candidate to provide us with such a unit. The Rasch model is simple, fast, and we found that it fits child developmental data very well (\protect\hyperlink{ref-jacobusse2006}{Jacobusse, van Buuren, and Verkerk 2006})(\protect\hyperlink{ref-vanbuuren2014}{van Buuren 2014}). The Rasch model has a long history, but -unfortunately- it is almost unknown outside the field of psychometrics. We highlighted the concepts of the model that are of direct relevance to child development. Using data collected by the Dutch Development Instrument, we demonstrated that the model and its estimates behave as intended for children in the open population, for prematurely born-children, and children living in a low- and middle-income country.
 
 As our approach breaks with the traditional paradigm that emphasises different domains of child development, we expected a slow uphill battle for acceptance. We have now gained the interest from various prominent authors in the field, and from organisations who recognise the value of a one-number-summary for child development. In analogy to traditional growth charts, it is entirely possible to track children, or groups of children, on a developmental chart over time. Those and other applications of the technology may eventually win over some more souls.
 
@@ -239,7 +265,7 @@ It is straightforward to apply the D-score methodology, as explained in \href{ht
   and so on.
 \end{itemize}
 
-Since there are over 150 different instruments to measure child development (Fernald et al. \protect\hyperlink{ref-fernald2017toolkit}{2017}), the chances are high that our data also hold data observed by multiple tools.
+Since there are over 150 different instruments to measure child development (\protect\hyperlink{ref-fernald2017toolkit}{L. C. H. Fernald et al. 2017}), the chances are high that our data also hold data observed by multiple tools.
 
 It is not apparent how to obtain comparable scores from different instruments. Tools may have idiosyncratic instructions to calculate total scores, distinctive domain definitions, unique compositions of norm groups, different floors and ceilings, or combinations of these.
 
@@ -254,18 +280,18 @@ We all like our children to grow and prosper. The \emph{first 1000 days} refers 
 
 Professionals and parents consider it necessary to monitor children's development. While we can track the child's physical growth by growth charts to identify children with signs of potential delay, there are no charts for monitoring child development. To create such charts, we need to have a unit of development, similar to units like centimetres or kilograms.
 
-The D-score is a way to define a unit of child development. With the D-score, we see that progress is much faster during infancy, and that different children develop at different rates. The D-score also allows us to define a ``normal'' range that we can use to filter out those who are following a more pathological course. There is good evidence that early identification and early intervention improve the outcomes of children (Britto et al. \protect\hyperlink{ref-britto2017}{2017}). Early intervention is crucial for children with developmental disabilities because barriers to healthy development early in life impede progress at each subsequent stage.
+The D-score is a way to define a unit of child development. With the D-score, we see that progress is much faster during infancy, and that different children develop at different rates. The D-score also allows us to define a ``normal'' range that we can use to filter out those who are following a more pathological course. There is good evidence that early identification and early intervention improve the outcomes of children (\protect\hyperlink{ref-britto2017}{Britto et al. 2017}). Early intervention is crucial for children with developmental disabilities because barriers to healthy development early in life impede progress at each subsequent stage.
 
-Monitoring child development provides caregivers and parents with reliable information about the child and an opportunity to intervene at an early age. Understanding the developmental health of populations of children allows organisations and policymakers to make informed decisions about programmes that support children's greatest needs (Bellman, Byrne, and Sege \protect\hyperlink{ref-bellman2013}{2013}).
+Monitoring child development provides caregivers and parents with reliable information about the child and an opportunity to intervene at an early age. Understanding the developmental health of populations of children allows organisations and policymakers to make informed decisions about programmes that support children's greatest needs (\protect\hyperlink{ref-bellman2013}{Bellman, Byrne, and Sege 2013}).
 
 \hypertarget{sec:why}{%
 \section{Why this chapter?}\label{sec:why}}
 
 We believe that \emph{there can be one scale} for measuring child development and that this scale is useful for many applications. We also believe that \emph{there cannot be one instrument} for measuring child development that is suitable for all situations. In general, the tool needs tailoring to the setting.
 
-We see that practitioners often view instruments and scales as exchangeable. In daily practice, the practitioner would pick a particular tool to measure a specific faculty, which then effectively produces a ``scale score''. Each tool produces its own score, which then feeds into the diagnostic and monitoring process.
+We see that practitioners often view instruments and scales as exchangeable. In daily practice, the practitioner would pick a particular tool to measure a specific faculty, which then effectively produces a ``scale score.'' Each tool produces its own score, which then feeds into the diagnostic and monitoring process.
 
-We have always found it difficult to explain that scales and instruments are different things. For us, a scale is a continuous concept, like ``distance'', ``temperature'' or ``child development'', and the instrument is the way to assign values to the particular object being measured. For measuring distance, we use devices like rods, tapes, sonar, radar, geo-location, or red-shift detection, and we can express the results as the location under the underlying scale (e.g., number of meters). It would undoubtedly be an advance if we could establish a \emph{unit of child development}, and express the measurement as the number of units. If we succeed, we can compare child development scores, that are measured through different devices. This chapter explores the theory and practice for making that happen.
+We have always found it difficult to explain that scales and instruments are different things. For us, a scale is a continuous concept, like ``distance,'' ``temperature'' or ``child development,'' and the instrument is the way to assign values to the particular object being measured. For measuring distance, we use devices like rods, tapes, sonar, radar, geo-location, or red-shift detection, and we can express the results as the location under the underlying scale (e.g., number of meters). It would undoubtedly be an advance if we could establish a \emph{unit of child development}, and express the measurement as the number of units. If we succeed, we can compare child development scores, that are measured through different devices. This chapter explores the theory and practice for making that happen.
 
 \hypertarget{sec:audience}{%
 \section{Intended audience}\label{sec:audience}}
@@ -383,57 +409,57 @@ The cohorts have different designs, age ranges and assessment instruments. Figur
 
 A brief description of each cohort follows:
 
-The \textbf{Bangladesh} study (GCDG-BGD-7MO) was an impact evaluation study including 1862 children around the age of 18 months. The Bayley Scale for Infant and Toddler Development-II (\texttt{by2}) was administered and long-term follow-up data were available for the Wechsler Preschool and Primary Scale of Intelligence (WPPSI) at 5 years (Tofail et al. \protect\hyperlink{ref-Tofail2008}{2008}).
+The \textbf{Bangladesh} study (GCDG-BGD-7MO) was an impact evaluation study including 1862 children around the age of 18 months. The Bayley Scale for Infant and Toddler Development-II (\texttt{by2}) was administered and long-term follow-up data were available for the Wechsler Preschool and Primary Scale of Intelligence (WPPSI) at 5 years (\protect\hyperlink{ref-Tofail2008}{Tofail et al. 2008}).
 
-The \textbf{Brazil 1} study (GCDG-BRA-1) was a birth-cohort with 3 measurement moments: 644 children at 3 months, 1412 children at 6 months and 1362 children at 12 months. The investigators administered the Denver Developmental Screening Test-II (\texttt{den}) in each round. Long-term follow-up data were available for the Wechsler Adult Intelligence Scale (WAIS) at 18 years (Victora et al. \protect\hyperlink{ref-Victora2006}{2006}).
+The \textbf{Brazil 1} study (GCDG-BRA-1) was a birth-cohort with 3 measurement moments: 644 children at 3 months, 1412 children at 6 months and 1362 children at 12 months. The investigators administered the Denver Developmental Screening Test-II (\texttt{den}) in each round. Long-term follow-up data were available for the Wechsler Adult Intelligence Scale (WAIS) at 18 years (\protect\hyperlink{ref-Victora2006}{Victora et al. 2006}).
 
-The \textbf{Brazil 2} study (GCDG-BRA-2) was a birth-cohort with measurements of 3907 children at 12 months and 3869 children at 24 months. Both occasions collected data on the Battelle Development Inventory (\texttt{bat}) (Moura et al. \protect\hyperlink{ref-Moura2010}{2010}).
+The \textbf{Brazil 2} study (GCDG-BRA-2) was a birth-cohort with measurements of 3907 children at 12 months and 3869 children at 24 months. Both occasions collected data on the Battelle Development Inventory (\texttt{bat}) (\protect\hyperlink{ref-Moura2010}{Moura et al. 2010}).
 
-The \textbf{Chile 1} study (GCDG-CHL-1) was an impact evaluation study of 128 children assessed at 6 months, 1732 children at 12 months and 279 at 18 months. The \texttt{by1} was administered at each of the three waves. Long-term follow-up data were available for the WPPSI at 5-6 years (Lozoff et al. \protect\hyperlink{ref-Lozoff2003}{2003}).
+The \textbf{Chile 1} study (GCDG-CHL-1) was an impact evaluation study of 128 children assessed at 6 months, 1732 children at 12 months and 279 at 18 months. The \texttt{by1} was administered at each of the three waves. Long-term follow-up data were available for the WPPSI at 5-6 years (\protect\hyperlink{ref-Lozoff2003}{Lozoff et al. 2003}).
 
-The \textbf{Chile 2} study (GCDG-CHL-2) consists of a birth-cohort of 4869 children. The investigators measured child development by the Battelle Developmental Inventory (\texttt{bat}) at 7-23 months. A total of 9201 children aged 24-58 responded to the Test de Desarrollo Psicomotor (\texttt{tep}) at 24-58 months. For the latter group, follow-up data were available for the Peabody Picture Vocabulary Test (PPVT) at 5-6 years (Conteras and González \protect\hyperlink{ref-conteras2015}{2015}).
+The \textbf{Chile 2} study (GCDG-CHL-2) consists of a birth-cohort of 4869 children. The investigators measured child development by the Battelle Developmental Inventory (\texttt{bat}) at 7-23 months. A total of 9201 children aged 24-58 responded to the Test de Desarrollo Psicomotor (\texttt{tep}) at 24-58 months. For the latter group, follow-up data were available for the Peabody Picture Vocabulary Test (PPVT) at 5-6 years (\protect\hyperlink{ref-conteras2015}{Conteras and González 2015}).
 
-The \textbf{China} study (GCDG-CHN) was an impact evaluation study that contained 990 children assessed with the by3 at 18 months (Lozoff et al. \protect\hyperlink{ref-Lozoff2016}{2016}).
+The \textbf{China} study (GCDG-CHN) was an impact evaluation study that contained 990 children assessed with the by3 at 18 months (\protect\hyperlink{ref-Lozoff2016}{Lozoff et al. 2016}).
 
-The \textbf{Colombia 1} study (GCDG-COL-LT45M) was an impact evaluation study that comprised two waves. Wave 1 contained 704 children at 12-24 months and wave 2 631 children at 24-41 months. The \texttt{by3} was administered at each wave. Long-term follow-up data were available for PPVT at 4-6 years (Attanasio et al. \protect\hyperlink{ref-Attanasio2014}{2014}).
+The \textbf{Colombia 1} study (GCDG-COL-LT45M) was an impact evaluation study that comprised two waves. Wave 1 contained 704 children at 12-24 months and wave 2 631 children at 24-41 months. The \texttt{by3} was administered at each wave. Long-term follow-up data were available for PPVT at 4-6 years (\protect\hyperlink{ref-Attanasio2014}{Attanasio et al. 2014}).
 
-The \textbf{Colombia 2} study (GCDG-COL-LT42M) was an instrument validation study where all 1311 children aged 6-42 months were measured the \texttt{by3}. Also, there are data for a subgroup of 658 children on \texttt{den,} the Ages and Stages Questionnaire (\texttt{aqi}), and the \texttt{bat} screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT (Rubio-Codina et al. \protect\hyperlink{ref-Rubio-Codina2016}{2016}).
+The \textbf{Colombia 2} study (GCDG-COL-LT42M) was an instrument validation study where all 1311 children aged 6-42 months were measured the \texttt{by3}. Also, there are data for a subgroup of 658 children on \texttt{den,} the Ages and Stages Questionnaire (\texttt{aqi}), and the \texttt{bat} screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT (\protect\hyperlink{ref-Rubio-Codina2016}{Rubio-Codina et al. 2016}).
 
 An impact evaluation study
-The \textbf{Jamaica 1} study (GCDG-JAM-LBW) was an impact evaluation study that collected data on the Griffiths Mental Development Scales (\texttt{gri}) for 225 children aged 15 months (first wave), and 218 children of aged 24 months (second wave). Long-term follow-up data were available for WPPSI and PPVT at 6 years (Walker et al. \protect\hyperlink{ref-Walker2004}{2004}).
+The \textbf{Jamaica 1} study (GCDG-JAM-LBW) was an impact evaluation study that collected data on the Griffiths Mental Development Scales (\texttt{gri}) for 225 children aged 15 months (first wave), and 218 children of aged 24 months (second wave). Long-term follow-up data were available for WPPSI and PPVT at 6 years (\protect\hyperlink{ref-Walker2004}{Walker et al. 2004}).
 
-The \textbf{Jamaica 2} study (GCDG-JAM-STUNTED) was an impact evaluation study with data on the \texttt{gri} for 159 children at 9-24 months, 21-36 months, and at 33-48 months. Long-term follow-up data were available for \texttt{sbi}, Raven's Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years and the WAIS at 17-18 years (Grantham-McGregor et al. \protect\hyperlink{ref-Grantham-McGregor1991}{1991}).
+The \textbf{Jamaica 2} study (GCDG-JAM-STUNTED) was an impact evaluation study with data on the \texttt{gri} for 159 children at 9-24 months, 21-36 months, and at 33-48 months. Long-term follow-up data were available for \texttt{sbi}, Raven's Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years and the WAIS at 17-18 years (\protect\hyperlink{ref-Grantham-McGregor1991}{Grantham-McGregor et al. 1991}).
 
-The \textbf{Madagascar} study (GCDG-MDG) was an impact evaluation study that used the \texttt{sbi} for 205 children aged 34-42 months. Long-term follow-up data were available for \texttt{sbi} and PPVT at 7-11 years (Fernald et al. \protect\hyperlink{ref-Fernald2011}{2011}).
+The \textbf{Madagascar} study (GCDG-MDG) was an impact evaluation study that used the \texttt{sbi} for 205 children aged 34-42 months. Long-term follow-up data were available for \texttt{sbi} and PPVT at 7-11 years (\protect\hyperlink{ref-Fernald2011}{Lia C. H. Fernald et al. 2011}).
 
-The \textbf{Netherlands 1} study (GCDG-NLD-SMOCC) was an instrument validation study with a total of 9 waves. At each wave the Dutch Developmental instrument (\texttt{ddi}) (In the Netherlands known as Van Wiechenschema) was administered. The first wave included 1985 children at 1 month, wave 2 1807 children at 2 months, wave 3 1963 children at 3 months, wave 4 1919 children at 6 months, wave 5 1881 children at 9 months, wave 6 1802 children at 12 months, wave 7 1776 children at 15 months, wave 8 1787 children at 18 months, and wave 9 1815 children at 24 months (Herngreen et al. \protect\hyperlink{ref-herngreen1992}{1992}).
+The \textbf{Netherlands 1} study (GCDG-NLD-SMOCC) was an instrument validation study with a total of 9 waves. At each wave the Dutch Developmental instrument (\texttt{ddi}) (In the Netherlands known as Van Wiechenschema) was administered. The first wave included 1985 children at 1 month, wave 2 1807 children at 2 months, wave 3 1963 children at 3 months, wave 4 1919 children at 6 months, wave 5 1881 children at 9 months, wave 6 1802 children at 12 months, wave 7 1776 children at 15 months, wave 8 1787 children at 18 months, and wave 9 1815 children at 24 months (\protect\hyperlink{ref-herngreen1992}{Herngreen et al. 1992}).
 
-The \textbf{Netherlands 2} study (GCDG-NLD-2) was an instrument validation study with a total of five waves. This study resembles GCDG-NLD-SMOCC but for older children. Wave 1 included 1016 children at 24 months, wave 2 995 children at 30 months, wave 3 1592 children at 36 months, wave 4 1592 children at 42 months, and wave 5 1024 children at 48 months (Doove \protect\hyperlink{ref-doove2010}{2010}).
+The \textbf{Netherlands 2} study (GCDG-NLD-2) was an instrument validation study with a total of five waves. This study resembles GCDG-NLD-SMOCC but for older children. Wave 1 included 1016 children at 24 months, wave 2 995 children at 30 months, wave 3 1592 children at 36 months, wave 4 1592 children at 42 months, and wave 5 1024 children at 48 months (\protect\hyperlink{ref-doove2010}{Doove 2010}).
 
-The \textbf{South Africa} study (GCDG-ZAF) was a birth cohort with four waves. The first wave included 485 children and second wave 275 children, who were assessed at 6 and 12 months, respectively, with the \texttt{by1} and the \texttt{gri}. The third wave included 1802 children and the fourth wave 1614 children, assessed at 24 and 48 months, respectively, with the Vineland Social Maturity Scale (\texttt{vin}) (Richter et al. \protect\hyperlink{ref-Richter2007}{2007}).
+The \textbf{South Africa} study (GCDG-ZAF) was a birth cohort with four waves. The first wave included 485 children and second wave 275 children, who were assessed at 6 and 12 months, respectively, with the \texttt{by1} and the \texttt{gri}. The third wave included 1802 children and the fourth wave 1614 children, assessed at 24 and 48 months, respectively, with the Vineland Social Maturity Scale (\texttt{vin}) (\protect\hyperlink{ref-Richter2007}{Richter et al. 2007}).
 
 \hypertarget{sec:instruments}{%
 \section{Instruments}\label{sec:instruments}}
 
-The \textbf{Bayley Scales for Infant and Toddler Development (\texttt{by1},\texttt{by2}, \texttt{by3})} aim to assess infants and toddlers, aged 1-42 months. The current version is the \texttt{by3}, but some GCDG cohorts used earlier versions (i.e.~\texttt{by1} and \texttt{by2}) (Bayley \protect\hyperlink{ref-bayley1969}{1969})(Bayley \protect\hyperlink{ref-bayley1993}{1993})(Bayley \protect\hyperlink{ref-bayley2006}{2006}). The 326 items of the \texttt{by3} measure three domains: Cognitive items, Motor items (with fine and gross motor items), and Language items (with expressive and receptive items). The \texttt{by2} contains 277 items and has two additional subscales: Social-Emotional and Adaptive Behavior. by1 contains 229 items.
+The \textbf{Bayley Scales for Infant and Toddler Development (\texttt{by1},\texttt{by2}, \texttt{by3})} aim to assess infants and toddlers, aged 1-42 months. The current version is the \texttt{by3}, but some GCDG cohorts used earlier versions (i.e.~\texttt{by1} and \texttt{by2}) (\protect\hyperlink{ref-bayley1969}{Bayley 1969})(\protect\hyperlink{ref-bayley1993}{Bayley 1993})(\protect\hyperlink{ref-bayley2006}{Bayley 2006}). The 326 items of the \texttt{by3} measure three domains: Cognitive items, Motor items (with fine and gross motor items), and Language items (with expressive and receptive items). The \texttt{by2} contains 277 items and has two additional subscales: Social-Emotional and Adaptive Behavior. by1 contains 229 items.
 
-The \textbf{Denver Developmental Screening Test (\texttt{den})} is aimed to identify developmental problems in children up to age six. The 125 dichotomous test items are distributed over the age range from birth to six years. The Denver covers four domains: personal-social, fine motor and adaptive, language, and gross motor. The test items are all directly observed by an examiner and are not dependent on parent report (Frankenburg et al. \protect\hyperlink{ref-frankenburg1992}{1992}) (Frankenburg et al. \protect\hyperlink{ref-frankenburg1990}{1990}).
+The \textbf{Denver Developmental Screening Test (\texttt{den})} is aimed to identify developmental problems in children up to age six. The 125 dichotomous test items are distributed over the age range from birth to six years. The Denver covers four domains: personal-social, fine motor and adaptive, language, and gross motor. The test items are all directly observed by an examiner and are not dependent on parent report (\protect\hyperlink{ref-frankenburg1992}{Frankenburg et al. 1992}) (\protect\hyperlink{ref-frankenburg1990}{Frankenburg et al. 1990}).
 
-The \textbf{Griffiths Mental Development Scales (\texttt{gri})} measure the rate of development in infants and young children in six developmental areas: locomotor, personal-social, hearing and language, eye and hand coordination, performance and practical reasoning (Griffiths \protect\hyperlink{ref-griffiths1967}{1967}).
+The \textbf{Griffiths Mental Development Scales (\texttt{gri})} measure the rate of development in infants and young children in six developmental areas: locomotor, personal-social, hearing and language, eye and hand coordination, performance and practical reasoning (\protect\hyperlink{ref-griffiths1967}{Griffiths 1967}).
 
-The \textbf{Battelle Developmental Inventory (\texttt{bat})} measures key developmental skills in children from birth to 7 years, 11 months. The instrument contains 450 items distributed over five domains: adaptive, personal-social, communication, motor, and cognitive (Newborg \protect\hyperlink{ref-newborg2005}{2005}).
+The \textbf{Battelle Developmental Inventory (\texttt{bat})} measures key developmental skills in children from birth to 7 years, 11 months. The instrument contains 450 items distributed over five domains: adaptive, personal-social, communication, motor, and cognitive (\protect\hyperlink{ref-newborg2005}{Newborg 2005}).
 
-The \textbf{Vineland Social Maturity Scale (\texttt{vin})} is a test to assess social competence. The instrument contains eight subscales that measure communication skills, general self-help ability, locomotion skills, occupation skills, self-direction, self-help eating, self-help dressing and socialisation skills (Doll \protect\hyperlink{ref-doll1953}{1953}).
+The \textbf{Vineland Social Maturity Scale (\texttt{vin})} is a test to assess social competence. The instrument contains eight subscales that measure communication skills, general self-help ability, locomotion skills, occupation skills, self-direction, self-help eating, self-help dressing and socialisation skills (\protect\hyperlink{ref-doll1953}{Doll 1953}).
 
-The \textbf{Dutch Developmental Instrument (\texttt{ddi})} measures early child development during the ages 0-4 years. The instrument consists of 75 milestones spread over three domains: fine motor, adaptive, personal and social behaviour; communication; and gross motor (Schlesinger-Was \protect\hyperlink{ref-schlesinger1981}{1981}).
+The \textbf{Dutch Developmental Instrument (\texttt{ddi})} measures early child development during the ages 0-4 years. The instrument consists of 75 milestones spread over three domains: fine motor, adaptive, personal and social behaviour; communication; and gross motor (\protect\hyperlink{ref-schlesinger1981}{Schlesinger-Was 1981}).
 
-The \textbf{Barrera Moncada (\texttt{bar})} is a Spanish instrument that measures the growth and psychological development of children (Barrera Moncada \protect\hyperlink{ref-barrera1981}{1981}).
+The \textbf{Barrera Moncada (\texttt{bar})} is a Spanish instrument that measures the growth and psychological development of children (\protect\hyperlink{ref-barrera1981}{Barrera Moncada 1981}).
 
-The \textbf{Test de Desarrollo Psicomotor (\texttt{tep})} is an instrument to evaluate toddlers aged 2 to 5 years on their development. The items come from three sub-tests: 16 items assess coordination; 24 items measure language skills and 12 items tap into motor skills (Haeussler and Marchant \protect\hyperlink{ref-haeussler1999}{1999}).
+The \textbf{Test de Desarrollo Psicomotor (\texttt{tep})} is an instrument to evaluate toddlers aged 2 to 5 years on their development. The items come from three sub-tests: 16 items assess coordination; 24 items measure language skills and 12 items tap into motor skills (\protect\hyperlink{ref-haeussler1999}{Haeussler and Marchant 1999}).
 
-The \textbf{Ages and Stages Questionnaire (\texttt{aqi})} measures developmental progress in children aged 2 mo -- 5.5 yrs. The instrument distinguishes development in five areas: personal-social, gross motor, fine motor, problem solving, and communication. The caregiver completes 30 items per age intervals and (Squires and Bricker \protect\hyperlink{ref-squires2009}{2009}).
+The \textbf{Ages and Stages Questionnaire (\texttt{aqi})} measures developmental progress in children aged 2 mo -- 5.5 yrs. The instrument distinguishes development in five areas: personal-social, gross motor, fine motor, problem solving, and communication. The caregiver completes 30 items per age intervals and (\protect\hyperlink{ref-squires2009}{Squires and Bricker 2009}).
 
-The \textbf{Stanford Binet Intelligence Scales (\texttt{sbi})} is a cognitive ability and intelligence test to diagnose developmental deficiencies in young children. The items divide into five subtests: fluid reasoning, knowledge, quantitative reasoning, visual-spatial processing, and working memory (Roid \protect\hyperlink{ref-roid2003}{2003})(Hagen and Stattler \protect\hyperlink{ref-hagen1986}{1986}).
+The \textbf{Stanford Binet Intelligence Scales (\texttt{sbi})} is a cognitive ability and intelligence test to diagnose developmental deficiencies in young children. The items divide into five subtests: fluid reasoning, knowledge, quantitative reasoning, visual-spatial processing, and working memory (\protect\hyperlink{ref-roid2003}{Roid 2003})(\protect\hyperlink{ref-hagen1986}{Hagen and Stattler 1986}).
 
 \hypertarget{ch:comparability}{%
 \chapter{Comparability}\label{ch:comparability}}
@@ -543,7 +569,7 @@ The next section suggests a way out of the dilemma.
 \hypertarget{sec:mapping}{%
 \section{Bridging instruments by mapping items}\label{sec:mapping}}
 
-Many instruments for measuring child development have appeared since the works of Shirley (\protect\hyperlink{ref-shirley1933}{1933}) and Gesell (\protect\hyperlink{ref-gesell1943}{1943}). It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. We will exploit this overlap to bridge different instruments. For example, Table \ref{tab:example2words} displays the labels of milestones from six instruments. All items probe the ability of the child to formulate ``sentences'' of two words.
+Many instruments for measuring child development have appeared since the works of \protect\hyperlink{ref-shirley1933}{Shirley} (\protect\hyperlink{ref-shirley1933}{1933}) and \protect\hyperlink{ref-gesell1943}{Gesell} (\protect\hyperlink{ref-gesell1943}{1943}). It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. We will exploit this overlap to bridge different instruments. For example, Table \ref{tab:example2words} displays the labels of milestones from six instruments. All items probe the ability of the child to formulate ``sentences'' of two words.
 
 \begin{table}
 
@@ -570,7 +596,14 @@ The idea is to check whether these milestones measure development in the same wa
 
 A first step in the bridging process is to group items from different instruments by similarity. As the \texttt{by3} is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to \texttt{by3} items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto \texttt{by3} items.
 
-\label{fig:mappingshiny}Connections between the instruments via mapped item groups by domain (\url{https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/ring} 
+
+}
+
+\caption{Connections between the instruments via mapped item groups by domain (\url{https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/}).}\label{fig:mappingshiny}
+\end{figure}
 
 
 
@@ -677,7 +710,7 @@ Figure \ref{fig:equateex} displays items from three different instruments with o
 
 Patterns as in Figure \ref{fig:equateex} occur if we have multiple forms of the same instrument. Although in theory, there might be sequence effects, the usual working assumption is that we may ignore them. Equate groups with truly shared items that work in the same way across samples are of high quality. We may collect the responses on identical items into the same column of the data matrix. As a consequence, usual estimation methods will automatically produce one difficulty estimate for that column (i.e.~common item).
 
-The procedure described above is known as \emph{concurrent calibration}. See Kim and Cohen (\protect\hyperlink{ref-kim1998}{1998}) for more background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:
+The procedure described above is known as \emph{concurrent calibration}. See \protect\hyperlink{ref-kim1998}{Kim and Cohen} (\protect\hyperlink{ref-kim1998}{1998}) for more background. The method simultaneously estimates the item parameters for all instruments. Concurrent calibration is an attractive option for various reasons:
 
 \begin{itemize}
 \tightlist
@@ -752,11 +785,11 @@ The Rasch model expresses the probability of passing an item as a logistic funct
 \pi_{ni} = \frac{\exp(\beta_n - \delta_i)}{1+\exp(\beta_n -\delta_i)} \label{eq:rasch}
 \end{equation}
 
-One way to interpret the formula is as follows. The logarithm of the odds that a person with ability \(\beta_n\) passes an item of difficulty \(\delta_i\) is equal to the difference \(\beta_n-\delta_i\) (Wright and Masters \protect\hyperlink{ref-wright1982}{1982}). See the logistic model in \href{https://d-score.org/dbook1/sec-itemresponsefunctions.html\#logistic-model}{Chapter 1, Section 4.6.1} for more detail.
+One way to interpret the formula is as follows. The logarithm of the odds that a person with ability \(\beta_n\) passes an item of difficulty \(\delta_i\) is equal to the difference \(\beta_n-\delta_i\) (\protect\hyperlink{ref-wright1982}{Wright and Masters 1982}). See the logistic model in \href{https://d-score.org/dbook1/sec-itemresponsefunctions.html\#logistic-model}{Chapter 1, Section 4.6.1} for more detail.
 
 In model \eqref{eq:rasch} every milestone \(i\) has one parameter \(\delta_i\). We extend the Rasch model by restricting the \(\delta_i\) of all items within the same equate group to the same value. We thereby effectively say that these items are interchangeable measures of child development.
 
-Estimation of the parameter for the equate group is straightforward. Wright and Masters (\protect\hyperlink{ref-wright1982}{1982}) present a simple method for aligning two test forms with common items. There are three steps:
+Estimation of the parameter for the equate group is straightforward. \protect\hyperlink{ref-wright1982}{Wright and Masters} (\protect\hyperlink{ref-wright1982}{1982}) present a simple method for aligning two test forms with common items. There are three steps:
 
 \begin{itemize}
 \tightlist
@@ -1057,7 +1090,14 @@ Various routes are possible and may result in different final models. The strate
 \hypertarget{sec:impactequate}{%
 \section{Impact of number of active equate groups}\label{sec:impactequate}}
 
-\label{fig:model1339}\href{https://d-score.org/dbook-apps/models1339/\#display=by_model_cohort\&nrow=2\&ncol=2\&arr=row\&pg=7\&labels=cohort,model\&sort=cohort;asc,model;asc\&filter=\&sidebar=\&fv=}{D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts} (\url{https://d-score.org/dbook-apps/models1339/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_5.2} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/models1339/\#display=by_model_cohort\&nrow=2\&ncol=2\&arr=row\&pg=7\&labels=cohort,model\&sort=cohort;asc,model;asc\&filter=\&sidebar=\&fv=}{D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts} (\url{https://d-score.org/dbook-apps/models1339/}).}\label{fig:model1339}
+\end{figure}
 
 
 
@@ -1095,7 +1135,14 @@ We have now seen that the number of active equate groups has a large effect on t
 \hypertarget{sec:ageprofiles}{%
 \section{Age profiles of similar milestones}\label{sec:ageprofiles}}
 
-\label{fig:p-a-equate-1339}\href{https://d-score.org/dbook-apps/p-a-equate-1339/\#display=Percent_pass_by_age_for_all_equate_groups\&nrow=1\&ncol=1\&arr=row\&pg=65\&labels=equate\&sort=equate_index;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones at a given age} (\url{https://d-score.org/dbook-apps/p-a-equate-1339/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_5.3} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/p-a-equate-1339/\#display=Percent_pass_by_age_for_all_equate_groups\&nrow=1\&ncol=1\&arr=row\&pg=65\&labels=equate\&sort=equate_index;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones at a given age} (\url{https://d-score.org/dbook-apps/p-a-equate-1339/}).}\label{fig:p-a-equate-1339}
+\end{figure}
 
 
 
@@ -1108,7 +1155,14 @@ We could follow different strategies in selecting which equate groups to activat
 \hypertarget{sec:equatequality}{%
 \section{Quality of equate groups}\label{sec:equatequality}}
 
-\label{fig:p-d-equate-1339}\href{https://d-score.org/dbook-apps/p-d-equate-1339/\#display=Percent_pass_by_D_score__four_models\&nrow=2\&ncol=2\&arr=row\&pg=65\&labels=equate,model\&sort=equate_index;asc,model;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively} (\url{https://d-score.org/dbook-apps/p-d-equate-1339/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_5.4} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/p-d-equate-1339/\#display=Percent_pass_by_D_score__four_models\&nrow=2\&ncol=2\&arr=row\&pg=65\&labels=equate,model\&sort=equate_index;asc,model;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively} (\url{https://d-score.org/dbook-apps/p-d-equate-1339/}).}\label{fig:p-d-equate-1339}
+\end{figure}
 
 
 
@@ -1257,27 +1311,27 @@ The red circles indicate active equate groups. Most have grade A, so we have a l
 \toprule
 Equate group & Difficulty & Sample Size & Information & Grade\\
 \midrule
-EXP2 & 11.44 & 3608 & 162.32846 & A\\
-REC6 & 30.90 & 5428 & 95.39963 & B\\
-GM25 & 36.43 & 6380 & 470.62671 & A\\
-FM26 & 42.93 & 4155 & 296.78327 & A\\
-GM35 & 44.01 & 5522 & 356.04417 & A\\
+EXP2 & 11.4 & 3608 & 162.3 & A\\
+REC6 & 30.9 & 5428 & 95.4 & B\\
+GM25 & 36.4 & 6380 & 470.6 & A\\
+FM26 & 42.9 & 4155 & 296.8 & A\\
+GM35 & 44.0 & 5522 & 356.0 & A\\
 \addlinespace
-COG36 & 44.53 & 7912 & 230.02909 & A\\
-GM42 & 49.86 & 5953 & 327.74297 & A\\
-FM31 & 53.17 & 10991 & 731.65850 & A\\
-COG55 & 54.08 & 5647 & 420.34928 & A\\
-FM72 & 57.07 & 5430 & 253.63655 & A\\
+COG36 & 44.5 & 7912 & 230.0 & A\\
+GM42 & 49.9 & 5953 & 327.7 & A\\
+FM31 & 53.2 & 10991 & 731.7 & A\\
+COG55 & 54.1 & 5647 & 420.3 & A\\
+FM72 & 57.1 & 5430 & 253.6 & A\\
 \addlinespace
-EXP26 & 59.15 & 9119 & 578.79355 & A\\
-SA1 & 60.08 & 3363 & 172.10653 & A\\
-FM38 & 60.87 & 10236 & 491.68110 & A\\
-FM52 & 67.80 & 13487 & 1159.93870 & A\\
-FM43 & 69.66 & 15765 & 1563.88651 & A\\
+EXP26 & 59.1 & 9119 & 578.8 & A\\
+SA1 & 60.1 & 3363 & 172.1 & A\\
+FM38 & 60.9 & 10236 & 491.7 & A\\
+FM52 & 67.8 & 13487 & 1159.9 & A\\
+FM43 & 69.7 & 15765 & 1563.9 & A\\
 \addlinespace
-GM60 & 70.09 & 9519 & 1070.60909 & A\\
-REC40 & 71.04 & 10393 & 1182.90580 & A\\
-FM61 & 72.56 & 10612 & 945.86689 & A\\
+GM60 & 70.1 & 9519 & 1070.6 & A\\
+REC40 & 71.0 & 10393 & 1182.9 & A\\
+FM61 & 72.6 & 10612 & 945.9 & A\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1307,7 +1361,7 @@ Unfortunately, there is no single index of model fit that we can optimise. Model
 
 This section showed various modelling techniques and ways to assess the validity of the model. In real life, we fitted a total number of 140 models on the data and made many choices that weigh the above objectives. The final model for the GCDG data consists of 565 items (originating from 14 instruments) that fit the Rasch model and that connect through 18 equate groups. Due to the sparseness of data at the very young ages, the quality of the model is best for ages between 4-36 months.
 
-Model \texttt{565\_18} formed the basis of the publication by Weber et al. (\protect\hyperlink{ref-Weber2019}{2019}). Additional detail on model \texttt{565\_18} is available through the \href{https://tnochildhealthstatistics.shinyapps.io/dmodel/}{\texttt{dmodel} shiny app}.
+Model \texttt{565\_18} formed the basis of the publication by \protect\hyperlink{ref-Weber2019}{Weber et al.} (\protect\hyperlink{ref-Weber2019}{2019}). Additional detail on model \texttt{565\_18} is available through the \href{https://tnochildhealthstatistics.shinyapps.io/dmodel/}{\texttt{dmodel} shiny app}.
 
 \hypertarget{ch:ability}{%
 \chapter{Comparing ability}\label{ch:ability}}
@@ -1327,7 +1381,14 @@ Once we identified a satisfactory D-score model, we may calculate the D-score fo
 \hypertarget{sec:dscores}{%
 \section{Comparing child development across studies}\label{sec:dscores}}
 
-\label{fig:dscoredist}\href{https://d-score.org/dbook-apps/gcdgdscores/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{D-score distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdscores/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_6.1} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/gcdgdscores/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{D-score distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdscores/}).}\label{fig:dscoredist}
+\end{figure}
 
 
 
@@ -1337,7 +1398,14 @@ The five blue lines guide the eye. These lines indicate the locations of the -2S
 
 By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the \texttt{GCDG-JAM-STUNTED} cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a sub-optimal calibration of the instrument.
 
-\label{fig:dazdist}\href{https://d-score.org/dbook-apps/gcdgdaz/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{DAZ distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdaz/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_6.1a} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/gcdgdaz/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{DAZ distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdaz/}).}\label{fig:dazdist}
+\end{figure}
 
 
 
@@ -1374,7 +1442,14 @@ Figure \ref{fig:semforn} shows that the \emph{sem} drops off rapidly when the nu
 
 One may wonder whether the \emph{sem} depends on age. Figure \ref{fig:semfora} suggests that this is not the case. The average DAZ is close to zero everywhere, as expected. The interval DAZ \(\pm\) \emph{sem} will cover the true, but unknown, DAZ in about 68\% of the cases. While the interval varies somewhat across ages, there is no systematic age trend.
 
-\label{fig:dscoresems}\href{https://d-score.org/dbook-apps/gcdgsem/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{The standard error of measurement (\(sem\)) around the age-standardized D-scores (DAZ) per cohort} (\url{https://d-score.org/dbook-apps/gcdgsem}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_6.4} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/gcdgsem/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{The standard error of measurement (\(sem\)) around the age-standardized D-scores (DAZ) per cohort} (\url{https://d-score.org/dbook-apps/gcdgsem}).}\label{fig:dscoresems}
+\end{figure}
 
 
 
@@ -1559,7 +1634,7 @@ On July 22, 2020, the indicator was \href{https://unstats.un.org/sdgs/metadata/}
 Proportion of children aged 24-59 months who are developmentally on track in health, learning and psychosocial well-being, by sex.
 \end{quote}
 
-The exclusion of children 0-24 months is at variance with the importance of healthy growth and development during the first 1000 days of life. Indeed, the UN restricted the age range for practical concerns. Loizillon et al. (\protect\hyperlink{ref-loizillon2017}{2017}) report:
+The exclusion of children 0-24 months is at variance with the importance of healthy growth and development during the first 1000 days of life. Indeed, the UN restricted the age range for practical concerns. \protect\hyperlink{ref-loizillon2017}{Loizillon et al.} (\protect\hyperlink{ref-loizillon2017}{2017}) report:
 
 \begin{quote}
 The initial recommendation was for the ECDI to measure child development from birth--5 years, but the range was restricted to 3--5 years due to time and resource constraints and limited availability of comparable measurement tools for children under age 3.
@@ -1585,9 +1660,16 @@ In 2006, the World Health Organisation (WHO) published the \href{https://www.who
   Define the indicator \emph{developmentally on track} as the proportion above a chosen cut-off.
 \end{enumerate}
 
-Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical methodology for constructing growth standards (Borghi et al. \protect\hyperlink{ref-borghi2006}{2006}). Step 3 can be done in different ways, but a applying a simple cut-off fits easily with regular practice in reporting international comparisons.
+Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical methodology for constructing growth standards (\protect\hyperlink{ref-borghi2006}{Borghi et al. 2006}). Step 3 can be done in different ways, but a applying a simple cut-off fits easily with regular practice in reporting international comparisons.
 
-\label{fig:dscorerefs}\href{https://d-score.org/dbook-apps/gcdgreferences/}{Illustration of the method to define on-track development} (\url{https://d-score.org/dbook-apps/gcdgreferences/}).
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{fig/fig_7.1_full} 
+
+}
+
+\caption{\href{https://d-score.org/dbook-apps/gcdgreferences/}{Illustration of the method to define on-track development} (\url{https://d-score.org/dbook-apps/gcdgreferences/}).}\label{fig:dscorerefs}
+\end{figure}
 
 
 
@@ -1610,7 +1692,7 @@ Figure \ref{fig:dscorerefs} demonstrates steps 2 and 3 in more detail. Click `Ne
   Count observations above the -2 SD line as on-track. Count observation below the -2 SD lines as off-track (red dots).
 \end{enumerate}
 
-\emph{Note: These SD lines build upon on a convenience sample. The GCDG cohorts are not representative samples, and the countries are not representative of the world. While we should not over-interpret these references, they play a central role in a stepwise, principled approach to define ``developmentally on track''.}
+\emph{Note: These SD lines build upon on a convenience sample. The GCDG cohorts are not representative samples, and the countries are not representative of the world. While we should not over-interpret these references, they play a central role in a stepwise, principled approach to define ``developmentally on track.''}
 
 \hypertarget{sec:countrytrack}{%
 \section{Country-level estimations}\label{sec:countrytrack}}
@@ -1657,7 +1739,7 @@ Bear in mind that the measurements leading up to these estimates come from diffe
 \hypertarget{sec:otherestimates}{%
 \section{Off-track development and stunted growth}\label{sec:otherestimates}}
 
-Weber et al. (\protect\hyperlink{ref-Weber2019}{2019}) thoroughly discuss concurrent, discriminant and predictive validity of the D-score using the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired height growth in children due to nutrition problems. The WHO defines \href{https://www.who.int/nutrition/healthygrowthproj/en/index1.html}{stunted growth} as a height-for-age Z-score below the -2 SD line of the WHO Child Growth Standards (HAZ \textless{} -2.0).
+\protect\hyperlink{ref-Weber2019}{Weber et al.} (\protect\hyperlink{ref-Weber2019}{2019}) thoroughly discuss concurrent, discriminant and predictive validity of the D-score using the GCDG data. In this section, we concentrate on the relation between the D-score and stunting, a popular measure of impaired height growth in children due to nutrition problems. The WHO defines \href{https://www.who.int/nutrition/healthygrowthproj/en/index1.html}{stunted growth} as a height-for-age Z-score below the -2 SD line of the WHO Child Growth Standards (HAZ \textless{} -2.0).
 
 \begin{figure}
 
@@ -1743,29 +1825,29 @@ We already know many of the factors that influence early child development. A hi
 \cline{3-4} \cline{5-6}
  &  & n & \% & n & \%\\
 \hline
- & female & 21136 & 0.9773873 & 489 & 0.0226127\\
+ & female & 21136 & 0.977 & 489 & 0.023\\
 \cline{2-6}
-\multirow[t]{-2}{*}{\raggedright\arraybackslash sex} & male & 20805 & 0.9721963 & 595 & 0.0278037\\
+\multirow[t]{-2}{*}{\raggedright\arraybackslash sex} & male & 20805 & 0.972 & 595 & 0.028\\
 \cline{1-6}
- & <2500gr & 3388 & 0.9482228 & 185 & 0.0517772\\
+ & <2500gr & 3388 & 0.948 & 185 & 0.052\\
 \cline{2-6}
-\multirow[t]{-2}{*}{\raggedright\arraybackslash birth weight} & >2500gr & 36375 & 0.9779277 & 821 & 0.0220723\\
+\multirow[t]{-2}{*}{\raggedright\arraybackslash birth weight} & >2500gr & 36375 & 0.978 & 821 & 0.022\\
 \cline{1-6}
- & no education & 1907 & 0.9665484 & 66 & 0.0334516\\
+ & no education & 1907 & 0.967 & 66 & 0.033\\
 \cline{2-6}
- & any primary & 11764 & 0.9672751 & 398 & 0.0327249\\
+ & any primary & 11764 & 0.967 & 398 & 0.033\\
 \cline{2-6}
- & any secondary & 21576 & 0.9772182 & 503 & 0.0227818\\
+ & any secondary & 21576 & 0.977 & 503 & 0.023\\
 \cline{2-6}
-\multirow[t]{-4}{*}{\raggedright\arraybackslash maternal education} & higher secondary & 6263 & 0.9841295 & 101 & 0.0158705\\
+\multirow[t]{-4}{*}{\raggedright\arraybackslash maternal education} & higher secondary & 6263 & 0.984 & 101 & 0.016\\
 \cline{1-6}
- & rural & 1251 & 0.9889328 & 14 & 0.0110672\\
+ & rural & 1251 & 0.989 & 14 & 0.011\\
 \cline{2-6}
- & semi-urban & 2236 & 0.9898185 & 23 & 0.0101815\\
+ & semi-urban & 2236 & 0.990 & 23 & 0.010\\
 \cline{2-6}
- & urban & 18740 & 0.9706827 & 566 & 0.0293173\\
+ & urban & 18740 & 0.971 & 566 & 0.029\\
 \cline{2-6}
-\multirow[t]{-4}{*}{\raggedright\arraybackslash residence} & metropolitan & 11122 & 0.9793942 & 234 & 0.0206058\\
+\multirow[t]{-4}{*}{\raggedright\arraybackslash residence} & metropolitan & 11122 & 0.979 & 234 & 0.021\\
 \hline
 \multicolumn{6}{l}{\textsuperscript{*} Exludes children with missing DAZ or missing factor}\\
 \end{tabular}
@@ -1883,210 +1965,210 @@ Our ongoing work targets tailoring instruments to a study design and discusses a
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-\begin{minipage}[b]{0.12\columnwidth}\raggedright
+\begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 Section\strut
-\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 Abbreviation\strut
-\end{minipage} & \begin{minipage}[b]{0.61\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
 Description\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-BGD-7MO\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Bangladesh study of the GCDG (Tofail et al. \protect\hyperlink{ref-Tofail2008}{2008})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Bangladesh study of the GCDG (\protect\hyperlink{ref-Tofail2008}{Tofail et al. 2008})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-BRA-1\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Brazil 1 study of the GCDG (Victora et al. \protect\hyperlink{ref-Victora2006}{2006})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Brazil 1 study of the GCDG (\protect\hyperlink{ref-Victora2006}{Victora et al. 2006})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-BRA-2\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Brazil 2 study of the GCDG (Moura et al. \protect\hyperlink{ref-Moura2010}{2010})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Brazil 2 study of the GCDG (\protect\hyperlink{ref-Moura2010}{Moura et al. 2010})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-CHL-1\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Chile 1 study of the GCDG (Lozoff et al. \protect\hyperlink{ref-Lozoff2003}{2003})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Chile 1 study of the GCDG (\protect\hyperlink{ref-Lozoff2003}{Lozoff et al. 2003})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-CHL-2\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Chile 2 study of the GCDG (Conteras and González \protect\hyperlink{ref-conteras2015}{2015})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Chile 2 study of the GCDG (\protect\hyperlink{ref-conteras2015}{Conteras and González 2015})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-CHN\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The China study of the GCDG (Lozoff et al. \protect\hyperlink{ref-Lozoff2016}{2016})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The China study of the GCDG (\protect\hyperlink{ref-Lozoff2016}{Lozoff et al. 2016})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-COL-LT45M\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Colombia 1 study of the GCDG (Attanasio et al. \protect\hyperlink{ref-Attanasio2014}{2014})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Colombia 1 study of the GCDG (\protect\hyperlink{ref-Attanasio2014}{Attanasio et al. 2014})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-COL-LT42M\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Colombia 2 study of the GCDG (Rubio-Codina et al. \protect\hyperlink{ref-Rubio-Codina2016}{2016})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Colombia 2 study of the GCDG (\protect\hyperlink{ref-Rubio-Codina2016}{Rubio-Codina et al. 2016})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-ECU\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Ecuador study of the GCDG (Paxson and Schady \protect\hyperlink{ref-Paxson2010}{2010})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Ecuador study of the GCDG (\protect\hyperlink{ref-Paxson2010}{Paxson and Schady 2010})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-ETH\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Ethiopia study of the GCDG (Hanlon et al. \protect\hyperlink{ref-Hanlon2009}{2009})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Ethiopia study of the GCDG (\protect\hyperlink{ref-Hanlon2009}{Hanlon et al. 2009})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-JAM-LBW\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Jamaica 1 study of the GCDG (Walker et al. \protect\hyperlink{ref-Walker2004}{2004})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Jamaica 1 study of the GCDG (\protect\hyperlink{ref-Walker2004}{Walker et al. 2004})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-JAM-STUNTED\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Jamaica 2 study of the GCDG (Grantham-McGregor et al. \protect\hyperlink{ref-Grantham-McGregor1991}{1991})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Jamaica 2 study of the GCDG (\protect\hyperlink{ref-Grantham-McGregor1991}{Grantham-McGregor et al. 1991})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-MDG\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Madagascar study of the GCDG (Fernald et al. \protect\hyperlink{ref-Fernald2011}{2011})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Madagascar study of the GCDG (\protect\hyperlink{ref-Fernald2011}{Lia C. H. Fernald et al. 2011})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-NLD-SMOCC\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Netherlands 1 study of the GCDG (Herngreen et al. \protect\hyperlink{ref-herngreen1992}{1992})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Netherlands 1 study of the GCDG (\protect\hyperlink{ref-herngreen1992}{Herngreen et al. 1992})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-NLD-2\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The Netherlands 2 study of the GCDG (Doove \protect\hyperlink{ref-doove2010}{2010})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The Netherlands 2 study of the GCDG (\protect\hyperlink{ref-doove2010}{Doove 2010})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:cohorts}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 GCDG-ZAF\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-The South Africa study of the GCDG (Richter et al. \protect\hyperlink{ref-Richter2007}{2007})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+The South Africa study of the GCDG (\protect\hyperlink{ref-Richter2007}{Richter et al. 2007})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 by1\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Bayley Scale for Infant and Todler Development version 1 (Bayley \protect\hyperlink{ref-bayley1969}{1969})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Bayley Scale for Infant and Todler Development version 1 (\protect\hyperlink{ref-bayley1969}{Bayley 1969})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 by2\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Bayley Scale for Infant and Todler Development version 2 (Bayley \protect\hyperlink{ref-bayley1993}{1993})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Bayley Scale for Infant and Todler Development version 2 (\protect\hyperlink{ref-bayley1993}{Bayley 1993})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 by3\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Bayley Scale for Infant and Todler Development version 3 (Bayley \protect\hyperlink{ref-bayley2006}{2006})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Bayley Scale for Infant and Todler Development version 3 (\protect\hyperlink{ref-bayley2006}{Bayley 2006})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 den\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Denver Developmental Screening Test (Frankenburg et al. \protect\hyperlink{ref-frankenburg1992}{1992})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Denver Developmental Screening Test (\protect\hyperlink{ref-frankenburg1992}{Frankenburg et al. 1992})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 gri\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Griffiths Mental Development Scales (Griffiths \protect\hyperlink{ref-griffiths1967}{1967})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Griffiths Mental Development Scales (\protect\hyperlink{ref-griffiths1967}{Griffiths 1967})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 bat\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Battelle Developmental Inventory (Newborg \protect\hyperlink{ref-newborg2005}{2005})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Battelle Developmental Inventory (\protect\hyperlink{ref-newborg2005}{Newborg 2005})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 vin\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Vineland Social Maturity Scale (Doll \protect\hyperlink{ref-doll1953}{1953})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Vineland Social Maturity Scale (\protect\hyperlink{ref-doll1953}{Doll 1953})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 ddi\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Dutch Developmental Instrument (Schlesinger-Was \protect\hyperlink{ref-schlesinger1981}{1981})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Dutch Developmental Instrument (\protect\hyperlink{ref-schlesinger1981}{Schlesinger-Was 1981})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 bar\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Barrera Moncada (Barrera Moncada \protect\hyperlink{ref-barrera1981}{1981})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Barrera Moncada (\protect\hyperlink{ref-barrera1981}{Barrera Moncada 1981})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 tep\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Test de Desarrollo Psicomotor (Haeussler and Marchant \protect\hyperlink{ref-haeussler1999}{1999})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Test de Desarrollo Psicomotor (\protect\hyperlink{ref-haeussler1999}{Haeussler and Marchant 1999})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 aqi\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Ages and Stages Questionnaire (Squires and Bricker \protect\hyperlink{ref-squires2009}{2009})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Ages and Stages Questionnaire (\protect\hyperlink{ref-squires2009}{Squires and Bricker 2009})\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.12\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.13}}\raggedright
 \ref{sec:instruments}\strut
-\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.21}}\raggedright
 sbi\strut
-\end{minipage} & \begin{minipage}[t]{0.61\columnwidth}\raggedright
-Stanford Binet Intelligence Scales (Roid \protect\hyperlink{ref-roid2003}{2003})\strut
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 2\tabcolsep) * \real{0.66}}\raggedright
+Stanford Binet Intelligence Scales (\protect\hyperlink{ref-roid2003}{Roid 2003})\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -2094,145 +2176,145 @@ Stanford Binet Intelligence Scales (Roid \protect\hyperlink{ref-roid2003}{2003})
 \hypertarget{ap:notation}{%
 \chapter{Notation}\label{ap:notation}}
 
-The notation in this chapter follows Wright and Masters (\protect\hyperlink{ref-wright1982}{1982}).
+The notation in this chapter follows \protect\hyperlink{ref-wright1982}{Wright and Masters} (\protect\hyperlink{ref-wright1982}{1982}).
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule
-\begin{minipage}[b]{0.10\columnwidth}\raggedright
+\begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 Section\strut
-\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Symbol\strut
-\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Term\strut
-\end{minipage} & \begin{minipage}[b]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Description\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:statisticalframe}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(\beta_n\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Ability\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 True (but unknown) developmental score of child \(n\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:statisticalframe}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(\delta_i\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Difficulty\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 True (but unknown) difficulty of item \(i\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:statisticalframe}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(\delta_q\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Difficulty\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 The combined difficulty of the items in equate group \(q\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:statisticalframe}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(\pi_{ni}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Probability\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 True (but unknown) probability that child \(n\) passes item \(i\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:statisticalframe}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(l\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Count\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 The number of items in the equate group\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:statisticalframe}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(w_i\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Count\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 The number of respondents with an observed score on item \(i\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:equatefit}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(P_{ni}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Probability\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Estimated probability that child \(n\) passes item \(i\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:equatefit}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(x_{ni}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Data\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Observed response of child \(n\) on item \(i\), 0 or 1\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:equatefit}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(W_{ni}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Variance\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Variance of \(x_{ni}\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:equatefit}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(z_{ni}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Residual\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Standardized residual between \(x_{ni}\) and \(P_{ni}\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:equatefit}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(N_i\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Count\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Number of responses on item \(i\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:milestoneselection}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(r\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Correlation\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Correlation coefficient\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{ch:ability}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(D\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Score\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Developmental score of a child: D-score\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.12}}\raggedright
 \ref{sec:sem}\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 \(sem\)\strut
-\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.14}}\raggedright
 Error\strut
-\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\end{minipage} & \begin{minipage}[t]{(\columnwidth - 3\tabcolsep) * \real{0.60}}\raggedright
 Standard Error of Measurement: precision of the D-score\strut
 \end{minipage}\tabularnewline
 \bottomrule
@@ -2248,130 +2330,133 @@ This book was supported by the Bill \& Melinda Gates Foundation. The contents ar
 \addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
 \leavevmode\hypertarget{ref-Attanasio2014}{}%
-Attanasio, Orazio P, Camila Fernández, Emla O A Fitzsimons, Sally M Grantham-McGregor, Costas Meghir, and Marta Rubio-Codina. 2014. ``Using the infrastructure of a conditional cash transfer program to deliver a scalable integrated early child development program in Colombia: cluster randomized controlled trial.'' \emph{BMJ (Clinical Research Ed.)} 349 (sep29 5): g5785. \url{https://doi.org/10.1136/bmj.g5785}.
+Attanasio, Orazio P, Camila Fernández, Emla O A Fitzsimons, Sally M Grantham-McGregor, Costas Meghir, and Marta Rubio-Codina. 2014. {``{Using the infrastructure of a conditional cash transfer program to deliver a scalable integrated early child development program in Colombia: cluster randomized controlled trial.}''} \emph{BMJ (Clinical Research Ed.)} 349 (sep29 5): g5785. \url{https://doi.org/10.1136/bmj.g5785}.
 
 \leavevmode\hypertarget{ref-barrera1981}{}%
-Barrera Moncada, G. 1981. ``Crecimiento Y Desarrollo Psicológico Del Niño Venezolano.''
+Barrera Moncada, G. 1981. {``Crecimiento y Desarrollo Psicológico Del Niño Venezolano.''}
 
 \leavevmode\hypertarget{ref-bayley1969}{}%
-Bayley, N. 1969. ``Bayley Scales of Infant Development.''
+Bayley, N. 1969. {``Bayley Scales of Infant Development.''}
 
 \leavevmode\hypertarget{ref-bayley1993}{}%
----------. 1993. ``The Bayley Scales of Infant Development-Ii.''
+---------. 1993. {``The Bayley Scales of Infant Development-II.''}
 
 \leavevmode\hypertarget{ref-bayley2006}{}%
----------. 2006. ``Bayley Scales of Infant and Toddler Development--Third Edition: Technical Manual.''
+---------. 2006. {``Bayley Scales of Infant and Toddler Development--Third Edition: Technical Manual.''}
 
 \leavevmode\hypertarget{ref-bellman2013}{}%
-Bellman, M., O. Byrne, and R. Sege. 2013. ``Developmental Assessment of Children.'' \emph{BMJ} 346 (e8687).
+Bellman, M., O. Byrne, and R. Sege. 2013. {``Developmental Assessment of Children.''} \emph{BMJ} 346 (e8687).
 
 \leavevmode\hypertarget{ref-borghi2006}{}%
-Borghi, E, M de Onis, C Garza, J Van den Broeck, E A Frongillo, L Grummer-Strawn, S Van Buuren, et al. 2006. ``Construction of the World Health Organization child growth standards: selection of methods for attained growth curves.'' \emph{Statistics in Medicine} 25 (2): 247--65. \url{https://doi.org/10.1002/sim.2227}.
+Borghi, E, M de Onis, C Garza, J Van den Broeck, E A Frongillo, L Grummer-Strawn, S Van Buuren, et al. 2006. {``{Construction of the World Health Organization child growth standards: selection of methods for attained growth curves.}''} \emph{Statistics in Medicine} 25 (2): 247--65. \url{https://doi.org/10.1002/sim.2227}.
 
 \leavevmode\hypertarget{ref-britto2017}{}%
-Britto, P. R., S. J. Lye, K. Proulx, A. K. Yousafzai, S. G. Matthews, T. Vaivada, R. Perez-Escamilla, N. Rao, P. Ip, and L. C. H. Fernald. 2017. ``Nurturing Care: Promoting Early Childhood Development.'' \emph{The Lancet} 389 (10064): 91--102.
+Britto, P. R., S. J. Lye, K. Proulx, A. K. Yousafzai, S. G. Matthews, T. Vaivada, R. Perez-Escamilla, N. Rao, P. Ip, and L. C. H. Fernald. 2017. {``Nurturing Care: Promoting Early Childhood Development.''} \emph{The Lancet} 389 (10064): 91--102.
 
 \leavevmode\hypertarget{ref-conteras2015}{}%
-Conteras, D., and S. González. 2015. ``Determinants of early child development in Chile: Health, cognitive and demographic factors.'' \emph{International Journal of Education and Development} 40: 217--30.
+Conteras, D., and S. González. 2015. {``{Determinants of early child development in Chile: Health, cognitive and demographic factors.}''} \emph{International Journal of Education and Development} 40: 217--30.
 
 \leavevmode\hypertarget{ref-doll1953}{}%
-Doll, E. A. 1953. ``The Measurement of Social Competence: A Manual for the Vineland Social Maturity Scale.''
+Doll, E. A. 1953. {``The Measurement of Social Competence: A Manual for the Vineland Social Maturity Scale.''}
 
 \leavevmode\hypertarget{ref-doove2010}{}%
-Doove, B. M. 2010. ``Ontwikkeling kinderen in Maastricht en Heuvelland (MOM), Evaluatie integraal kindvolgsysteem voor signalering in de Jeugdgezondheidszorg: MOMknowsbest.''
+Doove, B. M. 2010. {``{Ontwikkeling kinderen in Maastricht en Heuvelland (MOM), Evaluatie integraal kindvolgsysteem voor signalering in de Jeugdgezondheidszorg: MOMknowsbest.}''}
 
 \leavevmode\hypertarget{ref-fernald2017toolkit}{}%
-Fernald, L. C. H., E. Prado, P. Kariger, and A. Raikes. 2017. ``A Toolkit for Measuring Early Childhood Development in Low and Middle-Income Countries.''
+Fernald, L. C. H., E. Prado, P. Kariger, and A. Raikes. 2017. {``A Toolkit for Measuring Early Childhood Development in Low and Middle-Income Countries.''}
 
 \leavevmode\hypertarget{ref-Fernald2011}{}%
-Fernald, Lia C H, Ann Weber, Emanuela Galasso, and Lisy Ratsifandrihamanana. 2011. ``Socioeconomic gradients and child development in a very low income population: evidence from Madagascar.'' \emph{Developmental Science} 14 (4): 832--47. \url{https://doi.org/10.1111/j.1467-7687.2010.01032.x}.
+Fernald, Lia C H, Ann Weber, Emanuela Galasso, and Lisy Ratsifandrihamanana. 2011. {``{Socioeconomic gradients and child development in a very low income population: evidence from Madagascar.}''} \emph{Developmental Science} 14 (4): 832--47. \url{https://doi.org/10.1111/j.1467-7687.2010.01032.x}.
 
 \leavevmode\hypertarget{ref-frankenburg1992}{}%
-Frankenburg, W. K., J. Dodds, P. Archer, H. Shapiro, and Bresnick B. 1992. ``The Denver Ii: A Major Revision and Restandardization of the Denver Developmental Screening Test.'' \emph{Pediatrics} 89: 91--98.
+Frankenburg, W. K., J. Dodds, P. Archer, H. Shapiro, and Bresnick B. 1992. {``The Denver II: A Major Revision and Restandardization of the Denver Developmental Screening Test.''} \emph{Pediatrics} 89: 91--98.
 
 \leavevmode\hypertarget{ref-frankenburg1990}{}%
-Frankenburg, W. K., J. Dodds, P. Archer, H. Shapiro, and B. Bresnick. 1990. ``The Denver Ii Technical Manual.''
+Frankenburg, W. K., J. Dodds, P. Archer, H. Shapiro, and B. Bresnick. 1990. {``The DENVER II Technical Manual.''}
 
 \leavevmode\hypertarget{ref-gesell1943}{}%
 Gesell, A. 1943. \emph{Infant and Child in the Culture of Today}. Los Angeles, CA: Read Book Ltd.
 
 \leavevmode\hypertarget{ref-Grantham-McGregor1991}{}%
-Grantham-McGregor, S M, C A Powell, S P Walker, and J H Himes. 1991. ``Nutritional supplementation, psychosocial stimulation, and mental development of stunted children: the Jamaican Study.'' \emph{Lancet (London, England)} 338 (8758): 1--5. \url{https://doi.org/10.1016/0140-6736(91)90001-6}.
+Grantham-McGregor, S M, C A Powell, S P Walker, and J H Himes. 1991. {``{Nutritional supplementation, psychosocial stimulation, and mental development of stunted children: the Jamaican Study.}''} \emph{Lancet (London, England)} 338 (8758): 1--5. \url{https://doi.org/10.1016/0140-6736(91)90001-6}.
 
 \leavevmode\hypertarget{ref-griffiths1967}{}%
-Griffiths, R. 1967. ``The Abilities of Babies: A Study in Mental Measurement.''
+Griffiths, R. 1967. {``The Abilities of Babies: A Study in Mental Measurement.''}
 
 \leavevmode\hypertarget{ref-haeussler1999}{}%
-Haeussler, I. M., and T. Marchant. 1999. ``Tepsi: Test de Desarrollo Psicomotor 2-5 Años.''
+Haeussler, I. M., and T. Marchant. 1999. {``Tepsi: Test de Desarrollo Psicomotor 2-5 años.''}
 
 \leavevmode\hypertarget{ref-hagen1986}{}%
-Hagen, E., and J. Stattler. 1986. ``Stanford--Binet Intelligence Scales, Fourth Edition.''
+Hagen, E., and J. Stattler. 1986. {``Stanford--Binet Intelligence Scales, Fourth Edition.''}
 
 \leavevmode\hypertarget{ref-Hanlon2009}{}%
-Hanlon, Charlotte, Girmay Medhin, Atalay Alem, Fikru Tesfaye, Zufan Lakew, Bogale Worku, Michael Dewey, et al. 2009. ``Impact of antenatal common mental disorders upon perinatal outcomes in Ethiopia: the P-MaMiE population-based cohort study.'' \emph{Tropical Medicine \& International Health} 14 (2): 156--66. \url{https://doi.org/10.1111/j.1365-3156.2008.02198.x}.
+Hanlon, Charlotte, Girmay Medhin, Atalay Alem, Fikru Tesfaye, Zufan Lakew, Bogale Worku, Michael Dewey, et al. 2009. {``{Impact of antenatal common mental disorders upon perinatal outcomes in Ethiopia: the P-MaMiE population-based cohort study}.''} \emph{Tropical Medicine {\&} International Health} 14 (2): 156--66. \url{https://doi.org/10.1111/j.1365-3156.2008.02198.x}.
 
 \leavevmode\hypertarget{ref-herngreen1992}{}%
-Herngreen, W. P., J. D. Reerink, B. M. van Noord-Zaadstra, S. P. Verloove-Vanhorick, and J. H. Ruys. 1992. ``The Smocc-Study: Design of a Representative Cohort of Live-Born Infants in the Netherlands.'' \emph{European Journal of Public Health} 2: 117--22.
+Herngreen, W. P., J. D. Reerink, B. M. van Noord-Zaadstra, S. P. Verloove-Vanhorick, and J. H. Ruys. 1992. {``The SMOCC-Study: Design of a Representative Cohort of Live-Born Infants in the Netherlands.''} \emph{European Journal of Public Health} 2: 117--22.
 
 \leavevmode\hypertarget{ref-jacobusse2006}{}%
-Jacobusse, G., S. van Buuren, and P. H. Verkerk. 2006. ``An Interval Scale for Development of Children Aged 0-2 Years.'' \emph{Statistics in Medicine} 25 (13): 2272--83. \url{https://stefvanbuuren.name/publication/2006-01-01_jacobusse2006/}.
+Jacobusse, G., S. van Buuren, and P. H. Verkerk. 2006. {``An Interval Scale for Development of Children Aged 0-2 Years.''} \emph{Statistics in Medicine} 25 (13): 2272--83. \url{https://stefvanbuuren.name/publication/2006-01-01_jacobusse2006/}.
 
 \leavevmode\hypertarget{ref-kim1998}{}%
-Kim, Seock-Ho, and Allan S Cohen. 1998. ``A Comparison of Linking and Concurrent Calibration Under Item Response Theory.'' \emph{Applied Psychological Measurement} 22 (2): 131--43.
+Kim, Seock-Ho, and Allan S Cohen. 1998. {``A Comparison of Linking and Concurrent Calibration Under Item Response Theory.''} \emph{Applied Psychological Measurement} 22 (2): 131--43.
 
 \leavevmode\hypertarget{ref-loizillon2017}{}%
-Loizillon, A, N Petrowski, P Britto, and C Cappa. 2017. ``Development of the Early Childhood Development Index in Mics Surveys. MICS Methodological Papers, No. 6. Data and Analytics Section, Division of Data.'' \emph{Research and Policy. New York: UNICEF}.
+Loizillon, A, N Petrowski, P Britto, and C Cappa. 2017. {``Development of the Early Childhood Development Index in MICS Surveys. MICS Methodological Papers, No. 6. Data and Analytics Section, Division of Data.''} \emph{Research and Policy. New York: UNICEF}.
 
 \leavevmode\hypertarget{ref-Lozoff2003}{}%
-Lozoff, Betsy, Isidora De Andraca, Marcela Castillo, Julia B Smith, Tomas Walter, and Paulina Pino. 2003. ``Behavioral and developmental effects of preventing iron-deficiency anemia in healthy full-term infants.'' \emph{Pediatrics} 112 (4): 846--54. \url{http://www.ncbi.nlm.nih.gov/pubmed/14523176}.
+Lozoff, Betsy, Isidora De Andraca, Marcela Castillo, Julia B Smith, Tomas Walter, and Paulina Pino. 2003. {``{Behavioral and developmental effects of preventing iron-deficiency anemia in healthy full-term infants.}''} \emph{Pediatrics} 112 (4): 846--54. \url{http://www.ncbi.nlm.nih.gov/pubmed/14523176}.
 
 \leavevmode\hypertarget{ref-Lozoff2016}{}%
-Lozoff, Betsy, Yaping Jiang, Xing Li, Min Zhou, Blair Richards, Guobin Xu, Katy M Clark, et al. 2016. ``Low-Dose Iron Supplementation in Infancy Modestly Increases Infant Iron Status at 9 Mo without Decreasing Growth or Increasing Illness in a Randomized Clinical Trial in Rural China.'' \emph{The Journal of Nutrition} 146 (3): 612--21. \url{https://doi.org/10.3945/jn.115.223917}.
+Lozoff, Betsy, Yaping Jiang, Xing Li, Min Zhou, Blair Richards, Guobin Xu, Katy M Clark, et al. 2016. {``{Low-Dose Iron Supplementation in Infancy Modestly Increases Infant Iron Status at 9 Mo without Decreasing Growth or Increasing Illness in a Randomized Clinical Trial in Rural China.}''} \emph{The Journal of Nutrition} 146 (3): 612--21. \url{https://doi.org/10.3945/jn.115.223917}.
 
 \leavevmode\hypertarget{ref-Moura2010}{}%
-Moura, Danilo R, Jaderson C Costa, Iná S Santos, Aluísio J D Barros, Alicia Matijasevich, Ricardo Halpern, Samuel Dumith, Simone Karam, and Fernando C Barros. 2010. ``Natural history of suspected developmental delay between 12 and 24 months of age in the 2004 Pelotas birth cohort.'' \emph{Journal of Paediatrics and Child Health} 46 (6): 329--36. \url{https://doi.org/10.1111/j.1440-1754.2010.01717.x}.
+Moura, Danilo R, Jaderson C Costa, Iná S Santos, Aluísio J D Barros, Alicia Matijasevich, Ricardo Halpern, Samuel Dumith, Simone Karam, and Fernando C Barros. 2010. {``{Natural history of suspected developmental delay between 12 and 24 months of age in the 2004 Pelotas birth cohort.}''} \emph{Journal of Paediatrics and Child Health} 46 (6): 329--36. \url{https://doi.org/10.1111/j.1440-1754.2010.01717.x}.
 
 \leavevmode\hypertarget{ref-newborg2005}{}%
-Newborg, J. 2005. ``Battelle Developmental Inventory-2nd Edition.''
+Newborg, J. 2005. {``Battelle Developmental Inventory-2nd Edition.''}
 
 \leavevmode\hypertarget{ref-Paxson2010}{}%
-Paxson, Christina, and Norbert Schady. 2010. ``Does money matter? The effects of cash transfers on child development in rural Ecuador.'' \emph{Economic Development and Cultural Change} 59 (1): 187--229. \url{http://www.ncbi.nlm.nih.gov/pubmed/20821896}.
+Paxson, Christina, and Norbert Schady. 2010. {``{Does money matter? The effects of cash transfers on child development in rural Ecuador.}''} \emph{Economic Development and Cultural Change} 59 (1): 187--229. \url{http://www.ncbi.nlm.nih.gov/pubmed/20821896}.
 
 \leavevmode\hypertarget{ref-Richter2007}{}%
-Richter, Linda, Shane Norris, John Pettifor, Derek Yach, and Noel Cameron. 2007. ``Cohort Profile: Mandela's children: the 1990 Birth to Twenty study in South Africa.'' \emph{International Journal of Epidemiology} 36 (3): 504--11. \url{https://doi.org/10.1093/ije/dym016}.
+Richter, Linda, Shane Norris, John Pettifor, Derek Yach, and Noel Cameron. 2007. {``{Cohort Profile: Mandela's children: the 1990 Birth to Twenty study in South Africa.}''} \emph{International Journal of Epidemiology} 36 (3): 504--11. \url{https://doi.org/10.1093/ije/dym016}.
 
 \leavevmode\hypertarget{ref-roid2003}{}%
-Roid, G. H. 2003. ``Stanford--Binet Intelligence Scales, Fifth Edition.''
+Roid, G. H. 2003. {``Stanford--Binet Intelligence Scales, Fifth Edition.''}
 
 \leavevmode\hypertarget{ref-Rubio-Codina2016}{}%
-Rubio-Codina, Marta, M Caridad Araujo, Orazio Attanasio, Pablo Muñoz, and Sally Grantham-McGregor. 2016. ``Concurrent Validity and Feasibility of Short Tests Currently Used to Measure Early Childhood Development in Large Scale Studies.'' Edited by David O. Carpenter. \emph{PloS One} 11 (8): e0160962. \url{https://doi.org/10.1371/journal.pone.0160962}.
+Rubio-Codina, Marta, M Caridad Araujo, Orazio Attanasio, Pablo Muñoz, and Sally Grantham-McGregor. 2016. {``{Concurrent Validity and Feasibility of Short Tests Currently Used to Measure Early Childhood Development in Large Scale Studies.}''} Edited by David O. Carpenter. \emph{PloS One} 11 (8): e0160962. \url{https://doi.org/10.1371/journal.pone.0160962}.
 
 \leavevmode\hypertarget{ref-schlesinger1981}{}%
-Schlesinger-Was, E. A. 1981. ``Ontwikkelingsonderzoek van Zuigelingen En Kleuters Op Het Consultatiebureau.''
+Schlesinger-Was, E. A. 1981. {``Ontwikkelingsonderzoek van Zuigelingen En Kleuters Op Het Consultatiebureau.''}
 
 \leavevmode\hypertarget{ref-shirley1933}{}%
 Shirley, M. M. 1933. \emph{The First Two Years: A Study of Twenty-Five Babies}. Vol. II: Intellectual Development. Minneapolis: University of Minnesota Press.
 
 \leavevmode\hypertarget{ref-squires2009}{}%
-Squires, J., and D. Bricker. 2009. ``Ages \& Stages Questionnaires, Third Edition (Asq- 3). A Parent-Completed Child-Monitoring System.''
+Squires, J., and D. Bricker. 2009. {``Ages \& Stages Questionnaires, Third Edition (ASQ- 3). A Parent-Completed Child-Monitoring System.''}
 
 \leavevmode\hypertarget{ref-Tofail2008}{}%
-Tofail, Fahmida, Lars Åke Persson, Shams El Arifeen, Jena D Hamadani, Ferdina Mehrin, Deborah Ridout, Eva-Charlotte Ekström, Syed N Huda, and Sally M Grantham-McGregor. 2008. ``Effects of prenatal food and micronutrient supplementation on infant development: a randomized trial from the Maternal and Infant Nutrition Interventions, Matlab (MINIMat) study.'' \emph{The American Journal of Clinical Nutrition} 87 (3): 704--11. \url{https://doi.org/10.1093/ajcn/87.3.704}.
+Tofail, Fahmida, Lars Åke Persson, Shams El Arifeen, Jena D Hamadani, Ferdina Mehrin, Deborah Ridout, Eva-Charlotte Ekström, Syed N Huda, and Sally M Grantham-McGregor. 2008. {``{Effects of prenatal food and micronutrient supplementation on infant development: a randomized trial from the Maternal and Infant Nutrition Interventions, Matlab (MINIMat) study}.''} \emph{The American Journal of Clinical Nutrition} 87 (3): 704--11. \url{https://doi.org/10.1093/ajcn/87.3.704}.
 
 \leavevmode\hypertarget{ref-vanbuuren2014}{}%
-van Buuren, S. 2014. ``Growth Charts of Human Development.'' \emph{Statistical Methods in Medical Research} 23 (4): 346--68. \url{https://stefvanbuuren.name/publication/2014-01-01_vanbuuren2014gc/}.
+van Buuren, S. 2014. {``Growth Charts of Human Development.''} \emph{Statistical Methods in Medical Research} 23 (4): 346--68. \url{https://stefvanbuuren.name/publication/2014-01-01_vanbuuren2014gc/}.
 
 \leavevmode\hypertarget{ref-Victora2006}{}%
-Victora, Cesar Gomes, Cora Luiza Pavin Araújo, Ana Maria Batista Menezes, Pedro Curi Hallal, Maria de Fátima Vieira, Marilda Borges Neutzling, Helen Gonçalves, et al. 2006. ``Methodological aspects of the 1993 Pelotas (Brazil) Birth Cohort Study.'' \emph{Revista de Saude Publica} 40 (1): 39--46. \url{https://doi.org/10.1590/s0034-89102006000100008}.
+Victora, Cesar Gomes, Cora Luiza Pavin Araújo, Ana Maria Batista Menezes, Pedro Curi Hallal, Maria de Fátima Vieira, Marilda Borges Neutzling, Helen Gonçalves, et al. 2006. {``{Methodological aspects of the 1993 Pelotas (Brazil) Birth Cohort Study.}''} \emph{Revista de Saude Publica} 40 (1): 39--46. \url{https://doi.org/10.1590/s0034-89102006000100008}.
 
 \leavevmode\hypertarget{ref-Walker2004}{}%
-Walker, Susan P, Susan M Chang, Christine A Powell, and Sally M Grantham-McGregor. 2004. ``Psychosocial intervention improves the development of term low-birth-weight infants.'' \emph{The Journal of Nutrition} 134 (6): 1417--23. \url{https://doi.org/10.1093/jn/134.6.1417}.
+Walker, Susan P, Susan M Chang, Christine A Powell, and Sally M Grantham-McGregor. 2004. {``{Psychosocial intervention improves the development of term low-birth-weight infants.}''} \emph{The Journal of Nutrition} 134 (6): 1417--23. \url{https://doi.org/10.1093/jn/134.6.1417}.
 
 \leavevmode\hypertarget{ref-Weber2019}{}%
-Weber, Ann M, Marta Rubio-Codina, Susan P Walker, Stef van Buuren, Iris Eekhout, Sally M Grantham-McGregor, Maria Caridad Araujo, et al. 2019. ``The D-score: A Metric for Interpreting the Early Development of Infants and Toddlers Across Global Settings.'' \emph{BMJ Global Health} 4 (6). \url{https://doi.org/10.1136/bmjgh-2019-001724}.
+Weber, Ann M, Marta Rubio-Codina, Susan P Walker, Stef van Buuren, Iris Eekhout, Sally M Grantham-McGregor, Maria Caridad Araujo, et al. 2019. {``The {D-score}: A Metric for Interpreting the Early Development of Infants and Toddlers Across Global Settings.''} \emph{BMJ Global Health} 4 (6). \url{https://doi.org/10.1136/bmjgh-2019-001724}.
 
 \leavevmode\hypertarget{ref-wright1982}{}%
 Wright, B. D., and G. N. Masters. 1982. \emph{Rating Scale Analysis: Rasch Measurement}. Chicago: MESA Press.
+
+\end{CSLReferences}
 
 \end{document}
