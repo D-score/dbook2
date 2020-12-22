@@ -3,7 +3,7 @@
 # Abbreviations {#ap:abbreviations}
 
 | Section                | Abbreviation     | Description                                                            |
-|------------------------|:-----------------|:-----------------------------------------------------------------------|
+|--------------|:----------------------|:------------------------------------------------------------------------|
 | \@ref(sec:cohorts)     | GCDG-BGD-7MO     | The Bangladesh study of the GCDG [@Tofail2008]                         |
 | \@ref(sec:cohorts)     | GCDG-BRA-1       | The Brazil 1 study of the GCDG [@Victora2006]                          |
 | \@ref(sec:cohorts)     | GCDG-BRA-2       | The Brazil 2 study of the GCDG [@Moura2010]                            |
@@ -33,31 +33,30 @@
 | \@ref(sec:instruments) | aqi              | Ages and Stages Questionnaire [@squires2009]                           |
 | \@ref(sec:instruments) | sbi              | Stanford Binet Intelligence Scales [@roid2003]                         |
 
+
+
 # Notation {#ap:notation}
 
 The notation in this chapter follows @wright1982.
 
 | Section     | Symbol                  | Term        | Description                                                   |
-|-------------|:------------------------|:------------|:--------------------------------------------------------------|
-| \@ref(sec:) | $\beta_n$               | Ability     | True (but unknown) developmental score of child $n$           |
-| \@ref(sec:) | $\delta_i$              | Difficulty  | True (but unknown) difficulty of item $i$                     |
-| \@ref(sec:) | $\pi_{ni}$              | Probability | True (but unknown) probability that child $n$ passes item $i$ |
-| \@ref(sec:) | $\hat\beta_n$           | Ability     | Estimated developmental score (D-score) of child $n$          |
-| \@ref(sec:) | $\hat\delta_i$          | Difficulty  | Estimated difficulty of item $i$                              |
-| \@ref(sec:) | $P_{ni}$                | Probability | Estimated probability that child $n$ passes item $i$          |
-| \@ref(sec:) | $x_{ni}$                | Data        | Observed response of child $n$ on item $i$, 0 or 1            |
-| \@ref(sec:) | $W_{ni}$                | Variance    | Variance of $x_{ni}$                                          |
-| \@ref(sec:) | $z_{ni}$                | Residual    | Standardized residual between $x_{ni}$ and $P_{ni}$           |
-| \@ref(sec:) | $N$                     | Count       | Number of measurements (children)                             |
-| \@ref(sec:) | $L$                     | Count       | Number of items (milestones)                                  |
-| \@ref(sec:) | $P(\hat\delta_i)$       | Probability | Conditional probability of passing item $i$                   |
-| \@ref(sec:) | $I(\hat\delta_i)$       | Information | Item information function of item $i$                         |
-| \@ref(sec:) | $R$                     | Reliability | True test reliability                                         |
-| \@ref(sec:) | $\hat R$                | Reliability | Estimated test reliability                                    |
-| \@ref(sec:) | $\sigma_e^2$            | Variance    | True error variance                                           |
-| \@ref(sec:) | $\hat\sigma_{\hat e}^2$ | Variance    | Estimated error variance                                      |
-| \@ref(sec:) | $\hat\sigma_{\hat e}$   | Variance    | Standard error of measurement (sem)                           |
-| \@ref(sec:) | $f$                     | Factor      | Age-adjustment factor                                         |
+|-------------|:---------------|:---------------|:-------------------------------------------------------------------|
+| \@ref(sec:statisticalframe) | $\beta_n$               | Ability     | True (but unknown) developmental score of child $n$           |
+| \@ref(sec:statisticalframe) | $\delta_i$              | Difficulty  | True (but unknown) difficulty of item $i$                     |
+| \@ref(sec:statisticalframe) | $\delta_q$              | Difficulty  | The combined difficulty of the items in equate group $q$                     |
+| \@ref(sec:statisticalframe) | $\pi_{ni}$              | Probability | True (but unknown) probability that child $n$ passes item $i$ |
+| \@ref(sec:statisticalframe) | $l$           | Count  | The number of items in the equate group          |
+| \@ref(sec:statisticalframe) | $w_i$          | Count  | The number of respondents with an observed score on item $i$                              |
+| \@ref(sec:equatefit) | $P_{ni}$                | Probability | Estimated probability that child $n$ passes item $i$          |
+| \@ref(sec:equatefit) | $x_{ni}$                | Data        | Observed response of child $n$ on item $i$, 0 or 1            |
+| \@ref(sec:equatefit) | $W_{ni}$                | Variance    | Variance of $x_{ni}$                                          |
+| \@ref(sec:equatefit) | $z_{ni}$                | Residual    | Standardized residual between $x_{ni}$ and $P_{ni}$           |
+| \@ref(sec:equatefit) | $N_i$       | Count | Number of responses on item $i$                   |
+| \@ref(sec:milestoneselection) | $r$       | Correlation | Correlation coefficient                         |
+| \@ref(ch:ability)     | $D$                     | Score | Developmental score of a child: D-score                                         |
+|  \@ref(sec:sem)      | $sem$                | Error | Standard Error of Measurement: precision of the D-score                                   |
+
+
 
 ```{r warnings}
 warnings()
@@ -65,4 +64,4 @@ warnings()
 
 # Acknowledgements
 
-This book was supported by the Bill & Melinda Gates Foundation. The contents are the sole responsibility of the authors and may not necessarily represent the official views of the Bill & Melinda Gates Foundation or other agencies that may have supported the primary data studies used in the present booklet. The authors wish to recognize the principal investigators and their study team members for their generous contribution of the data that were used to illustrate this booklet and the members of the Global Child Development Group who directly or indirectly contributed to the contents of this booklet: Maureen M. Black, Stef van Buuren, Gary L. Darmstadt, M. Caridad Araujo, Susan M. Changm, Bernice M. Doove, Iris Eekhout, Lia C.H. Fernald, Emanuela Galasso, Sally Grantham-McGregor, Pamela Jervis, Jena D. Hamadani, Charlotte Hanlon, Simone M. Karam, Betsy Lozoff, Orazio Attanasio, Girmay Medhin, Ana M. B. Menezes and the 1993 Pelotas cohort team, Helen Pitchik, Lisy Ratsifandrihamanana, Sarah Reynolds, Linda Richter, Marta Rubio-Codina, Norbert Schady, Susan P. Walker, Ann M. Weber.
+This book was supported by the Bill & Melinda Gates Foundation. The contents are the sole responsibility of the authors and may not necessarily represent the official views of the Bill & Melinda Gates Foundation or other agencies that may have supported the primary data studies used in the present chapter. The authors wish to recognize the principal investigators and their study team members for their generous contribution of the data that were used to illustrate this booklet and the members of the Global Child Development Group who directly or indirectly contributed to the contents of this chapter: Maureen M. Black, Stef van Buuren, Gary L. Darmstadt, M. Caridad Araujo, Susan M. Changm, Bernice M. Doove, Iris Eekhout, Lia C.H. Fernald, Emanuela Galasso, Sally Grantham-McGregor, Pamela Jervis, Jena D. Hamadani, Charlotte Hanlon, Simone M. Karam, Betsy Lozoff, Orazio Attanasio, Girmay Medhin, Ana M. B. Menezes and the 1993 Pelotas cohort team, Helen Pitchik, Lisy Ratsifandrihamanana, Sarah Reynolds, Linda Richter, Marta Rubio-Codina, Norbert Schady, Susan P. Walker, Ann M. Weber.

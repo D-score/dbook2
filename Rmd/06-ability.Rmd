@@ -166,7 +166,6 @@ sem_daz_c <- sem_daz %>%
 
 (ref:cohortsem) Cohort Standard Error of Measurement (*sem*).
 
-Figure \@ref(fig:cohortsem) summarises the $sem$ over the members of each cohort. The Ethiopia study GCDG-ETH is the most precise. In contrast, the D-score values in studies from South Africa, Ecuador and The Netherlands have sizeable measurement error.
 
 ```{r npsem, echo = FALSE}
 kable(sem_daz_c[,c(1,3,6)], 

@@ -170,17 +170,17 @@ $$z_{ni} = \frac{x_{ni}-P_{ni}}{\sqrt{W_{ni}}},$$
 
 with variances $W_{ni} = P_{ni}(1-P_{ni})$.
 
-*Equate infit* is an extension of item infit that takes an aggregate over all items $i$ in active equate group $g$, i.e.,
+*Equate infit* is an extension of item infit that takes an aggregate over all items $i$ in active equate group $q$, i.e.,
 
-$$\mathrm{Equate\ infit} = \frac{\sum_{i\in g}\sum_{n}^N (x_{ni}-P_{ni})^2}{\sum_{i\in g}\sum_n^N W_{ni}}.$$
+$$\mathrm{Equate\ infit} = \frac{\sum_{i\in q}\sum_{n}^N (x_{ni}-P_{ni})^2}{\sum_{i\in q}\sum_n^N W_{ni}}.$$
 
-Likewise, we calculate *Equate outfit* of group $g$ as
+Likewise, we calculate *Equate outfit* of group $q$ as
 
-$$\mathrm{Equate\ outfit} = \frac{\sum_{i\in g}\sum_{n}^{N_i} z_{ni}^2}{\sum_{i\in g} N_i},$$
+$$\mathrm{Equate\ outfit} = \frac{\sum_{i\in q}\sum_{n}^{N_i} z_{ni}^2}{\sum_{i\in q} N_i},$$
 
 where $N_i$ is the total number of responses observed on item $i$. The interpretation of these diagnostics is the same as for item infit and item outfit.
 
-Note that these definitions implicitly assume that the expected response $P_{ni}$ is calculated under a model in which all items in equate group $g$ have the same difficulty. This is not true for passive equate groups. Of course, no one can stop us from calculating the above equate fit statistics for passive groups, but such estimates would ignore the between-item variation in difficulties, and hence gives a too optimistic estimate of quality. The bottom line is: *The interpretation of the equate fit statistics should be restricted to active equate groups only*.
+Note that these definitions implicitly assume that the expected response $P_{ni}$ is calculated under a model in which all items in equate group $q$ have the same difficulty. This is not true for passive equate groups. Of course, no one can stop us from calculating the above equate fit statistics for passive groups, but such estimates would ignore the between-item variation in difficulties, and hence gives a too optimistic estimate of quality. The bottom line is: *The interpretation of the equate fit statistics should be restricted to active equate groups only*.
 
 ### Examples of well fitting equate groups
 
