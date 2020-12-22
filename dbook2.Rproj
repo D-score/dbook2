@@ -15,4 +15,4 @@ LaTeX: pdfLaTeX
 StripTrailingWhitespace: Yes
 
 BuildType: Website
-WebsitePath: ~/Documents/GitHub/dbook2
+WebsitePath: ~/Websites/dbook/dbook2
