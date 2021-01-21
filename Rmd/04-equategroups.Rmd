@@ -58,7 +58,7 @@ Since active equate groups bridge different instruments, they have an essential 
 knitr::include_graphics("fig/otis-stairs.jpg")
 ```
 
-(ref:stairpic) One year old child climbs stairs.
+(ref:stairpic) One year old child climbs stairs. Photo by Iris Eekhout
 
 The data analysis informs decisions to activate equate groups. The following steps implement our strategy for forming and enabling equate groups:
 
