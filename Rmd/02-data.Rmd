@@ -19,7 +19,7 @@ The Global Child Development Group (GCDG) collected longitudinal data from 16 co
 3.  spanning ages between 0-5 years;
 4.  availability of follow-up measures, at ages 5-10 years.
 
-The effort resulted in a database containing individual data from over 16,000 children from 11 countries. The world map below (Figure: \@ref(fig:worldmap)) colors the countries included in the study. Section \@ref(sec:cohorts) briefly describes each cohort. Section \@ref(sec:instruments) reviews the measurement instruments.
+The effort resulted in a database containing individual data from over 16,000 children from 11 countries. The world map below (Figure \@ref(fig:worldmap)) colors the countries included in the study. Section \@ref(sec:cohorts) briefly describes each cohort. Section \@ref(sec:instruments) reviews the measurement instruments.
 
 ```{r worldmap, fig.cap='(ref:worldmap)', fig.keep='all', results='hide', fig.height=4, fig.width=8}
 
@@ -173,3 +173,7 @@ Baltimore (2009) -->
 The **Stanford Binet Intelligence Scales (`sbi`)** is a cognitive ability and intelligence test to diagnose developmental deficiencies in young children. The items divide into five subtests: fluid reasoning, knowledge, quantitative reasoning, visual-spatial processing, and working memory [@roid2003][@hagen1986]. <!-- Roid GH. Stanford–Binet Intelligence Scales, Fifth Edition. WPS
 Psychological Tests, 2003. --> <!-- SB-4 Hagen E, Stattler J, Stanford–Binet Intelligence Scales,
 Fourth Edition·Thorndike, 1986. -->
+
+## Data availability
+
+

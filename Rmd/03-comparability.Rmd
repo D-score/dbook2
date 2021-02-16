@@ -33,21 +33,21 @@ Likewise, instruments can be connected:
 ```{r linkage, echo = FALSE}
 
 pattern <- matrix("", nrow = 16, ncol = 15)
-pattern[8, 1] <- "X"
-pattern[9, 2] <- "X"
-pattern[c(3, 5, 8), 3] <- "X"
-pattern[4, 4] <- "X"
-pattern[c(1, 16), 5] <- "X"
-pattern[c(6, 7, 8, 10), 6] <- "X"
-pattern[c(14, 15), 7] <- "X"
-pattern[c(2, 8), 8] <- "X"
-pattern[c(11, 12, 16), 9] <- "X"
-pattern[13, 10] <- "X"
-pattern[13, 11] <- "X"
-pattern[13, 12] <- "X"
-pattern[16, 13] <- "X"
-pattern[5, 14] <- "X"
-pattern[16, 15] <- "X"
+pattern[8, 1] <- "x"
+pattern[9, 2] <- "x"
+pattern[c(3, 5, 8), 3] <- "x"
+pattern[4, 4] <- "x"
+pattern[c(1, 16), 5] <- "x"
+pattern[c(6, 7, 8, 10), 6] <- "x"
+pattern[c(14, 15), 7] <- "x"
+pattern[c(2, 8), 8] <- "x"
+pattern[c(11, 12, 16), 9] <- "x"
+pattern[13, 10] <- "x"
+pattern[13, 11] <- "x"
+pattern[13, 12] <- "x"
+pattern[16, 13] <- "x"
+pattern[5, 14] <- "x"
+pattern[16, 15] <- "x"
 colnames(pattern) <- 
   c("aqi", "bar", "bat", "by1", "by2", "by3", "ddi", 
     "den", "gri", "mac", "peg", "sbi", "sgr", "tep", "vin")
