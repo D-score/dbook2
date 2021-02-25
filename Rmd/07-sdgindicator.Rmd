@@ -1,3 +1,5 @@
+\newpage
+
 # Application I: Tracking a Sustainable Development Goal {#ch:SDGindicator}
 
 ```{=html}

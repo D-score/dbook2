@@ -1,7 +1,7 @@
 # automatically run before each chapter
 
 # load standard packages
-pkg <- c("knitr", "kableExtra", "ggplot2", "tidyr", "dplyr", "tibble",
+pkg <- c("knitr", "kableExtra", "officedown", "officer", "flextable",  "ggplot2", "tidyr", "dplyr", "tibble",
          "maps", "ggthemes", "gridExtra", "RColorBrewer", "mice",
           "dscore", "dmetric", "gseddata", "ddata",
          "dmodel", "ddomain", "dinstrument")
@@ -17,4 +17,6 @@ theme_update(panel.background = element_rect(fill = "transparent", colour = NA),
              legend.key = element_blank(),
              rect = element_rect(fill = "transparent") # all rectangles
 )
-opts_chunk$set(dev.args = list(png = list(bg = "transparent")))
+opts_chunk$set(dev.args = list(png = list(bg = "transparent")),
+               fig.cap = TRUE, tab.cap.sep = ". ", fig.cap.sep = ". ",
+               dpi = 288)

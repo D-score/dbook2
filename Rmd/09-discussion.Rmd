@@ -1,3 +1,5 @@
+\newpage
+
 # Discussion {#ch:discussion2}
 
 ```{=html}

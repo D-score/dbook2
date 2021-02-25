@@ -1,3 +1,5 @@
+\newpage
+
 # Comparability {#ch:comparability}
 
 ```{=html}
@@ -30,7 +32,8 @@ Likewise, instruments can be connected:
 -   Two instruments are directly connected if the same cohort measures both;
 -   Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
-```{r linkage, echo = FALSE}
+::: {custom-style="Table Caption"}
+```{r linkage, tab.cap.sep = ". "}
 
 pattern <- matrix("", nrow = 16, ncol = 15)
 pattern[8, 1] <- "x"
@@ -61,16 +64,24 @@ df <- data.frame(
 
 )
 
-knitr::kable(df, 
-  caption = "Linkage pattern indicating combinations of cohorts and instruments.",
-  booktabs = TRUE) %>%
-  kableExtra::kable_styling() %>%
-  kableExtra::scroll_box(width = "100%", height = "500px")
+#knitr::kable(df, 
+#  caption = "Linkage pattern indicating combinations of cohorts and instruments.",
+#  booktabs = TRUE) %>%
+#  kableExtra::kable_styling() %>%
+#  kableExtra::scroll_box(width = "100%", height = "500px")
+
+ft <- flextable(df)
+ft <- set_caption(ft, "Linkage pattern indicating combinations of cohorts and instruments.")
+ft <- set_table_properties(ft, layout = "autofit", width = .9)
+knit_print(ft)
 ```
 
+:::
+
+<br>
  
 
-An `X` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia, and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3`, and `den` are directly connected. Note that no indirect connections exist to this instrument group.
+An `x` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia, and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3`, and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
 Table \@ref(tab:linkage) is a somewhat simplified version of the linkage pattern. As we saw in section \@ref(sec:cohorts), there are substantial age differences between the cohorts. The linked [instrument linkage table](https://tnochildhealthstatistics.shinyapps.io/GCDG_instrument_linkage/) shows the counts of the number of registered scores per age group. What appears in Table \@ref(tab:linkage) as one test may comprise of two disjoint subsets, and hence some cohorts may not be connected after all.
 
@@ -87,17 +98,26 @@ The next section suggests a way out of the dilemma.
 
 Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. We will exploit this overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
-```{r example2words, echo = FALSE}
+```{r example2words, tab.cap.style="Table Caption", echo = FALSE}
 items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
            "grihsd217", "vinxxc016")
 labels <- dscore::get_labels(items)
 df <- tibble::tibble(Item = items, Label = labels)
-t <- knitr::kable(df, booktabs = TRUE, 
-             caption = "Example of similar items from different instruments.")
-kableExtra::column_spec(t, 1, monospace = TRUE)
+#t <- knitr::kable(df, booktabs = TRUE, 
+  #           caption = "Example of similar items from different instruments.")
+#kableExtra::column_spec(t, 1, monospace = TRUE)
+
+
+ft <- flextable(df)
+ft <- set_caption(ft, "Example of similar items from different instruments.")
+ft <- set_table_properties(ft, layout = "autofit", width = .9)
+ft <- font(ft, j = 1, fontname = "Courier")
+knit_print(ft)
+
 ```
 
- 
+<br> 
+
 
 The idea is to check whether these milestones measure development in the same way. If this is found to be true, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
 

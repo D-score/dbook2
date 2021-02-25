@@ -83,6 +83,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{hhline}
+\usepackage{hyperref}
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -90,7 +93,7 @@
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
@@ -104,7 +107,7 @@
 \usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Child Development with the D-score: Tuning instruments to Unity}
@@ -203,6 +206,8 @@ Additionally, parents are always eager to follow every step of their child. Whil
 Stef van Buuren is a professor of Statistical Analysis of Incomplete Data at the University of Utrecht and statistician at the Netherlands Organisation for Applied Scientific Research TNO in Leiden. His interests include the analysis of incomplete data and child growth and development (h-index 61). Van Buuren is the inventor of the MICE algorithm for multiple imputation of missing data (\textgreater85.000 downloads per month) and has written the accessible monograph Flexible Imputation of Missing Data. Second Edition, CRC/Chapman \& Hall. He designed the growth charts for the Dutch child health care system and invented the D-score, a new method for expressing child development on a quantitative scale. He consults for the World Health Organization and the Bill \& Melinda Gates Foundation. More background at \url{https://stefvanbuuren.name}, and software at \url{https://github.com/stefvanbuuren}.
 
 Iris Eekhout holds a double masters in clinical psychology and methodology and statistics of psychology (Leiden University). She obtained her PhD at the Department of Epidemiology and Biostatistics of the VU University medical centre in Amsterdam. Her dissertation work resulted in novel ways of dealing with missing data in questionnaire items and total scores. Currently, Iris teaches a course on missing data analysis in the epidemiology master's program at VU University medical centre. At TNO, Iris works on a variety of projects as a methodologist and statistical analyst related to child health, e.g., measuring child development (D-score) and adaptive screenings for psycho-social problems (psycat). More background at \url{https://www.iriseekhout.com}, and software at \url{https://github.com/iriseekhout}.
+
+\newpage
 
 \hypertarget{ch:introduction2}{%
 \chapter{Introduction}\label{ch:introduction2}}
@@ -314,6 +319,8 @@ Policymakers in international settings are looking for simple, versatile, and ch
 
 The text may appeal to statisticians and data scientists for \emph{the simplicity of the concepts, for the (somewhat unusual) application of statistical models to discard data, for the ease of interpretation of the result, and for the availability of software}.
 
+\newpage
+
 \hypertarget{ch:data}{%
 \chapter{Data}\label{ch:data}}
 
@@ -347,7 +354,7 @@ The Global Child Development Group (GCDG) collected longitudinal data from 16 co
   availability of follow-up measures, at ages 5-10 years.
 \end{enumerate}
 
-The effort resulted in a database containing individual data from over 16,000 children from 11 countries. The world map below (Figure: \ref{fig:worldmap}) colors the countries included in the study. Section \ref{sec:cohorts} briefly describes each cohort. Section \ref{sec:instruments} reviews the measurement instruments.
+The effort resulted in a database containing individual data from over 16,000 children from 11 countries. The world map below (Figure \ref{fig:worldmap}) colors the countries included in the study. Section \ref{sec:cohorts} briefly describes each cohort. Section \ref{sec:instruments} reviews the measurement instruments.
 
 \begin{figure}
 
@@ -425,7 +432,10 @@ The \textbf{Colombia 1} study (GCDG-COL-LT45M) was an impact evaluation study th
 
 The \textbf{Colombia 2} study (GCDG-COL-LT42M) was an instrument validation study where all 1311 children aged 6-42 months were measured the \texttt{by3}. Also, there are data for a subgroup of 658 children on \texttt{den,} the Ages and Stages Questionnaire (\texttt{aqi}), and the \texttt{bat} screener. Long-term follow-up data were available for the Fifth Wechsler Intelligence Scale for Children (WISC-V) and the PPVT (\protect\hyperlink{ref-Rubio-Codina2016}{Rubio-Codina et al. 2016}).
 
-An impact evaluation study
+An impact evaluation study in \textbf{Ecuador} (GCDG-ECU) yielded data from 667 children between 0-35 months on the Barrera Moncada (\texttt{bar}). Long-term follow-up data were available for the PPVT at 5-8 and 9-12 years (\protect\hyperlink{ref-Paxson2010}{Paxson and Schady 2010}).
+
+The \textbf{Ethiopia} study (GCDG-ETH) was a birth-cohort with 193 children of 12 months in the first wave, 440 children of 30 months at the second wave, and 456 children of 42 months at the third wave. The investigators used the same instrument (\texttt{by3}) for all waves. Long-term follow-up data were available for the PPVT at 10-11 years (\protect\hyperlink{ref-Hanlon2009}{Hanlon et al. 2009}).
+
 The \textbf{Jamaica 1} study (GCDG-JAM-LBW) was an impact evaluation study that collected data on the Griffiths Mental Development Scales (\texttt{gri}) for 225 children aged 15 months (first wave), and 218 children of aged 24 months (second wave). Long-term follow-up data were available for WPPSI and PPVT at 6 years (\protect\hyperlink{ref-Walker2004}{Walker et al. 2004}).
 
 The \textbf{Jamaica 2} study (GCDG-JAM-STUNTED) was an impact evaluation study with data on the \texttt{gri} for 159 children at 9-24 months, 21-36 months, and at 33-48 months. Long-term follow-up data were available for \texttt{sbi}, Raven's Coloured Progressive Matrices (Ravens), and PPVT at 7-8 years and the WAIS at 17-18 years (\protect\hyperlink{ref-Grantham-McGregor1991}{Grantham-McGregor et al. 1991}).
@@ -460,6 +470,8 @@ The \textbf{Test de Desarrollo Psicomotor (\texttt{tep})} is an instrument to ev
 The \textbf{Ages and Stages Questionnaire (\texttt{aqi})} measures developmental progress in children aged 2 mo -- 5.5 yrs. The instrument distinguishes development in five areas: personal-social, gross motor, fine motor, problem solving, and communication. The caregiver completes 30 items per age intervals and (\protect\hyperlink{ref-squires2009}{Squires and Bricker 2009}).
 
 The \textbf{Stanford Binet Intelligence Scales (\texttt{sbi})} is a cognitive ability and intelligence test to diagnose developmental deficiencies in young children. The items divide into five subtests: fluid reasoning, knowledge, quantitative reasoning, visual-spatial processing, and working memory (\protect\hyperlink{ref-roid2003}{Roid 2003})(\protect\hyperlink{ref-hagen1986}{Hagen and Stattler 1986}).
+
+\newpage
 
 \hypertarget{ch:comparability}{%
 \chapter{Comparability}\label{ch:comparability}}
@@ -515,36 +527,127 @@ Likewise, instruments can be connected:
   Two instruments are indirectly connected if both connect to a third instrument that connects them.
 \end{itemize}
 
-\begin{table}
+\providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
-\caption{\label{tab:linkage}Linkage pattern indicating combinations of cohorts and instruments.}
-\centering
-\begin{tabular}[t]{llllllllllllllll}
-\toprule
-  & aqi & bar & bat & by1 & by2 & by3 & ddi & den & gri & mac & peg & sbi & sgr & tep & vin\\
-\midrule
-Bangladesh &  &  &  &  & X &  &  &  &  &  &  &  &  &  & \\
-Brazil 1 &  &  &  &  &  &  &  & X &  &  &  &  &  &  & \\
-Brazil 2 &  &  & X &  &  &  &  &  &  &  &  &  &  &  & \\
-Chile 1 &  &  &  & X &  &  &  &  &  &  &  &  &  &  & \\
-Chile 2 &  &  & X &  &  &  &  &  &  &  &  &  &  & X & \\
-\addlinespace
-China &  &  &  &  &  & X &  &  &  &  &  &  &  &  & \\
-Colombia 1 &  &  &  &  &  & X &  &  &  &  &  &  &  &  & \\
-Colombia 2 & X &  & X &  &  & X &  & X &  &  &  &  &  &  & \\
-Ecuador &  & X &  &  &  &  &  &  &  &  &  &  &  &  & \\
-Ethiopia &  &  &  &  &  & X &  &  &  &  &  &  &  &  & \\
-\addlinespace
-Jamaica 1 &  &  &  &  &  &  &  &  & X &  &  &  &  &  & \\
-Jamaica 2 &  &  &  &  &  &  &  &  & X &  &  &  &  &  & \\
-Madagascar &  &  &  &  &  &  &  &  &  & X & X & X &  &  & \\
-Netherlands1 &  &  &  &  &  &  & X &  &  &  &  &  &  &  & \\
-Netherlands2 &  &  &  &  &  &  & X &  &  &  &  &  &  &  & \\
-\addlinespace
-South Africa &  &  &  &  & X &  &  &  & X &  &  &  & X &  & X\\
-\bottomrule
-\end{tabular}
-\end{table}
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+\begin{longtable}[c]{ccccccccccccccc}
+
+\caption{Linkage pattern indicating combinations of cohorts and instruments.}\label{tab:linkage}\\
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{aqi}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{bar}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{bat}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by1}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by2}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by3}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{ddi}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{den}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{gri}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{mac}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{peg}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{sbi}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{sgr}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{tep}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{vin}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-15}
+
+\endfirsthead
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{aqi}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{bar}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{bat}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by1}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by2}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by3}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{ddi}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{den}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{gri}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{mac}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{peg}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{sbi}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{sgr}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{tep}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{vin}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-15}\endhead
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{x}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-15}
+
+\end{longtable}
 
 ~
 
@@ -571,39 +674,73 @@ The next section suggests a way out of the dilemma.
 
 Many instruments for measuring child development have appeared since the works of \protect\hyperlink{ref-shirley1933}{Shirley} (\protect\hyperlink{ref-shirley1933}{1933}) and \protect\hyperlink{ref-gesell1943}{Gesell} (\protect\hyperlink{ref-gesell1943}{1943}). It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. We will exploit this overlap to bridge different instruments. For example, Table \ref{tab:example2words} displays the labels of milestones from six instruments. All items probe the ability of the child to formulate ``sentences'' of two words.
 
-\begin{table}
+\providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
-\caption{\label{tab:example2words}Example of similar items from different instruments.}
-\centering
-\begin{tabular}[t]{>{}ll}
-\toprule
-Item & Label\\
-\midrule
-\ttfamily{by1mdd136} & sentence of 2 words\\
-\ttfamily{by2mdd114} & Uses a two-word utterance\\
-\ttfamily{ddicmm041} & Says sentences with 2 words\\
-\ttfamily{denlgd019} & Combine Words\\
-\ttfamily{grihsd217} & Uses word combinations\\
-\addlinespace
-\ttfamily{vinxxc016} & use a short sentence\\
-\bottomrule
-\end{tabular}
-\end{table}
+\setlength{\tabcolsep}{2pt}
 
-~
+\renewcommand*{\arraystretch}{1.5}
+
+\begin{longtable}[c]{cc}
+
+\caption{Example of similar items from different instruments.}\label{tab:example2words}\\
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Item}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Label}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-2}
+
+\endfirsthead
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Item}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Label}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-2}\endhead
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by1mdd136}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{sentence of 2 words}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{by2mdd114}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Uses a two-word utterance}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{ddicmm041}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Says sentences with 2 words}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{denlgd019}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Combine Words }}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{grihsd217}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{Uses word combinations}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{vinxxc016}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{}l!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{use a short sentence}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-2}
+
+\end{longtable}
 
 The idea is to check whether these milestones measure development in the same way. If this is found to be true, then we may formally restrict the difficulty levels of these milestones to be identical. This restriction provides a formal bridge between the instruments. We repeat the process for all groups of similar-looking items.
 
 A first step in the bridging process is to group items from different instruments by similarity. As the \texttt{by3} is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to \texttt{by3} items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto \texttt{by3} items.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/ring} 
-
-}
-
-\caption{Connections between the instruments via mapped item groups by domain (\url{https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/}).}\label{fig:mappingshiny}
-\end{figure}
+\label{fig:mappingshiny}Connections between the instruments via mapped item groups by domain (\url{https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/}).
 
 
 
@@ -661,6 +798,8 @@ Similarly, we may find that the age profile for \emph{A is earlier than B} if
 Note that the age curves confound difficulty and ability, and hence cannot be used to evaluate the quality of the item map.
 
 What we need to do is separate difficulty and ability. For this, we need a formal statistical model. The next section introduces the concepts required in such a model.
+
+\newpage
 
 \hypertarget{ch:equategroups}{%
 \chapter{Equate groups}\label{ch:equategroups}}
@@ -749,7 +888,7 @@ Since active equate groups bridge different instruments, they have an essential 
 
 }
 
-\caption{One year old child climbs stairs.}\label{fig:stairpic}
+\caption{One year old child climbs stairs. Photo by Iris Eekhout}\label{fig:stairpic}
 \end{figure}
 
 
@@ -949,6 +1088,8 @@ Figure \ref{fig:plotnoeqdif} shows the empirical curves of two equate groups, \t
 
 Figure \ref{fig:ploteqdif} plots the empirical curves for equate groups \texttt{GM44} (throws ball) and \texttt{EXP23} (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, \emph{Throws ball} is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF) and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability of passing the item given the D-score (i.e.~item difficulty) differs between the cohorts. Likewise, there is differential item functioning for \emph{Says more than 5 words}. This milestone is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-STUNTED) than for children from Ecuador (green; GCDG-ECU).
 
+\newpage
+
 \hypertarget{ch:modellingequates}{%
 \chapter{Modelling equates}\label{ch:modellingequates}}
 
@@ -1090,14 +1231,7 @@ Various routes are possible and may result in different final models. The strate
 \hypertarget{sec:impactequate}{%
 \section{Impact of number of active equate groups}\label{sec:impactequate}}
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_5.2} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/models1339/\#display=by_model_cohort\&nrow=2\&ncol=2\&arr=row\&pg=7\&labels=cohort,model\&sort=cohort;asc,model;asc\&filter=\&sidebar=\&fv=}{D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts} (\url{https://d-score.org/dbook-apps/models1339/}).}\label{fig:model1339}
-\end{figure}
+\label{fig:model1339}\href{https://d-score.org/dbook-apps/models1339/\#display=by_model_cohort\&nrow=2\&ncol=2\&arr=row\&pg=7\&labels=cohort,model\&sort=cohort;asc,model;asc\&filter=\&sidebar=\&fv=}{D-score by age of four models with all 1339 items using 0, 11, 33 and 184 active equate groups. The number of equate groups has a substantial effect on the D-score distribution. Use the arrows to see other cohorts} (\url{https://d-score.org/dbook-apps/models1339/}).
 
 
 
@@ -1135,14 +1269,7 @@ We have now seen that the number of active equate groups has a large effect on t
 \hypertarget{sec:ageprofiles}{%
 \section{Age profiles of similar milestones}\label{sec:ageprofiles}}
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_5.3} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/p-a-equate-1339/\#display=Percent_pass_by_age_for_all_equate_groups\&nrow=1\&ncol=1\&arr=row\&pg=65\&labels=equate\&sort=equate_index;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones at a given age} (\url{https://d-score.org/dbook-apps/p-a-equate-1339/}).}\label{fig:p-a-equate-1339}
-\end{figure}
+\label{fig:p-a-equate-1339}\href{https://d-score.org/dbook-apps/p-a-equate-1339/\#display=Percent_pass_by_age_for_all_equate_groups\&nrow=1\&ncol=1\&arr=row\&pg=65\&labels=equate\&sort=equate_index;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones at a given age} (\url{https://d-score.org/dbook-apps/p-a-equate-1339/}).
 
 
 
@@ -1155,14 +1282,7 @@ We could follow different strategies in selecting which equate groups to activat
 \hypertarget{sec:equatequality}{%
 \section{Quality of equate groups}\label{sec:equatequality}}
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_5.4} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/p-d-equate-1339/\#display=Percent_pass_by_D_score__four_models\&nrow=2\&ncol=2\&arr=row\&pg=65\&labels=equate,model\&sort=equate_index;asc,model;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively} (\url{https://d-score.org/dbook-apps/p-d-equate-1339/}).}\label{fig:p-d-equate-1339}
-\end{figure}
+\label{fig:p-d-equate-1339}\href{https://d-score.org/dbook-apps/p-d-equate-1339/\#display=Percent_pass_by_D_score__four_models\&nrow=2\&ncol=2\&arr=row\&pg=65\&labels=equate,model\&sort=equate_index;asc,model;asc\&filter=\&sidebar=\&fv=}{Percentage of children that pass similar milestones given their D-score as calculated under four models (1339 items, and 0, 11, 33 and 184 equate groups, respectively} (\url{https://d-score.org/dbook-apps/p-d-equate-1339/}).
 
 
 
@@ -1311,27 +1431,27 @@ The red circles indicate active equate groups. Most have grade A, so we have a l
 \toprule
 Equate group & Difficulty & Sample Size & Information & Grade\\
 \midrule
-EXP2 & 11.4 & 3608 & 162.3 & A\\
-REC6 & 30.9 & 5428 & 95.4 & B\\
-GM25 & 36.4 & 6380 & 470.6 & A\\
-FM26 & 42.9 & 4155 & 296.8 & A\\
-GM35 & 44.0 & 5522 & 356.0 & A\\
+EXP2 & 11.44 & 3608 & 162.32846 & A\\
+REC6 & 30.90 & 5428 & 95.39963 & B\\
+GM25 & 36.43 & 6380 & 470.62671 & A\\
+FM26 & 42.93 & 4155 & 296.78327 & A\\
+GM35 & 44.01 & 5522 & 356.04417 & A\\
 \addlinespace
-COG36 & 44.5 & 7912 & 230.0 & A\\
-GM42 & 49.9 & 5953 & 327.7 & A\\
-FM31 & 53.2 & 10991 & 731.7 & A\\
-COG55 & 54.1 & 5647 & 420.3 & A\\
-FM72 & 57.1 & 5430 & 253.6 & A\\
+COG36 & 44.53 & 7912 & 230.02909 & A\\
+GM42 & 49.86 & 5953 & 327.74297 & A\\
+FM31 & 53.17 & 10991 & 731.65850 & A\\
+COG55 & 54.08 & 5647 & 420.34928 & A\\
+FM72 & 57.07 & 5430 & 253.63655 & A\\
 \addlinespace
-EXP26 & 59.1 & 9119 & 578.8 & A\\
-SA1 & 60.1 & 3363 & 172.1 & A\\
-FM38 & 60.9 & 10236 & 491.7 & A\\
-FM52 & 67.8 & 13487 & 1159.9 & A\\
-FM43 & 69.7 & 15765 & 1563.9 & A\\
+EXP26 & 59.15 & 9119 & 578.79355 & A\\
+SA1 & 60.08 & 3363 & 172.10653 & A\\
+FM38 & 60.87 & 10236 & 491.68110 & A\\
+FM52 & 67.80 & 13487 & 1159.93870 & A\\
+FM43 & 69.66 & 15765 & 1563.88651 & A\\
 \addlinespace
-GM60 & 70.1 & 9519 & 1070.6 & A\\
-REC40 & 71.0 & 10393 & 1182.9 & A\\
-FM61 & 72.6 & 10612 & 945.9 & A\\
+GM60 & 70.09 & 9519 & 1070.60909 & A\\
+REC40 & 71.04 & 10393 & 1182.90580 & A\\
+FM61 & 72.56 & 10612 & 945.86689 & A\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1363,6 +1483,8 @@ This section showed various modelling techniques and ways to assess the validity
 
 Model \texttt{565\_18} formed the basis of the publication by \protect\hyperlink{ref-Weber2019}{Weber et al.} (\protect\hyperlink{ref-Weber2019}{2019}). Additional detail on model \texttt{565\_18} is available through the \href{https://tnochildhealthstatistics.shinyapps.io/dmodel/}{\texttt{dmodel} shiny app}.
 
+\newpage
+
 \hypertarget{ch:ability}{%
 \chapter{Comparing ability}\label{ch:ability}}
 
@@ -1381,14 +1503,7 @@ Once we identified a satisfactory D-score model, we may calculate the D-score fo
 \hypertarget{sec:dscores}{%
 \section{Comparing child development across studies}\label{sec:dscores}}
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_6.1} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/gcdgdscores/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{D-score distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdscores/}).}\label{fig:dscoredist}
-\end{figure}
+\label{fig:dscoredist}\href{https://d-score.org/dbook-apps/gcdgdscores/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{D-score distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdscores/}).
 
 
 
@@ -1398,14 +1513,7 @@ The five blue lines guide the eye. These lines indicate the locations of the -2S
 
 By and large, the data in every study follow the blue lines. Perhaps the most obvious exception is the \texttt{GCDG-JAM-STUNTED} cohort, where older children somewhat exceed the D-score range. It is unknown whether this is real, or due to a sub-optimal calibration of the instrument.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_6.1a} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/gcdgdaz/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{DAZ distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdaz/}).}\label{fig:dazdist}
-\end{figure}
+\label{fig:dazdist}\href{https://d-score.org/dbook-apps/gcdgdaz/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{DAZ distributions by study} (\url{https://d-score.org/dbook-apps/gcdgdaz/}).
 
 
 
@@ -1442,14 +1550,7 @@ Figure \ref{fig:semforn} shows that the \emph{sem} drops off rapidly when the nu
 
 One may wonder whether the \emph{sem} depends on age. Figure \ref{fig:semfora} suggests that this is not the case. The average DAZ is close to zero everywhere, as expected. The interval DAZ \(\pm\) \emph{sem} will cover the true, but unknown, DAZ in about 68\% of the cases. While the interval varies somewhat across ages, there is no systematic age trend.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_6.4} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/gcdgsem/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{The standard error of measurement (\(sem\)) around the age-standardized D-scores (DAZ) per cohort} (\url{https://d-score.org/dbook-apps/gcdgsem}).}\label{fig:dscoresems}
-\end{figure}
+\label{fig:dscoresems}\href{https://d-score.org/dbook-apps/gcdgsem/\#display=by_cohort\&nrow=1\&ncol=1\&arr=row\&pg=6\&labels=cohort\&sort=cohort;asc\&filter=\&sidebar=\&fv=}{The standard error of measurement (\(sem\)) around the age-standardized D-scores (DAZ) per cohort} (\url{https://d-score.org/dbook-apps/gcdgsem}).
 
 
 
@@ -1594,6 +1695,8 @@ Table \ref{tab:domaincor} lists the Pearson correlation matrix of the DAZ and th
 
 Figure \ref{fig:domaindex} displays individual scores for a 3 year old boy. The filled bars indicate the number of available items per domain. The vertical white line that crosses the horizontal axis at value 5 indicates a threshold for a minimum number of items needed for a D-score. Note that the number of items for Gross Motor in this example is meagre (only three items). The grey vertical line indicates the value of the overall D-score (68.55\(D\)). The nearby dashed lines are located at one \emph{sem} (0.53\(D\)) distance. The coloured points are the domain-specific D-scores with the \emph{sem} around in error bars. The plot visualises that the boys' scores on language domains (i.e.~Expressive and Receptive) are low as compared to the motor and cognitive domains. A systematic discrepancy between various domain-specific scores might be an early warning sign for developmental delay.
 
+\newpage
+
 \hypertarget{ch:SDGindicator}{%
 \chapter{Application I: Tracking a Sustainable Development Goal}\label{ch:SDGindicator}}
 
@@ -1662,14 +1765,7 @@ In 2006, the World Health Organisation (WHO) published the \href{https://www.who
 
 Step 1 is solved by the D-score. Step 2 borrows from well-tested statistical methodology for constructing growth standards (\protect\hyperlink{ref-borghi2006}{Borghi et al. 2006}). Step 3 can be done in different ways, but a applying a simple cut-off fits easily with regular practice in reporting international comparisons.
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{fig/fig_7.1_full} 
-
-}
-
-\caption{\href{https://d-score.org/dbook-apps/gcdgreferences/}{Illustration of the method to define on-track development} (\url{https://d-score.org/dbook-apps/gcdgreferences/}).}\label{fig:dscorerefs}
-\end{figure}
+\label{fig:dscorerefs}\href{https://d-score.org/dbook-apps/gcdgreferences/}{Illustration of the method to define on-track development} (\url{https://d-score.org/dbook-apps/gcdgreferences/}).
 
 
 
@@ -1777,6 +1873,8 @@ However, this is not the whole story. Figure \ref{fig:stuntdaz} reveals a consis
 
 The exact nature of the relation between stunting and development is still obscure. The D-score provides a means to study the intriguing interplay between both measures in more detail.
 
+\newpage
+
 \hypertarget{ch:ontrack}{%
 \chapter{Application II: Who is on-track?}\label{ch:ontrack}}
 
@@ -1825,29 +1923,29 @@ We already know many of the factors that influence early child development. A hi
 \cline{3-4} \cline{5-6}
  &  & n & \% & n & \%\\
 \hline
- & female & 21136 & 0.977 & 489 & 0.023\\
+ & female & 21136 & 0.9773873 & 489 & 0.0226127\\
 \cline{2-6}
-\multirow[t]{-2}{*}{\raggedright\arraybackslash sex} & male & 20805 & 0.972 & 595 & 0.028\\
+\multirow[t]{-2}{*}{\raggedright\arraybackslash sex} & male & 20805 & 0.9721963 & 595 & 0.0278037\\
 \cline{1-6}
- & <2500gr & 3388 & 0.948 & 185 & 0.052\\
+ & <2500gr & 3388 & 0.9482228 & 185 & 0.0517772\\
 \cline{2-6}
-\multirow[t]{-2}{*}{\raggedright\arraybackslash birth weight} & >2500gr & 36375 & 0.978 & 821 & 0.022\\
+\multirow[t]{-2}{*}{\raggedright\arraybackslash birth weight} & >2500gr & 36375 & 0.9779277 & 821 & 0.0220723\\
 \cline{1-6}
- & no education & 1907 & 0.967 & 66 & 0.033\\
+ & no education & 1907 & 0.9665484 & 66 & 0.0334516\\
 \cline{2-6}
- & any primary & 11764 & 0.967 & 398 & 0.033\\
+ & any primary & 11764 & 0.9672751 & 398 & 0.0327249\\
 \cline{2-6}
- & any secondary & 21576 & 0.977 & 503 & 0.023\\
+ & any secondary & 21576 & 0.9772182 & 503 & 0.0227818\\
 \cline{2-6}
-\multirow[t]{-4}{*}{\raggedright\arraybackslash maternal education} & higher secondary & 6263 & 0.984 & 101 & 0.016\\
+\multirow[t]{-4}{*}{\raggedright\arraybackslash maternal education} & higher secondary & 6263 & 0.9841295 & 101 & 0.0158705\\
 \cline{1-6}
- & rural & 1251 & 0.989 & 14 & 0.011\\
+ & rural & 1251 & 0.9889328 & 14 & 0.0110672\\
 \cline{2-6}
- & semi-urban & 2236 & 0.990 & 23 & 0.010\\
+ & semi-urban & 2236 & 0.9898185 & 23 & 0.0101815\\
 \cline{2-6}
- & urban & 18740 & 0.971 & 566 & 0.029\\
+ & urban & 18740 & 0.9706827 & 566 & 0.0293173\\
 \cline{2-6}
-\multirow[t]{-4}{*}{\raggedright\arraybackslash residence} & metropolitan & 11122 & 0.979 & 234 & 0.021\\
+\multirow[t]{-4}{*}{\raggedright\arraybackslash residence} & metropolitan & 11122 & 0.9793942 & 234 & 0.0206058\\
 \hline
 \multicolumn{6}{l}{\textsuperscript{*} Exludes children with missing DAZ or missing factor}\\
 \end{tabular}
@@ -1873,6 +1971,8 @@ The influence of maternal education on off-track development follows the expecte
 We predicted DAZ by linear regressions with predictors country, sex, birth weight, maternal education, height for age and residential area. The percentage of explained variance was 11 percent. Figure \ref{fig:imppie} depicts the relative contributions of the individual factors to the prediction. Country differences explain over half the variances, followed by maternal education. Contributions of height-for-age (HAZ), low birth weight and residence are about equal in magnitude.
 
 These analyses only scratch the surface. It is nowadays common to analyse the impact of interventions on height and HAZ by multivariate techniques and machine learning methods. The D-score and DAZ are drop-in replacements that allow similar procedures to study which factors contribute to healthy child development worldwide.
+
+\newpage
 
 \hypertarget{ch:discussion2}{%
 \chapter{Discussion}\label{ch:discussion2}}

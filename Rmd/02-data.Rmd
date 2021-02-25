@@ -1,3 +1,5 @@
+\newpage
+
 # Data {#ch:data}
 
 ```{=html}
@@ -53,26 +55,52 @@ ggplot() +
 
 The GCDG data comprises of birth cohorts, impact evaluation studies and instrument evaluation studies. Table \@ref(tab:cohorts) displays a brief overview of the instruments used in each sub-study.
 
-| Cohort       | `by` | `den` | `gri` | `bat` | `vin` | `ddi` | `bar` | `tep` | `aqi` | `sbi` |
-|--------------|------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Bangladesh   | x    |       |       |       |       |       |       |       |       |       |
-| Brazil 1     |      | x     |       |       |       |       |       |       |       |       |
-| Brazil 2     |      |       |       | x     |       |       |       |       |       |       |
-| Chile 1      | x    |       |       |       |       |       |       |       |       |       |
-| Chile 2      |      |       |       | x     |       |       |       | x     |       |       |
-| China        | x    |       |       |       |       |       |       |       |       |       |
-| Colombia 1   | x    |       |       |       |       |       |       |       |       |       |
-| Colombia 2   | x    | x     |       | x     |       |       |       |       | x     |       |
-| Ecuador      |      |       |       |       |       |       | x     |       |       |       |
-| Ethiopia     | x    |       |       |       |       |       |       |       |       |       |
-| Jamaica 1    |      |       | x     |       |       |       |       |       |       |       |
-| Jamaica 2    |      |       | x     |       |       |       |       |       |       |       |
-| Madagascar   |      |       |       |       |       |       |       |       |       | x     |
-| Netherlands1 |      |       |       |       |       | x     |       |       |       |       |
-| Netherlands2 |      |       |       |       |       | x     |       |       |       |       |
-| South Africa | x    |       | x     |       | x     |       |       |       |       |       |
 
-: (\#tab:cohorts) Overview of instruments administered in the cohorts.
+::: {custom-style="Table Caption"}
+```{r cohorts, tab.cap.sep = ". "}
+
+pattern <- matrix("", nrow = 16, ncol = 10)
+pattern[8, 1] <- "x"
+pattern[9, 2] <- "x"
+pattern[c(3, 5, 8), 3] <- "x"
+pattern[4, 4] <- "x"
+pattern[c(1, 16), 4] <- "x"
+pattern[c(6, 7, 8, 10), 4] <- "x"
+pattern[c(14, 15), 5] <- "x"
+pattern[c(2, 8), 6] <- "x"
+pattern[c(11, 12, 16), 7] <- "x"
+pattern[13, 8] <- "x"
+pattern[5, 9] <- "x"
+pattern[16, 10] <- "x"
+colnames(pattern) <- 
+  c("aqi", "bar", "bat", "by", "ddi", 
+    "den", "gri", "sbi", "tep", "vin")
+df <- data.frame(
+  pattern,
+  row.names = 
+    c("Bangladesh", "Brazil 1", "Brazil 2", "Chile 1", "Chile 2", 
+    "China", "Colombia 1", "Colombia 2", "Ecuador", "Ethiopia",
+    "Jamaica 1", "Jamaica 2", "Madagascar", "Netherlands1", 
+    "Netherlands2", "South Africa")
+
+)
+
+#knitr::kable(df, 
+#  caption = "Linkage pattern indicating combinations of cohorts and instruments.",
+#  booktabs = TRUE) %>%
+#  kableExtra::kable_styling() %>%
+#  kableExtra::scroll_box(width = "100%", height = "500px")
+
+ft <- flextable(df)
+ft <- set_caption(ft, "Overview of instruments administered in the cohorts.")
+ft <- set_table_properties(ft, layout = "autofit", width = .9)
+knit_print(ft)
+```
+
+:::
+
+<br>
+
 
 ## Cohort descriptions {#sec:cohorts}
 
@@ -151,7 +179,7 @@ Denver II: a major revision and standardisation of the Denver
 Developmental Screening Test. Paediatrics 1992; 89: 91–7. --> <!-- Frankenburg WK, Dodds J, Archer P, et al. The DENVER II Technical
 Manual. Denver, CO: Denver Developmental Materials, 1990 -->
 
-The **Griffiths Mental Development Scales (`gri`)** measure the rate of development in infants and young children in six developmental areas: locomotor, personal-social, hearing and language, eye and hand coordination, performance and practical reasoning [@griffiths1967]. <!-- Griffiths R. The Abilities of Babies: A Study in Mental
+The **Griffiths Mental Development Scales (`gri`, `sgr`)** measure the rate of development in infants and young children in six developmental areas: locomotor, personal-social, hearing and language, eye and hand coordination, performance and practical reasoning [@griffiths1967]. <!-- Griffiths R. The Abilities of Babies: A Study in Mental
 Measurement. University of London Press, 1967. -->
 
 The **Battelle Developmental Inventory (`bat`)** measures key developmental skills in children from birth to 7 years, 11 months. The instrument contains 450 items distributed over five domains: adaptive, personal-social, communication, motor, and cognitive [@newborg2005]. <!-- Newborn J. Battelle Developmental Inventory-2nd Edition. Rolling

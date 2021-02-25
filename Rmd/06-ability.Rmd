@@ -1,3 +1,5 @@
+\newpage
+
 # Comparing ability {#ch:ability}
 
 ```{=html}
