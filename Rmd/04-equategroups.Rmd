@@ -91,25 +91,39 @@ In model \@ref(eq:rasch) every milestone $i$ has one parameter $\delta_i$. We ex
 
 Estimation of the parameter for the equate group is straightforward. @wright1982 present a simple method for aligning two test forms with common items. There are three steps:
 
--   Estimate the separate $\delta_i$'s per item;
--   Combine these estimates into $\delta_q$ by calculating their weighted average;
--   Overwrite each $\delta_i$ by $\delta_q$.
+1.   Estimate the separate $\delta_i$'s per item;
+2.   Combine these estimates into $\delta_q$ by calculating their weighted average;
+3.   Overwrite each $\delta_i$ by $\delta_q$.
 
 Suppose that $Q$ is the collection of items in equate group $q$, and that $w_i$ is the number of respondents for item $i$. The parameter estimate $\delta_q$ for the equate group is
+
 
 ```{=tex}
 \begin{equation}
 \delta_q = \frac{\sum_{i\in Q} \delta_iw_i}{\sum_{i\in Q} w_i} (\#eq:raschequate)
 \end{equation}
 ```
-| Symbol     | Term        | Description                                                  |
-|------------|-------------|--------------------------------------------------------------|
-| $\beta_n$  | Ability     | True (but unknown) developmental score of child $n$          |
-| $\delta_i$ | Difficulty  | True (but unknown) difficulty of item $i$                    |
-| $\delta_q$ | Difficulty  | The combined difficulty of the items in equate group $q$     |
-| $\pi_{ni}$ | Probability | Probability that child $n$ passes item $i$                   |
-| $l$        |             | The number of items in the equate group                      |
-| $w_i$      |             | The number of respondents with an observed score on item $i$ |
+
+
+
+
+
+
++-------------+-------------+---------------------------------------------------------------+
+| Symbol      | Term        | Description                                                   |
++=============+:============+:==============================================================+
+| $\beta_n$   | Ability     | True (but unknown) developmental score of child $n$           |
++-------------+-------------+---------------------------------------------------------------+
+| $\delta_i$  | Difficulty  | True (but unknown) difficulty of item $i$                     |
++-------------+-------------+---------------------------------------------------------------+
+| $\delta_q$  | Difficulty  | The combined difficulty of the items in equate group $q$      |
++-------------+-------------+---------------------------------------------------------------+
+| $\pi_{ni}$  | Probability | Probability that child $n$ passes item $i$                    |
++-------------+-------------+---------------------------------------------------------------+
+| $l$         |             | The number of items in the equate group                       |
++-------------+-------------+---------------------------------------------------------------+
+| $w_i$       |             | The number of respondents with an observed score on item $i$  |
++-------------+-------------+---------------------------------------------------------------+
 
 : (\#tab:symbols) Overview the symbols used in equations \@ref(eq:rasch) and \@ref(eq:raschequate).
 
@@ -117,7 +131,7 @@ Suppose that $Q$ is the collection of items in equate group $q$, and that $w_i$ 
 
 The end goal for using the equate group method to model development items is to measure development on one common latent scale, the D-score. That way, the measure (i.e. D-score) can be obtained, irrespective of which instrument is used in which population.
 
-```{r commonscale, echo=FALSE, fig.width = 8, fig.height = 4, fig.cap='(ref:commonscale)', cache = TRUE, warning=FALSE}
+```{r commonscale,results = 'hide', fig.keep = 'all', echo=FALSE, fig.width = 8, fig.height = 4, fig.cap='(ref:commonscale)', cache = TRUE, warning=FALSE}
 
 ## model without equate groups
 varlist_o <- dmetric::prepare_items(study = c("Netherlands 1", "Ethiopia", "Columbia 2"))
@@ -150,11 +164,16 @@ p2 <- ggplot(data = df2)+
   theme(legend.position =  c(0.8,0.2), legend.title = element_blank())
 
 grid.arrange(p1, p2, ncol = 2)
+
+
+tiff("fig/fig_4.3.tiff", unit = "in", width = 8, height = 4, res = 300)
+grid.arrange(p1, p2, ncol = 2)
+dev.off()
 ```
 
 (ref:commonscale) Example of three cohorts with and without equate group linking.
 
-Figure \@ref(fig:commonscale) displays the D-score estimates by age in three cohorts from the GCDG study: Netherlands 1 (GCDG-NLS-SMOCC), Ethiopia (GCDG-ETH) and Colombia 2 (GCDG-COL-LT42M) for two different analyses. As described in section \@ref(sec:cohorts), the Netherlands 1 study administered the `ddi`; Ethiopia measured children by the `by3`; and Colombia collected data on `by3`, `den`, `aqi` and `bdi`. Accordingly, there is an overlap in items between Ethiopia and Colombia via the `by3`, but the Netherlands 1 cohort is not linked.
+Figure \@ref(fig:commonscale) displays the D-score estimates by age in three cohorts from the GCDG study: Netherlands 1 (`GCDG-NLS-SMOCC`), Ethiopia (`GCDG-ETH`) and Colombia 2 (`GCDG-COL-LT42M`) for two different analyses. As described in section \@ref(sec:cohorts), the Netherlands 1 study administered the `ddi`; Ethiopia measured children by the `by3`; and Colombia collected data on `by3`, `den`, `aqi` and `bdi`. Accordingly, there is an overlap in items between Ethiopia and Colombia via the `by3`, but the Netherlands 1 cohort is not linked.
 
 We created the plot on the left-handed side without active equate groups. The large overlap between Ethiopian and Columbian children occurs because the scales for these studies are linked naturally via shared items from `by3`. Since the `ddi` instrument is not connected, the Dutch cohort follows a different track. While we can compare D-scores between Ethiopia and Colombia, it is nonsensical to compare Dutch to either Ethiopia or Colombia. The right-handed side plot is based on an analysis that used active equate groups to link the cohorts. Since the analysis connected the scales for all three cohorts, we can now compare D-scores obtained between all three cohorts.
 
@@ -191,7 +210,12 @@ The evaluation of *equate fit* involves comparing the observed probabilities of 
 ```{r ploteqfit, results = 'hide', fig.keep = 'all', fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqfit)'}
 ps <- plot_p_d_equate(data = dmetric::gcdg_lean, model = dmetric::model_lean,
                       equates = c("REC6", "GM42"))
+
 gridExtra::grid.arrange(ps[["REC6"]], ps[["GM42"]])
+
+tiff("fig/fig_4.4.tiff", unit = "in", width = 10, height = 10, res = 300)
+gridExtra::grid.arrange(ps[["REC6"]], ps[["GM42"]])
+dev.off()
 ```
 
 (ref:ploteqfit) Two equate groups that present a good equate fit.
@@ -219,6 +243,11 @@ psp <- plot_p_d_equate(data = dmetric::gcdg_lean,
                        equates = equatelist_poor[c("COG24", "EXP12")])
 
 gridExtra::grid.arrange(psp[["COG24"]], psp[["EXP12"]])
+
+tiff("fig/fig_4.5.tiff", unit = "in", width = 10, height = 10, res = 300)
+gridExtra::grid.arrange(psp[["COG24"]], psp[["EXP12"]])
+dev.off()
+
 ```
 
 (ref:ploteqpoor) Two equate groups that present a poor equate fit.
@@ -242,6 +271,10 @@ pdif <- dmetric::plot_p_d_equate(data =  dmetric::gcdg_lean,
                                  equates = equatelist,
                                  show_fit = FALSE)
 gridExtra::grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
+
+tiff("fig/fig_4.6.tiff", unit = "in", width = 10, height = 10, res = 300)
+gridExtra::grid.arrange(pdif[["FM31"]], pdif[["EXP26"]])
+dev.off()
 ```
 
 (ref:plotnoeqdif) Two equate groups that present no differential item functioning between cohorts.
@@ -253,8 +286,14 @@ Figure \@ref(fig:plotnoeqdif) shows the empirical curves of two equate groups, `
 ```{r ploteqdif, results = 'hide', fig.keep = 'all', , fig.height = 10, fig.width=10, fig.cap = '(ref:ploteqdif)'}
 
 gridExtra::grid.arrange(pdif[["GM44"]], pdif[["EXP23"]])
+
+tiff("fig/fig_4.7.tiff", unit = "in", width = 10, height = 10, res = 300)
+gridExtra::grid.arrange(pdif[["GM44"]], pdif[["EXP23"]])
+dev.off()
 ```
+
+
 
 (ref:ploteqdif) Two equate groups that present differential item functioning between cohorts.
 
-Figure \@ref(fig:ploteqdif) plots the empirical curves for equate groups `GM44` (throws ball) and `EXP23` (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, *Throws ball* is easier for children in the South-Africa cohort (purple curve; GCDG-ZAF) and more difficult for children in Colombia (blue curve; GCDG-COL-LT42M). In other words, the probability of passing the item given the D-score (i.e. item difficulty) differs between the cohorts. Likewise, there is differential item functioning for *Says more than 5 words*. This milestone is easier for children in Jamaica (yellow and pink curves; GCDG-JAM-LBW and GCDG-JAM-STUNTED) than for children from Ecuador (green; GCDG-ECU).
+Figure \@ref(fig:ploteqdif) plots the empirical curves for equate groups `GM44` (throws ball) and `EXP23` (5 or more words). The substantial variation between these curves is a sign of differential item functioning. For example, *Throws ball* is easier for children in the South-Africa cohort (purple curve; `GCDG-ZAF`) and more difficult for children in Colombia (blue curve; `GCDG-COL-LT42M`). In other words, the probability of passing the item given the D-score (i.e. item difficulty) differs between the cohorts. Likewise, there is differential item functioning for *Says more than 5 words*. This milestone is easier for children in Jamaica (yellow and pink curves; `GCDG-JAM-LBW and `GCDG-JAM-STUNTED`) than for children from Ecuador (green; `GCDG-ECU`).`
