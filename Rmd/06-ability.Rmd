@@ -45,6 +45,14 @@ ggplot(data = dmetric::model_lean$dscore )+
   geom_smooth(aes(x=n, y=sem), formula = y ~ splines::bs(x, 4), se = FALSE, color = mice::mdc(2))+
   xlab("Number of items administered") +
   ylab("Standard error of measurement")
+
+
+tiff("fig/fig6.3.tiff", unit = "in", width = 8, height = 5, res = 300)
+ggplot(data = dmetric::model_lean$dscore )+
+  geom_smooth(aes(x=n, y=sem), formula = y ~ splines::bs(x, 4), se = FALSE, color = mice::mdc(2))+
+  xlab("Number of items administered") +
+  ylab("Standard error of measurement")
+dev.off()
 ```
 
 (ref:semforn) Standard error of measurement (*sem*) as a function of the number of items.
@@ -99,7 +107,14 @@ ggplot(data = sem_daz_a )+
 #  geom_point(aes(x=agenum, y=mean_d)) +
 #  geom_errorbar(aes(x = agenum, ymin=low_d, ymax=high_d), width=.1)+
 #  xlab("age(months)") + ylab("D-score")
+tiff("fig/fig6.4.tiff", unit = "in", width = 8, height = 5, res = 300)
+ggplot(data = sem_daz_a )+
+  geom_point(aes(x=agenum, y=mean_daz)) +
+  geom_errorbar(aes(x = agenum, ymin=low_daz, ymax=high_daz), width=.1)+
+  xlab("Age (months)") + ylab("DAZ") +
+  ylim(c(-2,2))
 
+dev.off()
 
 ```
 
@@ -131,7 +146,7 @@ knitr::include_url("https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nr
 
 (ref:dscoresems) [The standard error of measurement ($sem$) around the age-standardized D-scores (DAZ) per cohort](https://d-score.org/dbook-apps/gcdgsem/#display=by_cohort&nrow=1&ncol=1&arr=row&pg=6&labels=cohort&sort=cohort;asc&filter=&sidebar=&fv=) (<https://d-score.org/dbook-apps/gcdgsem>).
 
-Does precision vary with studies? The answer is yes. Figure \@ref(fig:dscoresems) plots the same information as before but now broken down according to cohort. Individual data points are added to give a feel for the design. The Colombia cohort `GCDG-COL-LT45M` administered the Bayley-III, where each child answered on average 45 items, so the *sem* is small. In contrast, the Dutch cohort GCDG-NLD-SMOCC collected data on a screener consisting of about ten relatively easy milestones, so the *sem* is relatively large. As a result, the Colombian D-scores are much more precise than the Dutch.
+Does precision vary with studies? The answer is yes. Figure \@ref(fig:dscoresems) plots the same information as before but now broken down according to cohort. Individual data points are added to give a feel for the design. The Colombia cohort `GCDG-COL-LT45M` administered the Bayley-III, where each child answered on average 45 items, so the *sem* is small. In contrast, the Dutch cohort `GCDG-NLD-SMOCC` collected data on a screener consisting of about ten relatively easy milestones, so the *sem* is relatively large. As a result, the Colombian D-scores are much more precise than the Dutch.
 
 ```{r cohortsem, results = 'hide', fig.keep = 'all',  fig.cap = '(ref:cohortsem)', fig.align = 'center', echo = FALSE}
 sem_daz_c <- sem_daz %>% 
@@ -162,6 +177,14 @@ sem_daz_c <- sem_daz %>%
   geom_col() + theme(axis.text.x = element_text(angle = 60, hjust = 1))+
     xlab("")+ ylab("Cohort sem")
   
+  
+tiff("fig/fig6.6.tiff", unit = "in", width = 8, height = 5, res = 300)
+  ggplot(data = sem_daz_c, aes(reorder(cohort, sem_pool), sem_pool)) +
+  geom_col() + theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+    xlab("")+ ylab("Cohort sem")
+  
+dev.off()
+  
   ## attach main instrument to cohort and see if that relates to sem? Or study kind? Something like that?
  
 ```
@@ -170,10 +193,15 @@ sem_daz_c <- sem_daz %>%
 
 
 ```{r npsem, echo = FALSE}
-kable(sem_daz_c[,c(1,3,6)], 
-      col.names = c("Cohort", "Test length", "Pass probability"),
-      caption = "Test length and probability to pass the items per cohort",
-      booktabs = TRUE)
+ft <- flextable(sem_daz_c[,c(1,3,6)])
+ft <- set_caption(ft, "Test length and probability to pass the items per cohort.")
+ft <- set_table_properties(ft, layout = "autofit", width = .9)
+ft <- set_header_labels(ft, cohort = "Cohort", 
+                        `test length (median)` = "Test length",
+                        `pass probability (median)` = "Pass probability")
+knit_print(ft)
+
+
 ```
 
  
@@ -252,14 +280,18 @@ info_data <-
         mutate(domain = ifelse(.data$domain =="missing",  NA, .data$domain))
 
  
-    ggplot(data = info_wby_domain, aes(x = ability, y = info, fill = domain)) +
+ p1 <-ggplot(data = info_wby_domain, aes(x = ability, y = info, fill = domain)) +
       geom_bar(stat = "identity", width = 1) +
       ylab("% of information") +
       xlab("Ability (D-score)")+
       scale_color_manual(values = dmodel::get_color_domain("gcdg"),
                          na.value = "grey")
 
-  
+  p1
+    
+tiff("fig/fig6.7.tiff", unit = "in", width = 11, height = 5, res = 300)
+p1 
+dev.off()
 
 ```
 
@@ -327,6 +359,7 @@ d_dom_d <- d_dom %>%
     high_daz = dscore::daz(high_d, x = mean_a)
   )
 
+p1<-
 ggplot(d_dom_d, aes(
   # x = reorder(cohort, desc(cohort)),
   x = cohort,
@@ -353,6 +386,11 @@ ggplot(d_dom_d, aes(
     legend.title = element_blank(),
     axis.text.x = element_text(angle = 90)
   )
+p1
+tiff("fig/fig6.8.tiff", unit = "in", width = 11, height = 5, res = 300)
+p1
+dev.off()
+
 ```
 
 (ref:domaind) Average domain-specific DAZ $\pm$ *sem* by cohort.
@@ -362,15 +400,19 @@ Figure \@ref(fig:domaind) displays the standardized domain-specific D-score (i.e
 The D-score methodology assumes that child development is a unidimensional scale. As a consequence, the correlations between different domain-specific D-scores are extremely high ($r > 0.95$). It is more interesting to study the correlation between the DAZ equivalent of the domain-specific scores.
 
 ```{r domaincor, echo=FALSE, cache=TRUE}
-knitr::kable(round(cortab, 2),
-            caption = "Pearson correlation of the DAZ and five domain-specific DAZ scores")
+cortab <- data.frame("names" = rownames(cortab), round(cortab, 2))
+ft <- flextable(cortab)
+ft <- set_caption(ft, "Pearson correlation of the DAZ and five domain-specific DAZ scores.")
+ft <- set_header_labels(ft,  DAZ = "DAZ", names = " ")
+knit_print(ft)
+
 ```
 
  
 
 Table \@ref(tab:domaincor) lists the Pearson correlation matrix of the DAZ and the five domain-specific DAZ scores. All correlations between the DAZ and the domain-specific scores are high, thus confirming the generic character of the D-score and DAZ. We find high inter-domain correlations for the cognitive-receptive, cognitive-fine motor and expressive-receptive pairs. The gross motor domain appears as somewhat distinct from the four other domains. Its position may be genuine, but could also be related to the smaller number of responses on gross motor milestones in the GCDG data.
 
-```{r domaindex, echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', results='hide', fig.width=11, fig.heiht = 3}
+```{r domaindex,results = 'hide', fig.keep = 'all', echo=FALSE, fig.cap='(ref:domaindex)', fig.keep='all', results='hide', fig.width=11, fig.heiht = 3}
 
 #calculate dscore per domain by using only items that are loading on the domain - items can load on multiple domains
 #use vote_weight to indicate the minimum percentage of votes for the domain (ex. 0.5 at least half of the votes must be on the domain for that item to load on that domain)
@@ -395,7 +437,7 @@ d_dom_plot <- left_join(d_dom_plot, d_dom_ex_sem, by = "domain")
 d_all <- dscore(data = dati, items = gseddata::gcdg_items, itembank = dscore::builtin_itembank, key = "gcdg")
 
 
-
+p1 <-
 ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
   geom_point() + geom_errorbar(aes(x = domain, ymin = (d-sem), ymax = (d+sem)), width = .1)+
   geom_abline(intercept = d_all$d, slope = 0, col = "darkgrey")+
@@ -409,6 +451,11 @@ ggplot(data = d_dom_plot, aes(x = domain, y = d, color = domain))+
   xlab("")+
   theme(legend.position = "none")+
   coord_flip()
+
+p1
+tiff("fig/fig6.9.tiff", unit = "in", width = 11, height = 3, res = 300)
+p1
+dev.off()
 
 
 ```
