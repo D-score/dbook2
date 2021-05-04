@@ -18,7 +18,7 @@
 | \@ref(sec:cohorts)     | GCDG-JAM-STUNTED | The Jamaica 2 study of the GCDG [@Grantham-McGregor1991]               |
 | \@ref(sec:cohorts)     | GCDG-MDG         | The Madagascar study of the GCDG [@Fernald2011]                        |
 | \@ref(sec:cohorts)     | GCDG-NLD-SMOCC   | The Netherlands 1 study of the GCDG [@herngreen1992]                   |
-| \@ref(sec:cohorts)     | GCDG-NLD-2       | The Netherlands 2 study of the GCDG [@doove2010]                       |
+| \@ref(sec:cohorts)     | GCDG-NLD-2       | The Netherlands 2 study of the GCDG [@doove2019]                       |
 | \@ref(sec:cohorts)     | GCDG-ZAF         | The South Africa study of the GCDG [@Richter2007]                      |
 | \@ref(sec:instruments) | by1              | Bayley Scale for Infant and Todler Development version 1 [@bayley1969] |
 | \@ref(sec:instruments) | by2              | Bayley Scale for Infant and Todler Development version 2 [@bayley1993] |
