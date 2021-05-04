@@ -43,7 +43,7 @@ polygon1 <- data.frame(x = c(references$month, rev(references$month)),
                        y = c(references$M2, rev(references$P5)))
 polygon2 <- data.frame(x = c(references$month, rev(references$month)),
                        y = c(references$M2, rev(references$M6)))
-
+p1 <- 
 ggplot() +
   xlab("Age (months)") + ylab("D-score") +
   scale_y_continuous(breaks = seq(0, 80, 20), limits = c(0, 89)) +
@@ -59,6 +59,10 @@ ggplot() +
                fill = "red", 
                alpha = 0.1) +
   annotate("text", x = 50, y = 69, label = "-2SD")
+p1
+tiff("fig/fig8.1.tiff", unit = "in", width = 7, height = 5, res = 300)
+p1
+dev.off()
 ```
 
 (ref:ontrackref) D-score observatations that are on-track according the current references.
@@ -191,11 +195,18 @@ bw_des <-
 #  desc_table <- bind_rows(cohort_des, country_des, edu_des, sex_des, res_des, bw_des)
 desc_table <- bind_rows(sex_des, bw_des, edu_des, res_des)
 
-kable(desc_table[,c(1:6)], col.names = c("", "", "n","%", "n","%"), caption = "Comparisons between on-track and off-track development") %>%
-  kable_styling("striped", full_width = F) %>%
-  add_header_above(c(" " = 2, "On-track" = 2, "Off-track" = 2)) %>%
-  collapse_rows(columns = 1, valign = "top") %>%
-  add_footnote("Exludes children with missing DAZ or missing factor", notation="symbol")
+
+ft <- flextable(desc_table[,c(1:6)])
+ft <- merge_v(ft, j = 1)
+ft <- theme_vanilla(ft)
+ft <- set_caption(ft, "Comparisons between on-track and off-track development")
+ft <- add_footer(ft, factor = "* Exludes children with missing DAZ or missing factor" )
+ft <- merge_at(ft, j = 1:6, part = "footer")
+ft <- set_table_properties(ft, layout = "autofit", width = .9)
+ft <- set_header_labels(ft, factor = "", category = "", n_1 = "n", prop_1 = "%", n_0 = "n", prop_0 = "%")
+ft <- add_header_row(ft,values = c("", "On-track", "Off-track"), colwidths = c(2,2,2) )
+
+knit_print(ft)
 # pack_rows("country", 1, 11) %>%
 #  pack_rows("mother's eductation", 12, 16)%>%
 #  pack_rows("sex", 17, 19)%>%
@@ -253,7 +264,7 @@ for(f in unique(desc_plot$factor)){
 relative importance for daz?
 --->
 ```
-```{r imppie, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
+```{r imppie, results = 'hide', fig.keep = 'all',echo = FALSE, message = FALSE, warning = FALSE, fig.cap = '(ref:imppie)'}
 
 #step 2
 #multiple regression on daz (linear model)
@@ -277,6 +288,13 @@ rsq <- c("country" = summary(fit.country)$r.squared,
 # 
 
 pie(rsq, border = "white", col = brewer.pal(6, "Set3"), radius = 1)
+
+
+
+tiff("fig/fig8.2.tiff", unit = "in", width = 7, height = 5, res = 300)
+pie(rsq, border = "white", col = brewer.pal(6, "Set3"), radius = 1)
+
+dev.off()
 
 #step 3:
 
