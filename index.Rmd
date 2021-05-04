@@ -24,7 +24,7 @@ opts_chunk$set(comment = NA, background = "#FBFBFB",
 options(knitr.kable.NA = '')
 
 # see https://stackoverflow.com/questions/62578811/error-input-files-not-all-in-same-directory-please-supply-explicit-wd
-options(bookdown.render.file_scope = FALSE)
+#options(bookdown.render.file_scope = FALSE)
 # unfortunate, in my system (MacOS) this fix doesn't work
 # as a solution, I installed an older version of bookdown: install_github("rstudio/bookdown@v0.19")
 
