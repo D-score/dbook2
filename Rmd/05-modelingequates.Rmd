@@ -148,8 +148,10 @@ Until now we only looked at models that include all 1339 items. In practice, we 
 
 ## Milestone selection {#sec:milestoneselection}
 
-```{r itemfit, fig.cap='(ref:itemfit)', out.width = "75%"}
+```{r itemfit,results = 'hide', fig.keep = 'all', fig.cap='(ref:itemfit)', out.width = "75%"}
 m_011 <- load_model("1339_11",  model_dir = "models_2020", project = "Jamaica")
+
+p1 <- 
 ggplot(data = m_011$item_fit, aes(x = infit, y = outfit)) +
   geom_hline(yintercept = 1, color = "skyblue", lty = 2) +
   geom_vline(xintercept = 1, color = "skyblue", lty = 2) +
@@ -162,6 +164,12 @@ ggplot(data = m_011$item_fit, aes(x = infit, y = outfit)) +
   xlab("Item infit") + 
   ylab("Item outfit") + 
   theme_light()
+
+p1
+
+tiff("fig/fig5.5.tiff", unit = "in", width = 5, height = 5, res = 300)
+p1
+dev.off()
 ```
 
 (ref:itemfit) Infit and outfit of 1339 items in model `1339_11`. About 8 percent of the points falls outside the plot.
@@ -176,9 +184,11 @@ A practical problem of item removal is that it also affects equate group composi
 
 ### Instrument fit
 
-```{r itembox, fig.cap='(ref:itembox)'}
+```{r itembox, results = 'hide', fig.keep = 'all',fig.cap='(ref:itembox)'}
 ib <- data.frame(m_011$item_fit, decompose_itemnames(m_011$item_fit$item))
 ib <- ib[ib$instrument %in% c("aqi", "bar", "bat", "by1", "by2", "by3", "ddi", "den", "gri", "sbi", "tep", "vin"), ]
+
+p1 <- 
 ggplot(data = ib, aes(x = instrument, y = outfit)) +
   scale_y_log10(breaks = c(seq(0.4, 1, 0.1), 1.1, 1.3, 1.5, seq(2:10)), 
                 limits = c(0.4, 9), minor_breaks = FALSE) +
@@ -186,6 +196,11 @@ ggplot(data = ib, aes(x = instrument, y = outfit)) +
   xlab("Instrument") +
   ylab("Item outfit") +
   theme_light()
+p1
+
+tiff("fig/fig5.6.tiff", unit = "in", width = 8, height = 5, res = 300)
+p1
+dev.off()
 ```
 
 (ref:itembox) Box plot of the distribution of item outfit per instrument in model `1339_11`.
@@ -217,11 +232,26 @@ out <- c("aps23", "aps41", "b1m50", "b1p53", "b1p54",
          "v25")
 items <- rename_gcdg_gsed(out)
 tab <- data.frame(Item = items, Label = get_labels(items), row.names = NULL)
+
+if (opts_knit$get("rmarkdown.pandoc.to") %in% c("html", "latex")) {
+  
 knitr::kable(tab, 
              caption = "Milestones not used for equating because of limited cross-cultural validity",
              booktabs = TRUE) %>%
   kableExtra::column_spec(1, monospace = TRUE) %>% 
   kableExtra::scroll_box(height = "400px", width = "100%")
+}
+
+
+if (!opts_knit$get("rmarkdown.pandoc.to") %in% c("html", "latex")) {
+  
+ ft <- flextable(tab)
+ ft <- set_caption(ft, "Milestones not used for equating because of limited cross-cultural validity")
+ ft <- set_table_properties(ft, layout = "autofit", width = .9)
+ ft <- font(ft, j = 1, fontname = "Courier")
+ knit_print(ft)
+}
+
 ```
 
 ```{r plotequates, results = 'hide', fig.keep = 'all', fig.height = 11, warning = FALSE, fig.cap = '(ref:plotequates)', message = FALSE}
@@ -238,7 +268,7 @@ Item information is a psychometric measure that quantifies the sensitivity of th
 
 The information is inversely related to the error of measurement. More information amounts to less measurement error. For each response in the data, we can compute the amount of information it contributed to the model D-score. By summing the information over persons, we obtain a measure of certainty about the difficulty estimate of the item. This sum of information incorporates both the number of administrations and the quality of the match between person abilities and item difficulty.
 
-```{r iteminfo, echo = FALSE, warning = FALSE, message = FALSE,fig.cap='(ref:iteminfo)', fig.keep='all', fig.height=3}
+```{r iteminfo,results = 'hide', fig.keep = 'all', echo = FALSE, warning = FALSE, message = FALSE,fig.cap='(ref:iteminfo)', fig.keep='all', fig.height=3}
 
 itembank <- dscore::builtin_itembank[dscore::builtin_itembank$key == "gcdg",]
 #calculate item information given the dscores from gsed 807 model
@@ -265,11 +295,17 @@ gcdg_equateinfo <-
 
 gcdg_iteminfo2 <-gcdg_iteminfo %>% filter(!item %in% eqdf$item)
 
+p1 <- 
 ggplot()+
   geom_point(data = gcdg_iteminfo2, aes(x = tau, y = grade, group = grade), color = "grey") +
   geom_point(data = gcdg_equateinfo, aes(x = tau, y = grade, group = grade), shape = 21, size = 2, color = mice::mdc(2), stroke = 2) +
   xlab("Item difficulty") + ylab("Information grade") +
   theme(legend.position = "none")
+p1
+
+tiff("fig/fig5.7.tiff", unit = "in", width = 10, height = 3, res = 300)
+p1
+dev.off()
 
 ```
 
@@ -280,12 +316,24 @@ Figure \@ref(fig:iteminfo) displays the summed information for each item, divide
 The red circles indicate active equate groups. Most have grade A, so we have a lot of information about the items that form the active equate groups. Table \@ref(tab:equateinfo) displays more detailed information for the active equate groups. The sample sizes are reasonably large. Many information statistics are well is above 100; the criterion for Grade A. The interpretation of this criterion is as follows. Suppose that we obtain a sample of 400 persons who are all perfectly calibrated to the item of interest. In that case, the information for that item will be equal to 100.
 
 ```{r equateinfo, echo = FALSE}
+if (opts_knit$get("rmarkdown.pandoc.to") %in% c("html", "latex")) {
+
 knitr::kable(gcdg_equateinfo, 
              col.names = c("Equate group", "Difficulty", "Sample Size", "Information", "Grade"),
              caption = "Equate group information in the final model.",
              booktabs = TRUE) %>%
   kableExtra::kable_styling() %>%
   kableExtra::scroll_box(width = "100%", height = "500px")
+}
+
+if (!opts_knit$get("rmarkdown.pandoc.to") %in% c("html", "latex")) {
+  
+ ft <- flextable(gcdg_equateinfo)
+ ft <- set_header_labels(ft, equate = "Equate group", tau = "Difficulty", n= "Sample Size", info = "Information", grade = "Grade")
+ ft <- set_caption(ft, "Equate group information in the final model.")
+ ft <- set_table_properties(ft, layout = "autofit", width = .9)
+ knit_print(ft)
+}
 
 ```
 
