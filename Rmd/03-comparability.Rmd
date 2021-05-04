@@ -32,8 +32,10 @@ Likewise, instruments can be connected:
 -   Two instruments are directly connected if the same cohort measures both;
 -   Two instruments are indirectly connected if both connect to a third instrument that connects them.
 
+<br>
+
 ::: {custom-style="Table Caption"}
-```{r linkage, tab.cap.sep = ". "}
+```{r linkage}
 
 pattern <- matrix("", nrow = 16, ncol = 15)
 pattern[8, 1] <- "x"
@@ -55,12 +57,13 @@ colnames(pattern) <-
   c("aqi", "bar", "bat", "by1", "by2", "by3", "ddi", 
     "den", "gri", "mac", "peg", "sbi", "sgr", "tep", "vin")
 df <- data.frame(
-  pattern,
-  row.names = 
+ 
+  study = 
     c("Bangladesh", "Brazil 1", "Brazil 2", "Chile 1", "Chile 2", 
     "China", "Colombia 1", "Colombia 2", "Ecuador", "Ethiopia",
     "Jamaica 1", "Jamaica 2", "Madagascar", "Netherlands1", 
-    "Netherlands2", "South Africa")
+    "Netherlands2", "South Africa"),
+  pattern
 
 )
 
@@ -79,7 +82,7 @@ knit_print(ft)
 :::
 
 <br>
- 
+
 
 An `x` in Table \@ref(tab:linkage) identifies which cohorts use which instruments. The linkage table shows that studies from China, Colombia, and Ethiopia are directly connected (by `by3`). Brazil 1 indirectly connects to these studies through `den`. Some cohorts (e.g., Chile 1 and Ecuador) do not link to any other study. Likewise, we might say that `aqi`, `bat`, `by3`, and `den` are directly connected. Note that no indirect connections exist to this instrument group.
 
@@ -98,7 +101,8 @@ The next section suggests a way out of the dilemma.
 
 Many instruments for measuring child development have appeared since the works of @shirley1933 and @gesell1943. It is no surprise that their contents show substantial overlap. All tools assess events like starting to see, hear, smile, fetch, crawl, walk, speak, and think. We will exploit this overlap to bridge different instruments. For example, Table \@ref(tab:example2words) displays the labels of milestones from six instruments. All items probe the ability of the child to formulate "sentences" of two words.
 
-```{r example2words, tab.cap.style="Table Caption", echo = FALSE}
+
+```{r example2words, echo = FALSE}
 items <- c("by1mdd136", "by2mdd114", "ddicmm041", "denlgd019",
            "grihsd217", "vinxxc016")
 labels <- dscore::get_labels(items)
@@ -124,7 +128,15 @@ The idea is to check whether these milestones measure development in the same wa
 A first step in the bridging process is to group items from different instruments by similarity. As the `by3` is relatively long and is the most often used instrument, it provides a convenient starting point. Subject matter experts experienced in child development mapped items from other tools to `by3` items. These experts evaluated the similarity of wordings and descriptions in reference manuals. Also, they mapped same-skill items across other instruments into groups if these did not map onto `by3` items.
 
 ```{r mappingshiny, echo = FALSE, fig.align="center", fig.cap='(ref:mappingshiny)', fig.keep='all', screenshot.alt="fig/ring.png", dev = "png"}
+
+#if (opts_knit$get("rmarkdown.pandoc.to") %in% c("html", "latex")) {
 knitr::include_app("https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/", height = "600px")
+#}
+
+if (!opts_knit$get("rmarkdown.pandoc.to") %in% c("html", "latex")) {
+  plot <- include_graphics("fig/ring.png")
+}
+
 ```
 
 (ref:mappingshiny) Connections between the instruments via mapped item groups by domain (<https://tnochildhealthstatistics.shinyapps.io/GCDG_mapping/>).
@@ -142,12 +154,20 @@ eq_plots <- plot_p_a_equate(lean, model, equates = c("COG36", "FM38", "EXP12", "
 
 Another way to explore the similarity of milestones from different instruments is to plot the probability of passing by age. Figure \@ref(fig:poteq) shows two examples. The first graph presents the age curves of a group of four cognitive items for assessing the ability to put a cube or block in a cup or box. The milestones are administered in different studies and seem to work similarly. The second plot shows a similar graph for items that assess the ability to build a tower of six cubes or blocks. These milestones have similar age patterns as well.
 
-```{r poteq, echo=FALSE, fig.height=10, fig.width=10, fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
+```{r poteq, echo=FALSE,fig.height = 10, fig.width = 10,  fig.keep='all', warning=FALSE, results='hide', fig.cap = '(ref:poteq)'}
 ##promising equates
 gridExtra::grid.arrange(
   eq_plots[["COG36"]],
   eq_plots[["FM38"]]
 )
+
+tiff("fig/fig_3.2.tiff", unit = "in", width = 10, height = 10, res = 300)
+gridExtra::grid.arrange(
+  eq_plots[["COG36"]],
+  eq_plots[["FM38"]]
+)
+
+dev.off()
 
 ```
 
@@ -162,6 +182,13 @@ gridExtra::grid.arrange(
   eq_plots[["EXP12"]], ## ZA=GRI/BY1; NL=DDI; CL1=BY1
   eq_plots[["COG24"]] ## BR1=den; CO2=den; CL1=BY1; ZA=BY1
 )
+
+tiff("fig/fig_3.3.tiff", unit = "in", width = 10, height = 10, res = 300)
+gridExtra::grid.arrange(
+  eq_plots[["EXP12"]], ## ZA=GRI/BY1; NL=DDI; CL1=BY1
+  eq_plots[["COG24"]] ## BR1=den; CO2=den; CL1=BY1; ZA=BY1
+)
+dev.off()
 ```
 
 (ref:badeq) Probability to pass items for age in poor bridges.
