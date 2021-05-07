@@ -15,7 +15,7 @@ Section \@ref(ch:SDGindicator) described a method to define and estimate off-tra
 
 There are multiple ways to define on-track development. Here we will use the method outlined in section \@ref(sec:references). Ideally, we would like to fit the age-conditional reference distribution on a sample of children with normal, healthy development. As noted before, we calculated the references used in section \@ref(sec:references) from a convenience sample. They may not be representative of healthy development.
 
-```{r ontrackref, echo=FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 7, fig.cap = '(ref:ontrackref)'}
+```{r ontrackref, results = 'hide', fig.keep = 'all',echo=FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 7, fig.cap = '(ref:ontrackref)'}
 LMS <- dscore::get_reference("gcdg") %>% 
   select(age, mu, sigma, nu) %>% 
   mutate(x = age, 
@@ -193,7 +193,9 @@ bw_des <-
 
 
 #  desc_table <- bind_rows(cohort_des, country_des, edu_des, sex_des, res_des, bw_des)
-desc_table <- bind_rows(sex_des, bw_des, edu_des, res_des)
+desc_table <- bind_rows(sex_des, bw_des, edu_des, res_des) %>%
+  mutate(prop_1 = round(prop_1 * 100, 1),
+         prop_0 = round(prop_0 * 100, 1))
 
 
 ft <- flextable(desc_table[,c(1:6)])

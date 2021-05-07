@@ -197,54 +197,59 @@
 <p>One way to interpret the formula is as follows. The logarithm of the odds that a person with ability <span class="math inline">\(\beta_n\)</span> passes an item of difficulty <span class="math inline">\(\delta_i\)</span> is equal to the difference <span class="math inline">\(\beta_n-\delta_i\)</span> <span class="citation">(<a href="references.html#ref-wright1982" role="doc-biblioref">Wright and Masters 1982</a>)</span>. See the logistic model in <a href="https://d-score.org/dbook1/sec-itemresponsefunctions.html#logistic-model">Chapter 1, Section 4.6.1</a> for more detail.</p>
 <p>In model <a href="sec-statisticalframe.html#eq:rasch">(4.1)</a> every milestone <span class="math inline">\(i\)</span> has one parameter <span class="math inline">\(\delta_i\)</span>. We extend the Rasch model by restricting the <span class="math inline">\(\delta_i\)</span> of all items within the same equate group to the same value. We thereby effectively say that these items are interchangeable measures of child development.</p>
 <p>Estimation of the parameter for the equate group is straightforward. <span class="citation"><a href="references.html#ref-wright1982" role="doc-biblioref">Wright and Masters</a> (<a href="references.html#ref-wright1982" role="doc-biblioref">1982</a>)</span> present a simple method for aligning two test forms with common items. There are three steps:</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Estimate the separate <span class="math inline">\(\delta_i\)</span>’s per item;</li>
 <li>Combine these estimates into <span class="math inline">\(\delta_q\)</span> by calculating their weighted average;</li>
 <li>Overwrite each <span class="math inline">\(\delta_i\)</span> by <span class="math inline">\(\delta_q\)</span>.</li>
-</ul>
+</ol>
 <p>Suppose that <span class="math inline">\(Q\)</span> is the collection of items in equate group <span class="math inline">\(q\)</span>, and that <span class="math inline">\(w_i\)</span> is the number of respondents for item <span class="math inline">\(i\)</span>. The parameter estimate <span class="math inline">\(\delta_q\)</span> for the equate group is</p>
 <span class="math display" id="eq:raschequate">\[\begin{equation}
 \delta_q = \frac{\sum_{i\in Q} \delta_iw_i}{\sum_{i\in Q} w_i} \tag{4.2}
 \end{equation}\]</span>
 <table>
 <caption><span id="tab:symbols">Table 4.1: </span> Overview the symbols used in equations <a href="sec-statisticalframe.html#eq:rasch">(4.1)</a> and <a href="sec-statisticalframe.html#eq:raschequate">(4.2)</a>.</caption>
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="69%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Symbol</th>
-<th>Term</th>
-<th>Description</th>
+<th align="left">Term</th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(\beta_n\)</span></td>
-<td>Ability</td>
-<td>True (but unknown) developmental score of child <span class="math inline">\(n\)</span></td>
+<td align="left">Ability</td>
+<td align="left">True (but unknown) developmental score of child <span class="math inline">\(n\)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(\delta_i\)</span></td>
-<td>Difficulty</td>
-<td>True (but unknown) difficulty of item <span class="math inline">\(i\)</span></td>
+<td align="left">Difficulty</td>
+<td align="left">True (but unknown) difficulty of item <span class="math inline">\(i\)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(\delta_q\)</span></td>
-<td>Difficulty</td>
-<td>The combined difficulty of the items in equate group <span class="math inline">\(q\)</span></td>
+<td align="left">Difficulty</td>
+<td align="left">The combined difficulty of the items in equate group <span class="math inline">\(q\)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(\pi_{ni}\)</span></td>
-<td>Probability</td>
-<td>Probability that child <span class="math inline">\(n\)</span> passes item <span class="math inline">\(i\)</span></td>
+<td align="left">Probability</td>
+<td align="left">Probability that child <span class="math inline">\(n\)</span> passes item <span class="math inline">\(i\)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(l\)</span></td>
-<td></td>
-<td>The number of items in the equate group</td>
+<td align="left"></td>
+<td align="left">The number of items in the equate group</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(w_i\)</span></td>
-<td></td>
-<td>The number of respondents with an observed score on item <span class="math inline">\(i\)</span></td>
+<td align="left"></td>
+<td align="left">The number of respondents with an observed score on item <span class="math inline">\(i\)</span></td>
 </tr>
 </tbody>
 </table>

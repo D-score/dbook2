@@ -193,270 +193,61 @@
 analyze relation between background variables for on-track in logistic regression
 --->
 <p>We already know many of the factors that influence early child development. A higher level of education in the family promotes development. Infectious diseases like malaria slow down growth. Access to adequate nutrition, clean water and a stimulating, prosperous and safe environment is favourable for healthy development. And so on. Unfortunately, we do not have data on most factors, so we need to limit ourselves to a few background characteristics.</p>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
+<template id="fe563a04-b583-4c23-9fa8-64919f49af21"><style>
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-33eea984{table-layout:auto;border-collapse:collapse;width:90%;}.cl-33e77d4e{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-33e77d4f{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-33e77d50{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-33e77d51{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-33e7cb50{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb51{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb52{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(102, 102, 102, 1.00);border-top: 0.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb53{background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(102, 102, 102, 1.00);border-top: 0.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb54{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb55{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb56{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb57{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-33e7cb58{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}caption {color: #777;margin-top: 10px;margin-bottom: 10px;text-align: center;}</style><table class='cl-33eea984'>
+<caption class="Table Caption">
 <span id="tab:ontracktab">Table 8.1: </span>Comparisons between on-track and off-track development
 </caption>
-<thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-On-track
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Off-track
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:right;">
-%
-</th>
-<th style="text-align:right;">
-n
-</th>
-<th style="text-align:right;">
-%
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;vertical-align: top !important;" rowspan="2">
-sex
-</td>
-<td style="text-align:left;">
-female
-</td>
-<td style="text-align:right;">
-21136
-</td>
-<td style="text-align:right;">
-0.9773873
-</td>
-<td style="text-align:right;">
-489
-</td>
-<td style="text-align:right;">
-0.0226127
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-male
-</td>
-<td style="text-align:right;">
-20805
-</td>
-<td style="text-align:right;">
-0.9721963
-</td>
-<td style="text-align:right;">
-595
-</td>
-<td style="text-align:right;">
-0.0278037
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top !important;" rowspan="2">
-birth weight
-</td>
-<td style="text-align:left;">
-&lt;2500gr
-</td>
-<td style="text-align:right;">
-3388
-</td>
-<td style="text-align:right;">
-0.9482228
-</td>
-<td style="text-align:right;">
-185
-</td>
-<td style="text-align:right;">
-0.0517772
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-&gt;2500gr
-</td>
-<td style="text-align:right;">
-36375
-</td>
-<td style="text-align:right;">
-0.9779277
-</td>
-<td style="text-align:right;">
-821
-</td>
-<td style="text-align:right;">
-0.0220723
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top !important;" rowspan="4">
-maternal education
-</td>
-<td style="text-align:left;">
-no education
-</td>
-<td style="text-align:right;">
-1907
-</td>
-<td style="text-align:right;">
-0.9665484
-</td>
-<td style="text-align:right;">
-66
-</td>
-<td style="text-align:right;">
-0.0334516
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-any primary
-</td>
-<td style="text-align:right;">
-11764
-</td>
-<td style="text-align:right;">
-0.9672751
-</td>
-<td style="text-align:right;">
-398
-</td>
-<td style="text-align:right;">
-0.0327249
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-any secondary
-</td>
-<td style="text-align:right;">
-21576
-</td>
-<td style="text-align:right;">
-0.9772182
-</td>
-<td style="text-align:right;">
-503
-</td>
-<td style="text-align:right;">
-0.0227818
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-higher secondary
-</td>
-<td style="text-align:right;">
-6263
-</td>
-<td style="text-align:right;">
-0.9841295
-</td>
-<td style="text-align:right;">
-101
-</td>
-<td style="text-align:right;">
-0.0158705
-</td>
-</tr>
-<tr>
-<td style="text-align:left;vertical-align: top !important;" rowspan="4">
-residence
-</td>
-<td style="text-align:left;">
-rural
-</td>
-<td style="text-align:right;">
-1251
-</td>
-<td style="text-align:right;">
-0.9889328
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-0.0110672
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-semi-urban
-</td>
-<td style="text-align:right;">
-2236
-</td>
-<td style="text-align:right;">
-0.9898185
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.0101815
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-urban
-</td>
-<td style="text-align:right;">
-18740
-</td>
-<td style="text-align:right;">
-0.9706827
-</td>
-<td style="text-align:right;">
-566
-</td>
-<td style="text-align:right;">
-0.0293173
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-metropolitan
-</td>
-<td style="text-align:right;">
-11122
-</td>
-<td style="text-align:right;">
-0.9793942
-</td>
-<td style="text-align:right;">
-234
-</td>
-<td style="text-align:right;">
-0.0206058
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; border:0;" colspan="100%">
-<sup>*</sup> Exludes children with missing DAZ or missing factor
-</td>
-</tr>
-</tfoot>
-</table>
+<thead><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-33e7cb56"><p class="cl-33e77d50"><span class="cl-33e77d4e"></span></p></td><td  colspan="2"class="cl-33e7cb56"><p class="cl-33e77d50"><span class="cl-33e77d4e">On-track</span></p></td><td  colspan="2"class="cl-33e7cb56"><p class="cl-33e77d50"><span class="cl-33e77d4e">Off-track</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb58"><p class="cl-33e77d50"><span class="cl-33e77d4f"></span></p></td><td class="cl-33e7cb58"><p class="cl-33e77d50"><span class="cl-33e77d4f"></span></p></td><td class="cl-33e7cb57"><p class="cl-33e77d51"><span class="cl-33e77d4f">n</span></p></td><td class="cl-33e7cb57"><p class="cl-33e77d51"><span class="cl-33e77d4f">%</span></p></td><td class="cl-33e7cb57"><p class="cl-33e77d51"><span class="cl-33e77d4f">n</span></p></td><td class="cl-33e7cb57"><p class="cl-33e77d51"><span class="cl-33e77d4f">%</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-33e7cb50"><p class="cl-33e77d50"><span class="cl-33e77d4e">sex</span></p></td><td class="cl-33e7cb50"><p class="cl-33e77d50"><span class="cl-33e77d4e">female</span></p></td><td class="cl-33e7cb51"><p class="cl-33e77d51"><span class="cl-33e77d4e">21,136</span></p></td><td class="cl-33e7cb51"><p class="cl-33e77d51"><span class="cl-33e77d4e">97.7</span></p></td><td class="cl-33e7cb51"><p class="cl-33e77d51"><span class="cl-33e77d4e">489</span></p></td><td class="cl-33e7cb51"><p class="cl-33e77d51"><span class="cl-33e77d4e">2.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">male</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">20,805</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">97.2</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">595</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">birth weight</span></p></td><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">&lt;2500gr</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">3,388</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">94.8</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">185</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">5.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">&gt;2500gr</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">36,375</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">97.8</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">821</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">2.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="4"class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">maternal education</span></p></td><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">no education</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">1,907</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">96.7</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">66</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">3.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">any primary</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">11,764</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">96.7</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">398</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">3.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">any secondary</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">21,576</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">97.7</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">503</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">2.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">higher secondary</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">6,263</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">98.4</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">101</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">1.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td  rowspan="4"class="cl-33e7cb55"><p class="cl-33e77d50"><span class="cl-33e77d4e">residence</span></p></td><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">rural</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">1,251</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">98.9</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">14</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">1.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">semi-urban</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">2,236</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">99.0</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">23</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">1.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb53"><p class="cl-33e77d50"><span class="cl-33e77d4e">urban</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">18,740</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">97.1</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">566</span></p></td><td class="cl-33e7cb52"><p class="cl-33e77d51"><span class="cl-33e77d4e">2.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-33e7cb55"><p class="cl-33e77d50"><span class="cl-33e77d4e">metropolitan</span></p></td><td class="cl-33e7cb54"><p class="cl-33e77d51"><span class="cl-33e77d4e">11,122</span></p></td><td class="cl-33e7cb54"><p class="cl-33e77d51"><span class="cl-33e77d4e">97.9</span></p></td><td class="cl-33e7cb54"><p class="cl-33e77d51"><span class="cl-33e77d4e">234</span></p></td><td class="cl-33e7cb54"><p class="cl-33e77d51"><span class="cl-33e77d4e">2.1</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="6"class="cl-33e7cb56"><p class="cl-33e77d50"><span class="cl-33e77d4e">* Exludes children with missing DAZ or missing factor</span></p></td></tr></tfoot></table></div></template>
+<div id="5cccadaa-f684-4d6e-ab0d-ef75f822dec8"></div>
+<script>
+var dest = document.getElementById("5cccadaa-f684-4d6e-ab0d-ef75f822dec8");
+var template = document.getElementById("fe563a04-b583-4c23-9fa8-64919f49af21");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
 <p> </p>
 <p>Table <a href="sec-factors.html#tab:ontracktab">8.1</a> compares the frequency distributions of various factors for children on-track versus off-track. There are only tiny differences between boys and girls. Children with low birth weight (&lt; 2500 gr) are more at risk for off-track development. This estimate does not correct for gestational age. We discussed techniques for such corrections <a href="https://d-score.org/dbook1/sec-pops.html">elsewhere</a>.</p>
 <p>The influence of maternal education on off-track development follows the expected trend. Interestingly, it seems that a rural environment could prevent off-track development. We note that original measures of maternal education and residence were harmonised across studies. It would, therefore, also be interesting to study the impact per cohort using the actual factor coding.</p>
